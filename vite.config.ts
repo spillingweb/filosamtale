@@ -14,13 +14,7 @@ const config = defineConfig({
     tanstackStart({
       nitro: {
         preset: 'vercel',
-        rollupConfig: { external: [/^@sentry\//] },
-        serverAssets: [
-          {
-            baseName: 'content',
-            dir: './content'
-          }
-        ]
+        rollupConfig: { external: [/^@sentry\//] }
       }
     }),
     viteReact(),

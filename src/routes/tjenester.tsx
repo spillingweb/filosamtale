@@ -1,69 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
 import { Button } from '#/components/ui/button'
 import { Badge } from '#/components/ui/badge'
-
-interface TjenestePris {
-  tittel: string
-  undertittel: string
-  beskrivelse: string
-  detaljer: string[]
-  priser: { label: string; pris: string }[]
-  badge?: string
-  orden: number
-}
-
-interface TjenesteWithId extends TjenestePris {
-  id: string
-}
-
-const getTjenester = createServerFn({ method: 'GET' }).handler(async () => {
-  const fs = await import('node:fs/promises')
-  const path = await import('node:path')
-
-  // In development, read from local content directory
-  // In production (Vercel/Nitro), read from server assets
-  const contentDir = path.join(process.cwd(), 'content/tjenester')
-  
-  let files: string[]
-  try {
-    files = await fs.readdir(contentDir)
-  } catch (err) {
-    // Fallback: try Nitro's .data/storage location
-    const storageDir = path.join(process.cwd(), '.data/storage/content/tjenester')
-    files = await fs.readdir(storageDir)
-  }
-  
-  const jsonFiles = files.filter((file) => file.endsWith('.json'))
-
-  const tjenester: TjenesteWithId[] = await Promise.all(
-    jsonFiles.map(async (file) => {
-      let content: string
-      try {
-        const filePath = path.join(contentDir, file)
-        content = await fs.readFile(filePath, 'utf-8')
-      } catch (err) {
-        // Fallback to storage location
-        const filePath = path.join(process.cwd(), '.data/storage/content/tjenester', file)
-        content = await fs.readFile(filePath, 'utf-8')
-      }
-      const data = JSON.parse(content) as TjenestePris
-      const id = file.replace('.json', '')
-      return { ...data, id }
-    }),
-  )
-
-  // Sort by orden field
-  tjenester.sort((a, b) => a.orden - b.orden)
-
-  return tjenester
-})
+import { tjenester } from '#/data/tjenester'
 
 export const Route = createFileRoute('/tjenester')({
-  loader: async () => {
-    const tjenester = await getTjenester()
-    return { tjenester }
-  },
+  loader: () => ({ tjenester }),
   component: () => {
     const { tjenester } = Route.useLoaderData()
 
