@@ -9,9 +9,18 @@
     "Kan inngå i kompetanseutviklingsplan"
   ],
   "priser": [
-    { "label": "Enkelttime (60 min)", "pris": "1 100 kr" },
-    { "label": "Gruppeveiledning (2 t, inntil 10)", "pris": "4 500 kr" },
-    { "label": "Foredrag/fagdag (3–4 t)", "pris": "Fra 8 500 kr" }
+    {
+      "label": "Enkelttime (60 min)",
+      "pris": "1 100 kr"
+    },
+    {
+      "label": "Gruppeveiledning (2 t, inntil 10)",
+      "pris": "4 500 kr"
+    },
+    {
+      "label": "Foredrag/fagdag (3–4 t)",
+      "pris": "Fra 8 500 kr"
+    }
   ],
   "orden": 4
 }

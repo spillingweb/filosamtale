@@ -10,8 +10,14 @@
     "Kursmateriale inkludert"
   ],
   "priser": [
-    { "label": "4-ukers kurs", "pris": "800 kr" },
-    { "label": "Gjentakende deltaker (samme tema)", "pris": "400 kr" }
+    {
+      "label": "4-ukers kurs",
+      "pris": "800 kr"
+    },
+    {
+      "label": "Gjentakende deltaker (samme tema)",
+      "pris": "400 kr"
+    }
   ],
   "orden": 5
 }

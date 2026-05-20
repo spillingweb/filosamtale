@@ -1,6 +1,6 @@
 ---
 title: Å sette grenser — en filosofisk betraktning
-excerpt: Å si nei er ikke egoisme. Det er integritet. Men hva er egentlig en grense, og hvorfor er det så vanskelig å håndheve dem?
+excerpt: 'Å si nei er ikke egoisme. Det er integritet. Men hva er egentlig en grense, og hvorfor er det så vanskelig å håndheve dem?'
 date: 2025-01-08T00:00:00.000Z
 category: Etikk
 readingTime: 5

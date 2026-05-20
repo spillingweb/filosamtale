@@ -10,9 +10,18 @@
     "Tre måneder minstetid anbefales"
   ],
   "priser": [
-    { "label": "Per samling", "pris": "450 kr" },
-    { "label": "Kvartal (3 samlinger)", "pris": "1 200 kr" },
-    { "label": "Halvår (6 samlinger)", "pris": "2 100 kr" }
+    {
+      "label": "Per samling",
+      "pris": "450 kr"
+    },
+    {
+      "label": "Kvartal (3 samlinger)",
+      "pris": "1 200 kr"
+    },
+    {
+      "label": "Halvår (6 samlinger)",
+      "pris": "2 100 kr"
+    }
   ],
   "orden": 2
 }

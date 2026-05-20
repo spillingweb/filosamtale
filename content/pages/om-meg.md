@@ -10,7 +10,7 @@ Jeg startet min karriere som sykepleier ved Sørlandet sykehus. Der møtte jeg m
 
 Etter ti år som sykepleier tok jeg en mastergrad i filosofi ved Universitetet i Oslo. Jeg studerte eksistensialisme, fenomenologi og etikk — men også den mer praktiske grenen av filosofi som kalles **filosofisk praksis**. Dette er en relativt ny disiplin som handler om å bruke filosofisk metode i samtale og veiledning med enkeltpersoner og grupper.
 
-Siden 2016 har jeg drevet egen praksis i Fevik, med samtaler, grupper og seminarer for folk som lurer på de store spørsmålene: _Hva er meningen med livet? Hvordan skal jeg leve? Hva er verdifullt? Hva kan jeg vite?_
+Siden 2016 har jeg drevet egen praksis i Fevik, med samtaler, grupper og seminarer for folk som lurer på de store spørsmålene: *Hva er meningen med livet? Hvordan skal jeg leve? Hva er verdifullt? Hva kan jeg vite?*
 
 ## Mine verdier
 
@@ -22,9 +22,9 @@ Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålen
 
 ## Utdanning og kompetanse
 
-- **2016** — Master i filosofi, Universitetet i Oslo
-- **2008** — Bachelorgrad i sykepleie, Universitetet i Agder
-- **2022** — Videreutdanning i filosofisk praksis, NFPF (Norsk Forening for Filosofisk Praksis)
+* **2016** — Master i filosofi, Universitetet i Oslo
+* **2008** — Bachelorgrad i sykepleie, Universitetet i Agder
+* **2022** — Videreutdanning i filosofisk praksis, NFPF (Norsk Forening for Filosofisk Praksis)
 
 Jeg er medlem av **NFPF** og følger foreningens etiske retningslinjer for filosofisk praksis.
 

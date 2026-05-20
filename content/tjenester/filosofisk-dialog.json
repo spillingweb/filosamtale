@@ -9,9 +9,18 @@
     "Første konsultasjon (30 min) er gratis"
   ],
   "priser": [
-    { "label": "60 min", "pris": "950 kr" },
-    { "label": "90 min", "pris": "1 350 kr" },
-    { "label": "Pakke (5 × 60 min)", "pris": "4 250 kr" }
+    {
+      "label": "60 min",
+      "pris": "950 kr"
+    },
+    {
+      "label": "90 min",
+      "pris": "1 350 kr"
+    },
+    {
+      "label": "Pakke (5 × 60 min)",
+      "pris": "4 250 kr"
+    }
   ],
   "orden": 1
 }

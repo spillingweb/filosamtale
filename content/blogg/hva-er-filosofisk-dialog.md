@@ -1,6 +1,6 @@
 ---
 title: Hva er filosofisk dialog?
-excerpt: Filosofisk dialog er ikke terapi, og det er ikke undervisning. Det er noe midt imellom — en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.
+excerpt: 'Filosofisk dialog er ikke terapi, og det er ikke undervisning. Det er noe midt imellom — en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.'
 date: 2025-04-15T00:00:00.000Z
 category: Filosofi
 readingTime: 5

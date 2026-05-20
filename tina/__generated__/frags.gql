@@ -1,0 +1,32 @@
+fragment BloggParts on Blogg {
+  __typename
+  title
+  excerpt
+  date
+  category
+  readingTime
+  coverImage
+  body
+}
+
+fragment ArrangementerParts on Arrangementer {
+  __typename
+  title
+  description
+  date
+  endDate
+  time
+  location
+  price
+  capacity
+  category
+  isOnline
+  registrationUrl
+  body
+}
+
+fragment SiderParts on Sider {
+  __typename
+  title
+  body
+}
