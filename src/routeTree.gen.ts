@@ -9,9 +9,35 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TjenesterRouteImport } from './routes/tjenester'
+import { Route as OmMegRouteImport } from './routes/om-meg'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as ArrangementerRouteImport } from './routes/arrangementer'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BloggIndexRouteImport } from './routes/blogg/index'
+import { Route as BloggSlugRouteImport } from './routes/blogg/$slug'
 
+const TjenesterRoute = TjenesterRouteImport.update({
+  id: '/tjenester',
+  path: '/tjenester',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmMegRoute = OmMegRouteImport.update({
+  id: '/om-meg',
+  path: '/om-meg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArrangementerRoute = ArrangementerRouteImport.update({
+  id: '/arrangementer',
+  path: '/arrangementer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -22,35 +48,122 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BloggIndexRoute = BloggIndexRouteImport.update({
+  id: '/blogg/',
+  path: '/blogg/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BloggSlugRoute = BloggSlugRouteImport.update({
+  id: '/blogg/$slug',
+  path: '/blogg/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arrangementer': typeof ArrangementerRoute
+  '/kontakt': typeof KontaktRoute
+  '/om-meg': typeof OmMegRoute
+  '/tjenester': typeof TjenesterRoute
+  '/blogg/$slug': typeof BloggSlugRoute
+  '/blogg/': typeof BloggIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arrangementer': typeof ArrangementerRoute
+  '/kontakt': typeof KontaktRoute
+  '/om-meg': typeof OmMegRoute
+  '/tjenester': typeof TjenesterRoute
+  '/blogg/$slug': typeof BloggSlugRoute
+  '/blogg': typeof BloggIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/arrangementer': typeof ArrangementerRoute
+  '/kontakt': typeof KontaktRoute
+  '/om-meg': typeof OmMegRoute
+  '/tjenester': typeof TjenesterRoute
+  '/blogg/$slug': typeof BloggSlugRoute
+  '/blogg/': typeof BloggIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/arrangementer'
+    | '/kontakt'
+    | '/om-meg'
+    | '/tjenester'
+    | '/blogg/$slug'
+    | '/blogg/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/arrangementer'
+    | '/kontakt'
+    | '/om-meg'
+    | '/tjenester'
+    | '/blogg/$slug'
+    | '/blogg'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/arrangementer'
+    | '/kontakt'
+    | '/om-meg'
+    | '/tjenester'
+    | '/blogg/$slug'
+    | '/blogg/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ArrangementerRoute: typeof ArrangementerRoute
+  KontaktRoute: typeof KontaktRoute
+  OmMegRoute: typeof OmMegRoute
+  TjenesterRoute: typeof TjenesterRoute
+  BloggSlugRoute: typeof BloggSlugRoute
+  BloggIndexRoute: typeof BloggIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tjenester': {
+      id: '/tjenester'
+      path: '/tjenester'
+      fullPath: '/tjenester'
+      preLoaderRoute: typeof TjenesterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/om-meg': {
+      id: '/om-meg'
+      path: '/om-meg'
+      fullPath: '/om-meg'
+      preLoaderRoute: typeof OmMegRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arrangementer': {
+      id: '/arrangementer'
+      path: '/arrangementer'
+      fullPath: '/arrangementer'
+      preLoaderRoute: typeof ArrangementerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -65,12 +178,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogg/': {
+      id: '/blogg/'
+      path: '/blogg'
+      fullPath: '/blogg/'
+      preLoaderRoute: typeof BloggIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogg/$slug': {
+      id: '/blogg/$slug'
+      path: '/blogg/$slug'
+      fullPath: '/blogg/$slug'
+      preLoaderRoute: typeof BloggSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ArrangementerRoute: ArrangementerRoute,
+  KontaktRoute: KontaktRoute,
+  OmMegRoute: OmMegRoute,
+  TjenesterRoute: TjenesterRoute,
+  BloggSlugRoute: BloggSlugRoute,
+  BloggIndexRoute: BloggIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -11,22 +11,29 @@ const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getIte
 export const Route = createRootRoute({
   head: () => ({
     meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { title: 'Sykosofi — Filosofisk veiledning og dialog i Fevik' },
       {
-        charSet: 'utf-8',
+        name: 'description',
+        content:
+          'Sykosofi tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Anne Linn Haugen hjelper deg å utforske livets store spørsmål.',
       },
+      { name: 'keywords', content: 'filosofisk veiledning, samtalegruppe, seminar, Fevik, Agder, filosofi, sykepleier, eksistensiell samtale' },
+      { property: 'og:title', content: 'Sykosofi — Filosofisk veiledning og dialog' },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        property: 'og:description',
+        content: 'Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier og filosof.',
       },
-      {
-        title: 'TanStack Start Starter',
-      },
+      { property: 'og:locale', content: 'nb_NO' },
+      { property: 'og:type', content: 'website' },
+      { name: 'geo.region', content: 'NO-42' },
+      { name: 'geo.placename', content: 'Fevik, Agder' },
     ],
     links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
+      { rel: 'stylesheet', href: appCss },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' as const },
     ],
   }),
   shellComponent: RootDocument,
@@ -34,7 +41,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="nb" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
@@ -44,18 +51,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         {children}
         <Footer />
         <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
+          config={{ position: 'bottom-right' }}
+          plugins={[{ name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> }]}
         />
         <Scripts />
       </body>
     </html>
   )
 }
+
