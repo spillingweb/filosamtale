@@ -25,8 +25,32 @@ fragment ArrangementerParts on Arrangementer {
   body
 }
 
-fragment SiderParts on Sider {
+fragment PagesParts on Pages {
   __typename
   title
+  subtitle
+  intro
   body
+}
+
+fragment TjenesterParts on Tjenester {
+  __typename
+  tittel
+  undertittel
+  badge
+  beskrivelse
+  detaljer
+  priser {
+    __typename
+    label
+    pris
+  }
+  orden
+}
+
+fragment UtdanningParts on Utdanning {
+  __typename
+  ar
+  grad
+  sted
 }

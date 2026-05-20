@@ -34,11 +34,37 @@ export const ArrangementerPartsFragmentDoc = gql`
   body
 }
     `;
-export const SiderPartsFragmentDoc = gql`
-    fragment SiderParts on Sider {
+export const PagesPartsFragmentDoc = gql`
+    fragment PagesParts on Pages {
   __typename
   title
+  subtitle
+  intro
   body
+}
+    `;
+export const TjenesterPartsFragmentDoc = gql`
+    fragment TjenesterParts on Tjenester {
+  __typename
+  tittel
+  undertittel
+  badge
+  beskrivelse
+  detaljer
+  priser {
+    __typename
+    label
+    pris
+  }
+  orden
+}
+    `;
+export const UtdanningPartsFragmentDoc = gql`
+    fragment UtdanningParts on Utdanning {
+  __typename
+  ar
+  grad
+  sted
 }
     `;
 export const BloggDocument = gql`
@@ -155,9 +181,9 @@ export const ArrangementerConnectionDocument = gql`
   }
 }
     ${ArrangementerPartsFragmentDoc}`;
-export const SiderDocument = gql`
-    query sider($relativePath: String!) {
-  sider(relativePath: $relativePath) {
+export const PagesDocument = gql`
+    query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -170,13 +196,13 @@ export const SiderDocument = gql`
       }
       id
     }
-    ...SiderParts
+    ...PagesParts
   }
 }
-    ${SiderPartsFragmentDoc}`;
-export const SiderConnectionDocument = gql`
-    query siderConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiderFilter) {
-  siderConnection(
+    ${PagesPartsFragmentDoc}`;
+export const PagesConnectionDocument = gql`
+    query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
+  pagesConnection(
     before: $before
     after: $after
     first: $first
@@ -206,12 +232,126 @@ export const SiderConnectionDocument = gql`
           }
           id
         }
-        ...SiderParts
+        ...PagesParts
       }
     }
   }
 }
-    ${SiderPartsFragmentDoc}`;
+    ${PagesPartsFragmentDoc}`;
+export const TjenesterDocument = gql`
+    query tjenester($relativePath: String!) {
+  tjenester(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...TjenesterParts
+  }
+}
+    ${TjenesterPartsFragmentDoc}`;
+export const TjenesterConnectionDocument = gql`
+    query tjenesterConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TjenesterFilter) {
+  tjenesterConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...TjenesterParts
+      }
+    }
+  }
+}
+    ${TjenesterPartsFragmentDoc}`;
+export const UtdanningDocument = gql`
+    query utdanning($relativePath: String!) {
+  utdanning(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...UtdanningParts
+  }
+}
+    ${UtdanningPartsFragmentDoc}`;
+export const UtdanningConnectionDocument = gql`
+    query utdanningConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: UtdanningFilter) {
+  utdanningConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...UtdanningParts
+      }
+    }
+  }
+}
+    ${UtdanningPartsFragmentDoc}`;
 export function getSdk(requester) {
   return {
     blogg(variables, options) {
@@ -226,11 +366,23 @@ export function getSdk(requester) {
     arrangementerConnection(variables, options) {
       return requester(ArrangementerConnectionDocument, variables, options);
     },
-    sider(variables, options) {
-      return requester(SiderDocument, variables, options);
+    pages(variables, options) {
+      return requester(PagesDocument, variables, options);
     },
-    siderConnection(variables, options) {
-      return requester(SiderConnectionDocument, variables, options);
+    pagesConnection(variables, options) {
+      return requester(PagesConnectionDocument, variables, options);
+    },
+    tjenester(variables, options) {
+      return requester(TjenesterDocument, variables, options);
+    },
+    tjenesterConnection(variables, options) {
+      return requester(TjenesterConnectionDocument, variables, options);
+    },
+    utdanning(variables, options) {
+      return requester(UtdanningDocument, variables, options);
+    },
+    utdanningConnection(variables, options) {
+      return requester(UtdanningConnectionDocument, variables, options);
     }
   };
 }

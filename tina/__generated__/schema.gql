@@ -58,14 +58,20 @@ type Query {
   bloggConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: BloggFilter): BloggConnection!
   arrangementer(relativePath: String): Arrangementer!
   arrangementerConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ArrangementerFilter): ArrangementerConnection!
-  sider(relativePath: String): Sider!
-  siderConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiderFilter): SiderConnection!
+  pages(relativePath: String): Pages!
+  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  tjenester(relativePath: String): Tjenester!
+  tjenesterConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TjenesterFilter): TjenesterConnection!
+  utdanning(relativePath: String): Utdanning!
+  utdanningConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: UtdanningFilter): UtdanningConnection!
 }
 
 input DocumentFilter {
   blogg: BloggFilter
   arrangementer: ArrangementerFilter
-  sider: SiderFilter
+  pages: PagesFilter
+  tjenester: TjenesterFilter
+  utdanning: UtdanningFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +97,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blogg | Arrangementer | Sider | Folder
+union DocumentNode = Blogg | Arrangementer | Pages | Tjenester | Utdanning | Folder
 
 type Blogg implements Node & Document {
   title: String!
@@ -214,28 +220,102 @@ type ArrangementerConnection implements Connection {
   edges: [ArrangementerConnectionEdges]
 }
 
-type Sider implements Node & Document {
+type Pages implements Node & Document {
   title: String!
+  subtitle: String
+  intro: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input SiderFilter {
+input PagesFilter {
   title: StringFilter
+  subtitle: StringFilter
+  intro: StringFilter
   body: RichTextFilter
 }
 
-type SiderConnectionEdges {
+type PagesConnectionEdges {
   cursor: String!
-  node: Sider
+  node: Pages
 }
 
-type SiderConnection implements Connection {
+type PagesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [SiderConnectionEdges]
+  edges: [PagesConnectionEdges]
+}
+
+type TjenesterPriser {
+  label: String!
+  pris: String!
+}
+
+type Tjenester implements Node & Document {
+  tittel: String!
+  undertittel: String!
+  badge: String
+  beskrivelse: String!
+  detaljer: [String]
+  priser: [TjenesterPriser]
+  orden: Float
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input TjenesterPriserFilter {
+  label: StringFilter
+  pris: StringFilter
+}
+
+input TjenesterFilter {
+  tittel: StringFilter
+  undertittel: StringFilter
+  badge: StringFilter
+  beskrivelse: StringFilter
+  detaljer: StringFilter
+  priser: TjenesterPriserFilter
+  orden: NumberFilter
+}
+
+type TjenesterConnectionEdges {
+  cursor: String!
+  node: Tjenester
+}
+
+type TjenesterConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [TjenesterConnectionEdges]
+}
+
+type Utdanning implements Node & Document {
+  ar: String!
+  grad: String!
+  sted: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input UtdanningFilter {
+  ar: StringFilter
+  grad: StringFilter
+  sted: StringFilter
+}
+
+type UtdanningConnectionEdges {
+  cursor: String!
+  node: Utdanning
+}
+
+type UtdanningConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [UtdanningConnectionEdges]
 }
 
 type Mutation {
@@ -248,21 +328,29 @@ type Mutation {
   createBlogg(relativePath: String!, params: BloggMutation!): Blogg!
   updateArrangementer(relativePath: String!, params: ArrangementerMutation!): Arrangementer!
   createArrangementer(relativePath: String!, params: ArrangementerMutation!): Arrangementer!
-  updateSider(relativePath: String!, params: SiderMutation!): Sider!
-  createSider(relativePath: String!, params: SiderMutation!): Sider!
+  updatePages(relativePath: String!, params: PagesMutation!): Pages!
+  createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
+  createTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
+  updateUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
+  createUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
 }
 
 input DocumentUpdateMutation {
   blogg: BloggMutation
   arrangementer: ArrangementerMutation
-  sider: SiderMutation
+  pages: PagesMutation
+  tjenester: TjenesterMutation
+  utdanning: UtdanningMutation
   relativePath: String
 }
 
 input DocumentMutation {
   blogg: BloggMutation
   arrangementer: ArrangementerMutation
-  sider: SiderMutation
+  pages: PagesMutation
+  tjenester: TjenesterMutation
+  utdanning: UtdanningMutation
 }
 
 input BloggMutation {
@@ -290,9 +378,32 @@ input ArrangementerMutation {
   body: JSON
 }
 
-input SiderMutation {
+input PagesMutation {
   title: String
+  subtitle: String
+  intro: String
   body: JSON
+}
+
+input TjenesterPriserMutation {
+  label: String
+  pris: String
+}
+
+input TjenesterMutation {
+  tittel: String
+  undertittel: String
+  badge: String
+  beskrivelse: String
+  detaljer: [String]
+  priser: [TjenesterPriserMutation]
+  orden: Float
+}
+
+input UtdanningMutation {
+  ar: String
+  grad: String
+  sted: String
 }
 
 schema {

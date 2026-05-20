@@ -108,8 +108,8 @@ query arrangementerConnection($before: String, $after: String, $first: Float, $l
   }
 }
 
-query sider($relativePath: String!) {
-  sider(relativePath: $relativePath) {
+query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -122,12 +122,12 @@ query sider($relativePath: String!) {
       }
       id
     }
-    ...SiderParts
+    ...PagesParts
   }
 }
 
-query siderConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiderFilter) {
-  siderConnection(
+query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
+  pagesConnection(
     before: $before
     after: $after
     first: $first
@@ -157,7 +157,117 @@ query siderConnection($before: String, $after: String, $first: Float, $last: Flo
           }
           id
         }
-        ...SiderParts
+        ...PagesParts
+      }
+    }
+  }
+}
+
+query tjenester($relativePath: String!) {
+  tjenester(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...TjenesterParts
+  }
+}
+
+query tjenesterConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TjenesterFilter) {
+  tjenesterConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...TjenesterParts
+      }
+    }
+  }
+}
+
+query utdanning($relativePath: String!) {
+  utdanning(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...UtdanningParts
+  }
+}
+
+query utdanningConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: UtdanningFilter) {
+  utdanningConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...UtdanningParts
       }
     }
   }
