@@ -2,12 +2,14 @@
   "name": "filosamtale",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "imports": {
     "#/*": "./src/*"
   },
   "scripts": {
     "dev": "vite dev --port 3000",
-    "prebuild": "node scripts/trigger-tina-index.mjs",
     "build": "tinacms build && vite build",
     "preview": "vite preview",
     "test": "vitest run"
