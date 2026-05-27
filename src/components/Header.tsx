@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b bg-header-bg px-2 backdrop-blur-lg">
       <nav className="page-wrap flex items-center gap-x-3 py-3 sm:py-4">
         {/* Logo / brand */}
-        <h1 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
+        <h1 className="m-0 shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
             className="inline-flex items-center gap-2.5 md:rounded-full md:border border-chip-line md:bg-chip-bg py-1.5 text-sm text-foreground no-underline md:shadow-[0_6px_18px_rgba(45,80,70,0.10)] md:px-4 md:py-2"
@@ -98,12 +98,12 @@ export default function Header() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed left-0 right-0 top-[60px] bottom-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+            className="fixed left-0 right-0 top-15 bottom-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
           
           {/* Menu panel */}
-          <div className="fixed right-0 top-[60px] z-50 h-[calc(100vh-60px)] w-64 border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden">
+          <div className="fixed right-0 top-15 z-50 h-[calc(100vh-60px)] w-64 border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden">
             <nav className="flex flex-col gap-1 p-4">
               {navLinks.map(({ to, label }) => (
                 <Link

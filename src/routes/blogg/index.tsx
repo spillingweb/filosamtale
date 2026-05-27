@@ -87,7 +87,7 @@ function Blogg() {
         >
           <div className="island-shell rise-in group overflow-hidden rounded-2xl transition hover:-translate-y-0.5">
             {/* Decorative header bar */}
-            <div className="h-2 bg-gradient-to-r from-accent to-primary" />
+            <div className="h-2 bg-linear-to-r from-accent to-primary" />
             <div className="p-6 sm:p-8 lg:grid lg:grid-cols-5 lg:gap-8">
               <div className="lg:col-span-3">
                 <div className="mb-3 flex flex-wrap items-center gap-2">
