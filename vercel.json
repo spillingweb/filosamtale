@@ -1,6 +1,0 @@
-{
-  "framework": "vite",
-  "buildCommand": "tinacms build && vite build",
-  "devCommand": "vite dev --port 3000",
-  "installCommand": "npm install"
-}
