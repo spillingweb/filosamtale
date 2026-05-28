@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
+import { nitro } from 'nitro/vite'
 
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
@@ -11,12 +12,8 @@ const config = defineConfig({
   plugins: [
     devtools(),
     tailwindcss(),
-    tanstackStart({
-      nitro: {
-        preset: 'vercel',
-        rollupConfig: { external: [/^@sentry\//] }
-      }
-    }),
+    tanstackStart(),
+    nitro(),
     viteReact(),
   ],
 })
