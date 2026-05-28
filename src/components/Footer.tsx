@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useServerFn } from '@tanstack/react-start'
 import { Link } from '@tanstack/react-router'
 import { Button } from './ui/button'
@@ -6,29 +6,10 @@ import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Label } from './ui/label'
 import { sendKontaktskjema } from '#/server/kontakt'
-import { useTina, tinaField } from 'tinacms/dist/react'
 
-interface FooterProps {
-  initialData: any
-}
-
-export default function Footer({ initialData }: FooterProps) {
+export default function Footer() {
   const year = new Date().getFullYear()
   const send = useServerFn(sendKontaktskjema)
-
-  // Enable live preview for contact info
-  const { data } = useTina({
-    query: initialData.query,
-    variables: initialData.variables,
-    data: initialData.data,
-  })
-  
-  const page = data.pages
-  
-  // Type guard: ensure we have kontakt template
-  if (page.__typename !== 'PagesKontakt') {
-    throw new Error('Expected kontakt template for kontakt-info.md')
-  }
 
   const [form, setForm] = useState({ navn: '', epost: '', telefon: '', melding: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'feil'>('idle')
@@ -49,7 +30,7 @@ export default function Footer({ initialData }: FooterProps) {
       }
     } catch {
       setStatus('feil')
-      setFeilmelding('Noe gikk galt. Vennligst prøv igjen.')
+      setFeilmelding('Noe gikk galt. Vennligst pr├©v igjen.')
     }
   }
 
@@ -60,65 +41,48 @@ export default function Footer({ initialData }: FooterProps) {
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Left: info */}
           <div>
-            <p className="island-kicker mb-3" data-tina-field={tinaField(page, 'kicker')}>
-              {page.kicker}
-            </p>
-            <h2 
-              className="display-title mb-4 text-3xl font-bold text-foreground sm:text-4xl"
-              data-tina-field={tinaField(page, 'heading')}
-            >
-              {page.heading}
+            <p className="island-kicker mb-3">Ta kontakt</p>
+            <h2 className="display-title mb-4 text-3xl font-bold text-[var(--sea-ink)] sm:text-4xl">
+              La oss ha en samtale
             </h2>
-            <p 
-              className="mb-8 max-w-md text-sea-ink-soft leading-relaxed"
-              data-tina-field={tinaField(page, 'description')}
-            >
-              {page.description}
+            <p className="mb-8 max-w-md text-[var(--sea-ink-soft)] leading-relaxed">
+              Har du sp├©rsm├Ñl om tjenester, arrangementer, eller vil du bare h├©re mer om hva
+              filosofisk veiledning inneb├ªrer? Send meg en melding, s├Ñ svarer jeg innen to
+              virkedager.
             </p>
 
-            <div className="space-y-4 text-sm text-sea-ink-soft">
+            <div className="space-y-4 text-sm text-[var(--sea-ink-soft)]">
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-[var(--lagoon)]">
                   <path d="M10 11a2 2 0 100-4 2 2 0 000 4z" fill="currentColor" />
                   <path d="M10 2C6.686 2 4 4.686 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
                 </svg>
                 <div>
-                  <p className="font-medium text-foreground">Adresse</p>
-                  <p data-tina-field={tinaField(page, 'addressLine1')}>{page.addressLine1}</p>
-                  <p data-tina-field={tinaField(page, 'addressLine2')}>{page.addressLine2}</p>
-                  {page.addressLine3 && (
-                    <p data-tina-field={tinaField(page, 'addressLine3')}>{page.addressLine3}</p>
-                  )}
+                  <p className="font-medium text-[var(--sea-ink)]">Adresse</p>
+                  <p>Grimstadveien 8, 4815 Fevik</p>
+                  <p>Aust-Agder, Norge</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-[var(--lagoon)]">
                   <path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M3 8l7 5 7-5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
                 </svg>
                 <div>
-                  <p className="font-medium text-foreground">E-post</p>
-                  <a 
-                    href={`mailto:${page.email}`}
-                    className="hover:text-lagoon-deep"
-                    data-tina-field={tinaField(page, 'email')}
-                  >
-                    {page.email}
+                  <p className="font-medium text-[var(--sea-ink)]">E-post</p>
+                  <a href="mailto:hei@filosamtale.no" className="hover:text-[var(--lagoon-deep)]">
+                    hei@filosamtale.no
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-[var(--lagoon)]">
                   <path d="M2 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.1 3.3a1 1 0 01-.23 1.02L6.8 9.32a11.05 11.05 0 005.88 5.88l1.32-1.32a1 1 0 011.02-.23l3.3 1.1A1 1 0 0119 15.72V18a2 2 0 01-2 2h-1C7.16 20 0 12.84 0 4V3a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
                 </svg>
                 <div>
-                  <p className="font-medium text-foreground">Telefon</p>
-                  <a 
-                    href={`tel:${page.phone}`}
-                    className="hover:text-lagoon-deep"
-                    data-tina-field={tinaField(page, 'phone')}
-                  >
-                    {page.phone}
+                  <p className="font-medium text-[var(--sea-ink)]">Telefon</p>
+                  <a href="tel:+4700000000" className="hover:text-[var(--lagoon-deep)]">
+                    +47 000 00 000
                   </a>
                 </div>
               </div>
@@ -134,8 +98,8 @@ export default function Footer({ initialData }: FooterProps) {
                     <path d="M4 10l5 5 7-8" stroke="var(--palm)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">Meldingen er sendt!</h3>
-                <p className="text-sea-ink-soft">
+                <h3 className="text-xl font-semibold text-[var(--sea-ink)]">Meldingen er sendt!</h3>
+                <p className="text-[var(--sea-ink-soft)]">
                   Takk for din henvendelse. Jeg svarer deg innen to virkedager.
                 </p>
                 <Button variant="outline" onClick={() => setStatus('idle')}>
@@ -182,7 +146,7 @@ export default function Footer({ initialData }: FooterProps) {
                   <Textarea
                     id="melding"
                     rows={5}
-                    placeholder="Fortell gjerne hva du lurer på, eller hva du ønsker hjelp til..."
+                    placeholder="Fortell gjerne hva du lurer p├Ñ, eller hva du ├©nsker hjelp til..."
                     value={form.melding}
                     onChange={(e) => setForm({ ...form, melding: e.target.value })}
                     required
@@ -196,9 +160,9 @@ export default function Footer({ initialData }: FooterProps) {
                 )}
 
                 <Button type="submit" className="w-full" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Sender…' : 'Send melding'}
+                  {status === 'sending' ? 'SenderÔÇª' : 'Send melding'}
                 </Button>
-                <p className="text-center text-xs text-sea-ink-soft">
+                <p className="text-center text-xs text-[var(--sea-ink-soft)]">
                   Informasjonen din behandles konfidensielt.
                 </p>
               </form>
@@ -207,20 +171,20 @@ export default function Footer({ initialData }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 border-t pt-8">
+        <div className="mt-16 border-t border-[var(--line)] pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
             <div className="flex items-center gap-2">
-              <span className="font-serif text-lg font-semibold text-foreground">Filosamtale</span>
-              <span className="text-sea-ink-soft">—</span>
-              <span className="text-sm text-sea-ink-soft">Fevik, Agder</span>
+              <span className="font-serif text-lg font-semibold text-[var(--sea-ink)]">Filosamtale</span>
+              <span className="text-[var(--sea-ink-soft)]">ÔÇö</span>
+              <span className="text-sm text-[var(--sea-ink-soft)]">Fevik, Agder</span>
             </div>
-            <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-sea-ink-soft">
-              <Link to="/om-meg" className="hover:text-foreground">Om meg</Link>
-              <Link to="/tjenester" className="hover:text-foreground">Tjenester</Link>
-              <Link to="/blogg" className="hover:text-foreground">Blogg</Link>
-              <Link to="/arrangementer" className="hover:text-foreground">Arrangementer</Link>
+            <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-[var(--sea-ink-soft)]">
+              <Link to="/om-meg" className="hover:text-[var(--sea-ink)]">Om meg</Link>
+              <Link to="/tjenester" className="hover:text-[var(--sea-ink)]">Tjenester</Link>
+              <Link to="/blogg" className="hover:text-[var(--sea-ink)]">Blogg</Link>
+              <Link to="/arrangementer" className="hover:text-[var(--sea-ink)]">Arrangementer</Link>
             </nav>
-            <p className="text-sm text-sea-ink-soft">
+            <p className="text-sm text-[var(--sea-ink-soft)]">
               &copy; {year} Spilling Web. Alle rettigheter forbeholdt.
             </p>
           </div>
