@@ -42,6 +42,14 @@ function ArrangementKort({ arr }: { arr: any }) {
   
   return (
     <article className="island-shell rounded-2xl overflow-hidden">
+      {arr.image && (
+        <img 
+          src={arr.image}
+          alt={arr.title}
+          className="w-full h-48 object-cover"
+          data-tina-field={tinaField(arr, 'image')}
+        />
+      )}
       <div
         className={`h-1.5 ${
           category === 'seminar'
@@ -263,8 +271,17 @@ function Arrangementer() {
               const categoryValue = typeof arr.category === 'object' && arr.category !== null ? (arr.category as any)?.value : arr.category
               const category = categoryValue || 'dialog'
               return (
-                <article key={arr.id} className="island-shell rounded-2xl p-5">
-                  <div className="mb-2 flex items-center gap-2">
+                <article key={arr.id} className="island-shell rounded-2xl overflow-hidden">
+                  {arr.image && (
+                    <img 
+                      src={arr.image}
+                      alt={arr.title}
+                      className="w-full h-32 object-cover"
+                      data-tina-field={tinaField(arr, 'image')}
+                    />
+                  )}
+                  <div className="p-5">
+                    <div className="mb-2 flex items-center gap-2">
                     <Badge variant="secondary" data-tina-field={tinaField(arr, 'category')}>
                       {categoryLabels[category]}
                     </Badge>
@@ -292,6 +309,7 @@ function Arrangementer() {
                   >
                     {arr.location}
                   </p>
+                  </div>
                 </article>
               )
             })}

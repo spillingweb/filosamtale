@@ -13,6 +13,7 @@ fragment ArrangementerParts on Arrangementer {
   __typename
   title
   description
+  image
   date
   endDate
   time

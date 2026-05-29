@@ -316,6 +316,7 @@ export type Arrangementer = Node & Document & {
   __typename?: 'Arrangementer';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
+  image?: Maybe<Scalars['String']['output']>;
   date: Scalars['String']['output'];
   endDate?: Maybe<Scalars['String']['output']>;
   time: Scalars['String']['output'];
@@ -339,6 +340,7 @@ export type BooleanFilter = {
 export type ArrangementerFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
   date?: InputMaybe<DatetimeFilter>;
   endDate?: InputMaybe<DatetimeFilter>;
   time?: InputMaybe<StringFilter>;
@@ -768,6 +770,7 @@ export type BloggMutation = {
 export type ArrangementerMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
   endDate?: InputMaybe<Scalars['String']['input']>;
   time?: InputMaybe<Scalars['String']['input']>;
@@ -881,7 +884,7 @@ export type UtdanningMutation = {
 
 export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null };
 
-export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: string, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null };
+export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null };
 
 type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null };
 
@@ -923,7 +926,7 @@ export type ArrangementerQueryVariables = Exact<{
 }>;
 
 
-export type ArrangementerQuery = { __typename?: 'Query', arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: string, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ArrangementerQuery = { __typename?: 'Query', arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ArrangementerConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -935,7 +938,7 @@ export type ArrangementerConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: string, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1011,6 +1014,7 @@ export const ArrangementerPartsFragmentDoc = gql`
   __typename
   title
   description
+  image
   date
   endDate
   time

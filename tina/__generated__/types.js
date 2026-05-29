@@ -22,6 +22,7 @@ export const ArrangementerPartsFragmentDoc = gql`
   __typename
   title
   description
+  image
   date
   endDate
   time

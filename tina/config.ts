@@ -151,6 +151,12 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "image",
+            name: "image",
+            label: "Bilde/plakat",
+            description: "Valgfritt bilde eller plakat for arrangementet",
+          },
+          {
             type: "datetime",
             name: "date",
             label: "Dato",
