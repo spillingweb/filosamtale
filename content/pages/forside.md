@@ -16,7 +16,7 @@ aboutText2: 'Gjennom arbeidet som sykepleier erfarte jeg at mange av de viktigst
 quote: 'Å leve er å velge, men å velge seg selv er å velge sin oppgave.'
 quoteAuthor: Søren Kierkegaard
 ctaTitle: Klar for en samtale?
-ctaDescription: 'Om du er nysgjerrig på filosofisk dialog, ønsker å delta på et seminar, eller bare vil stille et spørsmål — ta gjerne kontakt. Første samtale er gratis.'
+ctaDescription: 'Om du er nysgjerrig på filosofisk dialog, ønsker å delta på et seminar, eller bare vil stille et spørsmål — ta gjerne kontakt.'
 servicesHeading: Tjenester tilpasset ditt behov
 blogHeading: Tanker og refleksjoner
 _template: homepage
