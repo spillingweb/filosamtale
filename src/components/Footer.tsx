@@ -1,78 +1,88 @@
-﻿import { useState } from 'react'
-import { useServerFn } from '@tanstack/react-start'
-import { Link } from '@tanstack/react-router'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Label } from './ui/label'
-import { sendKontaktskjema } from '#/server/kontakt'
-import { useTina, tinaField } from 'tinacms/dist/react'
-import { Mail, MapPin, Phone } from 'lucide-react'
+﻿import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { Link } from "@tanstack/react-router";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
+import { sendKontaktskjema } from "#/server/kontakt";
+import { useTina, tinaField } from "tinacms/dist/react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 interface FooterProps {
-  initialData: any
+  initialData: any;
 }
 
 export default function Footer({ initialData }: FooterProps) {
-  const year = new Date().getFullYear()
-  const send = useServerFn(sendKontaktskjema)
-  
-  const [form, setForm] = useState({ navn: '', epost: '', telefon: '', melding: '' })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'feil'>('idle')
-  const [feilmelding, setFeilmelding] = useState('')
+  const year = new Date().getFullYear();
+  const send = useServerFn(sendKontaktskjema);
+
+  const [form, setForm] = useState({
+    navn: "",
+    epost: "",
+    telefon: "",
+    melding: "",
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "feil">(
+    "idle",
+  );
+  const [feilmelding, setFeilmelding] = useState("");
 
   // Enable live preview for contact info
   const { data } = useTina({
     query: initialData.query,
     variables: initialData.variables,
     data: initialData.data,
-  })
-  
-  const page = data.pages
-  
+  });
+
+  const page = data.pages;
+
   // Type guard: ensure we have kontakt template
-  if (page.__typename !== 'PagesKontakt') {
-    throw new Error('Expected kontakt template for kontakt-info.md')
+  if (page.__typename !== "PagesKontakt") {
+    throw new Error("Expected kontakt template for kontakt-info.md");
   }
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setStatus('sending')
-    setFeilmelding('')
+    e.preventDefault();
+    setStatus("sending");
+    setFeilmelding("");
     try {
-      const result = await send({ data: form })
+      const result = await send({ data: form });
       if (result.ok) {
-        setStatus('ok')
-        setForm({ navn: '', epost: '', telefon: '', melding: '' })
+        setStatus("ok");
+        setForm({ navn: "", epost: "", telefon: "", melding: "" });
       } else {
-        setStatus('feil')
-        setFeilmelding(result.feilmelding ?? 'Noe gikk galt.')
+        setStatus("feil");
+        setFeilmelding(result.feilmelding ?? "Noe gikk galt.");
       }
     } catch {
-      setStatus('feil')
-      setFeilmelding('Noe gikk galt. Vennligst pr├©v igjen.')
+      setStatus("feil");
+      setFeilmelding("Noe gikk galt. Vennligst pr├©v igjen.");
     }
   }
 
   return (
-    <footer id="kontakt" className="site-footer mt-24 px-4 pb-16 pt-14">
+    <footer id="kontakt" className="site-footer mt-24 pb-16 pt-14">
       <div className="page-wrap">
         {/* Contact section */}
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Left: info */}
           <div>
-            <p className="island-kicker mb-3" data-tina-field={tinaField(page, 'kicker')}>
+            <p
+              className="island-kicker mb-3"
+              data-tina-field={tinaField(page, "kicker")}
+            >
               {page.kicker}
             </p>
-            <h2 
+            <h2
               className="display-title mb-4 text-3xl font-bold text-foreground sm:text-4xl"
-              data-tina-field={tinaField(page, 'heading')}
+              data-tina-field={tinaField(page, "heading")}
             >
               {page.heading}
             </h2>
-            <p 
+            <p
               className="mb-8 max-w-md text-sea-ink-soft leading-relaxed"
-              data-tina-field={tinaField(page, 'description')}
+              data-tina-field={tinaField(page, "description")}
             >
               {page.description}
             </p>
@@ -82,10 +92,16 @@ export default function Footer({ initialData }: FooterProps) {
                 <MapPin className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">Adresse</p>
-                  <p data-tina-field={tinaField(page, 'addressLine1')}>{page.addressLine1}</p>
-                  <p data-tina-field={tinaField(page, 'addressLine2')}>{page.addressLine2}</p>
+                  <p data-tina-field={tinaField(page, "addressLine1")}>
+                    {page.addressLine1}
+                  </p>
+                  <p data-tina-field={tinaField(page, "addressLine2")}>
+                    {page.addressLine2}
+                  </p>
                   {page.addressLine3 && (
-                    <p data-tina-field={tinaField(page, 'addressLine3')}>{page.addressLine3}</p>
+                    <p data-tina-field={tinaField(page, "addressLine3")}>
+                      {page.addressLine3}
+                    </p>
                   )}
                 </div>
               </div>
@@ -93,10 +109,10 @@ export default function Footer({ initialData }: FooterProps) {
                 <Mail className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">E-post</p>
-                  <a 
+                  <a
                     href={`mailto:${page.email}`}
                     className="hover:text-lagoon-deep"
-                    data-tina-field={tinaField(page, 'email')}
+                    data-tina-field={tinaField(page, "email")}
                   >
                     {page.email}
                   </a>
@@ -106,10 +122,10 @@ export default function Footer({ initialData }: FooterProps) {
                 <Phone className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">Telefon</p>
-                  <a 
+                  <a
                     href={`tel:${page.phone}`}
                     className="hover:text-lagoon-deep"
-                    data-tina-field={tinaField(page, 'phone')}
+                    data-tina-field={tinaField(page, "phone")}
                   >
                     {page.phone}
                   </a>
@@ -120,18 +136,26 @@ export default function Footer({ initialData }: FooterProps) {
 
           {/* Right: contact form */}
           <div className="island-shell rounded-2xl p-6 sm:p-8">
-            {status === 'ok' ? (
+            {status === "ok" ? (
               <div className="flex h-full flex-col items-center justify-center gap-4 py-8 text-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <svg viewBox="0 0 20 20" width="28" height="28" fill="none">
-                    <path d="M4 10l5 5 7-8" stroke="var(--palm)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M4 10l5 5 7-8"
+                      stroke="var(--palm)"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">Meldingen er sendt!</h3>
+                <h3 className="text-xl font-semibold text-foreground">
+                  Meldingen er sendt!
+                </h3>
                 <p className="text-sea-ink-soft">
                   Takk for din henvendelse. Jeg svarer deg innen to virkedager.
                 </p>
-                <Button variant="outline" onClick={() => setStatus('idle')}>
+                <Button variant="outline" onClick={() => setStatus("idle")}>
                   Send ny melding
                 </Button>
               </div>
@@ -144,7 +168,9 @@ export default function Footer({ initialData }: FooterProps) {
                       id="navn"
                       placeholder="Ditt fulle navn"
                       value={form.navn}
-                      onChange={(e) => setForm({ ...form, navn: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, navn: e.target.value })
+                      }
                       required
                     />
                   </div>
@@ -155,7 +181,9 @@ export default function Footer({ initialData }: FooterProps) {
                       type="email"
                       placeholder="din@epost.no"
                       value={form.epost}
-                      onChange={(e) => setForm({ ...form, epost: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, epost: e.target.value })
+                      }
                       required
                     />
                   </div>
@@ -167,7 +195,9 @@ export default function Footer({ initialData }: FooterProps) {
                     type="tel"
                     placeholder="+47 000 00 000 (valgfritt)"
                     value={form.telefon}
-                    onChange={(e) => setForm({ ...form, telefon: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, telefon: e.target.value })
+                    }
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -177,19 +207,25 @@ export default function Footer({ initialData }: FooterProps) {
                     rows={5}
                     placeholder="Fortell gjerne hva du lurer på, eller hva du ønsker hjelp til..."
                     value={form.melding}
-                    onChange={(e) => setForm({ ...form, melding: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, melding: e.target.value })
+                    }
                     required
                   />
                 </div>
 
-                {status === 'feil' && (
+                {status === "feil" && (
                   <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
                     {feilmelding}
                   </p>
                 )}
 
-                <Button type="submit" className="w-full" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Sender...' : 'Send melding'}
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={status === "sending"}
+                >
+                  {status === "sending" ? "Sender..." : "Send melding"}
                 </Button>
                 <p className="text-center text-xs text-sea-ink-soft">
                   Informasjonen din behandles konfidensielt.
@@ -201,25 +237,45 @@ export default function Footer({ initialData }: FooterProps) {
 
         {/* Bottom bar */}
         <div className="mt-16 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-            <div className="flex items-center gap-2">
-              <span className="font-serif text-lg font-semibold text-foreground">Filosamtale</span>
-              <span className="text-sea-ink-soft">—</span>
-              <span className="text-sm text-sea-ink-soft">Fevik, Agder</span>
+          <div className="flex flex-col items-center md:items-start gap-4 text-center w-full">
+            <div className="flex flex-col w-full items-center justify-between gap-4 text-center md:flex-row sm:text-left">
+              <div className="flex items-center gap-2">
+                <span className="font-serif text-lg font-semibold text-foreground">
+                  Filosamtale
+                </span>
+                <span className="text-sea-ink-soft">—</span>
+                <span className="text-sm text-sea-ink-soft">Fevik, Agder</span>
+              </div>
+              <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-sea-ink-soft">
+                <Link to="/om-meg" className="hover:text-foreground">
+                  Om meg
+                </Link>
+                <Link to="/tjenester" className="hover:text-foreground">
+                  Tjenester
+                </Link>
+                <Link to="/blogg" className="hover:text-foreground">
+                  Blogg
+                </Link>
+                <Link to="/arrangementer" className="hover:text-foreground">
+                  Arrangementer
+                </Link>
+              </nav>
             </div>
-            <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-sea-ink-soft">
-              <Link to="/om-meg" className="hover:text-foreground">Om meg</Link>
-              <Link to="/tjenester" className="hover:text-foreground">Tjenester</Link>
-              <Link to="/blogg" className="hover:text-foreground">Blogg</Link>
-              <Link to="/arrangementer" className="hover:text-foreground">Arrangementer</Link>
-            </nav>
-            <p className="text-sm text-sea-ink-soft">
-              &copy; {year} <a href="https://spillingweb.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">Spilling Web</a>. Alle rettigheter forbeholdt.
+            <p className="text-xs text-sea-ink-soft">
+              &copy; {year}{" "}
+              <a
+                href="https://spillingweb.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground"
+              >
+                Spilling Web
+              </a>
+              . Alle rettigheter forbeholdt.
             </p>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

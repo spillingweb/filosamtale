@@ -28,11 +28,14 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
   .handler(async ({ data }): Promise<KontaktResult> => {
     const apiKey = process.env['BREVO_API_KEY']
     const toEmail = process.env['CONTACT_TO_EMAIL'] ?? 'hei@filosamtale.no'
+    const senderEmail = process.env['SENDER_EMAIL'] ?? 'noreply@filosamtale.no'
 
     if (!apiKey) {
       console.error('[kontakt] BREVO_API_KEY er ikke satt')
       return { ok: false, feilmelding: 'Konfigurasjonsfeil — prøv igjen senere.' }
     }
+
+    console.log('[kontakt] Sender e-post fra', senderEmail, 'til', toEmail)
 
     const html = `
       <h2>Ny henvendelse fra filosamtale.no</h2>
@@ -53,7 +56,7 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        sender: { name: 'Filosamtale Kontaktskjema', email: 'noreply@filosamtale.no' },
+        sender: { name: 'Filosamtale Kontaktskjema', email: senderEmail },
         to: [{ email: toEmail, name: 'Filosamtale' }],
         replyTo: { email: data.epost, name: data.navn },
         subject: `Ny henvendelse fra ${data.navn}`,
@@ -64,7 +67,22 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
     if (!res.ok) {
       const body = await res.text().catch(() => '')
       console.error('[kontakt] Brevo API feil', res.status, body)
-      return { ok: false, feilmelding: 'Kunne ikke sende meldingen. Prøv igjen.' }
+      
+      // Parse error details if available
+      let errorMsg = 'Kunne ikke sende meldingen. Prøv igjen.'
+      try {
+        const errorData = JSON.parse(body)
+        if (errorData.message) {
+          errorMsg = `Brevo feil: ${errorData.message}`
+        }
+      } catch {
+        // Not JSON or parsing failed
+      }
+      
+      return { 
+        ok: false, 
+        feilmelding: `${errorMsg} (Status: ${res.status})` 
+      }
     }
 
     return { ok: true }

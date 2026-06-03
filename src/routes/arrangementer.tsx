@@ -8,6 +8,15 @@ import { client } from "../../tina/__generated__/client";
 import { useTina, tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { useState } from "react";
+import { cn } from "#/lib/utils";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  CreditCard,
+  Users,
+  Globe,
+} from "lucide-react";
 
 export const Route = createFileRoute("/arrangementer")({
   loader: async () => {
@@ -52,6 +61,12 @@ function ArrangementKort({
       : arr.category;
   const category = categoryValue || "dialog";
 
+  // Extract date parts
+  const eventDate = new Date(arr.date);
+  const day = eventDate.getDate();
+  const month = eventDate.toLocaleDateString("nb-NO", { month: "short" });
+  const year = eventDate.getFullYear();
+
   return (
     <article className="island-shell rounded-2xl overflow-hidden @container">
       <div
@@ -66,71 +81,87 @@ function ArrangementKort({
         }`}
       />
       <div className="p-6 flex flex-col gap-3 h-full">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge
-            variant={
-              category === "seminar"
-                ? "default"
-                : category === "gruppe"
-                  ? "accent"
-                  : "secondary"
-            }
-            data-tina-field={tinaField(arr, "category")}
-          >
-            {categoryLabels[category]}
-          </Badge>
-          {arr.isOnline && (
-            <Badge
-              variant="outline"
-              data-tina-field={tinaField(arr, "isOnline")}
+        <div className="flex flex-row gap-6">
+          {/* Date badge - prominently displayed */}
+          <div className="shrink-0 flex @md:flex-col gap-4 @md:gap-0">
+            <div
+              className={cn(
+                "relative rounded-xl px-5 py-4 @md:w-24 text-center shadow-md border-2 transition-transform group-hover:scale-105",
+                category === "seminar" && "bg-primary/10 border-primary/30",
+                category === "gruppe" && "bg-accent/10 border-accent/30",
+                category === "kurs" &&
+                  "bg-lagoon-deep/10 border-lagoon-deep/30",
+                category === "dialog" &&
+                  "bg-sea-ink-soft/10 border-sea-ink-soft/30",
+              )}
+              data-tina-field={tinaField(arr, "date")}
             >
-              <svg
-                viewBox="0 0 16 16"
-                width="10"
-                height="10"
-                fill="currentColor"
-                className="mr-1"
+              <Calendar className="absolute top-2 right-2 w-3.5 h-3.5 text-foreground/40" />
+              <div className="text-3xl font-bold text-foreground leading-none">
+                {day}
+              </div>
+              <div className="text-xs font-semibold uppercase text-foreground/70 mt-1 tracking-wide">
+                {month}
+              </div>
+              <div className="text-xs text-foreground/60 mt-0.5">{year}</div>
+            </div>
+          </div>
+
+          {/* Event details */}
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge
+                variant={
+                  category === "seminar"
+                    ? "default"
+                    : category === "gruppe"
+                      ? "accent"
+                      : "secondary"
+                }
+                data-tina-field={tinaField(arr, "category")}
               >
-                <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.4a5.6 5.6 0 110 11.2A5.6 5.6 0 018 2.4zm-.7 1.4v1.4H6v1.4h1.3V8H6v1.4h1.3v1.4h1.4V9.4H10V8H8.7V6.6H10V5.2H8.7V3.8H7.3z" />
-              </svg>
-              Online
-            </Badge>
-          )}
-          {arr.price === 0 && (
-            <Badge
-              variant="secondary"
-              data-tina-field={tinaField(arr, "price")}
+                {categoryLabels[category]}
+              </Badge>
+              {arr.isOnline && (
+                <Badge
+                  variant="outline"
+                  data-tina-field={tinaField(arr, "isOnline")}
+                >
+                  <Globe className="w-3 h-3 mr-1" />
+                  Online
+                </Badge>
+              )}
+              {arr.price === 0 && (
+                <Badge
+                  variant="secondary"
+                  data-tina-field={tinaField(arr, "price")}
+                >
+                  Gratis
+                </Badge>
+              )}
+            </div>
+            <h2
+              className="display-title text-xl font-bold text-foreground"
+              data-tina-field={tinaField(arr, "title")}
             >
-              Gratis
-            </Badge>
-          )}
+              {arr.title}
+            </h2>
+          </div>
         </div>
-        <h2
-          className="display-title text-xl font-bold text-foreground"
-          data-tina-field={tinaField(arr, "title")}
-        >
-          {arr.title}
-        </h2>
         <div
-          className=" text-sm text-sea-ink-soft leading-relaxed prose prose-sm max-w-none"
+          className="flex-1 text-sm text-sea-ink-soft leading-relaxed prose prose-sm max-w-none"
           data-tina-field={tinaField(arr, "description")}
         >
           <TinaMarkdown content={arr.description} />
         </div>
-        <div className="flex-1 grid @sm:grid-cols-[auto_10rem] gap-6">
+        <div
+          className={cn(arr.image && "grid @md:grid-cols-[auto_10rem] gap-6")}
+        >
           <div className="flex-1 min-w-50">
             <dl className="grid gap-y-1.5 text-sm">
               <div className="flex items-start gap-2">
                 <dt className="flex items-center gap-1 font-medium text-foreground shrink-0">
-                  <svg
-                    viewBox="0 0 16 16"
-                    width="13"
-                    height="13"
-                    fill="currentColor"
-                    className="text-accent"
-                  >
-                    <path d="M14 2h-1V1h-2v1H5V1H3v1H2a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm0 12H2V6h12v8zM2 5V4h12v1H2zm3 3h1.5v1.5H5V8zm3 0h1.5v1.5H8V8zm3 0h1.5v1.5H11V8z" />
-                  </svg>
+                  <Calendar className="w-4 h-4 text-accent" />
                   Dato:
                 </dt>
                 <dd
@@ -143,16 +174,7 @@ function ArrangementKort({
               </div>
               <div className="flex items-start gap-2">
                 <dt className="flex items-center gap-1 font-medium text-foreground shrink-0">
-                  <svg
-                    viewBox="0 0 16 16"
-                    width="13"
-                    height="13"
-                    fill="currentColor"
-                    className="text-accent"
-                  >
-                    <path d="M8 3.5a.5.5 0 00-1 0V9a.5.5 0 00.252.434l3.5 2a.5.5 0 00.496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 108 0a8 8 0 000 16zm7-8A7 7 0 111 8a7 7 0 0114 0z" />
-                  </svg>
+                  <Clock className="w-4 h-4 text-accent" />
                   Tid:
                 </dt>
                 <dd
@@ -164,15 +186,7 @@ function ArrangementKort({
               </div>
               <div className="flex items-start gap-2">
                 <dt className="flex items-center gap-1 font-medium text-foreground shrink-0">
-                  <svg
-                    viewBox="0 0 16 16"
-                    width="13"
-                    height="13"
-                    fill="currentColor"
-                    className="text-accent"
-                  >
-                    <path d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 110-6 3 3 0 010 6z" />
-                  </svg>
+                  <MapPin className="w-4 h-4 text-accent" />
                   Sted:
                 </dt>
                 <dd
@@ -184,15 +198,7 @@ function ArrangementKort({
               </div>
               <div className="flex items-start gap-2">
                 <dt className="flex items-center gap-1 font-medium text-foreground shrink-0">
-                  <svg
-                    viewBox="0 0 16 16"
-                    width="13"
-                    height="13"
-                    fill="currentColor"
-                    className="text-accent"
-                  >
-                    <path d="M0 4a1 1 0 011-1h14a1 1 0 011 1v8a1 1 0 01-1 1H1a1 1 0 01-1-1V4zm4 5a2 2 0 100-4 2 2 0 000 4zm-2 1a3 3 0 016 0H2zm10-3a1 1 0 00-1 1H8a1 1 0 102 0h2a1 1 0 00-1-1zm-1 3a1 1 0 00-1 1H8a1 1 0 102 0h1z" />
-                  </svg>
+                  <CreditCard className="w-4 h-4 text-accent" />
                   Pris:
                 </dt>
                 <dd
@@ -205,15 +211,7 @@ function ArrangementKort({
               {arr.capacity && (
                 <div className="flex items-start gap-2">
                   <dt className="flex items-center gap-1 font-medium text-foreground shrink-0">
-                    <svg
-                      viewBox="0 0 16 16"
-                      width="13"
-                      height="13"
-                      fill="currentColor"
-                      className="text-accent"
-                    >
-                      <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    <Users className="w-4 h-4 text-accent" />
                     Kapasitet:
                   </dt>
                   <dd
@@ -228,7 +226,7 @@ function ArrangementKort({
           </div>
 
           {arr.image && (
-            <div className="shrink-0 justify-self-center @sm:justify-self-end">
+            <div className="shrink-0 justify-self-center @md:justify-self-end">
               <img
                 src={arr.image}
                 alt={arr.title}

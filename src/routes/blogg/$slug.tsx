@@ -4,6 +4,7 @@ import { Button } from '#/components/ui/button'
 import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import ContentLayout from '#/components/ContentLayout'
 
 export const Route = createFileRoute('/blogg/$slug')({
   loader: async ({ params }) => {
@@ -63,7 +64,7 @@ function BloggPost() {
     .slice(0, 3)
 
   return (
-    <main className="page-wrap px-4 py-12">
+    <ContentLayout>
       {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-2 text-sm text-sea-ink-soft">
         <Link to="/" className="hover:text-foreground">
@@ -99,7 +100,7 @@ function BloggPost() {
               </span>
             </div>
             <h1 
-              className="display-title text-3xl font-bold text-foreground leading-tight sm:text-4xl"
+              className="display-title text-balance text-3xl font-bold text-foreground leading-tight sm:text-4xl"
               data-tina-field={tinaField(post, 'title')}
             >
               {post.title}
@@ -167,6 +168,6 @@ function BloggPost() {
           </div>
         </aside>
       </div>
-    </main>
+    </ContentLayout>
   )
 }
