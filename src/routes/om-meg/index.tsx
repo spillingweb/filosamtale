@@ -3,12 +3,12 @@ import { Button } from "#/components/ui/button";
 import { Badge } from "#/components/ui/badge";
 import ContentLayout from "#/components/ContentLayout";
 import PageHeader from "#/components/PageHeader";
-import { client } from "../../tina/__generated__/client";
 import { useTina, tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Mail, MapPin, User } from "lucide-react";
+import client from "../../../tina/__generated__/client";
 
-export const Route = createFileRoute("/om-meg")({
+export const Route = createFileRoute("/om-meg/")({
   loader: async () => {
     const [pageResult, utdanningResult] = await Promise.all([
       client.queries.pages({ relativePath: "om-meg.md" }),

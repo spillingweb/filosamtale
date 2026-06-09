@@ -52,7 +52,7 @@ function RootComponent() {
       <Header />
       <Outlet />
       <Footer initialData={kontakt} />
-      <TanStackRouterDevtools position="bottom-right" />
+      {/* <TanStackRouterDevtools position="bottom-right" /> */}
     </>
   )
 }

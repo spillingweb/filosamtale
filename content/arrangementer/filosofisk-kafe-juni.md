@@ -5,7 +5,7 @@ description: |
 
   ​Hva gjør digitale flater med vår evne til å være til stede for hverandre?
 
-  Ingen forkunnskaper nødvendig.  med nysgjerrighet og gjerne en venn.
+  Ingen forkunnskaper nødvendig. Kom med nysgjerrighet og gjerne en venn.
 image: ''
 date: 2026-06-06T00:00:00.000Z
 endDate: 2026-06-06T04:41:36.104Z

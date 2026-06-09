@@ -3,11 +3,11 @@ import { Button } from '#/components/ui/button'
 import { Badge } from '#/components/ui/badge'
 import PageHeader from '#/components/PageHeader'
 import ContentLayout from '#/components/ContentLayout'
-import { client } from '../../tina/__generated__/client'
+import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-export const Route = createFileRoute('/tjenester')({
+export const Route = createFileRoute('/tjenester/')({
   loader: async () => {
     const [tjenesterResult, pageResult] = await Promise.all([
       client.queries.tjenesterConnection({ sort: 'orden' }),

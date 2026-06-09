@@ -4,7 +4,7 @@ import { Badge } from "#/components/ui/badge";
 import { Dialog, DialogContent } from "#/components/ui/dialog";
 import PageHeader from "#/components/PageHeader";
 import ContentLayout from "#/components/ContentLayout";
-import { client } from "../../tina/__generated__/client";
+import { client } from "../../../tina/__generated__/client";
 import { useTina, tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { useState } from "react";
@@ -18,7 +18,7 @@ import {
   Globe,
 } from "lucide-react";
 
-export const Route = createFileRoute("/arrangementer")({
+export const Route = createFileRoute("/arrangementer/")({
   loader: async () => {
     const [arrangementerResult, pageResult] = await Promise.all([
       client.queries.arrangementerConnection({ sort: "date" }),
