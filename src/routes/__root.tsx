@@ -45,14 +45,12 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
-  const { kontakt } = Route.useLoaderData()
-  
   return (
     <>
       <Header />
       <Outlet />
-      <Footer initialData={kontakt} />
-      {/* <TanStackRouterDevtools position="bottom-right" /> */}
+      <Footer />
+      <TanStackRouterDevtools position="bottom-right" />
     </>
   )
 }

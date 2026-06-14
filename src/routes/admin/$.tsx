@@ -1,23 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
+// Redirect all /admin/* routes to /admin
 export const Route = createFileRoute('/admin/$')({
-  component: TinaAdmin,
+  ssr: false, // Disable SSR for admin routes
+  beforeLoad: () => {
+    throw redirect({ to: '/admin' })
+  },
 })
-
-function TinaAdmin() {
-  return (
-    <iframe
-      src="/admin/index.html"
-      title="TinaCMS Admin"
-      style={{
-        width: '100vw',
-        height: '100vh',
-        border: 'none',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: 9999,
-      }}
-    />
-  )
-}

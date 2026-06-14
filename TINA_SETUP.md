@@ -1,99 +1,158 @@
-# TinaCMS Setup Guide
+# TinaCMS Guide
 
-Your content has been migrated to markdown files in `/content/blogg` and `/content/arrangementer`. Follow these steps to enable visual editing for your client.
+This site uses TinaCMS for visual content editing. All content is stored as markdown and JSON files in the `/content` folder and synced via Git.
 
-## Step 1: Create Tina Cloud Account
+## How It Works
 
-1. Go to [https://app.tina.io](https://app.tina.io)
-2. Sign up with GitHub (use the same account as your repository)
-3. Create a new project
-4. Connect it to your GitHub repository: `spillingweb/sykosofi`
+**Content Structure:**
+- **Blog posts** (`/content/blogg/*.md`) - Articles with title, excerpt, date, category, and rich-text body
+- **Events** (`/content/arrangementer/*.md`) - Events with date, time, location, price, and capacity
+- **Static pages** (`/content/pages/*.md`) - Homepage, about, services, contact with custom templates
+- **Services** (`/content/tjenester/*.json`) - Service offerings with descriptions and pricing
+- **Education** (`/content/utdanning/*.json`) - Degrees and certifications
 
-## Step 2: Get Your API Credentials
+**How TinaCMS Integrates:**
+1. The configuration in `/tina/config.ts` defines all content schemas and field types
+2. During build, `tinacms build` generates the admin UI in `/public/admin/`
+3. The site routes `/admin` and `/admin/*` load the CMS interface via iframe
+4. All edits are committed directly to the GitHub repository
+5. Vercel automatically deploys when changes are pushed
 
-After creating the project:
+## Setup for Production (Tina Cloud)
 
-1. Go to **Project Settings** in Tina Cloud
-2. Copy your **Client ID**
-3. Generate a **Content Token** (under Tokens section)
+### 1. Create Tina Cloud Project
+1. Go to [app.tina.io](https://app.tina.io) and sign up with GitHub
+2. Create a new project and connect your GitHub repository
+3. Copy your **Client ID** and generate a **Content Token**
 
-## Step 3: Add Environment Variables to Vercel
+### 2. Configure Environment Variables
+Add these to your Vercel project settings:
 
-1. Go to your Vercel project dashboard
-2. Click **Settings** → **Environment Variables**
-3. Add these variables:
-   - `TINA_PUBLIC_CLIENT_ID` = your Client ID from Tina Cloud
-   - `TINA_TOKEN` = your Content Token from Tina Cloud
-   - `GITHUB_BRANCH` = `main`
+```
+TINA_PUBLIC_CLIENT_ID=<your-client-id>
+TINA_TOKEN=<your-content-token>
+GITHUB_BRANCH=main
+```
 
-4. **Redeploy** your site for the changes to take effect
+**Note:** The `GITHUB_BRANCH` variable is optional - the config will auto-detect from Vercel's `VERCEL_GIT_COMMIT_REF` or default to `main`.
 
-## Step 4: Access the CMS
+### 3. Deploy
+Redeploy your site for the environment variables to take effect.
 
-Once deployed, your client can access the CMS in two ways:
+## Accessing the CMS
 
-### Option A: Direct URL
-Go to: `https://your-domain.vercel.app/admin/index.html`
+**For editors:** Visit `https://your-domain.com/admin` and log in with GitHub.
 
-### Option B: Edit Mode
-Add `/admin` to any page URL to enter edit mode for that page.
+The admin interface provides:
+- Visual editing for all content types
+- Rich text editor with formatting tools
+- Image uploads to `/public/uploads`
+- Preview before committing
+- Git history for all changes
 
-## Editing Content
+## Content Collections
 
-### Blog Posts
-- Navigate to **Blogginnlegg** in the sidebar
-- Click on existing posts to edit or create new ones
-- All fields are pre-configured (title, excerpt, date, category, content)
-- Markdown and rich text editing available
+### Blogginnlegg (Blog Posts)
+- Auto-generates URL-friendly slugs from titles
+- Supports categories: Filosofi, Refleksjon, Filosofihistorie, Etikk, Helse, Annet
+- Optional cover images and reading time
+- Rich-text body with markdown support
 
-### Events (Arrangementer)
-- Navigate to **Arrangementer** in the sidebar  
-- Edit upcoming events or create new ones
-- Fields include: title, description, date, time, location, price, capacity, category
+### Arrangementer (Events)
+- Date/time fields with optional end dates for multi-day events
+- Online vs. in-person toggle
+- Capacity tracking and registration links
+- Categories: Seminar, Samtalegruppe, Kurs, Dialog
 
-### Media
-- Upload images to `/public/uploads` through the CMS
-- Images can be used in blog posts and events
+### Statiske Sider (Pages)
+Five templates:
+- **Homepage** - Hero section, stats, about section, services preview
+- **Standard** - General pages with profile image and body content
+- **Header** - Simple pages with just title and intro
+- **Services** - Service listings with FAQ section
+- **Contact** - Contact information with address fields
 
-## Local Development with TinaCMS
+### Tjenester (Services)
+- Sortable by custom order
+- Supports multiple pricing tiers
+- Rich-text descriptions and detail lists
 
-To test the CMS locally:
+### Utdanning (Education)
+- Simple year/degree/institution format
+- Used in "Om meg" section
 
-\`\`\`powershell
+## Local Development
+
+To develop with TinaCMS locally:
+
+```powershell
 npx tinacms dev -c "npm run dev"
-\`\`\`
+```
 
-This will start both the dev server and TinaCMS admin interface at:
-- Frontend: http://localhost:3000
-- Admin: http://localhost:3000/admin
+This starts:
+- TanStack Start dev server on `http://localhost:3000`
+- TinaCMS admin on `http://localhost:3000/admin`
+- Local TinaCMS backend on `http://localhost:4001`
 
-## Important Notes
+The local admin reads/writes directly to your `/content` folder without requiring Tina Cloud credentials.
 
-- **Git-based CMS**: All changes are committed directly to your GitHub repository
-- **Authentication**: Only users with GitHub access to the repository can edit
-- **Preview**: Changes are visible immediately in the Tina editor
-- **Publishing**: Commits trigger automatic deployment on Vercel
+## Build Process
+
+The build command in `package.json`:
+
+```json
+"build": "tinacms build && vite build"
+```
+
+1. `tinacms build` generates the admin UI to `/public/admin/`
+2. `vite build` builds the TanStack Start application
+3. Both are served together in production
+
+## Simplification Opportunities
+
+✅ **Already Optimized:**
+- Single configuration file for all schemas
+- Automated slug generation for Norwegian characters (æ → ae, ø → o, å → a)
+- Auto-detection of Git branch from Vercel environment
+- Integrated build process
+
+🔧 **Current Limitation:**
+- The admin interface requires TinaCMS to be running (locally with `tinacms dev` or via Tina Cloud in production)
+- Without Tina Cloud credentials, editors must run the dev server locally
 
 ## Troubleshooting
 
-### "Unauthorized" error
-- Check that `TINA_PUBLIC_CLIENT_ID` and `TINA_TOKEN` are set correctly in Vercel
-- Ensure the user is logged in to Tina Cloud with access to the connected GitHub repo
+**"Unauthorized" error in production:**
+- Verify `TINA_PUBLIC_CLIENT_ID` and `TINA_TOKEN` in Vercel settings
+- Ensure the GitHub user has repository access
+- Check that the user is logged into Tina Cloud
 
-### Images not showing
-- Make sure images are uploaded to `/public/uploads`
-- Check that the path in markdown is correct: `/uploads/filename.jpg`
+**Admin page shows error locally:**
+- Run `npx tinacms dev -c "npm run dev"` instead of just `npm run dev`
+- The standalone dev server needs TinaCMS backend running on port 4001
 
-### Content not updating
-- Verify the `GITHUB_BRANCH` is set to `main`
-- Check that commits are being pushed to the correct branch
+**Images not loading:**
+- Upload images through the CMS to ensure they go to `/public/uploads`
+- Reference images in markdown as `/uploads/filename.jpg`
 
-## Next Steps
+**Content changes not reflecting:**
+- Check Git commits in your repository
+- TinaCMS commits directly - verify the files changed in `/content`
 
-You can customize the schema in `/tina/config.ts` to:
-- Add new content types (e.g., testimonials, services)
-- Modify field types and validation
-- Add custom components to the editor
-- Configure preview URLs
+## Architecture Notes
 
-For more information, see: https://tina.io/docs
+**Why Git-based?**
+- Content version control with full history
+- No database to manage or back up
+- Content lives with the code
+- Easy rollback to previous versions
+
+**Security:**
+- Only GitHub repository members can access the CMS
+- Content tokens are read/write scoped to your repository
+- All edits create Git commits with author attribution
+
+**Performance:**
+- Admin UI is a separate build, doesn't affect site bundle size
+- Static content is generated at build time
+- No runtime CMS queries - content is baked into the site

@@ -75,8 +75,11 @@ function Forside() {
           <img
             src={page.heroImage || '/uploads/hero-chairs.jpg'}
             alt="Hero image"
-            className="aspect-16/7 w-full object-bottom object-cover"
+            className="aspect-16/7 w-full object-cover object-bottom"
             data-tina-field={tinaField(page, 'heroImage')}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             style={{
               filter: 'sepia(0.15) saturate(0.95) hue-rotate(-5deg) brightness(1.02) contrast(1.05)',
               maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',

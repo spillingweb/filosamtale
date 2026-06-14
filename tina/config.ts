@@ -56,9 +56,7 @@ export default defineConfig({
                 : "innlegg",
           },
           router: ({ document }) => {
-            if (document._sys.filename == "Hello-World") {
-              return "/";
-            }
+            return `/blogg/${document._sys.filename}`;
           },
         },
         fields: [
@@ -133,6 +131,9 @@ export default defineConfig({
                     .replace(/[^a-z0-9]+/g, "-")
                     .replace(/^-|-$/g, "")
                 : "arrangement",
+          },
+          router: () => {
+            return "/arrangementer";
           },
         },
         fields: [
@@ -223,6 +224,16 @@ export default defineConfig({
         ui: {
           filename: {
             readonly: true,
+          },
+          router: ({ document }) => {
+            const filename = document._sys.filename;
+            if (filename === "forside") return "/";
+            if (filename === "om-meg") return "/om-meg";
+            if (filename === "tjenester") return "/tjenester";
+            if (filename === "arrangementer") return "/arrangementer";
+            if (filename === "blogg") return "/blogg";
+            if (filename === "kontakt-info") return "/kontakt";
+            return "/";
           },
         },
         templates: [

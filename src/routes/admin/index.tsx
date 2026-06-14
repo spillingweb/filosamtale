@@ -1,10 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { useState, useEffect } from 'react'
 
 export const Route = createFileRoute('/admin/')({
   component: TinaAdmin,
+  ssr: false, // Disable SSR for this route
 })
 
 function TinaAdmin() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   return (
     <iframe
       src="/admin/index.html"

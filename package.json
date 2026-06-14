@@ -9,7 +9,8 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "vite dev --port 3000",
+    "dev": "tinacms dev -c \"vite dev --port 3000\"",
+    "dev:notina": "vite dev --port 3000",
     "build": "tinacms build && vite build",
     "preview": "vite preview",
     "test": "vitest run"

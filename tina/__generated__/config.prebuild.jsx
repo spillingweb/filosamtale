@@ -28,9 +28,7 @@ var config_default = defineConfig({
             slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "innlegg"
           },
           router: ({ document }) => {
-            if (document._sys.filename == "Hello-World") {
-              return "/";
-            }
+            return `/blogg/${document._sys.filename}`;
           }
         },
         fields: [
@@ -95,6 +93,9 @@ var config_default = defineConfig({
           filename: {
             readonly: false,
             slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "arrangement"
+          },
+          router: () => {
+            return "/arrangementer";
           }
         },
         fields: [
@@ -184,6 +185,16 @@ var config_default = defineConfig({
         ui: {
           filename: {
             readonly: true
+          },
+          router: ({ document }) => {
+            const filename = document._sys.filename;
+            if (filename === "forside") return "/";
+            if (filename === "om-meg") return "/om-meg";
+            if (filename === "tjenester") return "/tjenester";
+            if (filename === "arrangementer") return "/arrangementer";
+            if (filename === "blogg") return "/blogg";
+            if (filename === "kontakt-info") return "/kontakt";
+            return "/";
           }
         },
         templates: [

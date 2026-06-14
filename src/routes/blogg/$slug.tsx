@@ -66,7 +66,7 @@ function BloggPost() {
   return (
     <ContentLayout>
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-sm text-sea-ink-soft">
+      <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-sea-ink-soft">
         <Link to="/" className="hover:text-foreground">
           Hjem
         </Link>
