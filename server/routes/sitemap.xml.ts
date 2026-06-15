@@ -1,83 +1,81 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { client } from "../../tina/__generated__/client";
+import { defineEventHandler } from 'h3'
+import { client } from '../../tina/__generated__/client'
 
-export const Route = createFileRoute("/sitemap/xml")({
-  loader: async () => {
-    const baseUrl = "https://filosamtale.no"; // TODO: Update with your actual domain
+export default defineEventHandler(async () => {
+  const baseUrl = 'https://filosamtale.no' // TODO: Update with your actual domain
 
+  try {
     // Fetch all content
     const [bloggResult, arrangementerResult] = await Promise.all([
       client.queries.bloggConnection(),
       client.queries.arrangementerConnection(),
-    ]);
+    ])
 
     const blog = (bloggResult.data.bloggConnection.edges || [])
       .map((edge: any) => edge?.node)
-      .filter((node: any): node is NonNullable<typeof node> => node !== null);
+      .filter((node: any) => node !== null)
 
-    const events = (
-      arrangementerResult.data.arrangementerConnection.edges || []
-    )
+    const events = (arrangementerResult.data.arrangementerConnection.edges || [])
       .map((edge: any) => edge?.node)
-      .filter((node: any): node is NonNullable<typeof node> => node !== null);
+      .filter((node: any) => node !== null)
 
     // Static pages
     const staticPages = [
       {
         url: `${baseUrl}/`,
-        changefreq: "weekly",
+        changefreq: 'weekly',
         priority: 1.0,
         lastmod: undefined,
       },
       {
         url: `${baseUrl}/om-meg`,
-        changefreq: "monthly",
+        changefreq: 'monthly',
         priority: 0.8,
         lastmod: undefined,
       },
       {
         url: `${baseUrl}/tjenester`,
-        changefreq: "monthly",
+        changefreq: 'monthly',
         priority: 0.9,
         lastmod: undefined,
       },
       {
         url: `${baseUrl}/blogg`,
-        changefreq: "weekly",
+        changefreq: 'weekly',
         priority: 0.9,
         lastmod: undefined,
       },
       {
         url: `${baseUrl}/arrangementer`,
-        changefreq: "weekly",
+        changefreq: 'weekly',
         priority: 0.9,
         lastmod: undefined,
       },
       {
         url: `${baseUrl}/kontakt`,
-        changefreq: "monthly",
+        changefreq: 'monthly',
         priority: 0.7,
         lastmod: undefined,
       },
-    ];
+    ]
 
     // Blog posts
     const blogPages = blog.map((post: any) => ({
-      url: `${baseUrl}/blogg/${post._sys.filename.replace(".md", "")}`,
+      url: `${baseUrl}/blogg/${post._sys.filename.replace('.md', '')}`,
       lastmod: post.date,
-      changefreq: "monthly",
+      changefreq: 'monthly',
       priority: 0.7,
-    }));
+    }))
 
     // Events
     const eventPages = events.map((event: any) => ({
-      url: `${baseUrl}/arrangementer#${event._sys.filename.replace(".md", "")}`,
+      url: `${baseUrl}/arrangementer#${event._sys.filename.replace('.md', '')}`,
       lastmod: event.date,
-      changefreq: "weekly",
+      changefreq: 'weekly',
       priority: 0.6,
-    }));
+    }))
 
-    const allPages = [...staticPages, ...blogPages, ...eventPages];
+    const allPages = [...staticPages, ...blogPages, ...eventPages]
 
     // Generate XML
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -85,21 +83,23 @@ export const Route = createFileRoute("/sitemap/xml")({
 ${allPages
   .map(
     (page) => `  <url>
-    <loc>${page.url}</loc>${page.lastmod ? `\n    <lastmod>${page.lastmod}</lastmod>` : ""}
+    <loc>${page.url}</loc>${page.lastmod ? `\n    <lastmod>${page.lastmod}</lastmod>` : ''}
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`,
+  </url>`
   )
-  .join("\n")}
-</urlset>`;
+  .join('\n')}
+</urlset>`
 
-    // Return the XML as the response body
+    // Return XML with proper content type
     return new Response(xml, {
-      status: 200,
       headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
-      },
-    });
-  },
-});
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    })
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    throw error
+  }
+})

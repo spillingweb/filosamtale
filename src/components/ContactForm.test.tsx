@@ -36,8 +36,8 @@ vi.mock('tinacms/dist/react', () => ({
 
 // Mock TanStack Start
 vi.mock('@tanstack/react-start', () => ({
-  useServerFn: (fn: any) => {
-    return vi.fn(async (payload: any) => {
+  useServerFn: () => {
+    return vi.fn(async () => {
       // Simulate successful submission by default
       return { ok: true }
     })
