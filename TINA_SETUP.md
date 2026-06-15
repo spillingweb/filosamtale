@@ -86,7 +86,7 @@ Five templates:
 To develop with TinaCMS locally:
 
 ```powershell
-npx tinacms dev -c "npm run dev"
+npm run dev
 ```
 
 This starts:
