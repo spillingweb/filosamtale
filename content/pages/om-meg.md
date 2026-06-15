@@ -6,7 +6,7 @@ intro: Jeg er bosatt i Fevik i Aust-Agder og har jobbet med filosofisk praksis s
 profileImage: /uploads/profile.jpg
 contactName: Tina Marie Lie
 contactLocation: Fevik, Aust-Agder
-contactEmail: hei@filosamtale.no
+contactEmail: filosamtale@gmail.com
 verdier:
   - tittel: Nysgjerrighet
     tekst: >-

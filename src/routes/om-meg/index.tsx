@@ -19,6 +19,18 @@ export const Route = createFileRoute("/om-meg/")({
       utdanning: utdanningResult,
     };
   },
+  head: () => ({
+    title: 'Om meg — Tina Maria Lie — Filosamtale',
+    meta: [
+      { name: 'description', content: 'Tina Maria Lie er sykepleier og filosof. Les om bakgrunnen min og hvorfor jeg tilbyr filosofisk veiledning og dialog.' },
+      { property: 'og:title', content: 'Om meg — Filosamtale' },
+      { property: 'og:type', content: 'profile' },
+      { property: 'og:url', content: 'https://filosamtale.no/om-meg' },
+    ],
+    links: [
+      { rel: 'canonical', href: 'https://filosamtale.no/om-meg' }
+    ],
+  }),
   component: OmMeg,
 });
 

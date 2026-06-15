@@ -11,7 +11,7 @@ faq:
   - question: Tilbyr du timer på nett?
     answer: 'Ja, alle individuelle timer og kurs kan gjennomføres via video. Gruppesamtaler holdes primært i Fevik, men nettbaserte grupper kan settes opp ved tilstrekkelig interesse.'
   - question: Hvordan er det å booke en time?
-    answer: 'Fyll ut kontaktskjemaet nedenfor, eller send en e-post til hei@filosamtale.no. Jeg svarer innen to virkedager og vi finner en tid som passer.'
+    answer: 'Fyll ut kontaktskjemaet nedenfor, eller send en e-post til filosamtale@gmail.com. Jeg svarer innen to virkedager og vi finner en tid som passer.'
 _template: services
 ---
 

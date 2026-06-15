@@ -17,6 +17,7 @@ import {
   Users,
   Globe,
 } from "lucide-react";
+import { generateEventSchema } from "#/lib/structured-data";
 
 export const Route = createFileRoute("/arrangementer/")({
   loader: async () => {
@@ -28,6 +29,47 @@ export const Route = createFileRoute("/arrangementer/")({
       arrangementer: arrangementerResult,
       page: pageResult,
     };
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {}
+    
+    const baseUrl = 'https://filosamtale.no'
+    const events = (loaderData.arrangementer.data.arrangementerConnection.edges || [])
+      .map((edge: any) => edge?.node)
+      .filter((node: any) => node !== null)
+    
+    return {
+      title: 'Arrangementer — Seminarer, kurs og samtalegrupper — Filosamtale',
+      meta: [
+        { name: 'description', content: 'Kommende arrangementer hos Filosamtale. Bli med på filosofiske samtaler, seminarer og workshops i Fevik og på nett.' },
+        { property: 'og:title', content: 'Arrangementer — Filosamtale' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: `${baseUrl}/arrangementer` },
+      ],
+      links: [
+        { rel: 'canonical', href: `${baseUrl}/arrangementer` }
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify(
+            events.map((event: any) => {
+              if (!event) return null
+              return generateEventSchema({
+                name: event.title || '',
+                description: event.description || '',
+                startDate: event.date || '',
+                location: event.location || 'Fevik',
+                eventType: event.category || 'Event',
+                price: event.price,
+                maxParticipants: event.capacity,
+                url: `${baseUrl}/arrangementer#${event._sys.filename.replace('.md', '')}`,
+              })
+            }).filter(Boolean)
+          ),
+        },
+      ],
+    }
   },
   component: Arrangementer,
 });
@@ -336,7 +378,7 @@ function Arrangementer() {
             </p>
           </div>
           <Button asChild className="shrink-0">
-            <a href="mailto:hei@filosamtale.no?subject=Varslinger om arrangementer">
+            <a href="mailto:filosamtale@gmail.com?subject=Varslinger om arrangementer">
               Bli varslet
             </a>
           </Button>

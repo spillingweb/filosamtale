@@ -26,6 +26,18 @@ export const Route = createFileRoute("/blogg/")({
       page: pageResult,
     }
   },
+  head: () => ({
+    title: 'Blogg — Tanker om filosofi og livets spørsmål — Filosamtale',
+    meta: [
+      { name: 'description', content: 'Les filosofiske refleksjoner og tanker om livets store spørsmål. Artikler om eksistensialisme, stoisk filosofi, omsorg og mening.' },
+      { property: 'og:title', content: 'Blogg — Filosamtale' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://filosamtale.no/blogg' },
+    ],
+    links: [
+      { rel: 'canonical', href: 'https://filosamtale.no/blogg' }
+    ],
+  }),
   component: Blogg,
 });
 

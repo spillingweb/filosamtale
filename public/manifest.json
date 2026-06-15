@@ -1,6 +1,7 @@
 {
-  "short_name": "TanStack App",
-  "name": "Create TanStack App Sample",
+  "short_name": "Filosamtale",
+  "name": "Filosamtale — Filosofisk veiledning og dialog",
+  "description": "Filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,22 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4FB8B2",
+  "background_color": "#ffffff",
+  "lang": "nb",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "categories": ["education", "lifestyle", "health"]
 }

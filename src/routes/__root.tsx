@@ -3,6 +3,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { client } from '../../tina/__generated__/client'
+import { generateWebsiteSchema, generateLocalBusinessSchema } from '../lib/structured-data'
 
 import appCss from '../styles.css?url'
 
@@ -30,13 +31,20 @@ export const Route = createRootRoute({
         property: 'og:description',
         content: 'Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier og filosof.',
       },
+      { property: 'og:url', content: 'https://filosamtale.no' },
       { property: 'og:locale', content: 'nb_NO' },
       { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Filosamtale' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Filosamtale — Filosofisk veiledning og dialog' },
+      { name: 'twitter:description', content: 'Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett.' },
       { name: 'geo.region', content: 'NO-42' },
       { name: 'geo.placename', content: 'Fevik, Agder' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
+      { rel: 'canonical', href: 'https://filosamtale.no' },
+      { rel: 'manifest', href: '/manifest.json' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' as const },
     ],
@@ -56,10 +64,21 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const baseUrl = 'https://filosamtale.no' // TODO: Update with your actual domain
+  
   return (
     <html lang="nb" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              generateWebsiteSchema(baseUrl),
+              generateLocalBusinessSchema(baseUrl),
+            ]),
+          }}
+        />
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">

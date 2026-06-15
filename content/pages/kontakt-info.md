@@ -10,6 +10,6 @@ description: >-
 addressLine1: Grimstadveien 8, 4815 Fevik
 addressLine2: Aust-Agder, Norge
 addressLine3: ''
-email: hei@filosamtale.no
+email: filosamtale@gmail.com
 phone: '+47 000 00 000'
 ---

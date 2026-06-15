@@ -5,6 +5,7 @@ import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import ContentLayout from '#/components/ContentLayout'
+import { generateBlogPostSchema, generateBreadcrumbSchema } from '#/lib/structured-data'
 
 export const Route = createFileRoute('/blogg/$slug')({
   loader: async ({ params }) => {
@@ -19,6 +20,60 @@ export const Route = createFileRoute('/blogg/$slug')({
       }
     } catch (error) {
       throw notFound()
+    }
+  },
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return {}
+    
+    const post = loaderData.post.data.blogg
+    const baseUrl = 'https://filosamtale.no' // TODO: Update with your actual domain
+    const postUrl = `${baseUrl}/blogg/${params.slug}`
+    
+    // Extract plain text from body for description (first 160 chars)
+    const bodyText = post.body?.children?.[0]?.children?.[0]?.text || ''
+    const description = post.excerpt || bodyText.substring(0, 160) + '...'
+    
+    return {
+      title: `${post.title} — Filosamtale`,
+      meta: [
+        { name: 'description', content: description },
+        { name: 'author', content: 'Tina Maria Lie' },
+        { property: 'og:title', content: post.title || '' },
+        { property: 'og:description', content: description },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:url', content: postUrl },
+        { property: 'og:site_name', content: 'Filosamtale' },
+        { property: 'article:published_time', content: post.date || '' },
+        { property: 'article:author', content: 'Tina Maria Lie' },
+        { property: 'article:section', content: post.category || '' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: post.title || '' },
+        { name: 'twitter:description', content: description },
+      ],
+      links: [
+        { rel: 'canonical', href: postUrl }
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify([
+            generateBlogPostSchema({
+              title: post.title || '',
+              excerpt: description,
+              body: bodyText,
+              date: post.date || '',
+              author: 'Tina Maria Lie',
+              category: post.category || '',
+              url: postUrl,
+            }),
+            generateBreadcrumbSchema([
+              { name: 'Hjem', url: baseUrl },
+              { name: 'Blogg', url: `${baseUrl}/blogg` },
+              { name: post.title || '', url: postUrl },
+            ]),
+          ]),
+        },
+      ],
     }
   },
   component: BloggPost,
@@ -40,6 +95,10 @@ export const Route = createFileRoute('/blogg/$slug')({
 function BloggPost() {
   const initialData = Route.useLoaderData()
   
+  if (!initialData) {
+    return null
+  }
+  
   // Enable live preview for the current post
   const { data: postData } = useTina({
     query: initialData.post.query,
@@ -58,9 +117,9 @@ function BloggPost() {
   
   // Get other posts for sidebar
   const allPosts = (allPostsData.bloggConnection.edges || [])
-    .map(edge => edge?.node)
-    .filter((node): node is NonNullable<typeof node> => node !== null)
-    .filter((p) => p.id !== post.id)
+    .map((edge: any) => edge?.node)
+    .filter((node: any): node is NonNullable<typeof node> => node !== null)
+    .filter((p: any) => p.id !== post.id)
     .slice(0, 3)
 
   return (
@@ -133,7 +192,7 @@ function BloggPost() {
           <div className="island-shell rounded-2xl p-5">
             <h2 className="mb-4 font-semibold text-foreground">Andre innlegg</h2>
             <ul className="space-y-4">
-              {allPosts.map((p) => (
+              {allPosts.map((p: any) => (
                 <li key={p.id}>
                   <Link
                     to="/blogg/$slug"

@@ -6,6 +6,7 @@ import ContentLayout from '#/components/ContentLayout'
 import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { generateServiceSchema } from '#/lib/structured-data'
 
 export const Route = createFileRoute('/tjenester/')({
   loader: async () => {
@@ -16,6 +17,43 @@ export const Route = createFileRoute('/tjenester/')({
     return {
       tjenester: tjenesterResult,
       page: pageResult,
+    }
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {}
+    
+    const baseUrl = 'https://filosamtale.no'
+    const services = (loaderData.tjenester.data.tjenesterConnection.edges || [])
+      .map((edge: any) => edge?.node)
+      .filter((node: any) => node !== null)
+    
+    return {
+      title: 'Tjenester — Filosofisk veiledning og samtalegrupper — Filosamtale',
+      meta: [
+        { name: 'description', content: 'Filosamtale tilbyr filosofisk veiledning, samtalegrupper, seminarer og nettkurs. Utforsk eksistensielle spørsmål med en erfaren sykepleier og filosof.' },
+        { property: 'og:title', content: 'Tjenester — Filosamtale' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: `${baseUrl}/tjenester` },
+      ],
+      links: [
+        { rel: 'canonical', href: `${baseUrl}/tjenester` }
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify(
+            services.map((service: any) => {
+              if (!service) return null
+              return generateServiceSchema({
+                name: service.tittel || service.name || '',
+                description: service.undertittel || service.description || '',
+                serviceType: service.category || 'Filosofisk tjeneste',
+                url: `${baseUrl}/tjenester#${service._sys.filename.replace('.json', '')}`,
+              })
+            }).filter(Boolean)
+          ),
+        },
+      ],
     }
   },
   component: TjenesterPage,

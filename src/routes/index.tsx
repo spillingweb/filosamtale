@@ -18,6 +18,18 @@ export const Route = createFileRoute('/')({
       blogg: bloggResult,
     }
   },
+  head: () => ({
+    title: 'Filosamtale — Filosofisk veiledning og dialog i Fevik',
+    meta: [
+      { name: 'description', content: 'Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Utforsk livets store spørsmål med sykepleier og filosof Tina Maria Lie.' },
+      { property: 'og:title', content: 'Filosamtale — Filosofisk veiledning og dialog' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://filosamtale.no' },
+    ],
+    links: [
+      { rel: 'canonical', href: 'https://filosamtale.no' }
+    ],
+  }),
   component: Forside,
 })
 

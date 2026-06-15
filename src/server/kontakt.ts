@@ -27,7 +27,7 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
   })
   .handler(async ({ data }): Promise<KontaktResult> => {
     const apiKey = process.env['BREVO_API_KEY']
-    const toEmail = process.env['CONTACT_TO_EMAIL'] ?? 'hei@filosamtale.no'
+    const toEmail = process.env['CONTACT_TO_EMAIL'] ?? 'filosamtale@gmail.com'
     const senderEmail = process.env['SENDER_EMAIL'] ?? 'noreply@filosamtale.no'
 
     if (!apiKey) {

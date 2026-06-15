@@ -16,6 +16,7 @@ import { Route as OmMegIndexRouteImport } from './routes/om-meg/index'
 import { Route as BloggIndexRouteImport } from './routes/blogg/index'
 import { Route as ArrangementerIndexRouteImport } from './routes/arrangementer/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as BloggSlugRouteImport } from './routes/blogg/$slug'
 import { Route as AdminSplatRouteImport } from './routes/admin/$'
 
@@ -54,6 +55,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BloggSlugRoute = BloggSlugRouteImport.update({
   id: '/blogg/$slug',
   path: '/blogg/$slug',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/admin/': typeof AdminIndexRoute
   '/arrangementer/': typeof ArrangementerIndexRoute
   '/blogg/': typeof BloggIndexRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/admin': typeof AdminIndexRoute
   '/arrangementer': typeof ArrangementerIndexRoute
   '/blogg': typeof BloggIndexRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/admin/': typeof AdminIndexRoute
   '/arrangementer/': typeof ArrangementerIndexRoute
   '/blogg/': typeof BloggIndexRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/admin/$'
     | '/blogg/$slug'
+    | '/sitemap/xml'
     | '/admin/'
     | '/arrangementer/'
     | '/blogg/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/admin/$'
     | '/blogg/$slug'
+    | '/sitemap/xml'
     | '/admin'
     | '/arrangementer'
     | '/blogg'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/admin/$'
     | '/blogg/$slug'
+    | '/sitemap/xml'
     | '/admin/'
     | '/arrangementer/'
     | '/blogg/'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   AdminSplatRoute: typeof AdminSplatRoute
   BloggSlugRoute: typeof BloggSlugRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ArrangementerIndexRoute: typeof ArrangementerIndexRoute
   BloggIndexRoute: typeof BloggIndexRoute
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogg/$slug': {
       id: '/blogg/$slug'
       path: '/blogg/$slug'
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   AdminSplatRoute: AdminSplatRoute,
   BloggSlugRoute: BloggSlugRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
   AdminIndexRoute: AdminIndexRoute,
   ArrangementerIndexRoute: ArrangementerIndexRoute,
   BloggIndexRoute: BloggIndexRoute,
