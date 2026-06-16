@@ -1,28 +1,14 @@
 ---
-title: 'Nettkurs: Stoisk filosofi i praksis'
-description: 'Fire ukentlige nettmøter der vi dykker inn i stoisk filosofi og omsetter den til praktiske verktøy for hverdagen. Passer for deg som ønsker mer ro, klarhet og motstandskraft. Alt materiale sendes på e-post.'
-date: 2026-08-04T00:00:00.000Z
+title: 'Filosofisk Kafe: Prestasjonssamfunnet og Slow Living.'
+description: |
+  Hvorfor er det så vanskelig å gjøre ingenting? Må vi optimalisere her minste bit av livet for å være lykkelige, eller er det mulig å skru av stresset og leve langsomt?
+date: 2026-08-22T00:00:00.000Z
 endDate: 2026-08-25T00:00:00.000Z
-time: '19:00–20:30'
-location: Nettmøte (Zoom)
-price: 800
-capacity: 15
-category: kurs
-isOnline: true
+time: '12:00–14:00'
+location: Eple & Kos Kafeen
+price: 0
+capacity: 50
+category: dialog
+isOnline: false
 ---
 
-Fire ukentlige nettmøter der vi dykker inn i stoisk filosofi og omsetter den til praktiske verktøy for hverdagen.
-
-**Kursoversikt**
-
-* **Uke 1**: Introduksjon til stoisk filosofi
-* **Uke 2**: Det dikotomiske kontrollprinsippet
-* **Uke 3**: Negative visualiseringer og takknemlighet
-* **Uke 4**: Praktisk anvendelse i hverdagen
-
-Passer for deg som ønsker mer ro, klarhet og motstandskraft.
-
-Alt materiale sendes på e-post. Opptak tilgjengelig for deltakere.
-
-Pris: 800 kr for alle fire møter
-Maks 15 deltakere
