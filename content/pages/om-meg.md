@@ -20,9 +20,9 @@ _template: standard
 
 ## Hvorfor Filosamtale?
 
-Jeg startet Filosamtale fordi jeg så et gap mellom det helsevesenet kan tilby og det mennesker faktisk trenger. Vi har god behandling av kroppen — men vi er dårligere på å møte mennesker i deres eksistensielle uro. 
+Jeg startet Filosamtale fordi jeg så et gap mellom det helsevesenet kan tilby og det mennesker faktisk trenger. Vi har god behandling av kroppen — men vi er dårligere på å møte mennesker i deres eksistensielle uro. Man må ikke nødvendigvis være “sjuk” for å ha behov for å prate med noen. Livet gir oss mange omveier, vi opplever akutte og kroniske sykdommer, smerter, sorg, og vi blir stilt ovenfor vanskelige valg og dilemmaer. 
 
-Filosofisk dialog handler ikke om å "fikse" deg. Det handler om å skape rom for de spørsmålene livet reiser, og å hjelpe deg til å leve bedre med den usikkerheten livet innebærer. Sammen skaper vi et rom hvor vi nøster i tanker, forstår bakgrunn for følelser, og oppnår en klarere realisering av hvem du er.
+Filosofisk dialog handler ikke om å "fikse" deg. Det handler om å skape rom for de spørsmålene livet reiser, og å hjelpe deg til å leve bedre med den usikkerheten livet innebærer. Sammen skaper vi et rom hvor vi nøster i tanker, forstår bakgrunn for følelser, og oppnår en klarere realisering av hvem du er. 
 
 ## Min bakgrunn
 
