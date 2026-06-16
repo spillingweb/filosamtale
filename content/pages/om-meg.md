@@ -18,6 +18,12 @@ verdier:
 _template: standard
 ---
 
+## Hvorfor Filosamtale?
+
+Jeg startet Filosamtale fordi jeg så et gap mellom det helsevesenet kan tilby og det mennesker faktisk trenger. Vi har god behandling av kroppen — men vi er dårligere på å møte mennesker i deres eksistensielle uro. 
+
+Filosofisk dialog handler ikke om å "fikse" deg. Det handler om å skape rom for de spørsmålene livet reiser, og å hjelpe deg til å leve bedre med den usikkerheten livet innebærer. Sammen skaper vi et rom hvor vi nøster i tanker, forstår bakgrunn for følelser, og oppnår en klarere realisering av hvem du er.
+
 ## Min bakgrunn
 
 Jeg startet min karriere som sykepleier ved akuttmottaket på Oslo Universitetssykehus. Der møtte jeg mennesker i livets sårbare øyeblikk — jeg var sykeleier i de store krisene, og når store spørsmål måtte stilles. Det var nettopp der, i de stille samtalene mellom medikamentadministrering og stelle av pasienter, at jeg begynte å ønske meg en annen tilnæring til møtet mellom sykepleier og pasient.
@@ -52,11 +58,3 @@ Sokrates mente at visdom begynner med å innrømme hva man ikke vet. Det er ikke
 I mine samtaler bruker jeg **sokratisk metode**: Vi begynner med et spørsmål, utforsker premissene, utfordrer antakelsene, og lar tanken arbeide fritt. Resultatet er sjelden et klart svar — men ofte en dypere forståelse av deg selv og det du egentlig lurer på.
 
 Jeg jobber også mye med **stoisk filosofi**, som har gitt meg personlige verktøy for å møte livets utfordringer med større ro og klarhet. Stoikerne lærer oss å skille mellom det vi kan kontrollere og det vi ikke kan — og det er kanskje den mest verdifulle kunnskapen vi kan ha i en travel hverdag.
-
-## Hvorfor Filosamtale?
-
-Jeg startet Filosamtale fordi jeg så et gap mellom det helsevesenet kan tilby og det mennesker faktisk trenger. Vi har god behandling av kroppen — men vi er dårligere på å møte mennesker i deres eksistensielle uro.
-
-Filosofisk dialog handler ikke om å "fikse" deg. Det handler om å skape rom for de spørsmålene livet reiser, og å hjelpe deg til å leve bedre med den usikkerheten livet innebærer.
-
-Jeg tror på at alle har filosofi i seg — det handler bare om å finne ordene for det.
