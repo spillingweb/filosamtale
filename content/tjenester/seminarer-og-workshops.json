@@ -11,17 +11,10 @@
   ],
   "priser": [
     {
-      "label": "Halvdag (4 t)",
-      "pris": "1 200 kr/pers"
-    },
-    {
-      "label": "Heldag (7 t)",
-      "pris": "2 100 kr/pers"
-    },
-    {
       "label": "Bedrift/org (inntil 20)",
       "pris": "Fra 14 000 kr"
-    }
+    },
+    {}
   ],
   "orden": 3
 }
