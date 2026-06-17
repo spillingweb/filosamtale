@@ -95,7 +95,7 @@ export default function ThemeToggle() {
       onClick={toggleMode}
       aria-label={label}
       title={label}
-      className="p-2 text-foreground transition hover:-translate-y-0.5"
+      className="p-2 text-foreground transition hover:-translate-y-0.5 cursor-pointer"
     >
       <Icon />
     </button>

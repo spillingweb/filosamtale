@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 const navLinks = [
   { to: "/" as const, label: "Hjem", exact: true },
   { to: "/om-meg" as const, label: "Om meg" },
-  { to: "/tjenester" as const, label: "Tjenester & priser" },
+  { to: "/tjenester" as const, label: "Tjenester" },
   { to: "/blogg" as const, label: "Blogg" },
   { to: "/arrangementer" as const, label: "Arrangementer" },
 ];
@@ -63,7 +63,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
-            className="text-foreground transition hover:-translate-y-0.5 md:hidden"
+            className="text-foreground transition-all duration-200 ease-in-out cursor-pointer hover:-translate-y-0.5 md:hidden"
           >
             {mobileMenuOpen ? (
               <svg

@@ -157,7 +157,7 @@ const ContactForm = () => {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 flex flex-col gap-1">
                 <Label htmlFor="navn">Navn *</Label>
                 <Input
                   id="navn"
@@ -167,7 +167,7 @@ const ContactForm = () => {
                   required
                 />
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 flex flex-col gap-1">
                 <Label htmlFor="epost">E-post *</Label>
                 <Input
                   id="epost"
@@ -179,7 +179,7 @@ const ContactForm = () => {
                 />
               </div>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 flex flex-col gap-1">
               <Label htmlFor="telefon">Telefon</Label>
               <Input
                 id="telefon"
@@ -189,7 +189,7 @@ const ContactForm = () => {
                 onChange={(e) => setForm({ ...form, telefon: e.target.value })}
               />
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 flex flex-col gap-1">
               <Label htmlFor="melding">Melding *</Label>
               <Textarea
                 id="melding"

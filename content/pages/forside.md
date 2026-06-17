@@ -3,12 +3,12 @@ title: Finn mening og retning gjennom filosofisk dialog
 subtitle: 'Jeg er sykepleier med videreutdanning i filosofi, og hjelper deg å utforske livets store spørsmål — om mening, verdier, identitet og hvordan vi ønsker å leve. Gjennom samtale og refleksjon finner vi klarhet og retning.'
 kicker: 'Filosofisk veiledning · Fevik, Agder'
 heroImage: /uploads/hero-chairs.jpg
-stat1Value: 10+
-stat1Label: Års erfaring
-stat2Value: 200+
-stat2Label: Samtaler
-stat3Value: Fevik
-stat3Label: '& online'
+stat1Value: ''
+stat1Label: ''
+stat2Value: ''
+stat2Label: ''
+stat3Value: ''
+stat3Label: ''
 profileImage: /uploads/profile.jpg
 aboutName: Tina Marie Lie
 aboutText1: 'Jeg er utdannet sykepleier med videreutdanning i filosofi, og har i over ti år arbeidet i skjæringspunktet mellom omsorg og eksistensfilosofi.'

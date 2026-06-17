@@ -138,7 +138,7 @@ function ArrangementKort({
               )}
               data-tina-field={tinaField(arr, "date")}
             >
-              <Calendar className="absolute top-2 right-2 w-3.5 h-3.5 text-foreground/40" />
+              {/* <Calendar className="absolute top-2 right-2 w-3.5 h-3.5 text-foreground/40" /> */}
               <div className="text-3xl font-bold text-foreground leading-none">
                 {day}
               </div>
@@ -183,7 +183,7 @@ function ArrangementKort({
               )}
             </div>
             <h2
-              className="display-title text-xl font-bold text-foreground"
+              className="display-title text-xl font-bold text-foreground text-balance"
               data-tina-field={tinaField(arr, "title")}
             >
               {arr.title}
@@ -425,7 +425,7 @@ function Arrangementer() {
                         </time>
                       </div>
                       <h3
-                        className="font-semibold text-foreground"
+                        className="font-semibold text-foreground text-balance"
                         data-tina-field={tinaField(arr, "title")}
                       >
                         {arr.title}

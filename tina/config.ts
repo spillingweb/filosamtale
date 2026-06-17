@@ -621,6 +621,27 @@ export default defineConfig({
             name: "priser",
             label: "Priser",
             list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item?.label || "Ny pris (Ikke fylt ut)" };
+              },
+              defaultItem: () => {
+                return {
+                  label: "Ny tjeneste",
+                  pris: "0 kr",
+                };
+              },
+              validate: (value: any) => {
+                console.log("Validating priser:", value);
+                if (value?.length > 0) {
+                  for (let i = 0; i < value.length; i++) {
+                    if (!value[i]?.label || !value[i]?.pris) {
+                      return "Alle priser må ha både en label og en pris.";
+                    }
+                  }
+                }
+              },
+            },
             fields: [
               {
                 type: "string",
