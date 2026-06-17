@@ -1,13 +1,15 @@
 {
+  "beskrivelse": "Månedlige samtalegrupper der vi utforsker eksistensielle spørsmål i trygt og inkluderende fellesskap. Maks 8 deltakere per gruppe.",
   "tittel": "Samtalegrupper",
   "undertittel": "Månedlige grupper",
   "badge": "Populær",
-  "beskrivelse": "Månedlige samtalegrupper der vi utforsker eksistensielle spørsmål i trygt og inkluderende fellesskap. Maks 8 deltakere per gruppe.",
+  "description": "",
   "detaljer": [
-    "Første mandag i måneden, 17:30–19:30",
-    "Fevik — Grimstadveien 8",
+    "Første tirsdag i måneden, 17:30–19:30",
+    "Brott & Blega Helse — Feviktoppen 19.",
     "Ny deltaker kan bli med når som helst",
-    "Tre måneder minstetid anbefales"
+    "Tre måneder minstetid anbefales",
+    "Vi velger sammen tema for dialogen"
   ],
   "priser": [
     {
