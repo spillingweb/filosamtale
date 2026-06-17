@@ -1,12 +1,13 @@
 {
-  "tittel": "Seminarer og workshops",
-  "undertittel": "Halvdags- og heldagsseminarer",
   "beskrivelse": "Halvdags- og heldagsseminarer om filosofiske temaer. Passer for enkeltpersoner, organisasjoner og grupper. Kan tilpasses til bedrift eller skole.",
+  "tittel": "Seminarer og workshops for bedrifter.",
+  "undertittel": "Halvdags- og heldagsseminarer",
+  "description": "Gjennom åpen og strukturert dialog gjør vi bedriftens verdigrunnlag til en levende del av arbeidshverdagen.\n\nNår vi snakker sammen, skaper vi tydelig klarhet rundt felles mål og forventninger.\n\nDette fjerner misforståelser og styrker samarbeidet på tvers.\n\nResultatet er en sammensveiset organisasjon som jobber både smartere og mer effektivt.\n\nSammen bygger vi en sterkere bedriftskultur for fremtiden.\n",
   "detaljer": [
-    "Standardtema: Stoikernes visdom, Eksistensfilosofi, Filosofi og helse",
+    "Tema tilpasses bedriftens mål.",
     "Tilpassede temaer tilgjengelig",
     "Kan holdes på stedet ditt",
-    "Kursbevis utdeles"
+    "Etterarbeid inkludert."
   ],
   "priser": [
     {
