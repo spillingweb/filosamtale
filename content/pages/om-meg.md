@@ -5,7 +5,7 @@ intro: Jeg er bosatt på Fevik i Agder og har jobbet med filosofisk praksis side
 profileImage: /uploads/profile.jpg
 contactName: Tina Marie Lie
 contactLocation: 'Fevik, Aust-Agder'
-contactEmail: hei@filosamtale.no
+contactEmail: filosamtale@gmail.com
 verdier:
   - tittel: Nysgjerrighet
     tekst: Ekte filosofi begynner med vilje til å stille spørsmål ved det vi tar for gitt — inkludert egne forestillinger.

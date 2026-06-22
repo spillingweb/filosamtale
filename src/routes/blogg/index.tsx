@@ -11,6 +11,7 @@ import PageHeader from "#/components/PageHeader";
 import ContentLayout from "#/components/ContentLayout";
 import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
+import IslandKicker from "#/components/ui/IslandKicker";
 
 export const Route = createFileRoute("/blogg/")({
   loader: async () => {
@@ -105,7 +106,7 @@ function Blogg() {
               <div className="lg:col-span-3">
                 <div className="mb-3 flex flex-wrap items-center gap-2">
                   <Badge variant="accent" data-tina-field={tinaField(featured, 'category')}>{featured.category}</Badge>
-                  <span className="island-kicker">Utvalgt innlegg</span>
+                  <IslandKicker>Utvalgt innlegg</IslandKicker >
                 </div>
                 <h2 
                   className="display-title mb-3 text-2xl font-bold text-foreground group-hover:text-primary sm:text-3xl"

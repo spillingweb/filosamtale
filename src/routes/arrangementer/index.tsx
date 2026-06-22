@@ -18,6 +18,7 @@ import {
   Globe,
 } from "lucide-react";
 import { generateEventSchema } from "#/lib/structured-data";
+import IslandKicker from "#/components/ui/IslandKicker";
 
 export const Route = createFileRoute("/arrangementer/")({
   loader: async () => {
@@ -138,7 +139,6 @@ function ArrangementKort({
               )}
               data-tina-field={tinaField(arr, "date")}
             >
-              {/* <Calendar className="absolute top-2 right-2 w-3.5 h-3.5 text-foreground/40" /> */}
               <div className="text-3xl font-bold text-foreground leading-none">
                 {day}
               </div>
@@ -370,9 +370,9 @@ function Arrangementer() {
       <section className="island-shell mt-10 rounded-2xl p-6 sm:p-8">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="island-kicker mb-1">
+            <IslandKicker className="mb-1">
               Aldri gå glipp av et arrangement
-            </p>
+            </IslandKicker>
             <p className="text-sea-ink-soft">
               Send meg en e-post for å bli varslet om nye seminarer og grupper.
             </p>

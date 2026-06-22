@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import IslandKicker from "./ui/IslandKicker";
 
 const PageHeader = ({
   pageName,
@@ -19,7 +20,7 @@ const PageHeader = ({
 }) => {
   return (
     <section className="rise-in py-5">
-      <p className="island-kicker mb-3">{pageName}</p>
+      <IslandKicker className="mb-3">{pageName}</IslandKicker>
       <h1 
         className="display-title text-balance mb-4 max-w-2xl text-4xl font-bold text-foreground sm:text-5xl"
         data-tina-field={tinaFields?.title}

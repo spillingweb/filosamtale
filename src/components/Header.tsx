@@ -50,7 +50,6 @@ export default function Header() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full border-chip-line bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)] hover:border-chip-line hover:shadow-[0_8px_22px_rgba(47,106,74,0.16)] md:inline-flex"
           >
             <Link to="/kontakt" className="no-underline">
               Ta kontakt

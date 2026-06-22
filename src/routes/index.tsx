@@ -10,6 +10,8 @@ import {
 import { Badge } from "#/components/ui/badge";
 import { client } from "../../tina/__generated__/client";
 import { useTina, tinaField } from "tinacms/dist/react";
+import IslandKicker from "#/components/ui/IslandKicker";
+import IslandShell from "#/components/ui/IslandShell";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -116,14 +118,14 @@ function Forside() {
           />
         </div>
 
-        <div className="page-wrap px-2 sm:px-4 mt-6 sm:-mt-16 lg:-mt-24 relative z-10">
+        <div className="page-wrap mt-6 sm:-mt-16 lg:-mt-24 relative z-10">
           <div className="rise-in mx-auto max-w-4xl text-center">
-            <p
-              className="island-kicker mb-3"
+            <IslandKicker
+              className="mb-3"
               data-tina-field={tinaField(page, "kicker")}
             >
               {page.kicker}
-            </p>
+            </IslandKicker>
             <h1
               className="display-title mb-5 text-4xl leading-[1.06] font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
               data-tina-field={tinaField(page, "title")}
@@ -197,9 +199,9 @@ function Forside() {
       </section>
 
       {/* ── TJENESTER OVERVIEW ────────────────────────────────── */}
-      <section className="page-wrap px-2 sm:px-4 pb-12 pt-6">
+      <section className="page-wrap pb-12 pt-6">
         <div className="mb-8 text-center">
-          <p className="island-kicker mb-2">Hva jeg tilbyr</p>
+          <IslandKicker className="mb-2">Hva jeg tilbyr</IslandKicker>
           <h2
             className="display-title text-3xl font-bold text-foreground sm:text-4xl"
             data-tina-field={tinaField(page, "servicesHeading")}
@@ -209,33 +211,34 @@ function Forside() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {tjenesterFromCMS.slice(0, 4).map((tjeneste, i) => (
-            <article
+            <IslandShell
               key={tjeneste.id}
-              className="island-shell feature-card rise-in rounded-2xl p-6"
+              isFeature
+              className="rise-in p-6"
               style={{ animationDelay: `${i * 80 + 60}ms` }}
             >
-              <Link
-                to="/tjenester"
-                hash={tjeneste._sys.filename.replace(".json", "")}
-                className="group flex flex-col h-full"
-              >
-                <h3
-                  className="mb-2 font-semibold text-foreground"
-                  data-tina-field={tinaField(tjeneste, "tittel")}
+                <Link
+                  to="/tjenester"
+                  hash={tjeneste._sys.filename.replace(".json", "")}
+                  className="group flex flex-col h-full"
                 >
-                  {tjeneste.tittel}
-                </h3>
-                <p
-                  className="mb-4 text-sm text-sea-ink-soft leading-relaxed flex-1"
-                  data-tina-field={tinaField(tjeneste, "undertittel")}
-                >
-                  {tjeneste.undertittel}
-                </p>
-                <p className="text-xs font-semibold text-lagoon-deep no-underline group-hover:underline">
-                  Les mer →
-                </p>
-              </Link>
-            </article>
+                  <h3
+                    className="mb-2 font-semibold text-foreground"
+                    data-tina-field={tinaField(tjeneste, "tittel")}
+                  >
+                    {tjeneste.tittel}
+                  </h3>
+                  <p
+                    className="mb-4 text-sm text-sea-ink-soft leading-relaxed flex-1"
+                    data-tina-field={tinaField(tjeneste, "undertittel")}
+                  >
+                    {tjeneste.undertittel}
+                  </p>
+                  <p className="text-xs font-semibold text-lagoon-deep no-underline group-hover:underline">
+                    Les mer →
+                  </p>
+                </Link>
+            </IslandShell>
           ))}
         </div>
         <div className="mt-8 text-center">
@@ -246,22 +249,21 @@ function Forside() {
       </section>
 
       {/* ── QUOTE DIVIDER ─────────────────────────────────────── */}
-      <section className="px-2 sm:px-4 py-12">
+      <section className="py-12">
         <div className="page-wrap">
-          <blockquote className="island-shell rise-in rounded-2xl px-8 py-10 text-center sm:px-16">
+          <IslandShell className="px-8 py-10 text-center sm:px-16">
+          <blockquote>
             <p
               className="display-title mb-4 text-2xl font-bold italic text-foreground leading-relaxed sm:text-3xl"
               data-tina-field={tinaField(page, "quote")}
             >
               «{page.quote}»
             </p>
-            <footer
-              className="island-kicker text-kicker"
-              data-tina-field={tinaField(page, "quoteAuthor")}
-            >
+            <IslandKicker data-tina-field={tinaField(page, "quoteAuthor")}>
               — {page.quoteAuthor}
-            </footer>
+            </IslandKicker>
           </blockquote>
+          </IslandShell>
         </div>
       </section>
 
@@ -270,18 +272,18 @@ function Forside() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           {/* Profile portrait */}
           <div className="order-2 lg:order-1">
-            <div className="island-shell overflow-hidden rounded-2xl">
+            <IslandShell className="overflow-hidden">
               <img
                 src={page.profileImage || "/uploads/profile.jpg"}
                 alt={`${page.aboutName} - Sykepleier og filosof`}
                 className="aspect-4/3 w-full object-cover"
                 data-tina-field={tinaField(page, "profileImage")}
               />
-            </div>
+            </IslandShell>
           </div>
 
           <div className="order-1 lg:order-2">
-            <p className="island-kicker mb-3">Om meg</p>
+            <IslandKicker className="mb-3">Om meg</IslandKicker>
             <h2
               className="display-title mb-4 text-3xl font-bold text-foreground sm:text-4xl"
               data-tina-field={tinaField(page, "aboutName")}
@@ -308,10 +310,10 @@ function Forside() {
       </section>
 
       {/* ── BLOGG TEASER ──────────────────────────────────────── */}
-      <section className="page-wrap px-2 sm:px-4 py-12">
+      <section className="page-wrap py-12">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <p className="island-kicker mb-2">Fra bloggen</p>
+            <IslandKicker className="mb-2">Fra bloggen</IslandKicker>
             <h2
               className="display-title text-3xl font-bold text-foreground sm:text-4xl"
               data-tina-field={tinaField(page, "blogHeading")}
@@ -329,10 +331,11 @@ function Forside() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sisteInnlegg.map((post, i) => (
-            <Card
+            <IslandShell
               key={post.id}
-              className="rise-in transition hover:-translate-y-1 flex flex-col h-full"
-              style={{ animationDelay: `${i * 80}ms` }}
+              className="rise-in group cursor-pointer flex flex-col"
+              style={{ animationDelay: `${i * 100}ms` }}
+              isFeature
             >
               <CardHeader className="flex-1">
                 <div className="mb-2 flex items-center gap-2">
@@ -360,7 +363,7 @@ function Forside() {
                   {post.title}
                 </CardTitle>
                 <CardDescription
-                  className="line-clamp-3 leading-relaxed"
+                  className="line-clamp-4 leading-relaxed"
                   data-tina-field={tinaField(post, "excerpt")}
                 >
                   {post.excerpt}
@@ -370,12 +373,12 @@ function Forside() {
                 <Link
                   to="/blogg/$slug"
                   params={{ slug: post._sys.filename.replace(".md", "") }}
-                  className="text-sm font-semibold text-lagoon-deep no-underline hover:underline"
+                  className="text-sm font-semibold text-lagoon-deep no-underline group-hover:underline"
                 >
                   Les innlegget →
                 </Link>
               </CardContent>
-            </Card>
+            </IslandShell>
           ))}
         </div>
 
@@ -387,10 +390,10 @@ function Forside() {
       </section>
 
       {/* ── CTA BAND ──────────────────────────────────────────── */}
-      <section className="px-2 sm:px-4 pb-16 pt-8">
+      <section className="pb-16 pt-8">
         <div className="page-wrap">
-          <div className="island-shell rounded-2xl px-8 py-10 text-center sm:px-16">
-            <p className="island-kicker mb-3">Neste steg</p>
+          <IslandShell className="px-8 py-10 text-center sm:px-16">
+            <IslandKicker className="mb-3">Neste steg</IslandKicker>
             <h2
               className="display-title mb-4 text-2xl font-bold text-foreground sm:text-3xl"
               data-tina-field={tinaField(page, "ctaTitle")}
@@ -411,7 +414,7 @@ function Forside() {
                 <Link to="/arrangementer">Se arrangementer</Link>
               </Button>
             </div>
-          </div>
+          </IslandShell>
         </div>
       </section>
     </main>

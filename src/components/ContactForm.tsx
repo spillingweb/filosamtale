@@ -8,6 +8,8 @@ import { Label } from "./ui/label";
 import { sendKontaktskjema } from "#/server/kontakt";
 import { useTina, tinaField } from "tinacms/dist/react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import IslandKicker from "./ui/IslandKicker";
+import IslandShell from "./ui/IslandShell";
 
 const rootRoute = getRouteApi('__root__');
 
@@ -63,12 +65,12 @@ const ContactForm = () => {
     <div className="grid gap-12 lg:grid-cols-2">
       {/* Left: info */}
       <div>
-        <p
-          className="island-kicker mb-3"
+        <IslandKicker
+          className="mb-3"
           data-tina-field={tinaField(page, "kicker")}
         >
           {page.kicker}
-        </p>
+        </IslandKicker>
         <h2
           className="display-title mb-4 text-3xl font-bold text-foreground sm:text-4xl"
           data-tina-field={tinaField(page, "heading")}
@@ -130,7 +132,7 @@ const ContactForm = () => {
       </div>
 
       {/* Right: contact form */}
-      <div className="island-shell rounded-2xl p-6 sm:p-8">
+      <IslandShell className="p-6 sm:p-8">
         {status === "ok" ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 py-8 text-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
@@ -219,7 +221,7 @@ const ContactForm = () => {
             </p>
           </form>
         )}
-      </div>
+      </IslandShell>
     </div>
   );
 };

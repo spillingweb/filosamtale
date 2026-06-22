@@ -7,6 +7,7 @@ import { client } from "../../../tina/__generated__/client";
 import { useTina, tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { generateServiceSchema } from "#/lib/structured-data";
+import IslandKicker from "#/components/ui/IslandKicker";
 
 export const Route = createFileRoute("/tjenester/")({
   loader: async () => {
@@ -146,12 +147,12 @@ function TjenesterPage() {
                   </Badge>
                 )}
               </div>
-              <p
-                className="island-kicker mb-3"
+              <IslandKicker
+                className="mb-3"
                 data-tina-field={tinaField(tjeneste, "undertittel")}
               >
                 {tjeneste.undertittel}
-              </p>
+              </IslandKicker>
               <div
                 className="mb-4 text-sea-ink-soft leading-relaxed prose prose-sm max-w-none"
                 data-tina-field={tinaField(tjeneste, "description")}
@@ -190,7 +191,7 @@ function TjenesterPage() {
 
             {/* Right: prices */}
             <div className="rounded-xl border bg-surface p-5 h-full flex flex-col">
-              <p className="island-kicker mb-3">Priser</p>
+              <IslandKicker className="mb-3">Priser</IslandKicker>
               <ul
                 className="space-y-3 flex-1"
                 data-tina-field={tinaField(tjeneste, "priser")}
@@ -223,7 +224,7 @@ function TjenesterPage() {
       {/* FAQ strip */}
       {page.faq && page.faq.length > 0 && (
         <section className="island-shell mt-10 rounded-2xl p-6 sm:p-8">
-          <p className="island-kicker mb-3">Spørsmål og svar</p>
+          <IslandKicker className="mb-3">Spørsmål og svar</IslandKicker>
           <h2 className="display-title mb-6 text-2xl font-bold text-foreground">
             Vanlige spørsmål
           </h2>
