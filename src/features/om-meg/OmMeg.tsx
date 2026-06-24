@@ -1,55 +1,24 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "#/components/ui/button";
-import { Badge } from "#/components/ui/badge";
 import ContentLayout from "#/components/ContentLayout";
 import PageHeader from "#/components/PageHeader";
-import { useTina, tinaField } from "tinacms/dist/react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { tinaField } from "tinacms/tina-field";
+import type {
+  PagesQuery,
+  UtdanningConnectionQuery,
+} from "../../../tina/__generated__/types";
 import { Mail, MapPin, User } from "lucide-react";
-import client from "../../../tina/__generated__/client";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { Badge } from "#/components/ui/badge";
+import { Button } from "#/components/ui/button";
+import { Link } from "@tanstack/react-router";
+import IslandShell from "#/components/ui/IslandShell";
 
-export const Route = createFileRoute("/om-meg/")({
-  loader: async () => {
-    const [pageResult, utdanningResult] = await Promise.all([
-      client.queries.pages({ relativePath: "om-meg.md" }),
-      client.queries.utdanningConnection({ sort: "ar" }),
-    ]);
-    return {
-      page: pageResult,
-      utdanning: utdanningResult,
-    };
-  },
-  head: () => ({
-    title: 'Om meg — Tina Maria Lie — Filosamtale',
-    meta: [
-      { name: 'description', content: 'Tina Maria Lie er sykepleier og filosof. Les om bakgrunnen min og hvorfor jeg tilbyr filosofisk veiledning og dialog.' },
-      { property: 'og:title', content: 'Om meg — Filosamtale' },
-      { property: 'og:type', content: 'profile' },
-      { property: 'og:url', content: 'https://filosamtale.no/om-meg' },
-    ],
-    links: [
-      { rel: 'canonical', href: 'https://filosamtale.no/om-meg' }
-    ],
-  }),
-  component: OmMeg,
-});
-
-function OmMeg() {
-  const initialData = Route.useLoaderData();
-
-  // Enable live preview when editing in TinaCMS
-  const { data: pageData } = useTina({
-    query: initialData.page.query,
-    variables: initialData.page.variables,
-    data: initialData.page.data,
-  });
-
-  const { data: utdanningData } = useTina({
-    query: initialData.utdanning.query,
-    variables: initialData.utdanning.variables,
-    data: initialData.utdanning.data,
-  });
-
+const OmMeg = ({
+  pageData,
+  utdanningData,
+}: {
+  pageData: PagesQuery;
+  utdanningData: UtdanningConnectionQuery;
+}) => {
   const page = pageData.pages;
 
   // Type guard: ensure we have standard template
@@ -86,14 +55,14 @@ function OmMeg() {
       <div className="mt-8 grid items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
         {/* Portrait */}
         <div>
-          <div className="island-shell overflow-hidden rounded-2xl">
+          <IslandShell className="overflow-hidden">
             <img
               src={page.profileImage || "/uploads/profile.jpg"}
               alt={`${page.title} - Sykepleier og filosof`}
               className="aspect-square w-full object-cover"
               data-tina-field={tinaField(page, "profileImage")}
             />
-          </div>
+          </IslandShell>
 
           <div className="mt-5 space-y-2 rounded-xl bg-muted/40 p-4 text-sm text-sea-ink-soft">
             {page.contactName && (
@@ -129,14 +98,14 @@ function OmMeg() {
 
         {/* Long bio */}
         <div className="space-y-6 lg:col-span-2">
-          <div
-            className="island-shell rounded-2xl p-6 sm:p-8"
+          <IslandShell
+            className="p-6 sm:p-8"
             data-tina-field={tinaField(page, "body")}
           >
             <div className="prose max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground">
               {page.body && <TinaMarkdown content={page.body} />}
             </div>
-          </div>
+          </IslandShell>
 
           {/* Verdier */}
           {page.verdier && page.verdier.length > 0 && (
@@ -154,7 +123,7 @@ function OmMeg() {
                       verdi !== null,
                   )
                   .map((verdi, idx) => (
-                    <div key={idx} className="island-shell rounded-xl p-5">
+                    <IslandShell key={idx} className="p-5">
                       <h3
                         className="mb-2 font-semibold text-foreground"
                         data-tina-field={tinaField(verdi, "tittel")}
@@ -167,14 +136,14 @@ function OmMeg() {
                       >
                         {verdi.tekst}
                       </p>
-                    </div>
+                    </IslandShell>
                   ))}
               </div>
             </div>
           )}
 
           {/* Utdanning */}
-          <div className="island-shell rounded-2xl p-6">
+          <IslandShell className="p-6">
             <h2 className="mb-5 text-xl font-semibold text-foreground">
               Utdanning og kurs
             </h2>
@@ -205,7 +174,7 @@ function OmMeg() {
                 </li>
               ))}
             </ul>
-          </div>
+          </IslandShell>
 
           <div className="flex flex-wrap gap-3">
             <Button asChild>
@@ -219,4 +188,6 @@ function OmMeg() {
       </div>
     </ContentLayout>
   );
-}
+};
+
+export default OmMeg;

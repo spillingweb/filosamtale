@@ -260,16 +260,6 @@ a {
   font-family: "Fraunces", Georgia, serif;
 }
 
-.island-shell {
-  border: 1px solid var(--line);
-  background: linear-gradient(165deg, var(--surface-strong), var(--surface));
-  box-shadow:
-    0 1px 0 var(--inset-glint) inset,
-    0 22px 44px rgba(47, 72, 54, 0.09),
-    0 6px 18px rgba(47, 72, 54, 0.06);
-  backdrop-filter: blur(4px);
-}
-
 .nav-link {
   position: relative;
   display: inline-flex;
