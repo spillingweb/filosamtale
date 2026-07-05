@@ -25,7 +25,9 @@ export default function Header() {
             className="inline-flex items-center gap-2.5 py-1.5 text-sm text-foreground no-underline "
           >
             <Logo className="shrink-0" />
-            <span className="font-serif font-semibold uppercase tracking-wide">Filosamtale</span>
+            <span className="font-serif font-semibold uppercase tracking-wide">
+              Filosamtale
+            </span>
           </Link>
         </h1>
 
@@ -47,10 +49,7 @@ export default function Header() {
         {/* Right side */}
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
-          <Button
-            asChild
-            size="sm"
-          >
+          <Button asChild size="sm" className="hidden md:inline-flex">
             <Link to="/kontakt" className="no-underline">
               Ta kontakt
             </Link>
@@ -107,39 +106,35 @@ export default function Header() {
           />
 
           {/* Menu panel */}
-          <div className="fixed right-0 top-15 z-50 h-[calc(100vh-60px)] w-64 border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden">
-            <nav className="flex flex-col gap-1 p-4">
+          <div className="fixed right-0 top-15 p-4 z-50 h-[calc(100vh-60px)] w-full border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden flex flex-col">
+            <nav className="flex-1 flex flex-col gap-1">
               {navLinks.map(({ to, label }) => (
                 <Link
                   key={to}
                   to={to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg px-4 py-3 text-sm font-medium text-sea-ink-soft transition hover:bg-link-bg-hover hover:text-foreground"
+                  className="rounded-lg px-4 py-3 text-xl font-medium text-sea-ink-soft transition hover:bg-link-bg-hover hover:text-foreground"
                   activeProps={{
                     className:
-                      "rounded-lg px-4 py-3 text-sm font-medium bg-chip-bg text-foreground border border-chip-line shadow-[0_2px_8px_rgba(47,106,74,0.08)]",
+                      "rounded-lg px-4 py-3 text-xl font-medium bg-chip-bg text-foreground border border-chip-line shadow-[0_2px_8px_rgba(47,106,74,0.08)]",
                   }}
                   activeOptions={to === "/" ? { exact: true } : undefined}
                 >
                   {label}
                 </Link>
               ))}
-
-              {/* Mobile contact button */}
-              <Button
-                asChild
-                size="sm"
-                className="mt-4 w-full rounded-full border-chip-line bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)]"
-              >
-                <Link
-                  to="/kontakt"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="no-underline"
-                >
-                  Ta kontakt
-                </Link>
-              </Button>
             </nav>
+
+            {/* Mobile contact button */}
+            <Button asChild>
+              <Link
+                to="/kontakt"
+                onClick={() => setMobileMenuOpen(false)}
+                className="no-underline"
+              >
+                Ta kontakt
+              </Link>
+            </Button>
           </div>
         </>
       )}
