@@ -106,7 +106,7 @@ export default function Header() {
           />
 
           {/* Menu panel */}
-          <div className="fixed right-0 top-15 p-4 z-50 h-[calc(100vh-60px)] w-full border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden flex flex-col">
+          <div className="fixed right-0 top-15 p-4 z-50 h-[calc(100dvh-60px)] w-full border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden flex flex-col">
             <nav className="flex-1 flex flex-col gap-1">
               {navLinks.map(({ to, label }) => (
                 <Link
