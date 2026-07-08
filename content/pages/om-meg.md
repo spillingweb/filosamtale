@@ -36,7 +36,7 @@ Siden 2024 har jeg drevet egen praksis i Agder, med samtaler, grupper og seminar
 
 ## Mine verdier
 
-Det jeg tilbyr er ikke terapi, og det er ikke undervisning. Det er noe midt imellom — en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.
+Det jeg tilbyr er en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar. 
 
 Alle samtaler er konfidensielle, og det finnes ingen "riktig" måte å tenke på. Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete verktøy for et bedre liv.
 
@@ -55,6 +55,6 @@ Jeg er medlem av **NSPF** og følger foreningens etiske retningslinjer for filos
 
 Sokrates mente at visdom begynner med å innrømme hva man ikke vet. Det er ikke defaitisme — det er åpningen for ekte nysgjerrighet.
 
-I mine samtaler bruker jeg **sokratisk metode**: Vi begynner med et spørsmål, utforsker premissene, utfordrer antakelsene, og lar tanken arbeide fritt. Resultatet er sjelden et klart svar — men ofte en dypere forståelse av deg selv og det du egentlig lurer på.
+I mine samtaler begynner vi gjerne med et åpent spørsmål. Vi utforsker premissene og utfordrer antakelsene for å nøste i tankene og la dem arbeide fritt. Resultatet er sjelden et enkelt, ferdig svar – men ofte en dypere forståelse av deg selv og det du egentlig står i.  Målet er å bidra til større klarhet i egne verdier, slik at det blir lettere å stå i de vanskelige valgene livet bringer med seg.
 
-Jeg jobber også mye med **stoisk filosofi**, som har gitt meg personlige verktøy for å møte livets utfordringer med større ro og klarhet. Stoikerne lærer oss å skille mellom det vi kan kontrollere og det vi ikke kan — og det er kanskje den mest verdifulle kunnskapen vi kan ha i en travel hverdag.
+Med solid forankring i min sykepleierfaglighet har jeg et nært forhold til hvordan vi mennesker møter livets utfordringer. Jeg er opptatt av den eksistensielle helsen, spesielt i møte med sykdom og lidelse. Sammen kan vi finne en måte å møte det vonde på, øve på å akseptere der man er, og finne styrken til å tåle forandringene livet bringer.
