@@ -4,6 +4,7 @@ excerpt: Marcus Aurelius styrte et rike og kjempet i krig — likevel fant han t
 date: 2025-02-10T00:00:00.000Z
 category: Filosofihistorie
 readingTime: 6
+coverImage: /uploads/hero-chairs1.jpg
 ---
 
 Marcus Aurelius styrte et rike og kjempet i krig — likevel fant han tid til å skrive dagboknotater om sinnsro. Hva kan han lære oss om å leve i en travel hverdag?
