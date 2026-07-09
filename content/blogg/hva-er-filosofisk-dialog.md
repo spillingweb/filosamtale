@@ -4,6 +4,7 @@ excerpt: 'Filosofisk dialog er ikke terapi, og det er ikke undervisning. Det er 
 date: 2025-04-15T00:00:00.000Z
 category: Filosofi
 readingTime: 5
+coverImage: /uploads/janos-venczak-o3XLseWSDDY-unsplash.jpg
 ---
 
 Filosofisk dialog er ikke terapi, og det er ikke undervisning. Det er noe midt imellom — en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.

@@ -46,6 +46,27 @@ const Tjenester = ({
         }}
       />
 
+      {/* Quick Navigation */}
+      <nav className="-mx-4 px-4 overflow-x-auto hidden lg:block">
+        <div className="flex gap-2 pb-2 min-w-max">
+          {tjenester.map((tjeneste) => (
+            <Button
+              key={tjeneste.id}
+              variant="outline"
+              size="sm"
+              asChild
+            >
+              <a
+                href={`#${tjeneste._sys.filename.replace(".json", "")}`}
+                className="whitespace-nowrap"
+              >
+                {tjeneste.tittel}
+              </a>
+            </Button>
+          ))}
+        </div>
+      </nav>
+
       {page.infoBadge && (
         <div
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-chip-line bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
@@ -63,10 +84,22 @@ const Tjenester = ({
           <IslandShell key={tjeneste.id}>
             <article
               id={tjeneste._sys.filename.replace(".json", "")}
-              className="grid scroll-mt-24 gap-6 p-6 sm:p-8 lg:grid-cols-3"
+              className="grid scroll-mt-24 gap-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr_auto]"
             >
-              {/* Left: description */}
-              <div className="lg:col-span-2">
+              {/* Image - top on mobile, left on desktop */}
+              {tjeneste.image && (
+                <div className="lg:row-span-2 order-first lg:order-none">
+                  <img
+                    src={tjeneste.image}
+                    alt={tjeneste.tittel}
+                    className="w-full h-48 lg:h-full object-cover rounded-lg"
+                    data-tina-field={tinaField(tjeneste, "image")}
+                  />
+                </div>
+              )}
+
+              {/* Description */}
+              <div className={tjeneste.image ? "" : "lg:col-span-2"}>
                 <div className="mb-3 flex flex-wrap items-center gap-2">
                   <h2
                     className="display-title text-2xl font-bold text-foreground"
@@ -90,7 +123,7 @@ const Tjenester = ({
                   {tjeneste.undertittel}
                 </IslandKicker>
                 <div
-                  className="mb-4 text-sea-ink-soft leading-relaxed prose prose-sm max-w-none"
+                  className="mb-4 text-sea-ink-soft leading-relaxed prose dark:prose-invert prose-sm max-w-none"
                   data-tina-field={tinaField(tjeneste, "description")}
                 >
                   <TinaMarkdown content={tjeneste.description} />
@@ -125,8 +158,8 @@ const Tjenester = ({
                 </ul>
               </div>
 
-              {/* Right: prices */}
-              <div className="rounded-xl border bg-surface p-5 h-full flex flex-col">
+              {/* Prices */}
+              <div className="rounded-xl border bg-surface p-5 h-full flex flex-col lg:row-span-2">
                 <IslandKicker className="mb-3">Priser</IslandKicker>
                 <ul
                   className="space-y-3 flex-1"

@@ -1,6 +1,8 @@
 ---
 title: 'Dagsseminar: Filosofi og helse'
-description: Et halvdagsseminar for helsepersonell og interesserte om eksistensielle dimensjoner i omsorgsfaget. Vi ser på hvordan filosofisk tenkning kan berike møtet med pasienter og pårørende. Seminarrekke på tre deler.
+description: |
+  Et halvdagsseminar for helsepersonell og interesserte om eksistensielle dimensjoner i omsorgsfaget. Vi ser på hvordan filosofisk tenkning kan berike møtet med pasienter og pårørende. Seminarrekke på tre deler.
+image: /uploads/emma-simpson-mNGaaLeWEp0-unsplash.jpg
 date: 2026-09-13T00:00:00.000Z
 time: '09:00–13:00'
 location: 'Aust-Agder Kulturhus, Grimstad'
@@ -10,15 +12,3 @@ category: seminar
 isOnline: false
 ---
 
-Et halvdagsseminar for helsepersonell og interesserte om eksistensielle dimensjoner i omsorgsfaget.
-
-Vi ser på hvordan filosofisk tenkning kan berike møtet med pasienter og pårørende.
-
-**Seminarrekke på tre deler**
-
-Del 1: 13. september 2025
-Del 2: 27. september 2025\
-Del 3: 11. oktober 2025
-
-Pris: 1200 kr per seminar
-Maks 25 deltakere

@@ -4,6 +4,7 @@ excerpt: 'Å si nei er ikke egoisme. Det er integritet. Men hva er egentlig en g
 date: 2025-01-08T00:00:00.000Z
 category: Etikk
 readingTime: 5
+coverImage: /uploads/nadine-e-DRzYMtae-vA-unsplash.jpg
 ---
 
 Å si nei er ikke egoisme. Det er integritet. Men hva er egentlig en grense, og hvorfor er det så vanskelig å håndheve dem?

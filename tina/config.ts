@@ -317,15 +317,35 @@ export default defineConfig({
                 ui: { component: "textarea" },
               },
               {
-                type: "string",
-                name: "quote",
-                label: "Sitat",
-                ui: { component: "textarea" },
-              },
-              {
-                type: "string",
-                name: "quoteAuthor",
-                label: "Sitatforfatter",
+                type: "object",
+                name: "testimonials",
+                label: "Referanser fra klienter",
+                list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item?.name || "Ny referanse" };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "quote",
+                    label: "Sitat/referanse",
+                    ui: { component: "textarea" },
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "name",
+                    label: "Navn",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "role",
+                    label: "Rolle/beskrivelse (valgfritt)",
+                  },
+                ],
               },
               {
                 type: "string",
@@ -603,6 +623,12 @@ export default defineConfig({
             name: "badge",
             label: "Badge (valgfritt)",
             description: 'F.eks. "Populær" eller "Fleksibelt"',
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Bilde (valgfritt)",
+            description: "Bilde som vises for denne tjenesten",
           },
           {
             type: "rich-text",

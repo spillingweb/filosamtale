@@ -220,6 +220,12 @@ type ArrangementerConnection implements Connection {
   edges: [ArrangementerConnectionEdges]
 }
 
+type PagesHomepageTestimonials {
+  quote: String!
+  name: String!
+  role: String
+}
+
 type PagesHomepage implements Node & Document {
   title: String!
   subtitle: String
@@ -235,8 +241,7 @@ type PagesHomepage implements Node & Document {
   aboutName: String
   aboutText1: String
   aboutText2: String
-  quote: String
-  quoteAuthor: String
+  testimonials: [PagesHomepageTestimonials]
   ctaTitle: String
   ctaDescription: String
   servicesHeading: String
@@ -307,6 +312,12 @@ type PagesKontakt implements Node & Document {
 
 union Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt
 
+input PagesHomepageTestimonialsFilter {
+  quote: StringFilter
+  name: StringFilter
+  role: StringFilter
+}
+
 input PagesHomepageFilter {
   title: StringFilter
   subtitle: StringFilter
@@ -322,8 +333,7 @@ input PagesHomepageFilter {
   aboutName: StringFilter
   aboutText1: StringFilter
   aboutText2: StringFilter
-  quote: StringFilter
-  quoteAuthor: StringFilter
+  testimonials: PagesHomepageTestimonialsFilter
   ctaTitle: StringFilter
   ctaDescription: StringFilter
   servicesHeading: StringFilter
@@ -405,6 +415,7 @@ type Tjenester implements Node & Document {
   tittel: String!
   undertittel: String!
   badge: String
+  image: String
   description: JSON!
   detaljer: [String]
   priser: [TjenesterPriser]
@@ -423,6 +434,7 @@ input TjenesterFilter {
   tittel: StringFilter
   undertittel: StringFilter
   badge: StringFilter
+  image: ImageFilter
   description: RichTextFilter
   detaljer: StringFilter
   priser: TjenesterPriserFilter
@@ -526,6 +538,12 @@ input ArrangementerMutation {
   registrationUrl: String
 }
 
+input PagesHomepageTestimonialsMutation {
+  quote: String
+  name: String
+  role: String
+}
+
 input PagesHomepageMutation {
   title: String
   subtitle: String
@@ -541,8 +559,7 @@ input PagesHomepageMutation {
   aboutName: String
   aboutText1: String
   aboutText2: String
-  quote: String
-  quoteAuthor: String
+  testimonials: [PagesHomepageTestimonialsMutation]
   ctaTitle: String
   ctaDescription: String
   servicesHeading: String
@@ -613,6 +630,7 @@ input TjenesterMutation {
   tittel: String
   undertittel: String
   badge: String
+  image: String
   description: JSON
   detaljer: [String]
   priser: [TjenesterPriserMutation]

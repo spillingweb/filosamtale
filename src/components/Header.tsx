@@ -22,7 +22,7 @@ export default function Header() {
         <h1 className="m-0 shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
-            className="inline-flex items-center gap-2.5 py-1.5 text-sm text-foreground no-underline "
+            className="inline-flex items-center gap-2.5 py-1.5 text-md text-foreground no-underline "
           >
             <Logo className="shrink-0" />
             <span className="font-serif font-semibold uppercase tracking-wide">
@@ -50,9 +50,9 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
           <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link to="/kontakt" className="no-underline">
+            <a href="#kontakt" className="no-underline">
               Ta kontakt
-            </Link>
+            </a>
           </Button>
 
           {/* Hamburger button */}
@@ -127,13 +127,13 @@ export default function Header() {
 
             {/* Mobile contact button */}
             <Button asChild>
-              <Link
-                to="/kontakt"
+              <a
+                href="#kontakt"
                 onClick={() => setMobileMenuOpen(false)}
                 className="no-underline"
               >
                 Ta kontakt
-              </Link>
+              </a>
             </Button>
           </div>
         </>

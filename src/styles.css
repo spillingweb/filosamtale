@@ -3,6 +3,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ── Dark mode variant configuration ───────────────────────────────── */
+/* Tell Tailwind v4 when to apply dark: classes - matches the .dark class added by ThemeToggle */
+@custom-variant dark (.dark &);
+
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
@@ -79,7 +83,7 @@
   --card-foreground: #2a3d38;
   --popover: #fcf9f3;
   --popover-foreground: #2a3d38;
-  --primary: #2f6a4a;
+  --primary: #2d6e5a;
   --primary-foreground: #fdfffe;
   --secondary: #e8ddc8;
   --secondary-foreground: #2a3d38;

@@ -2,6 +2,7 @@
 title: 'Filosofisk Kafe: Polarisering og ekkokamre.'
 description: |
   Har vi glemt kunsten å være uenige? Hvordan beholder i varmen og respekten for hverandre i en tid der samfunnsdebatten ofte føles hard, og avstandene store?
+image: /uploads/vitaly-gariev-RxgGS1uawbM-unsplash.jpg
 date: 2026-09-19T00:00:00.000Z
 endDate: 2026-09-19T00:00:00.000Z
 time: '12:00–14:00'

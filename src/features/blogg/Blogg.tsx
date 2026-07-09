@@ -53,6 +53,19 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
           <IslandShell className="rise-in group overflow-hidden transition hover:-translate-y-0.5">
             {/* Decorative header bar */}
             <div className="h-2 bg-linear-to-r from-accent to-primary" />
+            
+            {/* Featured Image */}
+            {featured.coverImage && (
+              <div className="overflow-hidden">
+                <img
+                  src={featured.coverImage}
+                  alt={featured.title}
+                  className="w-full h-64 sm:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-tina-field={tinaField(featured, "coverImage")}
+                />
+              </div>
+            )}
+            
             <div className="p-6 sm:p-8 lg:grid lg:grid-cols-5 lg:gap-8">
               <div className="lg:col-span-3">
                 <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -103,9 +116,19 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
             className="no-underline"
           >
             <Card
-              className="h-full transition hover:-translate-y-1"
+              className="h-full transition hover:-translate-y-1 overflow-hidden"
               style={{ animationDelay: `${i * 60}ms` }}
             >
+              {post.coverImage && (
+                <div className="overflow-hidden">
+                  <img
+                    src={post.coverImage}
+                    alt={post.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                    data-tina-field={tinaField(post, "coverImage")}
+                  />
+                </div>
+              )}
               <CardHeader>
                 <div className="mb-1 flex flex-wrap items-center gap-2">
                   <Badge variant="accent" data-tina-field={tinaField(post, 'category')}>{post.category}</Badge>

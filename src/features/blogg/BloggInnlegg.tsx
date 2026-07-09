@@ -45,9 +45,9 @@ const BloggInnlegg = ({
 
       <div className="grid gap-8 lg:grid-cols-4">
         {/* Article */}
-        <IslandShell className="rise-in  p-6 sm:p-8 lg:col-span-3">
+        <IslandShell className="rise-in p-6 sm:p-8 lg:col-span-3">
         <article>
-          <header className="mb-8 border-b pb-8">
+          <header className="mb-8">
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <Badge
                 variant="accent"
@@ -82,9 +82,21 @@ const BloggInnlegg = ({
             </h1>
           </header>
 
+          {/* Cover Image */}
+          {post.coverImage && (
+            <div className="mb-8 -mx-6 sm:-mx-8">
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="w-full aspect-video object-cover"
+                data-tina-field={tinaField(post, "coverImage")}
+              />
+            </div>
+          )}
+
           {/* Body */}
           <div
-            className="prose max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+            className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
             data-tina-field={tinaField(post, "body")}
           >
             <TinaMarkdown content={post.body} />

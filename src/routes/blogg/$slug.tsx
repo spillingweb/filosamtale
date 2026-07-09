@@ -31,6 +31,11 @@ export const Route = createFileRoute('/blogg/$slug')({
     const bodyText = post.body?.children?.[0]?.children?.[0]?.text || ''
     const description = post.excerpt || bodyText.substring(0, 160) + '...'
     
+    // Prepare Open Graph image
+    const ogImage = post.coverImage 
+      ? `${baseUrl}${post.coverImage}` 
+      : `${baseUrl}/uploads/hero-chairs.jpg` // fallback image
+    
     return {
       title: `${post.title} — Filosamtale`,
       meta: [
@@ -40,6 +45,7 @@ export const Route = createFileRoute('/blogg/$slug')({
         { property: 'og:description', content: description },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: postUrl },
+        { property: 'og:image', content: ogImage },
         { property: 'og:site_name', content: 'Filosamtale' },
         { property: 'article:published_time', content: post.date || '' },
         { property: 'article:author', content: 'Tina Maria Lie' },
@@ -47,6 +53,7 @@ export const Route = createFileRoute('/blogg/$slug')({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: post.title || '' },
         { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: ogImage },
       ],
       links: [
         { rel: 'canonical', href: postUrl }

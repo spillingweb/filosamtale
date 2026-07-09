@@ -42,8 +42,12 @@ fragment PagesParts on Pages {
     aboutName
     aboutText1
     aboutText2
-    quote
-    quoteAuthor
+    testimonials {
+      __typename
+      quote
+      name
+      role
+    }
     ctaTitle
     ctaDescription
     servicesHeading
@@ -97,6 +101,7 @@ fragment TjenesterParts on Tjenester {
   tittel
   undertittel
   badge
+  image
   description
   detaljer
   priser {

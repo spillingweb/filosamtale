@@ -38,71 +38,42 @@ const OmMeg = ({
 
   return (
     <ContentLayout>
-      {/* Header */}
-      <PageHeader
-        pageName="Om meg"
-        title={page.title}
-        subtitle={page.subtitle || ""}
-        description={page.intro || ""}
-        tinaFields={{
-          title: tinaField(page, "title"),
-          subtitle: tinaField(page, "subtitle"),
-          description: tinaField(page, "intro"),
-        }}
-      />
-
-      {/* Portrait + bio */}
-      <div className="mt-8 grid items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {/* Portrait */}
-        <div>
-          <IslandShell className="overflow-hidden">
-            <img
-              src={page.profileImage || "/uploads/profile.jpg"}
-              alt={`${page.title} - Sykepleier og filosof`}
-              className="aspect-square w-full object-cover"
-              data-tina-field={tinaField(page, "profileImage")}
-            />
-          </IslandShell>
-
-          <div className="mt-5 space-y-2 rounded-xl bg-muted/40 p-4 text-sm text-sea-ink-soft">
-            {page.contactName && (
-              <div className="flex items-center gap-2">
-                <User className="text-accent" size={16} />
-                <span data-tina-field={tinaField(page, "contactName")}>
-                  {page.contactName}
-                </span>
-              </div>
-            )}
-            {page.contactLocation && (
-              <div className="flex items-center gap-2">
-                <MapPin className="text-accent" size={16} />
-                <span data-tina-field={tinaField(page, "contactLocation")}>
-                  {page.contactLocation}
-                </span>
-              </div>
-            )}
-            {page.contactEmail && (
-              <div className="flex items-center gap-2">
-                <Mail className="text-accent" size={16} />
-                <a
-                  href={`mailto:${page.contactEmail}`}
-                  className="hover:text-lagoon-deep"
-                  data-tina-field={tinaField(page, "contactEmail")}
-                >
-                  {page.contactEmail}
-                </a>
-              </div>
-            )}
-          </div>
+      <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Header */}
+        <div className="md:col-span-2">
+          <PageHeader
+            pageName="Om meg"
+            title={page.title}
+            subtitle={page.subtitle || ""}
+            description={page.intro || ""}
+            tinaFields={{
+              title: tinaField(page, "title"),
+              subtitle: tinaField(page, "subtitle"),
+              description: tinaField(page, "intro"),
+            }}
+          />
         </div>
 
+        {/* Portrait */}
+        <div className="h-full place-content-center">
+          <img
+            src={page.profileImage || "/uploads/profile.jpg"}
+            alt={`${page.title} - Sykepleier og filosof`}
+            className="aspect-square w-full object-cover rounded-2xl"
+            data-tina-field={tinaField(page, "profileImage")}
+          />
+        </div>
+      </div>
+
+      {/* Portrait + bio */}
+      <div className="mt-8">
         {/* Long bio */}
-        <div className="space-y-6 lg:col-span-2">
+        <div className="space-y-6 flex flex-col">
           <IslandShell
             className="p-6 sm:p-8"
             data-tina-field={tinaField(page, "body")}
           >
-            <div className="prose max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground">
+            <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground">
               {page.body && <TinaMarkdown content={page.body} />}
             </div>
           </IslandShell>
@@ -176,7 +147,7 @@ const OmMeg = ({
             </ul>
           </IslandShell>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="self-center flex flex-wrap gap-3">
             <Button asChild>
               <Link to="/tjenester">Se tjenester og priser</Link>
             </Button>

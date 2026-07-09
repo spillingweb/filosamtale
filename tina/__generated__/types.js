@@ -52,8 +52,12 @@ export const PagesPartsFragmentDoc = gql`
     aboutName
     aboutText1
     aboutText2
-    quote
-    quoteAuthor
+    testimonials {
+      __typename
+      quote
+      name
+      role
+    }
     ctaTitle
     ctaDescription
     servicesHeading
@@ -108,6 +112,7 @@ export const TjenesterPartsFragmentDoc = gql`
   tittel
   undertittel
   badge
+  image
   description
   detaljer
   priser {

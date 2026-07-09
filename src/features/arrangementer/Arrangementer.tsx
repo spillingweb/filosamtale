@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
-import { Badge } from "#/components/ui/badge";
 import { Dialog, DialogContent } from "#/components/ui/dialog";
 import PageHeader from "#/components/PageHeader";
 import ContentLayout from "#/components/ContentLayout";
@@ -8,12 +7,12 @@ import { tinaField } from "tinacms/dist/react";
 import { useState } from "react";
 
 import IslandKicker from "#/components/ui/IslandKicker";
-import ArrangementKort from "#/features/arrangementer/ArragementKort";
+import IslandShell from "#/components/ui/IslandShell";
 import type {
   ArrangementerConnectionQuery,
   PagesQuery,
 } from "../../../tina/__generated__/types";
-import IslandShell from "#/components/ui/IslandShell";
+import ArrangementKort from "./ArragementKort";
 
 const categoryLabels: Record<string, string> = {
   seminar: "Seminar",
@@ -21,6 +20,14 @@ const categoryLabels: Record<string, string> = {
   kurs: "Kurs",
   dialog: "Dialog",
 };
+
+const categories = [
+  { value: "all", label: "Alle" },
+  { value: "seminar", label: "Seminar" },
+  { value: "gruppe", label: "Gruppe" },
+  { value: "kurs", label: "Kurs" },
+  { value: "dialog", label: "Dialog" },
+];
 
 function Arrangementer({
   arrangementerData,
@@ -30,8 +37,7 @@ function Arrangementer({
   pageData: PagesQuery;
 }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  // En
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const page = pageData.pages;
 
@@ -48,9 +54,52 @@ function Arrangementer({
     .filter((node): node is NonNullable<typeof node> => node !== null)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
+  // Filter by category
+  const filteredArrangementer = alleArrangementer.filter((arr) => {
+    if (selectedCategory === "all") return true;
+    const categoryValue =
+      typeof arr.category === "object" && arr.category !== null
+        ? (arr.category as any)?.value
+        : arr.category;
+    return categoryValue === selectedCategory;
+  });
+
   const now = new Date();
-  const kommende = alleArrangementer.filter((arr) => new Date(arr.date) >= now);
-  const tidligere = alleArrangementer.filter((arr) => new Date(arr.date) < now);
+
+  // Split into upcoming and past events
+  const upcomingEvents = filteredArrangementer.filter(
+    (arr) => new Date(arr.date) >= now
+  );
+  const pastEvents = filteredArrangementer.filter(
+    (arr) => new Date(arr.date) < now
+  );
+
+  // Helper function to group by month
+  const groupByMonth = (events: typeof alleArrangementer) => {
+    return events.reduce((acc, arr) => {
+      const date = new Date(arr.date);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+      const monthLabel = date.toLocaleDateString("nb-NO", {
+        month: "long",
+        year: "numeric",
+      });
+      
+      if (!acc[monthKey]) {
+        acc[monthKey] = {
+          label: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
+          events: [],
+        };
+      }
+      acc[monthKey].events.push(arr);
+      return acc;
+    }, {} as Record<string, { label: string; events: typeof alleArrangementer }>);
+  };
+
+  const upcomingByMonth = groupByMonth(upcomingEvents);
+  const pastByMonth = groupByMonth(pastEvents);
+
+  const sortedUpcomingMonths = Object.entries(upcomingByMonth).sort(([a], [b]) => a.localeCompare(b));
+  const sortedPastMonths = Object.entries(pastByMonth).sort(([a], [b]) => b.localeCompare(a)); // Reverse order for past
 
   return (
     <ContentLayout>
@@ -65,27 +114,79 @@ function Arrangementer({
         }}
       />
 
-      {/* Upcoming events */}
-      <section className="mt-8">
-        <h2 className="mb-5 text-xl font-semibold text-foreground">
-          Kommende ({kommende.length})
-        </h2>
-        {kommende.length > 0 ? (
-          <div className="grid gap-5 md:grid-cols-2">
-            {kommende.map((arr) => (
-              <ArrangementKort
-                key={arr.id}
-                arr={arr}
-                onImageClick={setSelectedImage}
-              />
-            ))}
-          </div>
-        ) : (
+      {/* Category Filter */}
+      <nav className="mt-6 -mx-4 px-4 overflow-x-auto hidden md:block">
+        <div className="flex gap-2 pb-2 min-w-max">
+          {categories.map((cat) => (
+            <Button
+              key={cat.value}
+              variant={selectedCategory === cat.value ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory(cat.value)}
+            >
+              {cat.label}
+            </Button>
+          ))}
+        </div>
+      </nav>
+
+      {/* Upcoming Events */}
+      {sortedUpcomingMonths.length > 0 ? (
+        <div className="mt-8 space-y-10">
+          {sortedUpcomingMonths.map(([monthKey, { label, events }]) => (
+            <section key={monthKey}>
+              <h2 className="mb-5 text-2xl font-bold text-foreground display-title">
+                {label}
+              </h2>
+              <div className="space-y-5">
+                {events.map((arr) => (
+                  <ArrangementKort
+                    key={arr.id}
+                    arr={arr}
+                    onImageClick={setSelectedImage}
+                    categoryLabels={categoryLabels}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-8 text-center py-12">
           <p className="text-sea-ink-soft">
-            Ingen kommende arrangementer for øyeblikket.
+            {selectedCategory === "all"
+              ? "Ingen kommende arrangementer for øyeblikket."
+              : `Ingen kommende ${categoryLabels[selectedCategory]?.toLowerCase()} for øyeblikket.`}
           </p>
-        )}
-      </section>
+        </div>
+      )}
+
+      {/* Past Events Section */}
+      {sortedPastMonths.length > 0 && (
+        <div className="mt-16 space-y-10">
+          <h2 className="text-3xl font-bold text-foreground display-title">
+            Tidligere arrangementer
+          </h2>
+          {sortedPastMonths.map(([monthKey, { label, events }]) => (
+            <section key={monthKey}>
+              <h3 className="mb-5 text-xl font-semibold text-sea-ink-soft">
+                {label}
+              </h3>
+              <div className="space-y-5">
+                {events.map((arr) => (
+                  <ArrangementKort
+                    key={arr.id}
+                    arr={arr}
+                    onImageClick={setSelectedImage}
+                    categoryLabels={categoryLabels}
+                    isPast={true}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
 
       {/* Newsletter strip */}
       <IslandShell className="mt-10 p-6 sm:p-8">
@@ -105,79 +206,6 @@ function Arrangementer({
           </Button>
         </div>
       </IslandShell>
-
-      {/* Past events */}
-      {tidligere.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-5 text-xl font-semibold text-foreground">
-            Tidligere arrangementer
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 opacity-70">
-            {tidligere.map((arr) => {
-              const categoryValue =
-                typeof arr.category === "object" && arr.category !== null
-                  ? (arr.category as any)?.value
-                  : arr.category;
-              const category = categoryValue || "dialog";
-              return (
-                <IslandShell key={arr.id} className="overflow-hidden">
-                  <article>
-                    <div className="flex gap-4 p-5">
-                      <div className="flex-1 min-w-0">
-                        <div className="mb-2 flex items-center gap-2">
-                          <Badge
-                            variant="secondary"
-                            data-tina-field={tinaField(arr, "category")}
-                          >
-                            {categoryLabels[category]}
-                          </Badge>
-                          <time
-                            className="text-xs text-sea-ink-soft"
-                            dateTime={arr.date}
-                            data-tina-field={tinaField(arr, "date")}
-                          >
-                            {new Date(arr.date).toLocaleDateString("nb-NO", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </time>
-                        </div>
-                        <h3
-                          className="font-semibold text-foreground text-balance"
-                          data-tina-field={tinaField(arr, "title")}
-                        >
-                          {arr.title}
-                        </h3>
-                        <p
-                          className="mt-1 text-sm text-sea-ink-soft"
-                          data-tina-field={tinaField(arr, "location")}
-                        >
-                          {arr.location}
-                        </p>
-                      </div>
-
-                      {arr.image && (
-                        <div className="shrink-0">
-                          <img
-                            src={arr.image}
-                            alt={arr.title}
-                            className="w-32 h-32 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                            data-tina-field={tinaField(arr, "image")}
-                            onClick={() =>
-                              arr.image && setSelectedImage(arr.image)
-                            }
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                </IslandShell>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
       {/* CTA */}
       <div className="mt-10 text-center">

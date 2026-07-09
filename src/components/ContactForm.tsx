@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { getRouteApi } from "@tanstack/react-router";
+import { getRouteApi, useSearch } from "@tanstack/react-router";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -16,6 +16,11 @@ const rootRoute = getRouteApi('__root__');
 const ContactForm = () => {
   const send = useServerFn(sendKontaktskjema);
   const { kontakt: initialData } = rootRoute.useLoaderData();
+  
+  // Get pre-filled message from URL search params
+  const searchParams = useSearch({ strict: false }) as { message?: string };
+
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
     navn: "",
@@ -27,6 +32,48 @@ const ContactForm = () => {
     "idle",
   );
   const [feilmelding, setFeilmelding] = useState("");
+
+  // Pre-fill message when URL param changes
+  useEffect(() => {
+    if (searchParams.message) {
+      setForm(prev => ({ ...prev, melding: decodeURIComponent(searchParams.message as string) }));
+      // Clear the message param from URL after pre-filling (keep hash)
+      const url = new URL(window.location.href);
+      url.searchParams.delete('message');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, [searchParams.message]);
+
+  // Focus first input when navigating to #kontakt
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#kontakt') {
+        // Small delay to ensure scroll has completed
+        setTimeout(() => {
+          nameInputRef.current?.focus();
+        }, 100);
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Also focus when message is pre-filled
+  useEffect(() => {
+    if (searchParams.message) {
+      setTimeout(() => {
+        nameInputRef.current?.focus();
+      }, 100);
+    }
+  }, [searchParams.message]);
 
   // Enable live preview for contact info
   const { data } = useTina({
@@ -152,7 +199,10 @@ const ContactForm = () => {
             <p className="text-sea-ink-soft">
               Takk for din henvendelse. Jeg svarer deg innen to virkedager.
             </p>
-            <Button variant="outline" onClick={() => setStatus("idle")}>
+            <Button variant="outline" onClick={() => {
+              setStatus("idle");
+              setTimeout(() => nameInputRef.current?.focus(), 100);
+            }}>
               Send ny melding
             </Button>
           </div>
@@ -162,6 +212,7 @@ const ContactForm = () => {
               <div className="space-y-1.5 flex flex-col gap-1">
                 <Label htmlFor="navn">Navn *</Label>
                 <Input
+                  ref={nameInputRef}
                   id="navn"
                   placeholder="Ditt fulle navn"
                   value={form.navn}

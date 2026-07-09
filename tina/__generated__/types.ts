@@ -364,6 +364,13 @@ export type ArrangementerConnection = Connection & {
   edges?: Maybe<Array<Maybe<ArrangementerConnectionEdges>>>;
 };
 
+export type PagesHomepageTestimonials = {
+  __typename?: 'PagesHomepageTestimonials';
+  quote: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  role?: Maybe<Scalars['String']['output']>;
+};
+
 export type PagesHomepage = Node & Document & {
   __typename?: 'PagesHomepage';
   title: Scalars['String']['output'];
@@ -380,8 +387,7 @@ export type PagesHomepage = Node & Document & {
   aboutName?: Maybe<Scalars['String']['output']>;
   aboutText1?: Maybe<Scalars['String']['output']>;
   aboutText2?: Maybe<Scalars['String']['output']>;
-  quote?: Maybe<Scalars['String']['output']>;
-  quoteAuthor?: Maybe<Scalars['String']['output']>;
+  testimonials?: Maybe<Array<Maybe<PagesHomepageTestimonials>>>;
   ctaTitle?: Maybe<Scalars['String']['output']>;
   ctaDescription?: Maybe<Scalars['String']['output']>;
   servicesHeading?: Maybe<Scalars['String']['output']>;
@@ -458,6 +464,12 @@ export type PagesKontakt = Node & Document & {
 
 export type Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt;
 
+export type PagesHomepageTestimonialsFilter = {
+  quote?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
 export type PagesHomepageFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
@@ -473,8 +485,7 @@ export type PagesHomepageFilter = {
   aboutName?: InputMaybe<StringFilter>;
   aboutText1?: InputMaybe<StringFilter>;
   aboutText2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-  quoteAuthor?: InputMaybe<StringFilter>;
+  testimonials?: InputMaybe<PagesHomepageTestimonialsFilter>;
   ctaTitle?: InputMaybe<StringFilter>;
   ctaDescription?: InputMaybe<StringFilter>;
   servicesHeading?: InputMaybe<StringFilter>;
@@ -560,6 +571,7 @@ export type Tjenester = Node & Document & {
   tittel: Scalars['String']['output'];
   undertittel: Scalars['String']['output'];
   badge?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
   description: Scalars['JSON']['output'];
   detaljer?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   priser?: Maybe<Array<Maybe<TjenesterPriser>>>;
@@ -578,6 +590,7 @@ export type TjenesterFilter = {
   tittel?: InputMaybe<StringFilter>;
   undertittel?: InputMaybe<StringFilter>;
   badge?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
   description?: InputMaybe<RichTextFilter>;
   detaljer?: InputMaybe<StringFilter>;
   priser?: InputMaybe<TjenesterPriserFilter>;
@@ -780,6 +793,12 @@ export type ArrangementerMutation = {
   registrationUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type PagesHomepageTestimonialsMutation = {
+  quote?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type PagesHomepageMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
@@ -795,8 +814,7 @@ export type PagesHomepageMutation = {
   aboutName?: InputMaybe<Scalars['String']['input']>;
   aboutText1?: InputMaybe<Scalars['String']['input']>;
   aboutText2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-  quoteAuthor?: InputMaybe<Scalars['String']['input']>;
+  testimonials?: InputMaybe<Array<InputMaybe<PagesHomepageTestimonialsMutation>>>;
   ctaTitle?: InputMaybe<Scalars['String']['input']>;
   ctaDescription?: InputMaybe<Scalars['String']['input']>;
   servicesHeading?: InputMaybe<Scalars['String']['input']>;
@@ -867,6 +885,7 @@ export type TjenesterMutation = {
   tittel?: InputMaybe<Scalars['String']['input']>;
   undertittel?: InputMaybe<Scalars['String']['input']>;
   badge?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   detaljer?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   priser?: InputMaybe<Array<InputMaybe<TjenesterPriserMutation>>>;
@@ -883,7 +902,7 @@ export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: 
 
 export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null };
 
-type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null };
+type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null };
 
 type PagesParts_PagesStandard_Fragment = { __typename: 'PagesStandard', title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null };
 
@@ -895,7 +914,7 @@ type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: str
 
 export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
 
-export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
+export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
 
 export type UtdanningPartsFragment = { __typename: 'Utdanning', ar: string, grad: string, sted: string };
 
@@ -942,7 +961,7 @@ export type PagesQueryVariables = Exact<{
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PagesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -954,14 +973,14 @@ export type PagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TjenesterQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
+export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
 
 export type TjenesterConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -973,7 +992,7 @@ export type TjenesterConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
+export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
 
 export type UtdanningQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1041,8 +1060,12 @@ export const PagesPartsFragmentDoc = gql`
     aboutName
     aboutText1
     aboutText2
-    quote
-    quoteAuthor
+    testimonials {
+      __typename
+      quote
+      name
+      role
+    }
     ctaTitle
     ctaDescription
     servicesHeading
@@ -1097,6 +1120,7 @@ export const TjenesterPartsFragmentDoc = gql`
   tittel
   undertittel
   badge
+  image
   description
   detaljer
   priser {
