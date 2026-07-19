@@ -8,7 +8,7 @@ time: '09:00–13:00'
 location: 'Aust-Agder Kulturhus, Grimstad'
 price: 1200
 capacity: 25
-category: seminar
+kategorier: content/kategorier/seminar.json
 isOnline: false
 ---
 

@@ -64,6 +64,8 @@ type Query {
   tjenesterConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TjenesterFilter): TjenesterConnection!
   utdanning(relativePath: String): Utdanning!
   utdanningConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: UtdanningFilter): UtdanningConnection!
+  kategorier(relativePath: String): Kategorier!
+  kategorierConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: KategorierFilter): KategorierConnection!
 }
 
 input DocumentFilter {
@@ -72,6 +74,7 @@ input DocumentFilter {
   pages: PagesFilter
   tjenester: TjenesterFilter
   utdanning: UtdanningFilter
+  kategorier: KategorierFilter
 }
 
 type DocumentConnectionEdges {
@@ -97,7 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Folder
+union DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Kategorier | Folder
 
 type Blogg implements Node & Document {
   title: String!
@@ -171,6 +174,8 @@ type BloggConnection implements Connection {
   edges: [BloggConnectionEdges]
 }
 
+union ArrangementerKategorier = Kategorier
+
 type Arrangementer implements Node & Document {
   title: String!
   description: JSON!
@@ -181,12 +186,15 @@ type Arrangementer implements Node & Document {
   location: String!
   price: Float!
   capacity: Float
-  category: String!
+  kategorier: ArrangementerKategorier!
   isOnline: Boolean
-  registrationUrl: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input ArrangementerKategorierFilter {
+  kategorier: KategorierFilter
 }
 
 input BooleanFilter {
@@ -204,9 +212,8 @@ input ArrangementerFilter {
   location: StringFilter
   price: NumberFilter
   capacity: NumberFilter
-  category: StringFilter
+  kategorier: ArrangementerKategorierFilter
   isOnline: BooleanFilter
-  registrationUrl: StringFilter
 }
 
 type ArrangementerConnectionEdges {
@@ -478,6 +485,30 @@ type UtdanningConnection implements Connection {
   edges: [UtdanningConnectionEdges]
 }
 
+type Kategorier implements Node & Document {
+  value: String!
+  label: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input KategorierFilter {
+  value: StringFilter
+  label: StringFilter
+}
+
+type KategorierConnectionEdges {
+  cursor: String!
+  node: Kategorier
+}
+
+type KategorierConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [KategorierConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -494,6 +525,8 @@ type Mutation {
   createTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
   updateUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
   createUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
+  updateKategorier(relativePath: String!, params: KategorierMutation!): Kategorier!
+  createKategorier(relativePath: String!, params: KategorierMutation!): Kategorier!
 }
 
 input DocumentUpdateMutation {
@@ -502,6 +535,7 @@ input DocumentUpdateMutation {
   pages: PagesMutation
   tjenester: TjenesterMutation
   utdanning: UtdanningMutation
+  kategorier: KategorierMutation
   relativePath: String
 }
 
@@ -511,6 +545,7 @@ input DocumentMutation {
   pages: PagesMutation
   tjenester: TjenesterMutation
   utdanning: UtdanningMutation
+  kategorier: KategorierMutation
 }
 
 input BloggMutation {
@@ -533,9 +568,8 @@ input ArrangementerMutation {
   location: String
   price: Float
   capacity: Float
-  category: String
+  kategorier: String
   isOnline: Boolean
-  registrationUrl: String
 }
 
 input PagesHomepageTestimonialsMutation {
@@ -641,6 +675,11 @@ input UtdanningMutation {
   ar: String
   grad: String
   sted: String
+}
+
+input KategorierMutation {
+  value: String
+  label: String
 }
 
 schema {

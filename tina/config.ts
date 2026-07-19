@@ -1,3 +1,4 @@
+import React from "react";
 import { defineConfig } from "tinacms";
 
 /**
@@ -31,6 +32,15 @@ export default defineConfig({
       mediaRoot: "uploads",
       publicFolder: "public",
     },
+  },
+
+  search: {
+    tina: {
+      indexerToken: "b15d2213274b9f00e2d9cc0e0cd63800f7840152",
+      stopwordLanguages: ["no", "eng"],
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100,
   },
 
   schema: {
@@ -191,26 +201,25 @@ export default defineConfig({
             label: "Maks antall deltakere",
           },
           {
-            type: "string",
-            name: "category",
+            type: "reference",
+            name: "kategorier",
             label: "Kategori",
-            options: [
-              { value: "seminar", label: "Seminar" },
-              { value: "gruppe", label: "Samtalegruppe" },
-              { value: "kurs", label: "Kurs" },
-              { value: "dialog", label: "Dialog" },
-            ],
             required: true,
+            collections: ["kategorier"],
+            ui: {
+              optionComponent: (props: { label?: string }) => {
+                return React.createElement(
+                  "span",
+                  null,
+                  props?.label || "Ukjent kategori",
+                );
+              },
+            },
           },
           {
             type: "boolean",
             name: "isOnline",
             label: "Nettbasert arrangement?",
-          },
-          {
-            type: "string",
-            name: "registrationUrl",
-            label: "Påmeldingslenke (valgfritt)",
           },
         ],
       },
@@ -732,6 +741,47 @@ export default defineConfig({
             name: "sted",
             label: "Institusjon",
             required: true,
+          },
+        ],
+      },
+
+      /* ── CATEGORIES (arrangementkategorier) ────────────────────── */
+      {
+        name: "kategorier",
+        label: "Kategorier",
+        path: "content/kategorier",
+        format: "json",
+        ui: {
+          filename: {
+            readonly: false,
+            slugify: (values) =>
+              values?.["value"]
+                ? (values["value"] as string)
+                    .toLowerCase()
+                    .replace(/æ/g, "ae")
+                    .replace(/ø/g, "o")
+                    .replace(/å/g, "a")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                : "kategori",
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "value",
+            label: "Verdi (brukes i kode, f.eks. 'seminar')",
+            required: true,
+            description:
+              "Intern verdi brukt i URL-er og filtrering. Må være unik.",
+          },
+          {
+            type: "string",
+            name: "label",
+            label: "Visningsnavn (f.eks. 'Seminar')",
+            isTitle: true,
+            required: true,
+            description: "Navnet som vises til brukere i menyer og lister.",
           },
         ],
       },

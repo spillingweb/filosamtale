@@ -1,4 +1,5 @@
 import ContentLayout from "#/components/ContentLayout";
+import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";
 import { Link } from "@tanstack/react-router";
@@ -74,12 +75,14 @@ const BloggInnlegg = ({
                 min lesetid
               </span>
             </div>
-            <h1
-              className="display-title text-balance text-3xl font-bold text-foreground leading-tight sm:text-4xl"
+            <DisplayHeading
+              as="h1"
+              size="xl"
+              className="text-balance leading-tight"
               data-tina-field={tinaField(post, "title")}
             >
               {post.title}
-            </h1>
+            </DisplayHeading>
           </header>
 
           {/* Cover Image */}
@@ -96,7 +99,7 @@ const BloggInnlegg = ({
 
           {/* Body */}
           <div
-            className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+            className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
             data-tina-field={tinaField(post, "body")}
           >
             <TinaMarkdown content={post.body} />

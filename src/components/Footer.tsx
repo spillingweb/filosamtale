@@ -3,13 +3,17 @@ import ContactForm from "./ContactForm";
 import { FaFacebook } from "react-icons/fa"; // From Font Awesome
 import { FaInstagram } from "react-icons/fa"; // From Font Awesome
 import { FaWhatsapp } from "react-icons/fa"; // From Font Awesome
+import PageWrap from "./ui/PageWrap";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="kontakt" className="site-footer md:px-4 pb-10 pt-14">
-      <div className="page-wrap">
+    <footer
+      id="kontakt"
+      className="border-t border-line bg-card pb-20 md:pb-10 pt-14"
+    >
+      <PageWrap>
         {/* Contact section */}
         <ContactForm />
 
@@ -76,7 +80,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-      </div>
+      </PageWrap>
     </footer>
   );
 }

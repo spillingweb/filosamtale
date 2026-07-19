@@ -6,7 +6,7 @@ time: '10:00–15:00'
 location: 'Filosamtale Samtalerom, Grimstadveien 8, Fevik'
 price: 950
 capacity: 12
-category: seminar
+kategorier: content/kategorier/seminar.json
 isOnline: false
 ---
 

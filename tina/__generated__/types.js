@@ -29,9 +29,26 @@ export const ArrangementerPartsFragmentDoc = gql`
   location
   price
   capacity
-  category
+  kategorier {
+    ... on Kategorier {
+      __typename
+      value
+      label
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
   isOnline
-  registrationUrl
 }
     `;
 export const PagesPartsFragmentDoc = gql`
@@ -129,6 +146,13 @@ export const UtdanningPartsFragmentDoc = gql`
   ar
   grad
   sted
+}
+    `;
+export const KategorierPartsFragmentDoc = gql`
+    fragment KategorierParts on Kategorier {
+  __typename
+  value
+  label
 }
     `;
 export const BloggDocument = gql`
@@ -416,6 +440,63 @@ export const UtdanningConnectionDocument = gql`
   }
 }
     ${UtdanningPartsFragmentDoc}`;
+export const KategorierDocument = gql`
+    query kategorier($relativePath: String!) {
+  kategorier(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...KategorierParts
+  }
+}
+    ${KategorierPartsFragmentDoc}`;
+export const KategorierConnectionDocument = gql`
+    query kategorierConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: KategorierFilter) {
+  kategorierConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...KategorierParts
+      }
+    }
+  }
+}
+    ${KategorierPartsFragmentDoc}`;
 export function getSdk(requester) {
   return {
     blogg(variables, options) {
@@ -447,6 +528,12 @@ export function getSdk(requester) {
     },
     utdanningConnection(variables, options) {
       return requester(UtdanningConnectionDocument, variables, options);
+    },
+    kategorier(variables, options) {
+      return requester(KategorierDocument, variables, options);
+    },
+    kategorierConnection(variables, options) {
+      return requester(KategorierConnectionDocument, variables, options);
     }
   };
 }
@@ -470,7 +557,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "http://localhost:4001/graphql",
+      url: "https://content.tinajs.io/2.4/content/db53ee3f-9b0f-47e7-b794-88a3bd8d0187/github/main",
       queries
     })
   )

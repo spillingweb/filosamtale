@@ -1,4 +1,5 @@
 import { Badge } from "#/components/ui/badge";
+import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import IslandShell from "#/components/ui/IslandShell";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
@@ -6,13 +7,7 @@ import { Button } from "#/components/ui/button";
 
 function ArrangementKort({
   arr,
-  onImageClick,
-  categoryLabels = {
-    seminar: "Seminar",
-    gruppe: "Gruppe",
-    kurs: "Kurs",
-    dialog: "Dialog",
-  },
+  categoryLabels,
   isPast = false,
 }: {
   arr: any;
@@ -21,15 +16,15 @@ function ArrangementKort({
   isPast?: boolean;
 }) {
   const categoryValue =
-    arr.category && typeof arr.category === "object"
-      ? arr.category.value
-      : arr.category;
+    arr.kategorier && typeof arr.kategorier === "object"
+      ? arr.kategorier.value
+      : arr.kategorier;
   const category = categoryValue || "dialog";
   const eventDate = new Date(arr.date);
 
   return (
     <IslandShell className={isPast ? "opacity-60" : ""}>
-      <article className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr]">
+      <article className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr] group">
         {/* Image with date overlay - left on desktop, top on mobile */}
         <div className="relative overflow-hidden rounded-lg order-first">
           {arr.image ? (
@@ -37,12 +32,11 @@ function ArrangementKort({
               <img
                 src={arr.image}
                 alt={arr.title}
-                className="w-full h-48 lg:h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                className="w-full h-48 lg:h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 data-tina-field={tinaField(arr, "image")}
-                onClick={() => arr.image && onImageClick?.(arr.image)}
               />
               {/* Date overlay */}
-              <div className="absolute top-4 left-4 bg-surface-strong backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-border">
+              <div className="absolute top-4 left-4 bg-card backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-border">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-foreground leading-none">
                     {eventDate.getDate()}
@@ -78,22 +72,20 @@ function ArrangementKort({
               variant={isPast ? "secondary" : "accent"}
               data-tina-field={tinaField(arr, "category")}
             >
-              {categoryLabels[category]}
+              {categoryLabels && categoryLabels[category]}
             </Badge>
-            {arr.isOnline && (
-              <Badge variant="outline">Online</Badge>
-            )}
-            {isPast && (
-              <Badge variant="secondary">Avholdt</Badge>
-            )}
+            {arr.isOnline && <Badge variant="outline">Online</Badge>}
+            {isPast && <Badge variant="secondary">Avholdt</Badge>}
           </div>
 
-          <h3
-            className="display-title text-2xl text-balance font-bold text-foreground mb-2"
+          <DisplayHeading
+            as="h3"
+            size="base"
+            className="text-balance mb-2"
             data-tina-field={tinaField(arr, "title")}
           >
             {arr.title}
-          </h3>
+          </DisplayHeading>
 
           <div className="mb-4 space-y-1 text-sm text-sea-ink-soft">
             <div className="flex items-center gap-2">
@@ -127,9 +119,7 @@ function ArrangementKort({
                 >
                   <path d="M8 0a8 8 0 110 16A8 8 0 018 0zm0 14A6 6 0 108 2a6 6 0 000 12zm.5-10v4.5H11V10H9V4h-.5z" />
                 </svg>
-                <span data-tina-field={tinaField(arr, "time")}>
-                  {arr.time}
-                </span>
+                <span data-tina-field={tinaField(arr, "time")}>{arr.time}</span>
               </div>
             )}
             {arr.location && (

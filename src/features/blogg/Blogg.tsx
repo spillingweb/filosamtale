@@ -1,5 +1,6 @@
 import ContentLayout from "#/components/ContentLayout";
 import PageHeader from "#/components/PageHeader";
+import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import { tinaField } from "tinacms/tina-field";
 import type { BloggConnectionQuery, PagesQuery } from "../../../tina/__generated__/types";
 import { Link } from "@tanstack/react-router";
@@ -72,12 +73,14 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
                   <Badge variant="accent" data-tina-field={tinaField(featured, 'category')}>{featured.category}</Badge>
                   <IslandKicker>Utvalgt innlegg</IslandKicker >
                 </div>
-                <h2 
-                  className="display-title mb-3 text-2xl font-bold text-foreground group-hover:text-primary sm:text-3xl"
+                <DisplayHeading
+                  as="h2"
+                  size="lg"
+                  className="mb-3 group-hover:text-primary"
                   data-tina-field={tinaField(featured, 'title')}
                 >
                   {featured.title}
-                </h2>
+                </DisplayHeading>
                 <p 
                   className="mb-4 text-sea-ink-soft leading-relaxed"
                   data-tina-field={tinaField(featured, 'excerpt')}

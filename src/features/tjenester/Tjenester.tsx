@@ -5,6 +5,7 @@ import type {
 import { Button } from "#/components/ui/button";
 import { Badge } from "#/components/ui/badge";
 import PageHeader from "#/components/PageHeader";
+import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import ContentLayout from "#/components/ContentLayout";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import IslandKicker from "#/components/ui/IslandKicker";
@@ -47,7 +48,7 @@ const Tjenester = ({
       />
 
       {/* Quick Navigation */}
-      <nav className="-mx-4 px-4 overflow-x-auto hidden lg:block">
+      <nav className="pt-1 -mx-4 px-4 overflow-x-auto hidden lg:block">
         <div className="flex gap-2 pb-2 min-w-max">
           {tjenester.map((tjeneste) => (
             <Button
@@ -88,7 +89,7 @@ const Tjenester = ({
             >
               {/* Image - top on mobile, left on desktop */}
               {tjeneste.image && (
-                <div className="lg:row-span-2 order-first lg:order-none">
+                <div className="lg:row-span-2 order-first lg:order-0">
                   <img
                     src={tjeneste.image}
                     alt={tjeneste.tittel}
@@ -101,12 +102,13 @@ const Tjenester = ({
               {/* Description */}
               <div className={tjeneste.image ? "" : "lg:col-span-2"}>
                 <div className="mb-3 flex flex-wrap items-center gap-2">
-                  <h2
-                    className="display-title text-2xl font-bold text-foreground"
+                  <DisplayHeading
+                    as="h2"
+                    size="base"
                     data-tina-field={tinaField(tjeneste, "tittel")}
                   >
                     {tjeneste.tittel}
-                  </h2>
+                  </DisplayHeading>
                   {tjeneste.badge && (
                     <Badge
                       variant="accent"
@@ -159,7 +161,7 @@ const Tjenester = ({
               </div>
 
               {/* Prices */}
-              <div className="rounded-xl border bg-surface p-5 h-full flex flex-col lg:row-span-2">
+              <div className="rounded-xl border p-5 h-full flex flex-col lg:row-span-2">
                 <IslandKicker className="mb-3">Priser</IslandKicker>
                 <ul
                   className="space-y-3 flex-1"
@@ -196,9 +198,9 @@ const Tjenester = ({
         <section>
           <IslandShell className="mt-10 p-6 sm:p-8">
             <IslandKicker className="mb-3">Spørsmål og svar</IslandKicker>
-            <h2 className="display-title mb-6 text-2xl font-bold text-foreground">
+            <DisplayHeading as="h2" size="base" className="mb-6">
               Vanlige spørsmål
-            </h2>
+            </DisplayHeading>
             <div
               className="grid gap-6 sm:grid-cols-2"
               data-tina-field={tinaField(page, "faq")}

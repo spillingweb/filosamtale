@@ -8,7 +8,7 @@ time: '17:30–19:30'
 location: 'Filosamtale Samtalerom, Grimstadveien 8, Fevik'
 price: 450
 capacity: 8
-category: gruppe
+kategorier: content/kategorier/gruppe.json
 isOnline: false
 registrationUrl: www.spillingweb.com
 ---

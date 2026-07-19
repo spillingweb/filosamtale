@@ -6,7 +6,7 @@
     {
       "src": "favicon.png",
       "type": "image/png",
-      "sizes": "512x512",
+      "sizes": "20x20",
       "purpose": "any maskable"
     }
   ],

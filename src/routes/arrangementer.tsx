@@ -6,13 +6,15 @@ import { useTina } from "tinacms/react";
 
 export const Route = createFileRoute("/arrangementer")({
   loader: async () => {
-    const [arrangementerResult, pageResult] = await Promise.all([
+    const [arrangementerResult, pageResult, kategorierResult] = await Promise.all([
       client.queries.arrangementerConnection({ sort: "date" }),
       client.queries.pages({ relativePath: "arrangementer.md" }),
+      client.queries.kategorierConnection(),
     ]);
     return {
       arrangementer: arrangementerResult,
       page: pageResult,
+      kategorier: kategorierResult,
     };
   },
   head: ({ loaderData }) => {
@@ -82,5 +84,12 @@ function RouteComponent() {
     data: initialData.page.data,
   });
 
-  return <Arrangementer arrangementerData={arrangementerData} pageData={pageData} />;
+  // Enable live preview for settings
+  const { data: kategorierData } = useTina({
+    query: initialData.kategorier.query,
+    variables: initialData.kategorier.variables,
+    data: initialData.kategorier.data,
+  });
+
+  return <Arrangementer arrangementerData={arrangementerData} pageData={pageData} kategorierData={kategorierData} />;
 }

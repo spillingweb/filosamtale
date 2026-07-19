@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
-import { Dialog, DialogContent } from "#/components/ui/dialog";
 import PageHeader from "#/components/PageHeader";
+import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import ContentLayout from "#/components/ContentLayout";
 import { tinaField } from "tinacms/dist/react";
 import { useState } from "react";
@@ -11,35 +11,47 @@ import IslandShell from "#/components/ui/IslandShell";
 import type {
   ArrangementerConnectionQuery,
   PagesQuery,
+  KategorierConnectionQuery,
 } from "../../../tina/__generated__/types";
 import ArrangementKort from "./ArragementKort";
-
-const categoryLabels: Record<string, string> = {
-  seminar: "Seminar",
-  gruppe: "Gruppe",
-  kurs: "Kurs",
-  dialog: "Dialog",
-};
-
-const categories = [
-  { value: "all", label: "Alle" },
-  { value: "seminar", label: "Seminar" },
-  { value: "gruppe", label: "Gruppe" },
-  { value: "kurs", label: "Kurs" },
-  { value: "dialog", label: "Dialog" },
-];
 
 function Arrangementer({
   arrangementerData,
   pageData,
+  kategorierData,
 }: {
   arrangementerData: ArrangementerConnectionQuery;
   pageData: PagesQuery;
+  kategorierData: KategorierConnectionQuery;
 }) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  // const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const page = pageData.pages;
+
+  // Extract kategorier from connection
+  const dynamicCategories = (kategorierData.kategorierConnection.edges || [])
+    .map((edge) => edge?.node)
+    .filter((node): node is NonNullable<typeof node> => {
+      return (
+        node !== null &&
+        node !== undefined &&
+        node.value !== null &&
+        node.label !== null
+      );
+    });
+
+  // Build categories with "Alle" option
+  const categories = [{ value: "all", label: "Alle" }, ...dynamicCategories];
+
+  // Build category labels lookup
+  const categoryLabels: Record<string, string> = dynamicCategories.reduce(
+    (acc, cat) => {
+      acc[cat.value] = cat.label;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
   // Type guard: ensure we have header template
   if (page.__typename !== "PagesHeader") {
@@ -57,49 +69,52 @@ function Arrangementer({
   // Filter by category
   const filteredArrangementer = alleArrangementer.filter((arr) => {
     if (selectedCategory === "all") return true;
-    const categoryValue =
-      typeof arr.category === "object" && arr.category !== null
-        ? (arr.category as any)?.value
-        : arr.category;
-    return categoryValue === selectedCategory;
+    return arr.kategorier.value === selectedCategory;
   });
 
   const now = new Date();
 
   // Split into upcoming and past events
   const upcomingEvents = filteredArrangementer.filter(
-    (arr) => new Date(arr.date) >= now
+    (arr) => new Date(arr.date) >= now,
   );
   const pastEvents = filteredArrangementer.filter(
-    (arr) => new Date(arr.date) < now
+    (arr) => new Date(arr.date) < now,
   );
 
   // Helper function to group by month
   const groupByMonth = (events: typeof alleArrangementer) => {
-    return events.reduce((acc, arr) => {
-      const date = new Date(arr.date);
-      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-      const monthLabel = date.toLocaleDateString("nb-NO", {
-        month: "long",
-        year: "numeric",
-      });
-      
-      if (!acc[monthKey]) {
-        acc[monthKey] = {
-          label: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
-          events: [],
-        };
-      }
-      acc[monthKey].events.push(arr);
-      return acc;
-    }, {} as Record<string, { label: string; events: typeof alleArrangementer }>);
+    return events.reduce(
+      (acc, arr) => {
+        const date = new Date(arr.date);
+        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+        const monthLabel = date.toLocaleDateString("nb-NO", {
+          month: "long",
+          year: "numeric",
+        });
+
+        if (!acc[monthKey]) {
+          acc[monthKey] = {
+            label: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
+            events: [],
+          };
+        }
+        acc[monthKey].events.push(arr);
+        return acc;
+      },
+      {} as Record<string, { label: string; events: typeof alleArrangementer }>,
+    );
   };
 
   const upcomingByMonth = groupByMonth(upcomingEvents);
   const pastByMonth = groupByMonth(pastEvents);
 
-  const sortedUpcomingMonths = Object.entries(upcomingByMonth).sort(([a], [b]) => a.localeCompare(b));
-  const sortedPastMonths = Object.entries(pastByMonth).sort(([a], [b]) => b.localeCompare(a)); // Reverse order for past
+  const sortedUpcomingMonths = Object.entries(upcomingByMonth).sort(
+    ([a], [b]) => a.localeCompare(b),
+  );
+  const sortedPastMonths = Object.entries(pastByMonth).sort(([a], [b]) =>
+    b.localeCompare(a),
+  ); // Reverse order for past
 
   return (
     <ContentLayout>
@@ -115,7 +130,7 @@ function Arrangementer({
       />
 
       {/* Category Filter */}
-      <nav className="mt-6 -mx-4 px-4 overflow-x-auto hidden md:block">
+      <nav className="pt-1 -mx-4 px-4 overflow-x-auto hidden md:block">
         <div className="flex gap-2 pb-2 min-w-max">
           {categories.map((cat) => (
             <Button
@@ -135,15 +150,15 @@ function Arrangementer({
         <div className="mt-8 space-y-10">
           {sortedUpcomingMonths.map(([monthKey, { label, events }]) => (
             <section key={monthKey}>
-              <h2 className="mb-5 text-2xl font-bold text-foreground display-title">
+              <DisplayHeading as="h2" size="base" className="mb-5">
                 {label}
-              </h2>
+              </DisplayHeading>
               <div className="space-y-5">
                 {events.map((arr) => (
                   <ArrangementKort
                     key={arr.id}
                     arr={arr}
-                    onImageClick={setSelectedImage}
+                    // onImageClick={setSelectedImage}
                     categoryLabels={categoryLabels}
                   />
                 ))}
@@ -164,9 +179,9 @@ function Arrangementer({
       {/* Past Events Section */}
       {sortedPastMonths.length > 0 && (
         <div className="mt-16 space-y-10">
-          <h2 className="text-3xl font-bold text-foreground display-title">
+          <DisplayHeading as="h2" size="xl">
             Tidligere arrangementer
-          </h2>
+          </DisplayHeading>
           {sortedPastMonths.map(([monthKey, { label, events }]) => (
             <section key={monthKey}>
               <h3 className="mb-5 text-xl font-semibold text-sea-ink-soft">
@@ -177,7 +192,7 @@ function Arrangementer({
                   <ArrangementKort
                     key={arr.id}
                     arr={arr}
-                    onImageClick={setSelectedImage}
+                    // onImageClick={setSelectedImage}
                     categoryLabels={categoryLabels}
                     isPast={true}
                   />
@@ -218,7 +233,7 @@ function Arrangementer({
       </div>
 
       {/* Image Modal */}
-      <Dialog
+      {/* <Dialog
         open={!!selectedImage}
         onOpenChange={() => setSelectedImage(null)}
       >
@@ -231,7 +246,7 @@ function Arrangementer({
             />
           )}
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </ContentLayout>
   );
 }

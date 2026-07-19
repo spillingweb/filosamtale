@@ -15,7 +15,7 @@ time: '12:00- 14:00'
 location: 'Eple & Kos kafeen, Feviktoppen 19, Fevik. '
 price: 0
 capacity: 50
-category: dialog
+kategorier: content/kategorier/dialog.json
 isOnline: false
 ---
 

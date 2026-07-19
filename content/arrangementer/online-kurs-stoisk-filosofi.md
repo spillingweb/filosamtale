@@ -9,7 +9,7 @@ time: '12:00–14:00'
 location: Eple & Kos Kafeen
 price: 0
 capacity: 50
-category: dialog
+kategorier: content/kategorier/dialog.json
 isOnline: false
 ---
 

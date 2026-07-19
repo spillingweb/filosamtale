@@ -1,0 +1,20 @@
+{
+  "arrangementKategorier": [
+    {
+      "value": "seminar",
+      "label": "Seminar"
+    },
+    {
+      "value": "gruppe",
+      "label": "Gruppe"
+    },
+    {
+      "value": "kurs",
+      "label": "Kurs"
+    },
+    {
+      "value": "dialog",
+      "label": "Dialog"
+    }
+  ]
+}

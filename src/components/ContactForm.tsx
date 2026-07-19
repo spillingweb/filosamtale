@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { getRouteApi, useSearch } from "@tanstack/react-router";
 import { Button } from "./ui/button";
+import { DisplayHeading } from "./ui/DisplayHeading";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
@@ -118,12 +119,14 @@ const ContactForm = () => {
         >
           {page.kicker}
         </IslandKicker>
-        <h2
-          className="display-title mb-4 text-3xl font-bold text-foreground sm:text-4xl"
+        <DisplayHeading
+          as="h2"
+          size="xl"
+          className="mb-4"
           data-tina-field={tinaField(page, "heading")}
         >
           {page.heading}
-        </h2>
+        </DisplayHeading>
         <p
           className="mb-8 max-w-md text-sea-ink-soft leading-relaxed"
           data-tina-field={tinaField(page, "description")}

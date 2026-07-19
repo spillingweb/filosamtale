@@ -272,3 +272,58 @@ query utdanningConnection($before: String, $after: String, $first: Float, $last:
     }
   }
 }
+
+query kategorier($relativePath: String!) {
+  kategorier(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...KategorierParts
+  }
+}
+
+query kategorierConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: KategorierFilter) {
+  kategorierConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...KategorierParts
+      }
+    }
+  }
+}

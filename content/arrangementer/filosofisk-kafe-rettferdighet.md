@@ -8,7 +8,7 @@ time: '18:00–20:00'
 location: 'Fevik Kafé, Strandveien 14, Fevik'
 price: 0
 capacity: 20
-category: gruppe
+kategorier: content/kategorier/gruppe.json
 isOnline: false
 ---
 

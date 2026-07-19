@@ -20,9 +20,26 @@ fragment ArrangementerParts on Arrangementer {
   location
   price
   capacity
-  category
+  kategorier {
+    ... on Kategorier {
+      __typename
+      value
+      label
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
   isOnline
-  registrationUrl
 }
 
 fragment PagesParts on Pages {
@@ -117,4 +134,10 @@ fragment UtdanningParts on Utdanning {
   ar
   grad
   sted
+}
+
+fragment KategorierParts on Kategorier {
+  __typename
+  value
+  label
 }

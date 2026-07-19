@@ -73,7 +73,7 @@ const OmMeg = ({
             className="p-6 sm:p-8"
             data-tina-field={tinaField(page, "body")}
           >
-            <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:display-title prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground">
+            <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground">
               {page.body && <TinaMarkdown content={page.body} />}
             </div>
           </IslandShell>
