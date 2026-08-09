@@ -1,47 +1,3 @@
-fragment BloggParts on Blogg {
-  __typename
-  title
-  excerpt
-  date
-  category
-  readingTime
-  coverImage
-  body
-}
-
-fragment ArrangementerParts on Arrangementer {
-  __typename
-  title
-  description
-  image
-  date
-  endDate
-  time
-  location
-  price
-  capacity
-  kategorier {
-    ... on Kategorier {
-      __typename
-      value
-      label
-    }
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-  }
-  isOnline
-}
-
 fragment PagesParts on Pages {
   __typename
   ... on PagesHomepage {
@@ -113,6 +69,13 @@ fragment PagesParts on Pages {
   }
 }
 
+fragment UtdanningParts on Utdanning {
+  __typename
+  ar
+  grad
+  sted
+}
+
 fragment TjenesterParts on Tjenester {
   __typename
   tittel
@@ -130,11 +93,48 @@ fragment TjenesterParts on Tjenester {
   }
 }
 
-fragment UtdanningParts on Utdanning {
+fragment BloggParts on Blogg {
   __typename
-  ar
-  grad
-  sted
+  title
+  excerpt
+  date
+  category
+  readingTime
+  coverImage
+  body
+}
+
+fragment ArrangementerParts on Arrangementer {
+  __typename
+  title
+  description
+  image
+  date
+  endDate
+  time
+  location
+  price
+  capacity
+  kategorier {
+    ... on Kategorier {
+      __typename
+      value
+      label
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
+  isOnline
 }
 
 fragment KategorierParts on Kategorier {

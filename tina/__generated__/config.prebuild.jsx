@@ -25,165 +25,6 @@ var config_default = defineConfig({
   },
   schema: {
     collections: [
-      /* ── BLOG POSTS ─────────────────────────────────────── */
-      {
-        name: "blogg",
-        label: "Blogginnlegg",
-        path: "content/blogg",
-        format: "md",
-        ui: {
-          filename: {
-            readonly: false,
-            slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "innlegg"
-          },
-          router: ({ document }) => {
-            return `/blogg/${document._sys.filename}`;
-          }
-        },
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Tittel",
-            isTitle: true,
-            required: true
-          },
-          {
-            type: "string",
-            name: "excerpt",
-            label: "Ingress / sammendrag",
-            ui: { component: "textarea" },
-            required: true
-          },
-          {
-            type: "datetime",
-            name: "date",
-            label: "Publiseringsdato",
-            required: true
-          },
-          {
-            type: "string",
-            name: "category",
-            label: "Kategori",
-            options: [
-              "Filosofi",
-              "Refleksjon",
-              "Filosofihistorie",
-              "Etikk",
-              "Helse",
-              "Annet"
-            ]
-          },
-          {
-            type: "number",
-            name: "readingTime",
-            label: "Lesetid (minutter)"
-          },
-          {
-            type: "image",
-            name: "coverImage",
-            label: "Forsidebilde"
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Innhold",
-            isBody: true
-          }
-        ]
-      },
-      /* ── EVENTS ──────────────────────────────────────────── */
-      {
-        name: "arrangementer",
-        label: "Arrangementer",
-        path: "content/arrangementer",
-        format: "md",
-        ui: {
-          filename: {
-            readonly: false,
-            slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "arrangement"
-          },
-          router: () => {
-            return "/arrangementer";
-          }
-        },
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Tittel",
-            isTitle: true,
-            required: true
-          },
-          {
-            type: "rich-text",
-            name: "description",
-            label: "Beskrivelse",
-            required: true
-          },
-          {
-            type: "image",
-            name: "image",
-            label: "Bilde/plakat",
-            description: "Valgfritt bilde eller plakat for arrangementet"
-          },
-          {
-            type: "datetime",
-            name: "date",
-            label: "Dato",
-            required: true
-          },
-          {
-            type: "datetime",
-            name: "endDate",
-            label: "Sluttdato (valgfritt, for flerdagskurs)"
-          },
-          {
-            type: "string",
-            name: "time",
-            label: "Tidspunkt (f.eks. 18:00\u201320:00)",
-            required: true
-          },
-          {
-            type: "string",
-            name: "location",
-            label: "Sted",
-            required: true
-          },
-          {
-            type: "number",
-            name: "price",
-            label: "Pris (kr, 0 = gratis)",
-            required: true
-          },
-          {
-            type: "number",
-            name: "capacity",
-            label: "Maks antall deltakere"
-          },
-          {
-            type: "reference",
-            name: "kategorier",
-            label: "Kategori",
-            required: true,
-            collections: ["kategorier"],
-            ui: {
-              optionComponent: (props) => {
-                return React.createElement(
-                  "span",
-                  null,
-                  props?.label || "Ukjent kategori"
-                );
-              }
-            }
-          },
-          {
-            type: "boolean",
-            name: "isOnline",
-            label: "Nettbasert arrangement?"
-          }
-        ]
-      },
       /* ── PAGES (om meg, tjenester, forside) ────────────────────────── */
       {
         name: "pages",
@@ -551,6 +392,40 @@ var config_default = defineConfig({
           }
         ]
       },
+      /* ── EDUCATION (utdanning) ──────────────────────────────── */
+      {
+        name: "utdanning",
+        label: "Utdanning og kurs",
+        path: "content/utdanning",
+        format: "json",
+        ui: {
+          filename: {
+            readonly: false,
+            slugify: (values) => values?.["grad"] ? values["grad"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "utdanning"
+          }
+        },
+        fields: [
+          {
+            type: "string",
+            name: "ar",
+            label: "\xC5r",
+            required: true
+          },
+          {
+            type: "string",
+            name: "grad",
+            label: "Grad/kurs",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "string",
+            name: "sted",
+            label: "Institusjon",
+            required: true
+          }
+        ]
+      },
       /* ── SERVICES (tjenester) ──────────────────────────────── */
       {
         name: "tjenester",
@@ -658,37 +533,162 @@ var config_default = defineConfig({
           }
         ]
       },
-      /* ── EDUCATION (utdanning) ──────────────────────────────── */
+      /* ── BLOG POSTS ─────────────────────────────────────── */
       {
-        name: "utdanning",
-        label: "Utdanning og kurs",
-        path: "content/utdanning",
-        format: "json",
+        name: "blogg",
+        label: "Blogginnlegg",
+        path: "content/blogg",
+        format: "md",
         ui: {
           filename: {
             readonly: false,
-            slugify: (values) => values?.["grad"] ? values["grad"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "utdanning"
+            slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "innlegg"
+          },
+          router: ({ document }) => {
+            return `/blogg/${document._sys.filename}`;
           }
         },
         fields: [
           {
             type: "string",
-            name: "ar",
-            label: "\xC5r",
-            required: true
-          },
-          {
-            type: "string",
-            name: "grad",
-            label: "Grad/kurs",
+            name: "title",
+            label: "Tittel",
             isTitle: true,
             required: true
           },
           {
             type: "string",
-            name: "sted",
-            label: "Institusjon",
+            name: "excerpt",
+            label: "Ingress / sammendrag",
+            ui: { component: "textarea" },
             required: true
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Publiseringsdato",
+            required: true
+          },
+          {
+            type: "string",
+            name: "category",
+            label: "Kategori",
+            options: [
+              "Filosofi",
+              "Refleksjon",
+              "Filosofihistorie",
+              "Etikk",
+              "Helse",
+              "Annet"
+            ]
+          },
+          {
+            type: "number",
+            name: "readingTime",
+            label: "Lesetid (minutter)"
+          },
+          {
+            type: "image",
+            name: "coverImage",
+            label: "Forsidebilde"
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Innhold",
+            isBody: true
+          }
+        ]
+      },
+      /* ── EVENTS ──────────────────────────────────────────── */
+      {
+        name: "arrangementer",
+        label: "Arrangementer",
+        path: "content/arrangementer",
+        format: "md",
+        ui: {
+          filename: {
+            readonly: false,
+            slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "arrangement"
+          },
+          router: () => {
+            return "/arrangementer";
+          }
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Tittel",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "rich-text",
+            name: "description",
+            label: "Beskrivelse",
+            required: true
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Bilde/plakat",
+            description: "Valgfritt bilde eller plakat for arrangementet"
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Dato",
+            required: true
+          },
+          {
+            type: "datetime",
+            name: "endDate",
+            label: "Sluttdato (valgfritt, for flerdagskurs)"
+          },
+          {
+            type: "string",
+            name: "time",
+            label: "Tidspunkt (f.eks. 18:00\u201320:00)",
+            required: true
+          },
+          {
+            type: "string",
+            name: "location",
+            label: "Sted",
+            required: true
+          },
+          {
+            type: "number",
+            name: "price",
+            label: "Pris (kr, 0 = gratis)",
+            required: true
+          },
+          {
+            type: "number",
+            name: "capacity",
+            label: "Maks antall deltakere"
+          },
+          {
+            type: "reference",
+            name: "kategorier",
+            label: "Kategori",
+            required: true,
+            collections: ["kategorier"],
+            ui: {
+              optionComponent: (props) => {
+                return React.createElement(
+                  "span",
+                  null,
+                  props?.label || "Ukjent kategori"
+                );
+              }
+            }
+          },
+          {
+            type: "boolean",
+            name: "isOnline",
+            label: "Nettbasert arrangement?"
           }
         ]
       },

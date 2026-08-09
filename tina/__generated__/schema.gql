@@ -54,26 +54,26 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  pages(relativePath: String): Pages!
+  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  utdanning(relativePath: String): Utdanning!
+  utdanningConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: UtdanningFilter): UtdanningConnection!
+  tjenester(relativePath: String): Tjenester!
+  tjenesterConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TjenesterFilter): TjenesterConnection!
   blogg(relativePath: String): Blogg!
   bloggConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: BloggFilter): BloggConnection!
   arrangementer(relativePath: String): Arrangementer!
   arrangementerConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ArrangementerFilter): ArrangementerConnection!
-  pages(relativePath: String): Pages!
-  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
-  tjenester(relativePath: String): Tjenester!
-  tjenesterConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TjenesterFilter): TjenesterConnection!
-  utdanning(relativePath: String): Utdanning!
-  utdanningConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: UtdanningFilter): UtdanningConnection!
   kategorier(relativePath: String): Kategorier!
   kategorierConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: KategorierFilter): KategorierConnection!
 }
 
 input DocumentFilter {
+  pages: PagesFilter
+  utdanning: UtdanningFilter
+  tjenester: TjenesterFilter
   blogg: BloggFilter
   arrangementer: ArrangementerFilter
-  pages: PagesFilter
-  tjenester: TjenesterFilter
-  utdanning: UtdanningFilter
   kategorier: KategorierFilter
 }
 
@@ -100,132 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Kategorier | Folder
-
-type Blogg implements Node & Document {
-  title: String!
-  excerpt: String!
-  date: String!
-  category: String
-  readingTime: Float
-  coverImage: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input DatetimeFilter {
-  after: String
-  before: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input NumberFilter {
-  lt: Float
-  lte: Float
-  gte: Float
-  gt: Float
-  eq: Float
-  exists: Boolean
-  in: [Float]
-}
-
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-}
-
-input BloggFilter {
-  title: StringFilter
-  excerpt: StringFilter
-  date: DatetimeFilter
-  category: StringFilter
-  readingTime: NumberFilter
-  coverImage: ImageFilter
-  body: RichTextFilter
-}
-
-type BloggConnectionEdges {
-  cursor: String!
-  node: Blogg
-}
-
-type BloggConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [BloggConnectionEdges]
-}
-
-union ArrangementerKategorier = Kategorier
-
-type Arrangementer implements Node & Document {
-  title: String!
-  description: JSON!
-  image: String
-  date: String!
-  endDate: String
-  time: String!
-  location: String!
-  price: Float!
-  capacity: Float
-  kategorier: ArrangementerKategorier!
-  isOnline: Boolean
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input ArrangementerKategorierFilter {
-  kategorier: KategorierFilter
-}
-
-input BooleanFilter {
-  eq: Boolean
-  exists: Boolean
-}
-
-input ArrangementerFilter {
-  title: StringFilter
-  description: RichTextFilter
-  image: ImageFilter
-  date: DatetimeFilter
-  endDate: DatetimeFilter
-  time: StringFilter
-  location: StringFilter
-  price: NumberFilter
-  capacity: NumberFilter
-  kategorier: ArrangementerKategorierFilter
-  isOnline: BooleanFilter
-}
-
-type ArrangementerConnectionEdges {
-  cursor: String!
-  node: Arrangementer
-}
-
-type ArrangementerConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [ArrangementerConnectionEdges]
-}
+union DocumentNode = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Utdanning | Tjenester | Blogg | Arrangementer | Kategorier | Folder
 
 type PagesHomepageTestimonials {
   quote: String!
@@ -319,6 +194,20 @@ type PagesKontakt implements Node & Document {
 
 union Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt
 
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
 input PagesHomepageTestimonialsFilter {
   quote: StringFilter
   name: StringFilter
@@ -345,6 +234,12 @@ input PagesHomepageFilter {
   ctaDescription: StringFilter
   servicesHeading: StringFilter
   blogHeading: StringFilter
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
 }
 
 input PagesStandardVerdierFilter {
@@ -413,6 +308,32 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type Utdanning implements Node & Document {
+  ar: String!
+  grad: String!
+  sted: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input UtdanningFilter {
+  ar: StringFilter
+  grad: StringFilter
+  sted: StringFilter
+}
+
+type UtdanningConnectionEdges {
+  cursor: String!
+  node: Utdanning
+}
+
+type UtdanningConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [UtdanningConnectionEdges]
+}
+
 type TjenesterPriser {
   label: String!
   pris: String!
@@ -431,6 +352,16 @@ type Tjenester implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
 }
 
 input TjenesterPriserFilter {
@@ -461,30 +392,99 @@ type TjenesterConnection implements Connection {
   edges: [TjenesterConnectionEdges]
 }
 
-type Utdanning implements Node & Document {
-  ar: String!
-  grad: String!
-  sted: String!
+type Blogg implements Node & Document {
+  title: String!
+  excerpt: String!
+  date: String!
+  category: String
+  readingTime: Float
+  coverImage: String
+  body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input UtdanningFilter {
-  ar: StringFilter
-  grad: StringFilter
-  sted: StringFilter
+input DatetimeFilter {
+  after: String
+  before: String
+  eq: String
+  exists: Boolean
+  in: [String]
 }
 
-type UtdanningConnectionEdges {
+input BloggFilter {
+  title: StringFilter
+  excerpt: StringFilter
+  date: DatetimeFilter
+  category: StringFilter
+  readingTime: NumberFilter
+  coverImage: ImageFilter
+  body: RichTextFilter
+}
+
+type BloggConnectionEdges {
   cursor: String!
-  node: Utdanning
+  node: Blogg
 }
 
-type UtdanningConnection implements Connection {
+type BloggConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [UtdanningConnectionEdges]
+  edges: [BloggConnectionEdges]
+}
+
+union ArrangementerKategorier = Kategorier
+
+type Arrangementer implements Node & Document {
+  title: String!
+  description: JSON!
+  image: String
+  date: String!
+  endDate: String
+  time: String!
+  location: String!
+  price: Float!
+  capacity: Float
+  kategorier: ArrangementerKategorier!
+  isOnline: Boolean
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ArrangementerKategorierFilter {
+  kategorier: KategorierFilter
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input ArrangementerFilter {
+  title: StringFilter
+  description: RichTextFilter
+  image: ImageFilter
+  date: DatetimeFilter
+  endDate: DatetimeFilter
+  time: StringFilter
+  location: StringFilter
+  price: NumberFilter
+  capacity: NumberFilter
+  kategorier: ArrangementerKategorierFilter
+  isOnline: BooleanFilter
+}
+
+type ArrangementerConnectionEdges {
+  cursor: String!
+  node: Arrangementer
+}
+
+type ArrangementerConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ArrangementerConnectionEdges]
 }
 
 type Kategorier implements Node & Document {
@@ -517,61 +517,37 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
+  updatePages(relativePath: String!, params: PagesMutation!): Pages!
+  createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
+  createUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
+  updateTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
+  createTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
   updateBlogg(relativePath: String!, params: BloggMutation!): Blogg!
   createBlogg(relativePath: String!, params: BloggMutation!): Blogg!
   updateArrangementer(relativePath: String!, params: ArrangementerMutation!): Arrangementer!
   createArrangementer(relativePath: String!, params: ArrangementerMutation!): Arrangementer!
-  updatePages(relativePath: String!, params: PagesMutation!): Pages!
-  createPages(relativePath: String!, params: PagesMutation!): Pages!
-  updateTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
-  createTjenester(relativePath: String!, params: TjenesterMutation!): Tjenester!
-  updateUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
-  createUtdanning(relativePath: String!, params: UtdanningMutation!): Utdanning!
   updateKategorier(relativePath: String!, params: KategorierMutation!): Kategorier!
   createKategorier(relativePath: String!, params: KategorierMutation!): Kategorier!
 }
 
 input DocumentUpdateMutation {
+  pages: PagesMutation
+  utdanning: UtdanningMutation
+  tjenester: TjenesterMutation
   blogg: BloggMutation
   arrangementer: ArrangementerMutation
-  pages: PagesMutation
-  tjenester: TjenesterMutation
-  utdanning: UtdanningMutation
   kategorier: KategorierMutation
   relativePath: String
 }
 
 input DocumentMutation {
+  pages: PagesMutation
+  utdanning: UtdanningMutation
+  tjenester: TjenesterMutation
   blogg: BloggMutation
   arrangementer: ArrangementerMutation
-  pages: PagesMutation
-  tjenester: TjenesterMutation
-  utdanning: UtdanningMutation
   kategorier: KategorierMutation
-}
-
-input BloggMutation {
-  title: String
-  excerpt: String
-  date: String
-  category: String
-  readingTime: Float
-  coverImage: String
-  body: JSON
-}
-
-input ArrangementerMutation {
-  title: String
-  description: JSON
-  image: String
-  date: String
-  endDate: String
-  time: String
-  location: String
-  price: Float
-  capacity: Float
-  kategorier: String
-  isOnline: Boolean
 }
 
 input PagesHomepageTestimonialsMutation {
@@ -657,6 +633,12 @@ input PagesMutation {
   kontakt: PagesKontaktMutation
 }
 
+input UtdanningMutation {
+  ar: String
+  grad: String
+  sted: String
+}
+
 input TjenesterPriserMutation {
   label: String
   pris: String
@@ -674,10 +656,28 @@ input TjenesterMutation {
   priser: [TjenesterPriserMutation]
 }
 
-input UtdanningMutation {
-  ar: String
-  grad: String
-  sted: String
+input BloggMutation {
+  title: String
+  excerpt: String
+  date: String
+  category: String
+  readingTime: Float
+  coverImage: String
+  body: JSON
+}
+
+input ArrangementerMutation {
+  title: String
+  description: JSON
+  image: String
+  date: String
+  endDate: String
+  time: String
+  location: String
+  price: Float
+  capacity: Float
+  kategorier: String
+  isOnline: Boolean
 }
 
 input KategorierMutation {

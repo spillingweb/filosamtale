@@ -82,16 +82,16 @@ export type Query = {
   collections: Array<Collection>;
   node: Node;
   document: DocumentNode;
+  pages: Pages;
+  pagesConnection: PagesConnection;
+  utdanning: Utdanning;
+  utdanningConnection: UtdanningConnection;
+  tjenester: Tjenester;
+  tjenesterConnection: TjenesterConnection;
   blogg: Blogg;
   bloggConnection: BloggConnection;
   arrangementer: Arrangementer;
   arrangementerConnection: ArrangementerConnection;
-  pages: Pages;
-  pagesConnection: PagesConnection;
-  tjenester: Tjenester;
-  tjenesterConnection: TjenesterConnection;
-  utdanning: Utdanning;
-  utdanningConnection: UtdanningConnection;
   kategorier: Kategorier;
   kategorierConnection: KategorierConnection;
 };
@@ -115,6 +115,51 @@ export type QueryNodeArgs = {
 export type QueryDocumentArgs = {
   collection?: InputMaybe<Scalars['String']['input']>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPagesArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPagesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PagesFilter>;
+};
+
+
+export type QueryUtdanningArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryUtdanningConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<UtdanningFilter>;
+};
+
+
+export type QueryTjenesterArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryTjenesterConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TjenesterFilter>;
 };
 
 
@@ -148,51 +193,6 @@ export type QueryArrangementerConnectionArgs = {
 };
 
 
-export type QueryPagesArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryPagesConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
-};
-
-
-export type QueryTjenesterArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryTjenesterConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<TjenesterFilter>;
-};
-
-
-export type QueryUtdanningArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryUtdanningConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<UtdanningFilter>;
-};
-
-
 export type QueryKategorierArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -208,11 +208,11 @@ export type QueryKategorierConnectionArgs = {
 };
 
 export type DocumentFilter = {
+  pages?: InputMaybe<PagesFilter>;
+  utdanning?: InputMaybe<UtdanningFilter>;
+  tjenester?: InputMaybe<TjenesterFilter>;
   blogg?: InputMaybe<BloggFilter>;
   arrangementer?: InputMaybe<ArrangementerFilter>;
-  pages?: InputMaybe<PagesFilter>;
-  tjenester?: InputMaybe<TjenesterFilter>;
-  utdanning?: InputMaybe<UtdanningFilter>;
   kategorier?: InputMaybe<KategorierFilter>;
 };
 
@@ -253,138 +253,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Kategorier | Folder;
-
-export type Blogg = Node & Document & {
-  __typename?: 'Blogg';
-  title: Scalars['String']['output'];
-  excerpt: Scalars['String']['output'];
-  date: Scalars['String']['output'];
-  category?: Maybe<Scalars['String']['output']>;
-  readingTime?: Maybe<Scalars['Float']['output']>;
-  coverImage?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type DatetimeFilter = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type NumberFilter = {
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type BloggFilter = {
-  title?: InputMaybe<StringFilter>;
-  excerpt?: InputMaybe<StringFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  category?: InputMaybe<StringFilter>;
-  readingTime?: InputMaybe<NumberFilter>;
-  coverImage?: InputMaybe<ImageFilter>;
-  body?: InputMaybe<RichTextFilter>;
-};
-
-export type BloggConnectionEdges = {
-  __typename?: 'BloggConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Blogg>;
-};
-
-export type BloggConnection = Connection & {
-  __typename?: 'BloggConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<BloggConnectionEdges>>>;
-};
-
-export type ArrangementerKategorier = Kategorier;
-
-export type Arrangementer = Node & Document & {
-  __typename?: 'Arrangementer';
-  title: Scalars['String']['output'];
-  description: Scalars['JSON']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-  date: Scalars['String']['output'];
-  endDate?: Maybe<Scalars['String']['output']>;
-  time: Scalars['String']['output'];
-  location: Scalars['String']['output'];
-  price: Scalars['Float']['output'];
-  capacity?: Maybe<Scalars['Float']['output']>;
-  kategorier: ArrangementerKategorier;
-  isOnline?: Maybe<Scalars['Boolean']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type ArrangementerKategorierFilter = {
-  kategorier?: InputMaybe<KategorierFilter>;
-};
-
-export type BooleanFilter = {
-  eq?: InputMaybe<Scalars['Boolean']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ArrangementerFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<RichTextFilter>;
-  image?: InputMaybe<ImageFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  endDate?: InputMaybe<DatetimeFilter>;
-  time?: InputMaybe<StringFilter>;
-  location?: InputMaybe<StringFilter>;
-  price?: InputMaybe<NumberFilter>;
-  capacity?: InputMaybe<NumberFilter>;
-  kategorier?: InputMaybe<ArrangementerKategorierFilter>;
-  isOnline?: InputMaybe<BooleanFilter>;
-};
-
-export type ArrangementerConnectionEdges = {
-  __typename?: 'ArrangementerConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Arrangementer>;
-};
-
-export type ArrangementerConnection = Connection & {
-  __typename?: 'ArrangementerConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<ArrangementerConnectionEdges>>>;
-};
+export type DocumentNode = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Utdanning | Tjenester | Blogg | Arrangementer | Kategorier | Folder;
 
 export type PagesHomepageTestimonials = {
   __typename?: 'PagesHomepageTestimonials';
@@ -486,6 +355,20 @@ export type PagesKontakt = Node & Document & {
 
 export type Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt;
 
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type PagesHomepageTestimonialsFilter = {
   quote?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
@@ -512,6 +395,12 @@ export type PagesHomepageFilter = {
   ctaDescription?: InputMaybe<StringFilter>;
   servicesHeading?: InputMaybe<StringFilter>;
   blogHeading?: InputMaybe<StringFilter>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PagesStandardVerdierFilter = {
@@ -582,6 +471,35 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
+export type Utdanning = Node & Document & {
+  __typename?: 'Utdanning';
+  ar: Scalars['String']['output'];
+  grad: Scalars['String']['output'];
+  sted: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type UtdanningFilter = {
+  ar?: InputMaybe<StringFilter>;
+  grad?: InputMaybe<StringFilter>;
+  sted?: InputMaybe<StringFilter>;
+};
+
+export type UtdanningConnectionEdges = {
+  __typename?: 'UtdanningConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Utdanning>;
+};
+
+export type UtdanningConnection = Connection & {
+  __typename?: 'UtdanningConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<UtdanningConnectionEdges>>>;
+};
+
 export type TjenesterPriser = {
   __typename?: 'TjenesterPriser';
   label: Scalars['String']['output'];
@@ -602,6 +520,16 @@ export type Tjenester = Node & Document & {
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
 export type TjenesterPriserFilter = {
@@ -634,33 +562,105 @@ export type TjenesterConnection = Connection & {
   edges?: Maybe<Array<Maybe<TjenesterConnectionEdges>>>;
 };
 
-export type Utdanning = Node & Document & {
-  __typename?: 'Utdanning';
-  ar: Scalars['String']['output'];
-  grad: Scalars['String']['output'];
-  sted: Scalars['String']['output'];
+export type Blogg = Node & Document & {
+  __typename?: 'Blogg';
+  title: Scalars['String']['output'];
+  excerpt: Scalars['String']['output'];
+  date: Scalars['String']['output'];
+  category?: Maybe<Scalars['String']['output']>;
+  readingTime?: Maybe<Scalars['Float']['output']>;
+  coverImage?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type UtdanningFilter = {
-  ar?: InputMaybe<StringFilter>;
-  grad?: InputMaybe<StringFilter>;
-  sted?: InputMaybe<StringFilter>;
+export type DatetimeFilter = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type UtdanningConnectionEdges = {
-  __typename?: 'UtdanningConnectionEdges';
+export type BloggFilter = {
+  title?: InputMaybe<StringFilter>;
+  excerpt?: InputMaybe<StringFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  category?: InputMaybe<StringFilter>;
+  readingTime?: InputMaybe<NumberFilter>;
+  coverImage?: InputMaybe<ImageFilter>;
+  body?: InputMaybe<RichTextFilter>;
+};
+
+export type BloggConnectionEdges = {
+  __typename?: 'BloggConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Utdanning>;
+  node?: Maybe<Blogg>;
 };
 
-export type UtdanningConnection = Connection & {
-  __typename?: 'UtdanningConnection';
+export type BloggConnection = Connection & {
+  __typename?: 'BloggConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<UtdanningConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<BloggConnectionEdges>>>;
+};
+
+export type ArrangementerKategorier = Kategorier;
+
+export type Arrangementer = Node & Document & {
+  __typename?: 'Arrangementer';
+  title: Scalars['String']['output'];
+  description: Scalars['JSON']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  date: Scalars['String']['output'];
+  endDate?: Maybe<Scalars['String']['output']>;
+  time: Scalars['String']['output'];
+  location: Scalars['String']['output'];
+  price: Scalars['Float']['output'];
+  capacity?: Maybe<Scalars['Float']['output']>;
+  kategorier: ArrangementerKategorier;
+  isOnline?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ArrangementerKategorierFilter = {
+  kategorier?: InputMaybe<KategorierFilter>;
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ArrangementerFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  image?: InputMaybe<ImageFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  endDate?: InputMaybe<DatetimeFilter>;
+  time?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  price?: InputMaybe<NumberFilter>;
+  capacity?: InputMaybe<NumberFilter>;
+  kategorier?: InputMaybe<ArrangementerKategorierFilter>;
+  isOnline?: InputMaybe<BooleanFilter>;
+};
+
+export type ArrangementerConnectionEdges = {
+  __typename?: 'ArrangementerConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Arrangementer>;
+};
+
+export type ArrangementerConnection = Connection & {
+  __typename?: 'ArrangementerConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ArrangementerConnectionEdges>>>;
 };
 
 export type Kategorier = Node & Document & {
@@ -697,16 +697,16 @@ export type Mutation = {
   deleteDocument: DocumentNode;
   createDocument: DocumentNode;
   createFolder: DocumentNode;
+  updatePages: Pages;
+  createPages: Pages;
+  updateUtdanning: Utdanning;
+  createUtdanning: Utdanning;
+  updateTjenester: Tjenester;
+  createTjenester: Tjenester;
   updateBlogg: Blogg;
   createBlogg: Blogg;
   updateArrangementer: Arrangementer;
   createArrangementer: Arrangementer;
-  updatePages: Pages;
-  createPages: Pages;
-  updateTjenester: Tjenester;
-  createTjenester: Tjenester;
-  updateUtdanning: Utdanning;
-  createUtdanning: Utdanning;
   updateKategorier: Kategorier;
   createKategorier: Kategorier;
 };
@@ -745,6 +745,42 @@ export type MutationCreateFolderArgs = {
 };
 
 
+export type MutationUpdatePagesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PagesMutation;
+};
+
+
+export type MutationCreatePagesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PagesMutation;
+};
+
+
+export type MutationUpdateUtdanningArgs = {
+  relativePath: Scalars['String']['input'];
+  params: UtdanningMutation;
+};
+
+
+export type MutationCreateUtdanningArgs = {
+  relativePath: Scalars['String']['input'];
+  params: UtdanningMutation;
+};
+
+
+export type MutationUpdateTjenesterArgs = {
+  relativePath: Scalars['String']['input'];
+  params: TjenesterMutation;
+};
+
+
+export type MutationCreateTjenesterArgs = {
+  relativePath: Scalars['String']['input'];
+  params: TjenesterMutation;
+};
+
+
 export type MutationUpdateBloggArgs = {
   relativePath: Scalars['String']['input'];
   params: BloggMutation;
@@ -769,42 +805,6 @@ export type MutationCreateArrangementerArgs = {
 };
 
 
-export type MutationUpdatePagesArgs = {
-  relativePath: Scalars['String']['input'];
-  params: PagesMutation;
-};
-
-
-export type MutationCreatePagesArgs = {
-  relativePath: Scalars['String']['input'];
-  params: PagesMutation;
-};
-
-
-export type MutationUpdateTjenesterArgs = {
-  relativePath: Scalars['String']['input'];
-  params: TjenesterMutation;
-};
-
-
-export type MutationCreateTjenesterArgs = {
-  relativePath: Scalars['String']['input'];
-  params: TjenesterMutation;
-};
-
-
-export type MutationUpdateUtdanningArgs = {
-  relativePath: Scalars['String']['input'];
-  params: UtdanningMutation;
-};
-
-
-export type MutationCreateUtdanningArgs = {
-  relativePath: Scalars['String']['input'];
-  params: UtdanningMutation;
-};
-
-
 export type MutationUpdateKategorierArgs = {
   relativePath: Scalars['String']['input'];
   params: KategorierMutation;
@@ -817,46 +817,22 @@ export type MutationCreateKategorierArgs = {
 };
 
 export type DocumentUpdateMutation = {
+  pages?: InputMaybe<PagesMutation>;
+  utdanning?: InputMaybe<UtdanningMutation>;
+  tjenester?: InputMaybe<TjenesterMutation>;
   blogg?: InputMaybe<BloggMutation>;
   arrangementer?: InputMaybe<ArrangementerMutation>;
-  pages?: InputMaybe<PagesMutation>;
-  tjenester?: InputMaybe<TjenesterMutation>;
-  utdanning?: InputMaybe<UtdanningMutation>;
   kategorier?: InputMaybe<KategorierMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
+  pages?: InputMaybe<PagesMutation>;
+  utdanning?: InputMaybe<UtdanningMutation>;
+  tjenester?: InputMaybe<TjenesterMutation>;
   blogg?: InputMaybe<BloggMutation>;
   arrangementer?: InputMaybe<ArrangementerMutation>;
-  pages?: InputMaybe<PagesMutation>;
-  tjenester?: InputMaybe<TjenesterMutation>;
-  utdanning?: InputMaybe<UtdanningMutation>;
   kategorier?: InputMaybe<KategorierMutation>;
-};
-
-export type BloggMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  date?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  readingTime?: InputMaybe<Scalars['Float']['input']>;
-  coverImage?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type ArrangementerMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['JSON']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  date?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  time?: InputMaybe<Scalars['String']['input']>;
-  location?: InputMaybe<Scalars['String']['input']>;
-  price?: InputMaybe<Scalars['Float']['input']>;
-  capacity?: InputMaybe<Scalars['Float']['input']>;
-  kategorier?: InputMaybe<Scalars['String']['input']>;
-  isOnline?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PagesHomepageTestimonialsMutation = {
@@ -942,6 +918,12 @@ export type PagesMutation = {
   kontakt?: InputMaybe<PagesKontaktMutation>;
 };
 
+export type UtdanningMutation = {
+  ar?: InputMaybe<Scalars['String']['input']>;
+  grad?: InputMaybe<Scalars['String']['input']>;
+  sted?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type TjenesterPriserMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
   pris?: InputMaybe<Scalars['String']['input']>;
@@ -959,20 +941,34 @@ export type TjenesterMutation = {
   priser?: InputMaybe<Array<InputMaybe<TjenesterPriserMutation>>>;
 };
 
-export type UtdanningMutation = {
-  ar?: InputMaybe<Scalars['String']['input']>;
-  grad?: InputMaybe<Scalars['String']['input']>;
-  sted?: InputMaybe<Scalars['String']['input']>;
+export type BloggMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
+  readingTime?: InputMaybe<Scalars['Float']['input']>;
+  coverImage?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type ArrangementerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  endDate?: InputMaybe<Scalars['String']['input']>;
+  time?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  price?: InputMaybe<Scalars['Float']['input']>;
+  capacity?: InputMaybe<Scalars['Float']['input']>;
+  kategorier?: InputMaybe<Scalars['String']['input']>;
+  isOnline?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type KategorierMutation = {
   value?: InputMaybe<Scalars['String']['input']>;
   label?: InputMaybe<Scalars['String']['input']>;
 };
-
-export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null };
-
-export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null };
 
@@ -986,11 +982,72 @@ type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: str
 
 export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
 
-export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
-
 export type UtdanningPartsFragment = { __typename: 'Utdanning', ar: string, grad: string, sted: string };
 
+export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
+
+export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null };
+
+export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
 export type KategorierPartsFragment = { __typename: 'Kategorier', value: string, label: string };
+
+export type PagesQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type PagesConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PagesFilter>;
+}>;
+
+
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type UtdanningQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type UtdanningQuery = { __typename?: 'Query', utdanning: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type UtdanningConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<UtdanningFilter>;
+}>;
+
+
+export type UtdanningConnectionQuery = { __typename?: 'Query', utdanningConnection: { __typename?: 'UtdanningConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'UtdanningConnectionEdges', cursor: string, node?: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type TjenesterQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
+
+export type TjenesterConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TjenesterFilter>;
+}>;
+
+
+export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
 
 export type BloggQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1030,63 +1087,6 @@ export type ArrangementerConnectionQueryVariables = Exact<{
 
 export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } } | null } | null> | null } };
 
-export type PagesQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type PagesConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
-}>;
-
-
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type TjenesterQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
-
-export type TjenesterConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<TjenesterFilter>;
-}>;
-
-
-export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
-
-export type UtdanningQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type UtdanningQuery = { __typename?: 'Query', utdanning: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type UtdanningConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<UtdanningFilter>;
-}>;
-
-
-export type UtdanningConnectionQuery = { __typename?: 'Query', utdanningConnection: { __typename?: 'UtdanningConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'UtdanningConnectionEdges', cursor: string, node?: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
 export type KategorierQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
@@ -1106,52 +1106,6 @@ export type KategorierConnectionQueryVariables = Exact<{
 
 export type KategorierConnectionQuery = { __typename?: 'Query', kategorierConnection: { __typename?: 'KategorierConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'KategorierConnectionEdges', cursor: string, node?: { __typename: 'Kategorier', id: string, value: string, label: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export const BloggPartsFragmentDoc = gql`
-    fragment BloggParts on Blogg {
-  __typename
-  title
-  excerpt
-  date
-  category
-  readingTime
-  coverImage
-  body
-}
-    `;
-export const ArrangementerPartsFragmentDoc = gql`
-    fragment ArrangementerParts on Arrangementer {
-  __typename
-  title
-  description
-  image
-  date
-  endDate
-  time
-  location
-  price
-  capacity
-  kategorier {
-    ... on Kategorier {
-      __typename
-      value
-      label
-    }
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-  }
-  isOnline
-}
-    `;
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
@@ -1224,6 +1178,14 @@ export const PagesPartsFragmentDoc = gql`
   }
 }
     `;
+export const UtdanningPartsFragmentDoc = gql`
+    fragment UtdanningParts on Utdanning {
+  __typename
+  ar
+  grad
+  sted
+}
+    `;
 export const TjenesterPartsFragmentDoc = gql`
     fragment TjenesterParts on Tjenester {
   __typename
@@ -1242,12 +1204,50 @@ export const TjenesterPartsFragmentDoc = gql`
   }
 }
     `;
-export const UtdanningPartsFragmentDoc = gql`
-    fragment UtdanningParts on Utdanning {
+export const BloggPartsFragmentDoc = gql`
+    fragment BloggParts on Blogg {
   __typename
-  ar
-  grad
-  sted
+  title
+  excerpt
+  date
+  category
+  readingTime
+  coverImage
+  body
+}
+    `;
+export const ArrangementerPartsFragmentDoc = gql`
+    fragment ArrangementerParts on Arrangementer {
+  __typename
+  title
+  description
+  image
+  date
+  endDate
+  time
+  location
+  price
+  capacity
+  kategorier {
+    ... on Kategorier {
+      __typename
+      value
+      label
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
+  isOnline
 }
     `;
 export const KategorierPartsFragmentDoc = gql`
@@ -1257,6 +1257,177 @@ export const KategorierPartsFragmentDoc = gql`
   label
 }
     `;
+export const PagesDocument = gql`
+    query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PagesParts
+  }
+}
+    ${PagesPartsFragmentDoc}`;
+export const PagesConnectionDocument = gql`
+    query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
+  pagesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...PagesParts
+      }
+    }
+  }
+}
+    ${PagesPartsFragmentDoc}`;
+export const UtdanningDocument = gql`
+    query utdanning($relativePath: String!) {
+  utdanning(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...UtdanningParts
+  }
+}
+    ${UtdanningPartsFragmentDoc}`;
+export const UtdanningConnectionDocument = gql`
+    query utdanningConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: UtdanningFilter) {
+  utdanningConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...UtdanningParts
+      }
+    }
+  }
+}
+    ${UtdanningPartsFragmentDoc}`;
+export const TjenesterDocument = gql`
+    query tjenester($relativePath: String!) {
+  tjenester(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...TjenesterParts
+  }
+}
+    ${TjenesterPartsFragmentDoc}`;
+export const TjenesterConnectionDocument = gql`
+    query tjenesterConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TjenesterFilter) {
+  tjenesterConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...TjenesterParts
+      }
+    }
+  }
+}
+    ${TjenesterPartsFragmentDoc}`;
 export const BloggDocument = gql`
     query blogg($relativePath: String!) {
   blogg(relativePath: $relativePath) {
@@ -1371,177 +1542,6 @@ export const ArrangementerConnectionDocument = gql`
   }
 }
     ${ArrangementerPartsFragmentDoc}`;
-export const PagesDocument = gql`
-    query pages($relativePath: String!) {
-  pages(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...PagesParts
-  }
-}
-    ${PagesPartsFragmentDoc}`;
-export const PagesConnectionDocument = gql`
-    query pagesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PagesFilter) {
-  pagesConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...PagesParts
-      }
-    }
-  }
-}
-    ${PagesPartsFragmentDoc}`;
-export const TjenesterDocument = gql`
-    query tjenester($relativePath: String!) {
-  tjenester(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...TjenesterParts
-  }
-}
-    ${TjenesterPartsFragmentDoc}`;
-export const TjenesterConnectionDocument = gql`
-    query tjenesterConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TjenesterFilter) {
-  tjenesterConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...TjenesterParts
-      }
-    }
-  }
-}
-    ${TjenesterPartsFragmentDoc}`;
-export const UtdanningDocument = gql`
-    query utdanning($relativePath: String!) {
-  utdanning(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...UtdanningParts
-  }
-}
-    ${UtdanningPartsFragmentDoc}`;
-export const UtdanningConnectionDocument = gql`
-    query utdanningConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: UtdanningFilter) {
-  utdanningConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...UtdanningParts
-      }
-    }
-  }
-}
-    ${UtdanningPartsFragmentDoc}`;
 export const KategorierDocument = gql`
     query kategorier($relativePath: String!) {
   kategorier(relativePath: $relativePath) {
@@ -1602,7 +1602,25 @@ export const KategorierConnectionDocument = gql`
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
-      blogg(variables: BloggQueryVariables, options?: C): Promise<{data: BloggQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BloggQueryVariables, query: string}> {
+      pages(variables: PagesQueryVariables, options?: C): Promise<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}> {
+        return requester<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}, PagesQueryVariables>(PagesDocument, variables, options);
+      },
+    pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
+        return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
+      },
+    utdanning(variables: UtdanningQueryVariables, options?: C): Promise<{data: UtdanningQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningQueryVariables, query: string}> {
+        return requester<{data: UtdanningQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningQueryVariables, query: string}, UtdanningQueryVariables>(UtdanningDocument, variables, options);
+      },
+    utdanningConnection(variables?: UtdanningConnectionQueryVariables, options?: C): Promise<{data: UtdanningConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningConnectionQueryVariables, query: string}> {
+        return requester<{data: UtdanningConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningConnectionQueryVariables, query: string}, UtdanningConnectionQueryVariables>(UtdanningConnectionDocument, variables, options);
+      },
+    tjenester(variables: TjenesterQueryVariables, options?: C): Promise<{data: TjenesterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterQueryVariables, query: string}> {
+        return requester<{data: TjenesterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterQueryVariables, query: string}, TjenesterQueryVariables>(TjenesterDocument, variables, options);
+      },
+    tjenesterConnection(variables?: TjenesterConnectionQueryVariables, options?: C): Promise<{data: TjenesterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterConnectionQueryVariables, query: string}> {
+        return requester<{data: TjenesterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterConnectionQueryVariables, query: string}, TjenesterConnectionQueryVariables>(TjenesterConnectionDocument, variables, options);
+      },
+    blogg(variables: BloggQueryVariables, options?: C): Promise<{data: BloggQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BloggQueryVariables, query: string}> {
         return requester<{data: BloggQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BloggQueryVariables, query: string}, BloggQueryVariables>(BloggDocument, variables, options);
       },
     bloggConnection(variables?: BloggConnectionQueryVariables, options?: C): Promise<{data: BloggConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BloggConnectionQueryVariables, query: string}> {
@@ -1613,24 +1631,6 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     arrangementerConnection(variables?: ArrangementerConnectionQueryVariables, options?: C): Promise<{data: ArrangementerConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArrangementerConnectionQueryVariables, query: string}> {
         return requester<{data: ArrangementerConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ArrangementerConnectionQueryVariables, query: string}, ArrangementerConnectionQueryVariables>(ArrangementerConnectionDocument, variables, options);
-      },
-    pages(variables: PagesQueryVariables, options?: C): Promise<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}> {
-        return requester<{data: PagesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesQueryVariables, query: string}, PagesQueryVariables>(PagesDocument, variables, options);
-      },
-    pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
-        return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
-      },
-    tjenester(variables: TjenesterQueryVariables, options?: C): Promise<{data: TjenesterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterQueryVariables, query: string}> {
-        return requester<{data: TjenesterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterQueryVariables, query: string}, TjenesterQueryVariables>(TjenesterDocument, variables, options);
-      },
-    tjenesterConnection(variables?: TjenesterConnectionQueryVariables, options?: C): Promise<{data: TjenesterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterConnectionQueryVariables, query: string}> {
-        return requester<{data: TjenesterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TjenesterConnectionQueryVariables, query: string}, TjenesterConnectionQueryVariables>(TjenesterConnectionDocument, variables, options);
-      },
-    utdanning(variables: UtdanningQueryVariables, options?: C): Promise<{data: UtdanningQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningQueryVariables, query: string}> {
-        return requester<{data: UtdanningQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningQueryVariables, query: string}, UtdanningQueryVariables>(UtdanningDocument, variables, options);
-      },
-    utdanningConnection(variables?: UtdanningConnectionQueryVariables, options?: C): Promise<{data: UtdanningConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningConnectionQueryVariables, query: string}> {
-        return requester<{data: UtdanningConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UtdanningConnectionQueryVariables, query: string}, UtdanningConnectionQueryVariables>(UtdanningConnectionDocument, variables, options);
       },
     kategorier(variables: KategorierQueryVariables, options?: C): Promise<{data: KategorierQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: KategorierQueryVariables, query: string}> {
         return requester<{data: KategorierQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: KategorierQueryVariables, query: string}, KategorierQueryVariables>(KategorierDocument, variables, options);
