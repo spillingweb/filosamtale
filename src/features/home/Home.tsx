@@ -38,7 +38,12 @@ const Home = ({
   const tjenesterFromCMS = (tjenesterData.tjenesterConnection.edges || [])
     .map((edge) => edge?.node)
     .filter((node): node is NonNullable<typeof node> => node !== null)
-    .sort((a, b) => (a.orden || 999) - (b.orden || 999));
+    .sort((a, b) => {
+      const aOrden = (a as { orden?: number }).orden ?? Number.MAX_SAFE_INTEGER;
+      const bOrden = (b as { orden?: number }).orden ?? Number.MAX_SAFE_INTEGER;
+      if (aOrden !== bOrden) return aOrden - bOrden;
+      return (a.tittel || "").localeCompare(b.tittel || "", "nb");
+    });
 
   // Extract blog posts
   const allBloggPosts = (bloggData.bloggConnection.edges || [])

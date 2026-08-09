@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../../tina/__generated__/client";
 import { generateEventSchema } from "#/lib/structured-data";
-import Arrangementer from "#/features/arrangementer/Arrangementer";
+import Arrangementer from "#/features/arrangementer/components/Arrangementer";
 import { useTina } from "tinacms/react";
 
 export const Route = createFileRoute("/arrangementer")({

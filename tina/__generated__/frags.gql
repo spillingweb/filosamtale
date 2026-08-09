@@ -117,6 +117,8 @@ fragment TjenesterParts on Tjenester {
   __typename
   tittel
   undertittel
+  malgruppe
+  orden
   badge
   image
   description
@@ -126,7 +128,6 @@ fragment TjenesterParts on Tjenester {
     label
     pris
   }
-  orden
 }
 
 fragment UtdanningParts on Utdanning {

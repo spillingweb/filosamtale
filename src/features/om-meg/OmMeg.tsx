@@ -5,7 +5,6 @@ import type {
   PagesQuery,
   UtdanningConnectionQuery,
 } from "../../../tina/__generated__/types";
-import { Mail, MapPin, User } from "lucide-react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";

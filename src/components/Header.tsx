@@ -13,6 +13,11 @@ const navLinks = [
   { to: "/blogg" as const, label: "Blogg" },
 ];
 
+const tjenesterDropdownLinks = [
+  { href: "/tjenester#for-privatpersoner", label: "For privatpersoner" },
+  { href: "/tjenester#for-bedrifter", label: "For bedrifter" },
+];
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,15 +40,38 @@ export default function Header() {
 
           {/* Desktop Navigation links */}
           <div className="hidden items-center gap-x-4 text-sm font-medium md:flex">
-            {navLinks.map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                activeOptions={to === "/" ? { exact: true } : undefined}
-              >
-                {label}
-              </NavLink>
-            ))}
+            {navLinks.map(({ to, label }) => {
+              if (to === "/tjenester") {
+                return (
+                  <div key={to} className="group relative">
+                    <NavLink to={to}>Tjenester</NavLink>
+                    <div className="pointer-events-none absolute left-0 top-full pt-3 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                      <div className="min-w-56 rounded-xl border border-chip-line bg-card/95 p-2 shadow-lg backdrop-blur">
+                        {tjenesterDropdownLinks.map((item) => (
+                          <a
+                            key={item.href}
+                            href={item.href}
+                            className="block rounded-lg px-3 py-2 text-sm text-sea-ink-soft no-underline transition hover:bg-primary/10 hover:text-foreground"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={to}
+                  to={to}
+                  activeOptions={to === "/" ? { exact: true } : undefined}
+                >
+                  {label}
+                </NavLink>
+              );
+            })}
           </div>
 
           {/* Right side */}

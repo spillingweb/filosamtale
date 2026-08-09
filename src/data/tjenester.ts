@@ -7,11 +7,12 @@ import veiledningForHelsepersonell from '../../content/tjenester/veiledning-for-
 export interface TjenestePris {
   tittel: string
   undertittel: string
+  malgruppe: 'privatperson' | 'bedrift'
+  orden: number
   beskrivelse: string
   detaljer: string[]
   priser: { label: string; pris: string }[]
   badge?: string
-  orden: number
 }
 
 export interface TjenesteWithId extends TjenestePris {

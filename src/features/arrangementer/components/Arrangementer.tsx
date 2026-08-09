@@ -12,7 +12,14 @@ import type {
   ArrangementerConnectionQuery,
   PagesQuery,
   KategorierConnectionQuery,
-} from "../../../tina/__generated__/types";
+} from "../../../../tina/__generated__/types";
+import {
+  filterArrangementerByCategory,
+  getAlleArrangementer,
+  getArrangementCategories,
+  getArrangementCategoryLabels,
+  groupArrangementerByMonth,
+} from "../utils";
 import ArrangementKort from "./ArragementKort";
 
 function Arrangementer({
@@ -29,52 +36,21 @@ function Arrangementer({
 
   const page = pageData.pages;
 
-  // Extract kategorier from connection
-  const dynamicCategories = (kategorierData.kategorierConnection.edges || [])
-    .map((edge) => edge?.node)
-    .filter((node): node is NonNullable<typeof node> => {
-      return (
-        node !== null &&
-        node !== undefined &&
-        node.value !== null &&
-        node.label !== null
-      );
-    });
-
-  // Build categories with "Alle" option
-  const categories = [{ value: "all", label: "Alle" }, ...dynamicCategories];
-
-  // Build category labels lookup
-  const categoryLabels: Record<string, string> = dynamicCategories.reduce(
-    (acc, cat) => {
-      acc[cat.value] = cat.label;
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const categories = getArrangementCategories(kategorierData);
+  const categoryLabels = getArrangementCategoryLabels(kategorierData);
 
   // Type guard: ensure we have header template
   if (page.__typename !== "PagesHeader") {
     throw new Error("Expected header template for arrangementer.md");
   }
 
-  // Extract arrangementer from connection
-  const alleArrangementer = (
-    arrangementerData.arrangementerConnection.edges || []
-  )
-    .map((edge) => edge?.node)
-    .filter((node): node is NonNullable<typeof node> => node !== null)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  // Filter by category
-  const filteredArrangementer = alleArrangementer.filter((arr) => {
-    if (selectedCategory === "all") return true;
-    return arr.kategorier.value === selectedCategory;
-  });
+  const alleArrangementer = getAlleArrangementer(arrangementerData);
+  const filteredArrangementer = filterArrangementerByCategory(
+    alleArrangementer,
+    selectedCategory,
+  );
 
   const now = new Date();
-
-  // Split into upcoming and past events
   const upcomingEvents = filteredArrangementer.filter(
     (arr) => new Date(arr.date) >= now,
   );
@@ -82,32 +58,8 @@ function Arrangementer({
     (arr) => new Date(arr.date) < now,
   );
 
-  // Helper function to group by month
-  const groupByMonth = (events: typeof alleArrangementer) => {
-    return events.reduce(
-      (acc, arr) => {
-        const date = new Date(arr.date);
-        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-        const monthLabel = date.toLocaleDateString("nb-NO", {
-          month: "long",
-          year: "numeric",
-        });
-
-        if (!acc[monthKey]) {
-          acc[monthKey] = {
-            label: monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1),
-            events: [],
-          };
-        }
-        acc[monthKey].events.push(arr);
-        return acc;
-      },
-      {} as Record<string, { label: string; events: typeof alleArrangementer }>,
-    );
-  };
-
-  const upcomingByMonth = groupByMonth(upcomingEvents);
-  const pastByMonth = groupByMonth(pastEvents);
+  const upcomingByMonth = groupArrangementerByMonth(upcomingEvents);
+  const pastByMonth = groupArrangementerByMonth(pastEvents);
 
   const sortedUpcomingMonths = Object.entries(upcomingByMonth).sort(
     ([a], [b]) => a.localeCompare(b),

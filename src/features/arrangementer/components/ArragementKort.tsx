@@ -4,6 +4,7 @@ import IslandShell from "#/components/ui/IslandShell";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import { Button } from "#/components/ui/button";
+import { Banknote, Calendar, Clock, MapPin } from "lucide-react";
 
 function ArrangementKort({
   arr,
@@ -89,14 +90,7 @@ function ArrangementKort({
 
           <div className="mb-4 space-y-1 text-sm text-sea-ink-soft">
             <div className="flex items-center gap-2">
-              <svg
-                viewBox="0 0 16 16"
-                width="14"
-                height="14"
-                fill="currentColor"
-              >
-                <path d="M5.5 7a1 1 0 100-2 1 1 0 000 2zm5 0a1 1 0 100-2 1 1 0 000 2zM8 9a4 4 0 00-3.5 2H11A3.99 3.99 0 008 9zm6-1.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V7.5A2 2 0 014 5.5h8a2 2 0 012 2zM3 1.5v1h10v-1a.5.5 0 00-.5-.5h-9a.5.5 0 00-.5.5z" />
-              </svg>
+             <Calendar className="w-4 h-4" />
               <time
                 dateTime={arr.date}
                 data-tina-field={tinaField(arr, "date")}
@@ -111,27 +105,13 @@ function ArrangementKort({
             </div>
             {arr.time && (
               <div className="flex items-center gap-2">
-                <svg
-                  viewBox="0 0 16 16"
-                  width="14"
-                  height="14"
-                  fill="currentColor"
-                >
-                  <path d="M8 0a8 8 0 110 16A8 8 0 018 0zm0 14A6 6 0 108 2a6 6 0 000 12zm.5-10v4.5H11V10H9V4h-.5z" />
-                </svg>
+                <Clock className="w-4 h-4" />
                 <span data-tina-field={tinaField(arr, "time")}>{arr.time}</span>
               </div>
             )}
             {arr.location && (
               <div className="flex items-center gap-2">
-                <svg
-                  viewBox="0 0 16 16"
-                  width="14"
-                  height="14"
-                  fill="currentColor"
-                >
-                  <path d="M8 0a5 5 0 00-5 5c0 3.5 5 11 5 11s5-7.5 5-11a5 5 0 00-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
+                <MapPin className="w-4 h-4" />
                 <span data-tina-field={tinaField(arr, "location")}>
                   {arr.location}
                 </span>
@@ -139,14 +119,7 @@ function ArrangementKort({
             )}
             {arr.price !== undefined && arr.price !== null && (
               <div className="flex items-center gap-2">
-                <svg
-                  viewBox="0 0 16 16"
-                  width="14"
-                  height="14"
-                  fill="currentColor"
-                >
-                  <path d="M2 4h12a2 2 0 012 2v6a2 2 0 01-2 2H2a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v6h12V6H2zm6 2a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-                </svg>
+               <Banknote className="w-4 h-4" />
                 <span data-tina-field={tinaField(arr, "price")}>
                   {arr.price === 0 ? "Gratis" : `${arr.price} kr`}
                 </span>

@@ -592,12 +592,13 @@ export type Tjenester = Node & Document & {
   __typename?: 'Tjenester';
   tittel: Scalars['String']['output'];
   undertittel: Scalars['String']['output'];
+  malgruppe: Scalars['String']['output'];
+  orden?: Maybe<Scalars['Float']['output']>;
   badge?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
   description: Scalars['JSON']['output'];
   detaljer?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   priser?: Maybe<Array<Maybe<TjenesterPriser>>>;
-  orden?: Maybe<Scalars['Float']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -611,12 +612,13 @@ export type TjenesterPriserFilter = {
 export type TjenesterFilter = {
   tittel?: InputMaybe<StringFilter>;
   undertittel?: InputMaybe<StringFilter>;
+  malgruppe?: InputMaybe<StringFilter>;
+  orden?: InputMaybe<NumberFilter>;
   badge?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
   description?: InputMaybe<RichTextFilter>;
   detaljer?: InputMaybe<StringFilter>;
   priser?: InputMaybe<TjenesterPriserFilter>;
-  orden?: InputMaybe<NumberFilter>;
 };
 
 export type TjenesterConnectionEdges = {
@@ -948,12 +950,13 @@ export type TjenesterPriserMutation = {
 export type TjenesterMutation = {
   tittel?: InputMaybe<Scalars['String']['input']>;
   undertittel?: InputMaybe<Scalars['String']['input']>;
+  malgruppe?: InputMaybe<Scalars['String']['input']>;
+  orden?: InputMaybe<Scalars['Float']['input']>;
   badge?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   detaljer?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   priser?: InputMaybe<Array<InputMaybe<TjenesterPriserMutation>>>;
-  orden?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type UtdanningMutation = {
@@ -983,7 +986,7 @@ type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: str
 
 export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
 
-export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
+export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
 
 export type UtdanningPartsFragment = { __typename: 'Utdanning', ar: string, grad: string, sted: string };
 
@@ -1051,7 +1054,7 @@ export type TjenesterQueryVariables = Exact<{
 }>;
 
 
-export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
+export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
 
 export type TjenesterConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1063,7 +1066,7 @@ export type TjenesterConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
+export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, malgruppe: string, orden?: number | null, badge?: string | null, image?: string | null, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
 
 export type UtdanningQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1226,6 +1229,8 @@ export const TjenesterPartsFragmentDoc = gql`
   __typename
   tittel
   undertittel
+  malgruppe
+  orden
   badge
   image
   description
@@ -1235,7 +1240,6 @@ export const TjenesterPartsFragmentDoc = gql`
     label
     pris
   }
-  orden
 }
     `;
 export const UtdanningPartsFragmentDoc = gql`

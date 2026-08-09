@@ -37,7 +37,7 @@ export default defineConfig({
   search: {
     tina: {
       indexerToken: "b15d2213274b9f00e2d9cc0e0cd63800f7840152",
-      stopwordLanguages: ["no", "eng"],
+      stopwordLanguages: ["nob", "eng"],
     },
     indexBatchSize: 100,
     maxSearchIndexFieldLength: 100,
@@ -629,6 +629,20 @@ export default defineConfig({
           },
           {
             type: "string",
+            name: "malgruppe",
+            label: "Målgruppe",
+            required: true,
+            options: ["privatperson", "bedrift"],
+            description: "Velg hvem tjenesten primært er rettet mot",
+          },
+          {
+            type: "number",
+            name: "orden",
+            label: "Rekkefølge",
+            description: "Lavere tall vises først i lister",
+          },
+          {
+            type: "string",
             name: "badge",
             label: "Badge (valgfritt)",
             description: 'F.eks. "Populær" eller "Fleksibelt"',
@@ -691,12 +705,6 @@ export default defineConfig({
                 required: true,
               },
             ],
-          },
-          {
-            type: "number",
-            name: "orden",
-            label: "Sorteringsrekkefølge",
-            description: "Lavere tall vises først",
           },
         ],
       },

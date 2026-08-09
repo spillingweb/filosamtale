@@ -2,6 +2,8 @@
   "beskrivelse": "Månedlige samtalegrupper der vi utforsker eksistensielle spørsmål i trygt og inkluderende fellesskap. Maks 8 deltakere per gruppe.",
   "tittel": "Samtalegrupper",
   "undertittel": "Månedlige grupper",
+  "malgruppe": "privatperson",
+  "orden": 2,
   "badge": "Populær",
   "image": "/uploads/linkedin-sales-solutions-IjkIOe-2fF4-unsplash.jpg",
   "description": "**Finn din gruppe:**\n\n**Barselprat**: Vi deler hverdagens mange tanker og dilemmaer i barseltiden. Tanker som er rare, gode og vonde, her er det ingen skam, bare raushet og omsorg.\n\n**Fedregruppa**: Vi utfordrer egne antagelser, lufter tankene og finner egne svar uten pekefingre. Du får nye verktøy og større klarhet som styrker både deg selv, papparollen og familielivet.\n\n**Kronisk sjuk klubben**: Velkommen til et trygt fellesskap hvor du kan dele hverdagens utfordringer og dilemmaer ved kronisk sykdom. Gjennom åpne samtaler støtter vi hverandre, utfordrer tanker og finner nye perspektiver.\n",
@@ -26,6 +28,5 @@
       "label": "Halvår (6 samlinger)",
       "pris": "2 100 kr"
     }
-  ],
-  "orden": 2
+  ]
 }

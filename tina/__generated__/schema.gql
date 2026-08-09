@@ -421,12 +421,13 @@ type TjenesterPriser {
 type Tjenester implements Node & Document {
   tittel: String!
   undertittel: String!
+  malgruppe: String!
+  orden: Float
   badge: String
   image: String
   description: JSON!
   detaljer: [String]
   priser: [TjenesterPriser]
-  orden: Float
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -440,12 +441,13 @@ input TjenesterPriserFilter {
 input TjenesterFilter {
   tittel: StringFilter
   undertittel: StringFilter
+  malgruppe: StringFilter
+  orden: NumberFilter
   badge: StringFilter
   image: ImageFilter
   description: RichTextFilter
   detaljer: StringFilter
   priser: TjenesterPriserFilter
-  orden: NumberFilter
 }
 
 type TjenesterConnectionEdges {
@@ -663,12 +665,13 @@ input TjenesterPriserMutation {
 input TjenesterMutation {
   tittel: String
   undertittel: String
+  malgruppe: String
+  orden: Float
   badge: String
   image: String
   description: JSON
   detaljer: [String]
   priser: [TjenesterPriserMutation]
-  orden: Float
 }
 
 input UtdanningMutation {

@@ -2,6 +2,8 @@
   "beskrivelse": "Fire ukentlige nettmøter der vi går i dybden på ett filosofisk tema. Passer for deg som ønsker struktur og fellesskap, men har fleksibelt tidsbudsjett.",
   "tittel": "Nettkurs, gruppedialog. ",
   "undertittel": "Lær å tenke nytt i ditt eget tempo",
+  "malgruppe": "privatperson",
+  "orden": 5,
   "badge": "Fleksibelt",
   "image": "/uploads/vitaly-gariev-LmL5IFFCSLw-unsplash.jpg",
   "description": "Filosofisk dialog: Fra hverdagsfloker til kloke valg\n\nStår du overfor komplekse dilemmaer der de enkle svarene ikke strekker til? På dette nettkurset bruker vi filosofisk gruppedialog til å utforske hverdagens små og store utfordringer. I et trygt, digitalt fellesskap lærer du å utfordre egne antagelser og se problemstillinger fra helt nye vinkler. Dette gir deg større klarhet, bedre beslutningsevne og praktiske verktøy til hverdagen. Ta steget fra automatisk reaksjon til klok refleksjon sammen med andre.\n",
@@ -19,6 +21,5 @@
       "label": "Gjentakende deltaker (samme tema)",
       "pris": "400 kr"
     }
-  ],
-  "orden": 5
+  ]
 }

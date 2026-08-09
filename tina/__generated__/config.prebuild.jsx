@@ -18,7 +18,7 @@ var config_default = defineConfig({
   search: {
     tina: {
       indexerToken: "b15d2213274b9f00e2d9cc0e0cd63800f7840152",
-      stopwordLanguages: ["no", "eng"]
+      stopwordLanguages: ["nob", "eng"]
     },
     indexBatchSize: 100,
     maxSearchIndexFieldLength: 100
@@ -579,6 +579,20 @@ var config_default = defineConfig({
           },
           {
             type: "string",
+            name: "malgruppe",
+            label: "M\xE5lgruppe",
+            required: true,
+            options: ["privatperson", "bedrift"],
+            description: "Velg hvem tjenesten prim\xE6rt er rettet mot"
+          },
+          {
+            type: "number",
+            name: "orden",
+            label: "Rekkef\xF8lge",
+            description: "Lavere tall vises f\xF8rst i lister"
+          },
+          {
+            type: "string",
             name: "badge",
             label: "Badge (valgfritt)",
             description: 'F.eks. "Popul\xE6r" eller "Fleksibelt"'
@@ -641,12 +655,6 @@ var config_default = defineConfig({
                 required: true
               }
             ]
-          },
-          {
-            type: "number",
-            name: "orden",
-            label: "Sorteringsrekkef\xF8lge",
-            description: "Lavere tall vises f\xF8rst"
           }
         ]
       },

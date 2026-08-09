@@ -2,6 +2,8 @@
   "beskrivelse": "En-til-en samtaler der vi utforsker dine spørsmål om mening, identitet, verdier og livsvalg. Tilpasses dine behov og din situasjon.",
   "tittel": "Individuell samtale",
   "undertittel": "Filosofisk dialog",
+  "malgruppe": "privatperson",
+  "orden": 1,
   "image": "/uploads/hero-chairs1.jpg",
   "description": "",
   "detaljer": [
@@ -23,6 +25,5 @@
       "label": "Pakke (5 × 60 min)",
       "pris": "4 250 kr"
     }
-  ],
-  "orden": 1
+  ]
 }

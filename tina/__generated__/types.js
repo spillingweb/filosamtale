@@ -128,6 +128,8 @@ export const TjenesterPartsFragmentDoc = gql`
   __typename
   tittel
   undertittel
+  malgruppe
+  orden
   badge
   image
   description
@@ -137,7 +139,6 @@ export const TjenesterPartsFragmentDoc = gql`
     label
     pris
   }
-  orden
 }
     `;
 export const UtdanningPartsFragmentDoc = gql`
