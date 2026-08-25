@@ -1,6 +1,6 @@
 ---
 title: Tina Maria Lie
-subtitle: Sykepleier · Videreutdanning i filosofi og psykologi · Grunnlegger av Filosamtale
+subtitle: Sykepleier · Videreutdanning i filosofi og psykologi · Grunnlegger av Filosamtale · Medgrunnlegger av Brott & Blega Helse
 intro: Jeg er bosatt på Fevik i Agder og har jobbet med filosofisk praksis siden 2022. Min bakgrunn kombinerer klinisk sykepleiepraksis med praktisk filosofi — og det er nettopp denne kombinasjonen som preger min tilnærming til samtale og veiledning.
 profileImage: /uploads/profile.jpg
 verdier:
@@ -33,11 +33,13 @@ Siden 2024 har jeg drevet egen praksis i Agder, med samtaler, grupper og seminar
 
 ## Mine verdier
 
-Det jeg tilbyr er en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar. 
+Det jeg tilbyr er en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.
 
 Alle samtaler er konfidensielle, og det finnes ingen "riktig" måte å tenke på. Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete verktøy for et bedre liv.
 
 Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålene vi bærer på.
+
+Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslinjer samt de etiske retningslinjer utarbeidet av Norsk Selskap for Filosofisk Praksis. Jeg følger de lovpålagte plikter og ivaretar mine gjesters konfidensialitet og personvern.
 
 ## Utdanning og kompetanse
 
