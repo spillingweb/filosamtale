@@ -15,7 +15,7 @@ profileImage: /uploads/profile.jpg
 aboutName: Tina Maria Lie
 aboutText1: 'Jeg er utdannet sykepleier med videreutdanning i filosofi. Hos meg vil du bli møtt med en åpen og utforskende tilnærming, og vi sammen skaper vi et trygt rom hvor det er tid til å utforske de tanker og følelser du baler med. '
 aboutText2: |-
-  Gjennom arbeidet som sykepleier erfarte jeg at tiden ikke strakk til for å kunne ha de samtalene som pasientene hadde behov for. Sykdom og fysiske vondter, traumatiske opplevelser eller store omveltende livsforandringer, alt dette berører oss på forskjellige vis. Det hjelper å kunne ha en utforskende, ærlig dialog om de tanker og følelser som oppstår.
+  Gjennom arbeidet som sykepleier erfarte jeg at tiden ikke strakk til for å kunne ha de samtalene som pasientene hadde behov for. Sykdom og fysiske vondter, traumatiske opplevelser, omveltende livsforandringer eller hverdagens evige stress, alt dette berører oss på forskjellige vis. Det hjelper å kunne ha en utforskende, ærlig dialog om de tanker og følelser som oppstår.
 
    Det å ha et filosofisk utgangspunkt betyr å våge å stille spørsmål med det som blir tatt for gitt, det betyr å tørre å være kritisk, undrende, og åpen for nye tanker og ideer. 
   Det var dette som ledet meg til å grunnlegge Filosamtale. Det er 
