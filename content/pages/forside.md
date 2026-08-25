@@ -1,7 +1,7 @@
 ---
 title: Finn mening og retning gjennom filosofisk dialog
 subtitle: |-
-  Velkommen til samtaleterapi hos Brott & Blega Helse på Feviktoppen.
+  Velkommen til samtaler hos Brott & Blega Helse på Feviktoppen.
 
   Jeg er sykepleier med videreutdanning i filosofi, og hjelper deg å utforske de tanker, spørsmål og dilemmaer du strever med. Gjennom samtale og refleksjon finner vi klarhet og retning.
 kicker: 'Filosofisk veiledning · Fevik, Agder'
@@ -14,8 +14,8 @@ stat3Value: ''
 stat3Label: ''
 profileImage: /uploads/profile.jpg
 aboutName: Tina Maria Lie
-aboutText1: 'Jeg er utdannet sykepleier med videreutdanning i filosofi, og har i over ti år arbeidet i skjæringspunktet mellom omsorg og eksistensfilosofi.'
-aboutText2: 'Gjennom arbeidet som sykepleier erfarte jeg at mange av de viktigste spørsmålene mennesker bærer på, ikke er medisinske — de er filosofiske. Det var dette som ledet meg til å grunnlegge Filosamtale.'
+aboutText1: 'Jeg er utdannet sykepleier med videreutdanning i filosofi. Hos meg vil du bli møtt med en åpen og utforskende tilnærming, og vi skaper vi et trygt rom hvor det er tid til å utforske de tanker og følelser du baler med. '
+aboutText2: 'Gjennom arbeidet som sykepleier erfarte jeg at mange av de viktigste spørsmålene mennesker bærer på, ikke er medisinske — de er filosofiske. Det var dette som ledet meg til å grunnlegge Filosamtale. Det er '
 testimonials:
   - quote: Samtalene med Tina har hjulpet meg å se livet mitt i et nytt perspektiv. Hun har en unik evne til å stille spørsmål som får meg til å tenke dypere.
     name: Anne
