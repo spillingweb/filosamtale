@@ -35,11 +35,9 @@ Siden 2024 har jeg drevet egen praksis i Agder, med samtaler, grupper og seminar
 
 Det jeg tilbyr er en undersøkende samtale der vi sammen utforsker spørsmål som ikke har enkle svar.
 
-Alle samtaler er konfidensielle, og det finnes ingen "riktig" måte å tenke på. Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete verktøy for et bedre liv.
+Det finnes ingen "riktig" måte å tenke på. Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete verktøy for et bedre liv.
 
 Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålene vi bærer på.
-
-Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslinjer samt de etiske retningslinjer utarbeidet av Norsk Selskap for Filosofisk Praksis. Jeg følger de lovpålagte plikter og ivaretar mine gjesters konfidensialitet og personvern.
 
 ## Utdanning og kompetanse
 
@@ -48,7 +46,7 @@ Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslin
 * **2018** — Videreutdanning i Interkulturelle studier, OsloMet
 * **2016** — Bachelor of Science, Sykepleie, Universitetet i Stavanger
 
-Jeg er medlem av **NSPF** og følger foreningens etiske retningslinjer for filosofisk praksis.
+Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslinjer, og ivaretar mine gjesters konfidensialitet og personvern. Jeg er medlem av **NSPF** og følger foreningens etiske retningslinjer for filosofisk praksis.
 
 ## Arbeidsfilosofi
 
