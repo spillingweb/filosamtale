@@ -2,7 +2,8 @@
 title: Finn mening og retning gjennom filosofisk dialog
 subtitle: |-
   Velkommen til samtaleterapi hos Brott & Blega Helse på Feviktoppen.
-  Jeg er sykepleier med videreutdanning i filosofi, og hjelper deg å utforske livets store spørsmål — om mening, verdier, identitet og hvordan vi ønsker å leve. Gjennom samtale og refleksjon finner vi klarhet og retning.
+
+  Jeg er sykepleier med videreutdanning i filosofi, og hjelper deg å utforske de tanker, spørsmål og dilemmaer du strever med. Gjennom samtale og refleksjon finner vi klarhet og retning.
 kicker: 'Filosofisk veiledning · Fevik, Agder'
 heroImage: /uploads/hero-chairs.jpg
 stat1Value: ''
