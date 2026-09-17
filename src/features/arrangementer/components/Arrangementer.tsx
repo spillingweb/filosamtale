@@ -1,13 +1,10 @@
-import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/ui/button";
 import PageHeader from "#/components/PageHeader";
 import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import ContentLayout from "#/components/ContentLayout";
 import { tinaField } from "tinacms/dist/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import IslandKicker from "#/components/ui/IslandKicker";
-import IslandShell from "#/components/ui/IslandShell";
 import type {
   ArrangementerConnectionQuery,
   PagesQuery,
@@ -33,6 +30,11 @@ function Arrangementer({
 }) {
   // const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [visiblePastCount, setVisiblePastCount] = useState(3);
+
+  useEffect(() => {
+    setVisiblePastCount(3);
+  }, [selectedCategory]);
 
   const page = pageData.pages;
 
@@ -102,7 +104,7 @@ function Arrangementer({
         <div className="mt-8 space-y-10">
           {sortedUpcomingMonths.map(([monthKey, { label, events }]) => (
             <section key={monthKey}>
-              <DisplayHeading as="h2" size="base" className="mb-5">
+              <DisplayHeading as="h3" size="sm" className="mb-5">
                 {label}
               </DisplayHeading>
               <div className="space-y-5">
@@ -129,76 +131,57 @@ function Arrangementer({
       )}
 
       {/* Past Events Section */}
-      {sortedPastMonths.length > 0 && (
-        <div className="mt-16 space-y-10">
-          <DisplayHeading as="h2" size="xl">
-            Tidligere arrangementer
-          </DisplayHeading>
-          {sortedPastMonths.map(([monthKey, { label, events }]) => (
-            <section key={monthKey}>
-              <h3 className="mb-5 text-xl font-semibold text-sea-ink-soft">
-                {label}
-              </h3>
-              <div className="space-y-5">
-                {events.map((arr) => (
-                  <ArrangementKort
-                    key={arr.id}
-                    arr={arr}
-                    // onImageClick={setSelectedImage}
-                    categoryLabels={categoryLabels}
-                    isPast={true}
-                  />
-                ))}
+      {sortedPastMonths.length > 0 && (() => {
+        let remaining = visiblePastCount;
+        const visibleMonths = sortedPastMonths
+          .map(([monthKey, { label, events }]) => {
+            if (remaining <= 0) return null;
+            const visible = events.slice(0, remaining);
+            remaining -= visible.length;
+            return [monthKey, { label, events: visible }] as const;
+          })
+          .filter((x): x is NonNullable<typeof x> => x !== null);
+        const totalPastEvents = sortedPastMonths.reduce(
+          (sum, [, { events }]) => sum + events.length,
+          0,
+        );
+        return (
+          <div className="mt-16 space-y-10">
+            <DisplayHeading as="h2" size="xl">
+              Tidligere arrangementer
+            </DisplayHeading>
+            {visibleMonths.map(([monthKey, { label, events }]) => (
+              <section key={monthKey}>
+                <DisplayHeading as="h3" size="sm" className="mb-5">
+                  {label}
+                </DisplayHeading>
+                <div className="space-y-5">
+                  {events.map((arr) => (
+                    <ArrangementKort
+                      key={arr.id}
+                      arr={arr}
+                      // onImageClick={setSelectedImage}
+                      categoryLabels={categoryLabels}
+                      isPast={true}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
+            {visiblePastCount < totalPastEvents && (
+              <div className="text-center">
+                <Button
+                  variant="outline"
+                  onClick={() => setVisiblePastCount((n) => n + 3)}
+                >
+                  Last flere arrangementer
+                </Button>
               </div>
-            </section>
-          ))}
-        </div>
-      )}
-
-      {/* Newsletter strip */}
-      <IslandShell className="mt-10 p-6 sm:p-8">
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <IslandKicker className="mb-1">
-              Aldri gå glipp av et arrangement
-            </IslandKicker>
-            <p className="text-sea-ink-soft">
-              Send meg en e-post for å bli varslet om nye seminarer og grupper.
-            </p>
+            )}
           </div>
-          <Button asChild className="shrink-0">
-            <a href="mailto:filosamtale@gmail.com?subject=Varslinger om arrangementer">
-              Bli varslet
-            </a>
-          </Button>
-        </div>
-      </IslandShell>
+        );
+      })()}
 
-      {/* CTA */}
-      <div className="mt-10 text-center">
-        <p className="mb-4 text-sea-ink-soft">
-          Ønsker du et skreddersydd arrangement for din bedrift eller gruppe?
-        </p>
-        <Button asChild size="lg">
-          <Link to="/tjenester">Se alle tjenester</Link>
-        </Button>
-      </div>
-
-      {/* Image Modal */}
-      {/* <Dialog
-        open={!!selectedImage}
-        onOpenChange={() => setSelectedImage(null)}
-      >
-        <DialogContent className="max-w-[90vw] max-h-[90vh] p-0">
-          {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="Arrangementplakat"
-              className="w-full h-auto"
-            />
-          )}
-        </DialogContent>
-      </Dialog> */}
     </ContentLayout>
   );
 }

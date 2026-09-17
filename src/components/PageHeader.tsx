@@ -32,7 +32,7 @@ const PageHeader = ({
       </DisplayHeading>
       {subtitle && (
         <p 
-          className="mb-4 text-lg text-sea-ink-soft"
+          className="mb-4 text-lg text-sea-ink-soft text-balance"
           data-tina-field={tinaFields?.subtitle}
         >
           {subtitle}

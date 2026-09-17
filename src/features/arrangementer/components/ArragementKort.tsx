@@ -80,7 +80,7 @@ function ArrangementKort({
           </div>
 
           <DisplayHeading
-            as="h3"
+            as="h4"
             size="base"
             className="text-balance mb-2"
             data-tina-field={tinaField(arr, "title")}
