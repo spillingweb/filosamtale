@@ -9,27 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TjenesterRouteImport } from './routes/tjenester'
-import { Route as OmMegRouteImport } from './routes/om-meg'
-import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as ArrangementerRouteImport } from './routes/arrangementer'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArrangementerRouteImport } from './routes/arrangementer'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as OmMegRouteImport } from './routes/om-meg'
+import { Route as TjenesterRouteImport } from './routes/tjenester'
 import { Route as BloggIndexRouteImport } from './routes/blogg/index'
 import { Route as BloggSlugRouteImport } from './routes/blogg/$slug'
 
-const TjenesterRoute = TjenesterRouteImport.update({
-  id: '/tjenester',
-  path: '/tjenester',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OmMegRoute = OmMegRouteImport.update({
-  id: '/om-meg',
-  path: '/om-meg',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArrangementerRoute = ArrangementerRouteImport.update({
@@ -37,9 +27,19 @@ const ArrangementerRoute = ArrangementerRouteImport.update({
   path: '/arrangementer',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmMegRoute = OmMegRouteImport.update({
+  id: '/om-meg',
+  path: '/om-meg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TjenesterRoute = TjenesterRouteImport.update({
+  id: '/tjenester',
+  path: '/tjenester',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BloggIndexRoute = BloggIndexRouteImport.update({
@@ -123,25 +123,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tjenester': {
-      id: '/tjenester'
-      path: '/tjenester'
-      fullPath: '/tjenester'
-      preLoaderRoute: typeof TjenesterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/om-meg': {
-      id: '/om-meg'
-      path: '/om-meg'
-      fullPath: '/om-meg'
-      preLoaderRoute: typeof OmMegRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/arrangementer': {
@@ -151,11 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArrangementerRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/om-meg': {
+      id: '/om-meg'
+      path: '/om-meg'
+      fullPath: '/om-meg'
+      preLoaderRoute: typeof OmMegRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tjenester': {
+      id: '/tjenester'
+      path: '/tjenester'
+      fullPath: '/tjenester'
+      preLoaderRoute: typeof TjenesterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogg/': {

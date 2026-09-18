@@ -7,13 +7,12 @@
     })
     return str
   }
-  export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+  /** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -970,141 +969,341 @@ export type KategorierMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
 };
 
-type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', heroImage?: string | null, kicker?: string | null, title: string, subtitle?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, servicesHeading?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, profileImage?: string | null, blogHeading?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null };
+export type ImageFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
 
-type PagesParts_PagesStandard_Fragment = { __typename: 'PagesStandard', title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null };
+export type StringFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
 
-type PagesParts_PagesHeader_Fragment = { __typename: 'PagesHeader', title: string, intro?: string | null };
+export type PagesHomepageTestimonialsFilter = {
+  quote?: StringFilter | null | undefined;
+  name?: StringFilter | null | undefined;
+  role?: StringFilter | null | undefined;
+};
 
-type PagesParts_PagesServices_Fragment = { __typename: 'PagesServices', title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null };
+export type PagesHomepageFilter = {
+  heroImage?: ImageFilter | null | undefined;
+  kicker?: StringFilter | null | undefined;
+  title?: StringFilter | null | undefined;
+  subtitle?: StringFilter | null | undefined;
+  stat1Value?: StringFilter | null | undefined;
+  stat1Label?: StringFilter | null | undefined;
+  stat2Value?: StringFilter | null | undefined;
+  stat2Label?: StringFilter | null | undefined;
+  stat3Value?: StringFilter | null | undefined;
+  stat3Label?: StringFilter | null | undefined;
+  servicesHeading?: StringFilter | null | undefined;
+  aboutName?: StringFilter | null | undefined;
+  aboutText1?: StringFilter | null | undefined;
+  aboutText2?: StringFilter | null | undefined;
+  profileImage?: ImageFilter | null | undefined;
+  testimonials?: PagesHomepageTestimonialsFilter | null | undefined;
+  blogHeading?: StringFilter | null | undefined;
+  ctaTitle?: StringFilter | null | undefined;
+  ctaDescription?: StringFilter | null | undefined;
+};
 
-type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, facebook?: string | null, instagram?: string | null, whatsapp?: string | null };
+export type RichTextFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+};
 
-export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
+export type PagesStandardVerdierFilter = {
+  tittel?: StringFilter | null | undefined;
+  tekst?: StringFilter | null | undefined;
+};
+
+export type PagesStandardFilter = {
+  title?: StringFilter | null | undefined;
+  subtitle?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  profileImage?: ImageFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+  verdier?: PagesStandardVerdierFilter | null | undefined;
+};
+
+export type PagesHeaderFilter = {
+  title?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+};
+
+export type PagesServicesFaqFilter = {
+  question?: StringFilter | null | undefined;
+  answer?: StringFilter | null | undefined;
+};
+
+export type PagesServicesFilter = {
+  title?: StringFilter | null | undefined;
+  subtitle?: StringFilter | null | undefined;
+  intro?: StringFilter | null | undefined;
+  infoBadge?: StringFilter | null | undefined;
+  faq?: PagesServicesFaqFilter | null | undefined;
+};
+
+export type PagesKontaktFilter = {
+  title?: StringFilter | null | undefined;
+  kicker?: StringFilter | null | undefined;
+  heading?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  addressLine1?: StringFilter | null | undefined;
+  addressLine2?: StringFilter | null | undefined;
+  addressLine3?: StringFilter | null | undefined;
+  email?: StringFilter | null | undefined;
+  phone?: StringFilter | null | undefined;
+  facebook?: StringFilter | null | undefined;
+  instagram?: StringFilter | null | undefined;
+  whatsapp?: StringFilter | null | undefined;
+};
+
+export type PagesFilter = {
+  homepage?: PagesHomepageFilter | null | undefined;
+  standard?: PagesStandardFilter | null | undefined;
+  header?: PagesHeaderFilter | null | undefined;
+  services?: PagesServicesFilter | null | undefined;
+  kontakt?: PagesKontaktFilter | null | undefined;
+};
+
+export type UtdanningFilter = {
+  ar?: StringFilter | null | undefined;
+  grad?: StringFilter | null | undefined;
+  sted?: StringFilter | null | undefined;
+};
+
+export type NumberFilter = {
+  lt?: number | null | undefined;
+  lte?: number | null | undefined;
+  gte?: number | null | undefined;
+  gt?: number | null | undefined;
+  eq?: number | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<number | null | undefined> | null | undefined;
+};
+
+export type TjenesterPriserFilter = {
+  label?: StringFilter | null | undefined;
+  pris?: StringFilter | null | undefined;
+};
+
+export type TjenesterFilter = {
+  malgruppe?: StringFilter | null | undefined;
+  orden?: NumberFilter | null | undefined;
+  image?: ImageFilter | null | undefined;
+  tittel?: StringFilter | null | undefined;
+  badge?: StringFilter | null | undefined;
+  undertittel?: StringFilter | null | undefined;
+  description?: RichTextFilter | null | undefined;
+  detaljer?: StringFilter | null | undefined;
+  priser?: TjenesterPriserFilter | null | undefined;
+};
+
+export type DatetimeFilter = {
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
+
+export type BloggFilter = {
+  title?: StringFilter | null | undefined;
+  excerpt?: StringFilter | null | undefined;
+  date?: DatetimeFilter | null | undefined;
+  category?: StringFilter | null | undefined;
+  readingTime?: NumberFilter | null | undefined;
+  coverImage?: ImageFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+};
+
+export type ArrangementerKategorierFilter = {
+  kategorier?: KategorierFilter | null | undefined;
+};
+
+export type BooleanFilter = {
+  eq?: boolean | null | undefined;
+  exists?: boolean | null | undefined;
+};
+
+export type ArrangementerFilter = {
+  title?: StringFilter | null | undefined;
+  description?: RichTextFilter | null | undefined;
+  image?: ImageFilter | null | undefined;
+  date?: DatetimeFilter | null | undefined;
+  endDate?: DatetimeFilter | null | undefined;
+  time?: StringFilter | null | undefined;
+  location?: StringFilter | null | undefined;
+  price?: NumberFilter | null | undefined;
+  capacity?: NumberFilter | null | undefined;
+  kategorier?: ArrangementerKategorierFilter | null | undefined;
+  isOnline?: BooleanFilter | null | undefined;
+};
+
+export type KategorierFilter = {
+  value?: StringFilter | null | undefined;
+  label?: StringFilter | null | undefined;
+};
+
+type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', heroImage: string | null, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string | null, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null };
+
+type PagesParts_PagesStandard_Fragment = { __typename: 'PagesStandard', title: string, subtitle: string | null, intro: string | null, profileImage: string | null, body: any, verdier: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null };
+
+type PagesParts_PagesHeader_Fragment = { __typename: 'PagesHeader', title: string, intro: string | null };
+
+type PagesParts_PagesServices_Fragment = { __typename: 'PagesServices', title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null };
+
+type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null };
+
+export type PagesPartsFragment =
+  | PagesParts_PagesHomepage_Fragment
+  | PagesParts_PagesStandard_Fragment
+  | PagesParts_PagesHeader_Fragment
+  | PagesParts_PagesServices_Fragment
+  | PagesParts_PagesKontakt_Fragment
+;
 
 export type UtdanningPartsFragment = { __typename: 'Utdanning', ar: string, grad: string, sted: string };
 
-export type TjenesterPartsFragment = { __typename: 'Tjenester', malgruppe: string, orden?: number | null, image?: string | null, tittel: string, badge?: string | null, undertittel: string, description: any, detaljer?: Array<string | null> | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
+export type TjenesterPartsFragment = { __typename: 'Tjenester', malgruppe: string, orden: number | null, image: string | null, tittel: string, badge: string | null, undertittel: string, description: any, detaljer: Array<string | null> | null, priser: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
 
-export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null };
+export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category: string | null, readingTime: number | null, coverImage: string | null, body: any };
 
-export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image: string | null, date: string, endDate: string | null, time: string, location: string, price: number, capacity: number | null, isOnline: boolean | null, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type KategorierPartsFragment = { __typename: 'Kategorier', value: string, label: string };
 
 export type PagesQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, heroImage?: string | null, kicker?: string | null, title: string, subtitle?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, servicesHeading?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, profileImage?: string | null, blogHeading?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, facebook?: string | null, instagram?: string | null, whatsapp?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { pages:
+    | { __typename: 'PagesHomepage', id: string, heroImage: string | null, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string | null, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+    | { __typename: 'PagesStandard', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null }
+    | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+    | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
+    | { __typename: 'PagesKontakt', id: string, title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+   };
 
 export type PagesConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: PagesFilter | null | undefined;
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, heroImage?: string | null, kicker?: string | null, title: string, subtitle?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, servicesHeading?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, profileImage?: string | null, blogHeading?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials?: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role?: string | null } | null> | null } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, facebook?: string | null, instagram?: string | null, whatsapp?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { pagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node:
+        | { __typename: 'PagesHomepage', id: string, heroImage: string | null, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string | null, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+        | { __typename: 'PagesStandard', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null }
+        | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+        | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
+        | { __typename: 'PagesKontakt', id: string, title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+       | null } | null> | null } };
 
 export type UtdanningQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type UtdanningQuery = { __typename?: 'Query', utdanning: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type UtdanningQuery = { utdanning: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type UtdanningConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<UtdanningFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: UtdanningFilter | null | undefined;
 }>;
 
 
-export type UtdanningConnectionQuery = { __typename?: 'Query', utdanningConnection: { __typename?: 'UtdanningConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'UtdanningConnectionEdges', cursor: string, node?: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type UtdanningConnectionQuery = { utdanningConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Utdanning', id: string, ar: string, grad: string, sted: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TjenesterQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, malgruppe: string, orden?: number | null, image?: string | null, tittel: string, badge?: string | null, undertittel: string, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
+export type TjenesterQuery = { tjenester: { __typename: 'Tjenester', id: string, malgruppe: string, orden: number | null, image: string | null, tittel: string, badge: string | null, undertittel: string, description: any, detaljer: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
 
 export type TjenesterConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<TjenesterFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: TjenesterFilter | null | undefined;
 }>;
 
 
-export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, malgruppe: string, orden?: number | null, image?: string | null, tittel: string, badge?: string | null, undertittel: string, description: any, detaljer?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
+export type TjenesterConnectionQuery = { tjenesterConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Tjenester', id: string, malgruppe: string, orden: number | null, image: string | null, tittel: string, badge: string | null, undertittel: string, description: any, detaljer: Array<string | null> | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
 
 export type BloggQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type BloggQuery = { __typename?: 'Query', blogg: { __typename: 'Blogg', id: string, title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type BloggQuery = { blogg: { __typename: 'Blogg', id: string, title: string, excerpt: string, date: string, category: string | null, readingTime: number | null, coverImage: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type BloggConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<BloggFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: BloggFilter | null | undefined;
 }>;
 
 
-export type BloggConnectionQuery = { __typename?: 'Query', bloggConnection: { __typename?: 'BloggConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BloggConnectionEdges', cursor: string, node?: { __typename: 'Blogg', id: string, title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type BloggConnectionQuery = { bloggConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Blogg', id: string, title: string, excerpt: string, date: string, category: string | null, readingTime: number | null, coverImage: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type ArrangementerQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type ArrangementerQuery = { __typename?: 'Query', arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } } };
+export type ArrangementerQuery = { arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: any, image: string | null, date: string, endDate: string | null, time: string, location: string, price: number, capacity: number | null, isOnline: boolean | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } } };
 
 export type ArrangementerConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<ArrangementerFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: ArrangementerFilter | null | undefined;
 }>;
 
 
-export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, isOnline?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } } | null } | null> | null } };
+export type ArrangementerConnectionQuery = { arrangementerConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Arrangementer', id: string, title: string, description: any, image: string | null, date: string, endDate: string | null, time: string, location: string, price: number, capacity: number | null, isOnline: boolean | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, kategorier: { __typename: 'Kategorier', value: string, label: string, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } } | null } | null> | null } };
 
 export type KategorierQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type KategorierQuery = { __typename?: 'Query', kategorier: { __typename: 'Kategorier', id: string, value: string, label: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type KategorierQuery = { kategorier: { __typename: 'Kategorier', id: string, value: string, label: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type KategorierConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<KategorierFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: KategorierFilter | null | undefined;
 }>;
 
 
-export type KategorierConnectionQuery = { __typename?: 'Query', kategorierConnection: { __typename?: 'KategorierConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'KategorierConnectionEdges', cursor: string, node?: { __typename: 'Kategorier', id: string, value: string, label: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type KategorierConnectionQuery = { kategorierConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Kategorier', id: string, value: string, label: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
@@ -1697,5 +1896,7 @@ export const queries = (
   const requester = generateRequester(client)
   return getSdk(requester)
 }
+
+export type { Exact };
 
   
