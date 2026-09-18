@@ -94,8 +94,7 @@ const NewsletterDialog = ({ trigger }: NewsletterDialogProps) => {
             <DialogHeader>
               <DialogTitle>Meld deg på nyhetsbrevet</DialogTitle>
               <DialogDescription>
-                Få varsler om kommende arrangementer, nye blogginnlegg og
-                tjenester.
+                Få tilsendt oppdateringer om hva som rører seg hos Filosamtale - nye blogginnlegg, arrangementer og tjenester.
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">

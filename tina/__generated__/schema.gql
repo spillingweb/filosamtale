@@ -109,25 +109,25 @@ type PagesHomepageTestimonials {
 }
 
 type PagesHomepage implements Node & Document {
+  heroImage: String
+  kicker: String
   title: String!
   subtitle: String
-  kicker: String
-  heroImage: String
   stat1Value: String
   stat1Label: String
   stat2Value: String
   stat2Label: String
   stat3Value: String
   stat3Label: String
-  profileImage: String
+  servicesHeading: String
   aboutName: String
   aboutText1: String
   aboutText2: String
+  profileImage: String
   testimonials: [PagesHomepageTestimonials]
+  blogHeading: String
   ctaTitle: String
   ctaDescription: String
-  servicesHeading: String
-  blogHeading: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -144,9 +144,6 @@ type PagesStandard implements Node & Document {
   intro: String
   profileImage: String
   body: JSON
-  contactName: String
-  contactLocation: String
-  contactEmail: String
   verdier: [PagesStandardVerdier]
   id: ID!
   _sys: SystemInfo!
@@ -187,6 +184,9 @@ type PagesKontakt implements Node & Document {
   addressLine3: String
   email: String!
   phone: String!
+  facebook: String
+  instagram: String
+  whatsapp: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -194,14 +194,14 @@ type PagesKontakt implements Node & Document {
 
 union Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt
 
-input StringFilter {
+input ImageFilter {
   startsWith: String
   eq: String
   exists: Boolean
   in: [String]
 }
 
-input ImageFilter {
+input StringFilter {
   startsWith: String
   eq: String
   exists: Boolean
@@ -215,25 +215,25 @@ input PagesHomepageTestimonialsFilter {
 }
 
 input PagesHomepageFilter {
+  heroImage: ImageFilter
+  kicker: StringFilter
   title: StringFilter
   subtitle: StringFilter
-  kicker: StringFilter
-  heroImage: ImageFilter
   stat1Value: StringFilter
   stat1Label: StringFilter
   stat2Value: StringFilter
   stat2Label: StringFilter
   stat3Value: StringFilter
   stat3Label: StringFilter
-  profileImage: ImageFilter
+  servicesHeading: StringFilter
   aboutName: StringFilter
   aboutText1: StringFilter
   aboutText2: StringFilter
+  profileImage: ImageFilter
   testimonials: PagesHomepageTestimonialsFilter
+  blogHeading: StringFilter
   ctaTitle: StringFilter
   ctaDescription: StringFilter
-  servicesHeading: StringFilter
-  blogHeading: StringFilter
 }
 
 input RichTextFilter {
@@ -253,9 +253,6 @@ input PagesStandardFilter {
   intro: StringFilter
   profileImage: ImageFilter
   body: RichTextFilter
-  contactName: StringFilter
-  contactLocation: StringFilter
-  contactEmail: StringFilter
   verdier: PagesStandardVerdierFilter
 }
 
@@ -287,6 +284,9 @@ input PagesKontaktFilter {
   addressLine3: StringFilter
   email: StringFilter
   phone: StringFilter
+  facebook: StringFilter
+  instagram: StringFilter
+  whatsapp: StringFilter
 }
 
 input PagesFilter {
@@ -340,12 +340,12 @@ type TjenesterPriser {
 }
 
 type Tjenester implements Node & Document {
-  tittel: String!
-  undertittel: String!
   malgruppe: String!
   orden: Float
-  badge: String
   image: String
+  tittel: String!
+  badge: String
+  undertittel: String!
   description: JSON!
   detaljer: [String]
   priser: [TjenesterPriser]
@@ -370,12 +370,12 @@ input TjenesterPriserFilter {
 }
 
 input TjenesterFilter {
-  tittel: StringFilter
-  undertittel: StringFilter
   malgruppe: StringFilter
   orden: NumberFilter
-  badge: StringFilter
   image: ImageFilter
+  tittel: StringFilter
+  badge: StringFilter
+  undertittel: StringFilter
   description: RichTextFilter
   detaljer: StringFilter
   priser: TjenesterPriserFilter
@@ -557,25 +557,25 @@ input PagesHomepageTestimonialsMutation {
 }
 
 input PagesHomepageMutation {
+  heroImage: String
+  kicker: String
   title: String
   subtitle: String
-  kicker: String
-  heroImage: String
   stat1Value: String
   stat1Label: String
   stat2Value: String
   stat2Label: String
   stat3Value: String
   stat3Label: String
-  profileImage: String
+  servicesHeading: String
   aboutName: String
   aboutText1: String
   aboutText2: String
+  profileImage: String
   testimonials: [PagesHomepageTestimonialsMutation]
+  blogHeading: String
   ctaTitle: String
   ctaDescription: String
-  servicesHeading: String
-  blogHeading: String
 }
 
 input PagesStandardVerdierMutation {
@@ -589,9 +589,6 @@ input PagesStandardMutation {
   intro: String
   profileImage: String
   body: JSON
-  contactName: String
-  contactLocation: String
-  contactEmail: String
   verdier: [PagesStandardVerdierMutation]
 }
 
@@ -623,6 +620,9 @@ input PagesKontaktMutation {
   addressLine3: String
   email: String
   phone: String
+  facebook: String
+  instagram: String
+  whatsapp: String
 }
 
 input PagesMutation {
@@ -645,12 +645,12 @@ input TjenesterPriserMutation {
 }
 
 input TjenesterMutation {
-  tittel: String
-  undertittel: String
   malgruppe: String
   orden: Float
-  badge: String
   image: String
+  tittel: String
+  badge: String
+  undertittel: String
   description: JSON
   detaljer: [String]
   priser: [TjenesterPriserMutation]

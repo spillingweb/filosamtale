@@ -1,4 +1,5 @@
-﻿import { Link } from "@tanstack/react-router";
+﻿import { getRouteApi, Link } from "@tanstack/react-router";
+import type { PagesKontakt } from "../../tina/__generated__/types";
 import ContactForm from "./ContactForm";
 import NewsletterDialog from "./NewsletterDialog";
 import IslandKicker from "./ui/IslandKicker";
@@ -9,10 +10,29 @@ import PageWrap from "./ui/PageWrap";
 import IslandShell from "./ui/IslandShell";
 import { Button } from "./ui/button";
 import { Mail } from "lucide-react";
+import { tinaField } from "tinacms/tina-field";
+import { useTina } from "tinacms/react";
 
 const YEAR = new Date().getFullYear();
 
+const rootRoute = getRouteApi("__root__");
+
 export default function Footer() {
+  const { kontakt: initialData } = rootRoute.useLoaderData();
+
+  // Enable live preview for contact info
+  const { data } = useTina({
+    query: initialData.query,
+    variables: initialData.variables,
+    data: initialData.data,
+  });
+
+  const page = data.pages;
+
+  // Type guard: ensure we have kontakt template
+  if (page.__typename !== "PagesKontakt") {
+    throw new Error("Expected kontakt template for kontakt-info.md");
+  }
 
   return (
     <footer
@@ -21,7 +41,7 @@ export default function Footer() {
     >
       <PageWrap>
         {/* Contact section */}
-        <ContactForm />
+        <ContactForm page={page as PagesKontakt} />
 
         {/* Newsletter strip */}
         <IslandShell className="mt-10 p-6 sm:p-8 flex gap-5 items-center w-full">
@@ -65,27 +85,39 @@ export default function Footer() {
               </Link>
             </nav>
             <div className="flex items-center gap-4 text-sm text-sea-ink-soft md:justify-self-end">
-              <a
-                href="https://facebook.com/filosamtale"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-                aria-label="Facebook"
-              >
-                <FaFacebook size={20} />
-              </a>
-              <a
-                href="https://instagram.com/filosamtale"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-                aria-label="Instagram"
-              >
-                <FaInstagram size={20} />
-              </a>
-              <a aria-label="Chat on WhatsApp" href="https://wa.me/4797158251">
-                <FaWhatsapp size={20} />
-              </a>
+              {page.facebook && (
+                <a
+                  href={`https://facebook.com/${page.facebook}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                  aria-label="Facebook"
+                  data-tina-field={tinaField(page, "facebook")}
+                >
+                  <FaFacebook size={20} />
+                </a>
+              )}
+              {page.instagram && (
+                <a
+                  href={`https://instagram.com/${page.instagram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                  aria-label="Instagram"
+                  data-tina-field={tinaField(page, "instagram")}
+                >
+                  <FaInstagram size={20} />
+                </a>
+              )}
+              {page.whatsapp && (
+                <a
+                  aria-label="Chat on WhatsApp"
+                  href={`https://wa.me/47${page.whatsapp}`}
+                  data-tina-field={tinaField(page, "whatsapp")}
+                >
+                  <FaWhatsapp size={20} />
+                </a>
+              )}
             </div>
             <p className="text-xs text-sea-ink-soft md:row-start-2">
               &copy; {YEAR}{" "}

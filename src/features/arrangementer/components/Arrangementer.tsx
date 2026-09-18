@@ -174,7 +174,7 @@ function Arrangementer({
                   variant="outline"
                   onClick={() => setVisiblePastCount((n) => n + 3)}
                 >
-                  Last flere arrangementer
+                  Last flere tidligere arrangementer
                 </Button>
               </div>
             )}

@@ -9,30 +9,30 @@ export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
   ... on PagesHomepage {
+    heroImage
+    kicker
     title
     subtitle
-    kicker
-    heroImage
     stat1Value
     stat1Label
     stat2Value
     stat2Label
     stat3Value
     stat3Label
-    profileImage
+    servicesHeading
     aboutName
     aboutText1
     aboutText2
+    profileImage
     testimonials {
       __typename
       quote
       name
       role
     }
+    blogHeading
     ctaTitle
     ctaDescription
-    servicesHeading
-    blogHeading
   }
   ... on PagesStandard {
     title
@@ -40,9 +40,6 @@ export const PagesPartsFragmentDoc = gql`
     intro
     profileImage
     body
-    contactName
-    contactLocation
-    contactEmail
     verdier {
       __typename
       tittel
@@ -74,6 +71,9 @@ export const PagesPartsFragmentDoc = gql`
     addressLine3
     email
     phone
+    facebook
+    instagram
+    whatsapp
   }
 }
     `;
@@ -88,12 +88,12 @@ export const UtdanningPartsFragmentDoc = gql`
 export const TjenesterPartsFragmentDoc = gql`
     fragment TjenesterParts on Tjenester {
   __typename
-  tittel
-  undertittel
   malgruppe
   orden
-  badge
   image
+  tittel
+  badge
+  undertittel
   description
   detaljer
   priser {

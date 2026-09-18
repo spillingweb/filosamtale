@@ -122,7 +122,7 @@ const Tjenester = ({
                 <IslandShell key={tjeneste.id}>
                   <article
                     id={tjeneste._sys.filename.replace(".json", "")}
-                    className="grid scroll-mt-24 gap-x-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr]"
+                    className="grid scroll-mt-24 gap-6 lg:gap-y-0 p-6 sm:p-8 lg:grid-cols-[280px_1fr]"
                   >
                     {/* Image - top on mobile, left on desktop */}
                     {tjeneste.image && (

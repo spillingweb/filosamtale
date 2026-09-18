@@ -8,6 +8,8 @@ addressLine2: 'Agder, Norge'
 addressLine3: ''
 email: filosamtale@gmail.com
 phone: +47 000 00 000
+facebook: filosamtale
+instagram: filosamtale
 _template: kontakt
 ---
 

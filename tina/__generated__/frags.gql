@@ -1,30 +1,30 @@
 fragment PagesParts on Pages {
   __typename
   ... on PagesHomepage {
+    heroImage
+    kicker
     title
     subtitle
-    kicker
-    heroImage
     stat1Value
     stat1Label
     stat2Value
     stat2Label
     stat3Value
     stat3Label
-    profileImage
+    servicesHeading
     aboutName
     aboutText1
     aboutText2
+    profileImage
     testimonials {
       __typename
       quote
       name
       role
     }
+    blogHeading
     ctaTitle
     ctaDescription
-    servicesHeading
-    blogHeading
   }
   ... on PagesStandard {
     title
@@ -32,9 +32,6 @@ fragment PagesParts on Pages {
     intro
     profileImage
     body
-    contactName
-    contactLocation
-    contactEmail
     verdier {
       __typename
       tittel
@@ -66,6 +63,9 @@ fragment PagesParts on Pages {
     addressLine3
     email
     phone
+    facebook
+    instagram
+    whatsapp
   }
 }
 
@@ -78,12 +78,12 @@ fragment UtdanningParts on Utdanning {
 
 fragment TjenesterParts on Tjenester {
   __typename
-  tittel
-  undertittel
   malgruppe
   orden
-  badge
   image
+  tittel
+  badge
+  undertittel
   description
   detaljer
   priser {

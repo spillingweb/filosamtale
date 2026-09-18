@@ -72,6 +72,16 @@ export default defineConfig({
             label: "Forside",
             fields: [
               {
+                type: "image",
+                name: "heroImage",
+                label: "Hovedbilde (hero)",
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst (liten tekst over tittel)",
+              },
+              {
                 type: "string",
                 name: "title",
                 label: "Sidetittel",
@@ -84,16 +94,7 @@ export default defineConfig({
                 label: "Undertittel",
                 ui: { component: "textarea" },
               },
-              {
-                type: "string",
-                name: "kicker",
-                label: "Kicker-tekst (liten tekst over tittel)",
-              },
-              {
-                type: "image",
-                name: "heroImage",
-                label: "Hovedbilde (hero)",
-              },
+
               {
                 type: "string",
                 name: "stat1Value",
@@ -125,15 +126,16 @@ export default defineConfig({
                 label: "Statistikk 3: Etikett",
               },
               {
-                type: "image",
-                name: "profileImage",
-                label: "Profilbilde (Om meg-seksjon)",
+                type: "string",
+                name: "servicesHeading",
+                label: "Tjenester-seksjon: Overskrift",
               },
               {
                 type: "string",
                 name: "aboutName",
                 label: "Om meg: Navn",
               },
+
               {
                 type: "string",
                 name: "aboutText1",
@@ -146,6 +148,12 @@ export default defineConfig({
                 label: "Om meg: Avsnitt 2",
                 ui: { component: "textarea" },
               },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde (Om meg-seksjon)",
+              },
+
               {
                 type: "object",
                 name: "testimonials",
@@ -179,6 +187,11 @@ export default defineConfig({
               },
               {
                 type: "string",
+                name: "blogHeading",
+                label: "Blogg-seksjon: Overskrift",
+              },
+              {
+                type: "string",
                 name: "ctaTitle",
                 label: "Call-to-action tittel",
               },
@@ -187,16 +200,6 @@ export default defineConfig({
                 name: "ctaDescription",
                 label: "Call-to-action beskrivelse",
                 ui: { component: "textarea" },
-              },
-              {
-                type: "string",
-                name: "servicesHeading",
-                label: "Tjenester-seksjon: Overskrift",
-              },
-              {
-                type: "string",
-                name: "blogHeading",
-                label: "Blogg-seksjon: Overskrift",
               },
             ],
           },
@@ -233,21 +236,6 @@ export default defineConfig({
                 name: "body",
                 label: "Innhold",
                 isBody: true,
-              },
-              {
-                type: "string",
-                name: "contactName",
-                label: "Kontaktinfo: Navn",
-              },
-              {
-                type: "string",
-                name: "contactLocation",
-                label: "Kontaktinfo: Sted",
-              },
-              {
-                type: "string",
-                name: "contactEmail",
-                label: "Kontaktinfo: E-post",
               },
               {
                 type: "object",
@@ -322,7 +310,8 @@ export default defineConfig({
                 type: "string",
                 name: "infoBadge",
                 label: "Informasjonsbadge tekst",
-                description: "Tekst som vises i infoboksen øverst på siden",
+                description:
+                  "Valgfri tekst som vises i infoboksen øverst på siden",
               },
               {
                 type: "object",
@@ -362,6 +351,7 @@ export default defineConfig({
                 label: "Sidetittel",
                 isTitle: true,
                 required: true,
+                ui: { component: "hidden" },
               },
               {
                 type: "string",
@@ -407,6 +397,24 @@ export default defineConfig({
                 name: "phone",
                 label: "Telefonnummer",
                 required: true,
+              },
+              {
+                type: "string",
+                name: "facebook",
+                label: "Facebook URL",
+                description: "Navn på facebook-konto",
+              },
+              {
+                type: "string",
+                name: "instagram",
+                label: "Instagram URL",
+                description: "Navn på instagram-konto",
+              },
+              {
+                type: "string",
+                name: "whatsapp",
+                label: "WhatsApp URL",
+                description: "Nummeret knyttet til Filosamtales whatsapp-konto",
               },
             ],
           },
@@ -481,19 +489,6 @@ export default defineConfig({
         fields: [
           {
             type: "string",
-            name: "tittel",
-            label: "Tittel",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "string",
-            name: "undertittel",
-            label: "Undertittel",
-            required: true,
-          },
-          {
-            type: "string",
             name: "malgruppe",
             label: "Målgruppe",
             required: true,
@@ -504,13 +499,8 @@ export default defineConfig({
             type: "number",
             name: "orden",
             label: "Rekkefølge",
-            description: "Lavere tall vises først i lister",
-          },
-          {
-            type: "string",
-            name: "badge",
-            label: "Badge (valgfritt)",
-            description: 'F.eks. "Populær" eller "Fleksibelt"',
+            description:
+              "Hvor høyt opp i listen tjenesten skal vises. Lavere tall vises først.",
           },
           {
             type: "image",
@@ -518,6 +508,26 @@ export default defineConfig({
             label: "Bilde (valgfritt)",
             description: "Bilde som vises for denne tjenesten",
           },
+          {
+            type: "string",
+            name: "tittel",
+            label: "Tittel",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "badge",
+            label: "Stikkord (valgfritt)",
+            description: 'F.eks. "Populær" eller "Fleksibelt"',
+          },
+          {
+            type: "string",
+            name: "undertittel",
+            label: "Undertittel",
+            required: true,
+          },
+
           {
             type: "rich-text",
             name: "description",

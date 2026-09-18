@@ -233,12 +233,14 @@ const Home = ({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             {/* Profile portrait */}
             <div className="order-2 lg:order-1">
-              <IslandShell className="overflow-hidden">
+              <IslandShell
+                className="overflow-hidden"
+                data-tina-field={tinaField(page, "profileImage")}
+              >
                 <img
                   src={page.profileImage || "/uploads/profile.jpg"}
                   alt={`${page.aboutName} - Sykepleier og filosof`}
                   className="aspect-4/3 w-full object-cover"
-                  data-tina-field={tinaField(page, "profileImage")}
                 />
               </IslandShell>
             </div>

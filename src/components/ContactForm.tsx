@@ -1,22 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { getRouteApi, useSearch } from "@tanstack/react-router";
+import { useSearch } from "@tanstack/react-router";
 import { Button } from "./ui/button";
 import { DisplayHeading } from "./ui/DisplayHeading";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { sendKontaktskjema } from "#/server/kontakt";
-import { useTina, tinaField } from "tinacms/dist/react";
+import { tinaField } from "tinacms/dist/react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import IslandKicker from "./ui/IslandKicker";
 import IslandShell from "./ui/IslandShell";
+import type { PagesKontakt } from "../../tina/__generated__/types";
 
-const rootRoute = getRouteApi('__root__');
-
-const ContactForm = () => {
+const ContactForm = ({page}: {page: PagesKontakt}) => {
   const send = useServerFn(sendKontaktskjema);
-  const { kontakt: initialData } = rootRoute.useLoaderData();
   
   // Get pre-filled message from URL search params
   const searchParams = useSearch({ strict: false }) as { message?: string };
@@ -75,20 +73,6 @@ const ContactForm = () => {
       }, 100);
     }
   }, [searchParams.message]);
-
-  // Enable live preview for contact info
-  const { data } = useTina({
-    query: initialData.query,
-    variables: initialData.variables,
-    data: initialData.data,
-  });
-
-  const page = data.pages;
-
-  // Type guard: ensure we have kontakt template
-  if (page.__typename !== "PagesKontakt") {
-    throw new Error("Expected kontakt template for kontakt-info.md");
-  }
 
   async function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();

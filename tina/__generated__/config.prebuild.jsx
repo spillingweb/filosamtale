@@ -52,6 +52,16 @@ var config_default = defineConfig({
             label: "Forside",
             fields: [
               {
+                type: "image",
+                name: "heroImage",
+                label: "Hovedbilde (hero)"
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst (liten tekst over tittel)"
+              },
+              {
                 type: "string",
                 name: "title",
                 label: "Sidetittel",
@@ -63,16 +73,6 @@ var config_default = defineConfig({
                 name: "subtitle",
                 label: "Undertittel",
                 ui: { component: "textarea" }
-              },
-              {
-                type: "string",
-                name: "kicker",
-                label: "Kicker-tekst (liten tekst over tittel)"
-              },
-              {
-                type: "image",
-                name: "heroImage",
-                label: "Hovedbilde (hero)"
               },
               {
                 type: "string",
@@ -105,9 +105,9 @@ var config_default = defineConfig({
                 label: "Statistikk 3: Etikett"
               },
               {
-                type: "image",
-                name: "profileImage",
-                label: "Profilbilde (Om meg-seksjon)"
+                type: "string",
+                name: "servicesHeading",
+                label: "Tjenester-seksjon: Overskrift"
               },
               {
                 type: "string",
@@ -125,6 +125,11 @@ var config_default = defineConfig({
                 name: "aboutText2",
                 label: "Om meg: Avsnitt 2",
                 ui: { component: "textarea" }
+              },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde (Om meg-seksjon)"
               },
               {
                 type: "object",
@@ -159,6 +164,11 @@ var config_default = defineConfig({
               },
               {
                 type: "string",
+                name: "blogHeading",
+                label: "Blogg-seksjon: Overskrift"
+              },
+              {
+                type: "string",
                 name: "ctaTitle",
                 label: "Call-to-action tittel"
               },
@@ -167,16 +177,6 @@ var config_default = defineConfig({
                 name: "ctaDescription",
                 label: "Call-to-action beskrivelse",
                 ui: { component: "textarea" }
-              },
-              {
-                type: "string",
-                name: "servicesHeading",
-                label: "Tjenester-seksjon: Overskrift"
-              },
-              {
-                type: "string",
-                name: "blogHeading",
-                label: "Blogg-seksjon: Overskrift"
               }
             ]
           },
@@ -213,21 +213,6 @@ var config_default = defineConfig({
                 name: "body",
                 label: "Innhold",
                 isBody: true
-              },
-              {
-                type: "string",
-                name: "contactName",
-                label: "Kontaktinfo: Navn"
-              },
-              {
-                type: "string",
-                name: "contactLocation",
-                label: "Kontaktinfo: Sted"
-              },
-              {
-                type: "string",
-                name: "contactEmail",
-                label: "Kontaktinfo: E-post"
               },
               {
                 type: "object",
@@ -302,7 +287,7 @@ var config_default = defineConfig({
                 type: "string",
                 name: "infoBadge",
                 label: "Informasjonsbadge tekst",
-                description: "Tekst som vises i infoboksen \xF8verst p\xE5 siden"
+                description: "Valgfri tekst som vises i infoboksen \xF8verst p\xE5 siden"
               },
               {
                 type: "object",
@@ -341,7 +326,8 @@ var config_default = defineConfig({
                 name: "title",
                 label: "Sidetittel",
                 isTitle: true,
-                required: true
+                required: true,
+                ui: { component: "hidden" }
               },
               {
                 type: "string",
@@ -387,6 +373,24 @@ var config_default = defineConfig({
                 name: "phone",
                 label: "Telefonnummer",
                 required: true
+              },
+              {
+                type: "string",
+                name: "facebook",
+                label: "Facebook URL",
+                description: "Navn p\xE5 facebook-konto"
+              },
+              {
+                type: "string",
+                name: "instagram",
+                label: "Instagram URL",
+                description: "Navn p\xE5 instagram-konto"
+              },
+              {
+                type: "string",
+                name: "whatsapp",
+                label: "WhatsApp URL",
+                description: "Nummeret knyttet til Filosamtales whatsapp-konto"
               }
             ]
           }
@@ -441,19 +445,6 @@ var config_default = defineConfig({
         fields: [
           {
             type: "string",
-            name: "tittel",
-            label: "Tittel",
-            isTitle: true,
-            required: true
-          },
-          {
-            type: "string",
-            name: "undertittel",
-            label: "Undertittel",
-            required: true
-          },
-          {
-            type: "string",
             name: "malgruppe",
             label: "M\xE5lgruppe",
             required: true,
@@ -464,19 +455,32 @@ var config_default = defineConfig({
             type: "number",
             name: "orden",
             label: "Rekkef\xF8lge",
-            description: "Lavere tall vises f\xF8rst i lister"
-          },
-          {
-            type: "string",
-            name: "badge",
-            label: "Badge (valgfritt)",
-            description: 'F.eks. "Popul\xE6r" eller "Fleksibelt"'
+            description: "Hvor h\xF8yt opp i listen tjenesten skal vises. Lavere tall vises f\xF8rst."
           },
           {
             type: "image",
             name: "image",
             label: "Bilde (valgfritt)",
             description: "Bilde som vises for denne tjenesten"
+          },
+          {
+            type: "string",
+            name: "tittel",
+            label: "Tittel",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "string",
+            name: "badge",
+            label: "Stikkord (valgfritt)",
+            description: 'F.eks. "Popul\xE6r" eller "Fleksibelt"'
+          },
+          {
+            type: "string",
+            name: "undertittel",
+            label: "Undertittel",
+            required: true
           },
           {
             type: "rich-text",
