@@ -65,6 +65,7 @@ const BloggInnlegg = ({
                   day: "numeric",
                   month: "long",
                   year: "numeric",
+                  timeZone: "UTC",
                 })}
               </time>
               <span className="text-sm text-sea-ink-soft">

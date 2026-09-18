@@ -40,11 +40,12 @@ function ArrangementKort({
               <div className="absolute top-4 left-4 bg-card backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-border">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-foreground leading-none">
-                    {eventDate.getDate()}
+                    {eventDate.getUTCDate()}
                   </div>
                   <div className="text-xs text-sea-ink-soft uppercase mt-0.5">
                     {eventDate.toLocaleDateString("nb-NO", {
                       month: "short",
+                      timeZone: "UTC",
                     })}
                   </div>
                 </div>
@@ -54,11 +55,12 @@ function ArrangementKort({
             <div className="w-full h-48 lg:h-full bg-muted rounded-lg flex items-center justify-center">
               <div className="text-center p-6">
                 <div className="text-3xl font-bold text-foreground leading-none mb-1">
-                  {eventDate.getDate()}
+                  {eventDate.getUTCDate()}
                 </div>
                 <div className="text-sm text-sea-ink-soft">
                   {eventDate.toLocaleDateString("nb-NO", {
                     month: "long",
+                    timeZone: "UTC",
                   })}
                 </div>
               </div>
@@ -100,6 +102,7 @@ function ArrangementKort({
                   day: "numeric",
                   month: "long",
                   year: "numeric",
+                  timeZone: "UTC",
                 })}
               </time>
             </div>

@@ -93,6 +93,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
                       day: "numeric",
                       month: "long",
                       year: "numeric",
+                      timeZone: "UTC",
                     })}
                   </time>
                   <span>·</span>
@@ -144,6 +145,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
                       day: "numeric",
                       month: "short",
                       year: "numeric",
+                      timeZone: "UTC",
                     })}
                   </time>
                 </div>

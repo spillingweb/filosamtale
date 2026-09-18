@@ -10,8 +10,9 @@ import IslandShell from "./ui/IslandShell";
 import { Button } from "./ui/button";
 import { Mail } from "lucide-react";
 
+const YEAR = new Date().getFullYear();
+
 export default function Footer() {
-  const year = new Date().getFullYear();
 
   return (
     <footer
@@ -87,7 +88,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-xs text-sea-ink-soft md:row-start-2">
-              &copy; {year}{" "}
+              &copy; {YEAR}{" "}
               <a
                 href="https://spillingweb.com"
                 target="_blank"
