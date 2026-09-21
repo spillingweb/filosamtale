@@ -49,3 +49,11 @@ export function getOptimizedImageUrl(src: string | undefined | null, width: numb
   
   return `/_vercel/image?url=${encodeURIComponent(cleanSrc)}&w=${width}&q=${quality}`;
 }
+
+// Generate a srcset attribute value for responsive images using the optimized image URLs
+export function getSrcSet(src: string | undefined | null, widths: number[] = [384, 640, 750, 1080]): string {
+  if (!src) return "";
+  return widths
+    .map((w) => `${getOptimizedImageUrl(src, w)} ${w}w`)
+    .join(", ");
+}

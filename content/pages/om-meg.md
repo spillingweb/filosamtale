@@ -7,12 +7,12 @@ verdier:
   - tittel: Nysgjerrighet
     tekst: Ekte filosofi begynner med vilje til å stille spørsmål ved det vi tar for gitt — inkludert egne forestillinger.
   - tittel: Respekt og trygghet
-    tekst: 'Alle samtaler er konfidensielle. Det er ingen dumme spørsmål, og ingen «riktig» måte å tenke på.'
+    tekst: "Alle samtaler er konfidensielle. Det er ingen dumme spørsmål, og ingen «riktig» måte å tenke på."
   - tittel: Praktisk visdom
     tekst: Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete verktøy for et bedre liv.
   - tittel: Helhetlig menneskesyn
-    tekst: 'Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålene vi bærer på.'
-_template: standard
+    tekst: "Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålene vi bærer på."
+_template: about
 ---
 
 ## Hvorfor Filosamtale?
@@ -29,7 +29,7 @@ Etter flere år i somatikken følte jeg behovet for å utvikle meg som sykepleie
 
 Filosofisk Praksis er en relativt ny disiplin som handler om å bruke filosofisk metode i samtale og veiledning med enkeltpersoner og grupper.
 
-Siden 2024 har jeg drevet egen praksis i Agder, med samtaler, grupper og seminarer for folk som lurer på de store spørsmålene: *Hva er meningen med livet? Hvordan skal jeg leve? Hva er verdifullt? Hvordan skal jeg ta det riktige valget?*
+Siden 2024 har jeg drevet egen praksis i Agder, med samtaler, grupper og seminarer for folk som lurer på de store spørsmålene: _Hva er meningen med livet? Hvordan skal jeg leve? Hva er verdifullt? Hvordan skal jeg ta det riktige valget?_
 
 ## Mine verdier
 
@@ -41,10 +41,10 @@ Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de spørsmålen
 
 ## Utdanning og kompetanse
 
-* **2022** — Videreutdanning i filosofisk praksis, NSPF (Norsk Selskap for Filosofisk Praksis)
-* **2021** — Bachelorgrad i Filosofi, Universitetet i Agder
-* **2018** — Videreutdanning i Interkulturelle studier, OsloMet
-* **2016** — Bachelor of Science, Sykepleie, Universitetet i Stavanger
+- **2022** — Videreutdanning i filosofisk praksis, NSPF (Norsk Selskap for Filosofisk Praksis)
+- **2021** — Bachelorgrad i Filosofi, Universitetet i Agder
+- **2018** — Videreutdanning i Interkulturelle studier, OsloMet
+- **2016** — Bachelor of Science, Sykepleie, Universitetet i Stavanger
 
 Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslinjer, og ivaretar mine gjesters konfidensialitet og personvern. Jeg er medlem av **NSPF** og følger foreningens etiske retningslinjer for filosofisk praksis.
 
@@ -52,6 +52,6 @@ Jeg jobber alltid i samsvar med Norsk Sykepleierforbunds yrkesetiske retningslin
 
 Sokrates mente at visdom begynner med å innrømme hva man ikke vet. Det er ikke defaitisme — det er åpningen for ekte nysgjerrighet.
 
-I mine samtaler begynner vi gjerne med et åpent spørsmål. Vi utforsker premissene og utfordrer antakelsene for å nøste i tankene og la dem arbeide fritt. Resultatet er sjelden et enkelt, ferdig svar – men ofte en dypere forståelse av deg selv og det du egentlig står i.  Målet er å bidra til større klarhet i egne verdier, slik at det blir lettere å stå i de vanskelige valgene livet bringer med seg.
+I mine samtaler begynner vi gjerne med et åpent spørsmål. Vi utforsker premissene og utfordrer antakelsene for å nøste i tankene og la dem arbeide fritt. Resultatet er sjelden et enkelt, ferdig svar – men ofte en dypere forståelse av deg selv og det du egentlig står i. Målet er å bidra til større klarhet i egne verdier, slik at det blir lettere å stå i de vanskelige valgene livet bringer med seg.
 
 Med solid forankring i min sykepleierfaglighet har jeg et nært forhold til hvordan vi mennesker møter livets utfordringer. Jeg er opptatt av den eksistensielle helsen, spesielt i møte med sykdom og lidelse. Sammen kan vi finne en måte å møte det vonde på, øve på å akseptere der man er, og finne styrken til å tåle forandringene livet bringer.

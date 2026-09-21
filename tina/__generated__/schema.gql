@@ -100,7 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Utdanning | Tjenester | Blogg | Arrangementer | Kategorier | Folder
+union DocumentNode = PagesHomepage | PagesAbout | PagesHeader | PagesServices | PagesKontakt | Utdanning | Tjenester | Blogg | Arrangementer | Kategorier | Folder
 
 type PagesHomepageTestimonials {
   quote: String!
@@ -109,7 +109,7 @@ type PagesHomepageTestimonials {
 }
 
 type PagesHomepage implements Node & Document {
-  heroImage: String
+  heroImage: String!
   kicker: String
   title: String!
   subtitle: String
@@ -123,7 +123,7 @@ type PagesHomepage implements Node & Document {
   aboutName: String
   aboutText1: String
   aboutText2: String
-  profileImage: String
+  profileImage: String!
   testimonials: [PagesHomepageTestimonials]
   blogHeading: String
   ctaTitle: String
@@ -133,18 +133,18 @@ type PagesHomepage implements Node & Document {
   _values: JSON!
 }
 
-type PagesStandardVerdier {
+type PagesAboutVerdier {
   tittel: String!
   tekst: String!
 }
 
-type PagesStandard implements Node & Document {
+type PagesAbout implements Node & Document {
   title: String!
   subtitle: String
   intro: String
-  profileImage: String
+  profileImage: String!
   body: JSON
-  verdier: [PagesStandardVerdier]
+  verdier: [PagesAboutVerdier]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -192,7 +192,7 @@ type PagesKontakt implements Node & Document {
   _values: JSON!
 }
 
-union Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt
+union Pages = PagesHomepage | PagesAbout | PagesHeader | PagesServices | PagesKontakt
 
 input ImageFilter {
   startsWith: String
@@ -242,18 +242,18 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input PagesStandardVerdierFilter {
+input PagesAboutVerdierFilter {
   tittel: StringFilter
   tekst: StringFilter
 }
 
-input PagesStandardFilter {
+input PagesAboutFilter {
   title: StringFilter
   subtitle: StringFilter
   intro: StringFilter
   profileImage: ImageFilter
   body: RichTextFilter
-  verdier: PagesStandardVerdierFilter
+  verdier: PagesAboutVerdierFilter
 }
 
 input PagesHeaderFilter {
@@ -291,7 +291,7 @@ input PagesKontaktFilter {
 
 input PagesFilter {
   homepage: PagesHomepageFilter
-  standard: PagesStandardFilter
+  about: PagesAboutFilter
   header: PagesHeaderFilter
   services: PagesServicesFilter
   kontakt: PagesKontaktFilter
@@ -578,18 +578,18 @@ input PagesHomepageMutation {
   ctaDescription: String
 }
 
-input PagesStandardVerdierMutation {
+input PagesAboutVerdierMutation {
   tittel: String
   tekst: String
 }
 
-input PagesStandardMutation {
+input PagesAboutMutation {
   title: String
   subtitle: String
   intro: String
   profileImage: String
   body: JSON
-  verdier: [PagesStandardVerdierMutation]
+  verdier: [PagesAboutVerdierMutation]
 }
 
 input PagesHeaderMutation {
@@ -627,7 +627,7 @@ input PagesKontaktMutation {
 
 input PagesMutation {
   homepage: PagesHomepageMutation
-  standard: PagesStandardMutation
+  about: PagesAboutMutation
   header: PagesHeaderMutation
   services: PagesServicesMutation
   kontakt: PagesKontaktMutation

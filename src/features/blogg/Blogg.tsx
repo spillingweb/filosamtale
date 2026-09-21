@@ -8,6 +8,7 @@ import { Badge } from "#/components/ui/badge";
 import IslandKicker from "#/components/ui/IslandKicker";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "#/components/ui/card";
 import IslandShell from "#/components/ui/IslandShell";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: BloggConnectionQuery }) => {
     
@@ -58,7 +59,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
             {/* Featured Image */}
             {featured.coverImage && (
               <div className="overflow-hidden">
-                <img
+                <OptimizedImage
                   src={featured.coverImage}
                   alt={featured.title}
                   className="w-full h-64 sm:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
@@ -125,7 +126,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
             >
               {post.coverImage && (
                 <div className="overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={post.coverImage}
                     alt={post.title}
                     className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"

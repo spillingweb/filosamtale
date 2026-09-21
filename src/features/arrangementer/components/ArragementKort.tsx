@@ -5,6 +5,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import { Button } from "#/components/ui/button";
 import { Banknote, Calendar, Clock, MapPin } from "lucide-react";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 function ArrangementKort({
   arr,
@@ -30,7 +31,7 @@ function ArrangementKort({
         <div className="relative overflow-hidden rounded-lg order-first">
           {arr.image ? (
             <>
-              <img
+              <OptimizedImage
                 src={arr.image}
                 alt={arr.title}
                 className="w-full h-48 lg:h-full object-cover transition-transform duration-300 group-hover:scale-105"

@@ -17,7 +17,7 @@ import type {
   TjenesterConnectionQuery,
 } from "../../../tina/__generated__/types";
 import PageWrap from "#/components/ui/PageWrap";
-import { getOptimizedImageUrl } from "#/lib/utils";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const Home = ({
   pageData,
@@ -61,14 +61,17 @@ const Home = ({
       {/* ── HERO ──────────────────────────────────────────────── */}
       <section className="relative pb-4">
         <div className="relative overflow-hidden">
-          <img
-            src={getOptimizedImageUrl(page.heroImage || "/uploads/hero-chairs.jpg", 1920)}
+          <OptimizedImage
+            src={page.heroImage}
+            fallbackSrc="/uploads/hero-chairs.jpg"
+            sizes="100vw"
+            defaultWidth={1200} // High resolution starting point if srcSet isn't evaluated
+            loading="eager" // Eager load for maximum SEO page-speed performance
+            fetchPriority="high"
+            decoding="async"
             alt="Hero image"
             className="aspect-16/7 w-full object-cover object-bottom lg:opacity-30"
             data-tina-field={tinaField(page, "heroImage")}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
             style={{
               filter:
                 "sepia(0.15) saturate(0.95) hue-rotate(-5deg) brightness(1.02) contrast(1.05)",
@@ -193,8 +196,10 @@ const Home = ({
                 >
                   {tjeneste.image && (
                     <div className="overflow-hidden">
-                      <img
-                        src={getOptimizedImageUrl(tjeneste.image, 640)}
+                      <OptimizedImage
+                        src={tjeneste.image}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
                         alt={tjeneste.tittel}
                         className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
                         data-tina-field={tinaField(tjeneste, "image")}
@@ -238,10 +243,14 @@ const Home = ({
                 className="overflow-hidden"
                 data-tina-field={tinaField(page, "profileImage")}
               >
-                <img
-                  src={getOptimizedImageUrl(page.profileImage || "/uploads/profile.jpg", 750)}
+                <OptimizedImage
+                  src={page.profileImage || "/uploads/profile.jpg"}
+                  defaultWidth={750}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy" // Lazy load below-the-fold content
                   alt={`${page.aboutName} - Sykepleier og filosof`}
                   className="aspect-4/3 w-full object-cover"
+                  data-tina-field={tinaField(page, "profileImage")}
                 />
               </IslandShell>
             </div>
@@ -360,8 +369,10 @@ const Home = ({
                 >
                   {post.coverImage && (
                     <div className="overflow-hidden">
-                      <img
-                        src={getOptimizedImageUrl(post.coverImage, 640)}
+                      <OptimizedImage
+                        src={post.coverImage}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy" // Lazy load below-the-fold content
                         alt={post.title}
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                         data-tina-field={tinaField(post, "coverImage")}

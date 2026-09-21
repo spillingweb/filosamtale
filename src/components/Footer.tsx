@@ -1,17 +1,17 @@
 ﻿import { getRouteApi, Link } from "@tanstack/react-router";
 import type { PagesKontakt } from "../../tina/__generated__/types";
 import ContactForm from "./ContactForm";
-import NewsletterDialog from "./NewsletterDialog";
-import IslandKicker from "./ui/IslandKicker";
 import { FaFacebook } from "react-icons/fa"; // From Font Awesome
 import { FaInstagram } from "react-icons/fa"; // From Font Awesome
 import { FaWhatsapp } from "react-icons/fa"; // From Font Awesome
 import PageWrap from "./ui/PageWrap";
-import IslandShell from "./ui/IslandShell";
-import { Button } from "./ui/button";
-import { Mail } from "lucide-react";
 import { tinaField } from "tinacms/tina-field";
 import { useTina } from "tinacms/react";
+// import NewsletterDialog from "./NewsletterDialog";
+// import IslandKicker from "./ui/IslandKicker";
+// import IslandShell from "./ui/IslandShell";
+// import { Button } from "./ui/button";
+// import { Mail } from "lucide-react";
 
 const YEAR = new Date().getFullYear();
 
@@ -43,8 +43,8 @@ export default function Footer() {
         {/* Contact section */}
         <ContactForm page={page as PagesKontakt} />
 
-        {/* Newsletter strip */}
-        <IslandShell className="mt-10 p-6 sm:p-8 flex gap-5 items-center w-full">
+        {/* Newsletter strip, uncomment when client is ready */}
+        {/* <IslandShell className="mt-10 p-6 sm:p-8 flex gap-5 items-center w-full">
           <Mail color="var(--palm)" size="40" className="hidden sm:block" />
           <div className="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -56,7 +56,7 @@ export default function Footer() {
             </div>
             <NewsletterDialog trigger={<Button>Meld deg på</Button>} />
           </div>
-        </IslandShell>
+        </IslandShell> */}
 
         {/* Bottom bar */}
         <div className="mt-10 border-t pt-8">

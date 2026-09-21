@@ -7,9 +7,10 @@ addressLine1: 'Feviktoppen 19, 4870 Fevik'
 addressLine2: 'Agder, Norge'
 addressLine3: ''
 email: filosamtale@gmail.com
-phone: +47 000 00 000
+phone: +47 411 45 235
 facebook: filosamtale
 instagram: filosamtale
+whatsapp: '41145235'
 _template: kontakt
 ---
 

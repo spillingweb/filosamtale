@@ -3,10 +3,14 @@ import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import type { BloggConnectionQuery, BloggQuery } from "../../../tina/__generated__/types";
+import type {
+  BloggConnectionQuery,
+  BloggQuery,
+} from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const BloggInnlegg = ({
   postData,
@@ -47,87 +51,87 @@ const BloggInnlegg = ({
       <div className="grid gap-8 lg:grid-cols-4">
         {/* Article */}
         <IslandShell className="rise-in p-6 sm:p-8 lg:col-span-3">
-        <article>
-          <header className="mb-8">
-            <div className="mb-4 flex flex-wrap items-center gap-3">
-              <Badge
-                variant="accent"
-                data-tina-field={tinaField(post, "category")}
+          <article>
+            <header className="mb-8">
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <Badge
+                  variant="accent"
+                  data-tina-field={tinaField(post, "category")}
+                >
+                  {post.category}
+                </Badge>
+                <time
+                  dateTime={post.date}
+                  className="text-sm text-sea-ink-soft"
+                  data-tina-field={tinaField(post, "date")}
+                >
+                  {new Date(post.date).toLocaleDateString("nb-NO", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+                <span className="text-sm text-sea-ink-soft">
+                  ·{" "}
+                  <span data-tina-field={tinaField(post, "readingTime")}>
+                    {post.readingTime}
+                  </span>{" "}
+                  min lesetid
+                </span>
+              </div>
+              <DisplayHeading
+                as="h1"
+                size="xl"
+                className="text-balance leading-tight"
+                data-tina-field={tinaField(post, "title")}
               >
-                {post.category}
-              </Badge>
-              <time
-                dateTime={post.date}
-                className="text-sm text-sea-ink-soft"
-                data-tina-field={tinaField(post, "date")}
-              >
-                {new Date(post.date).toLocaleDateString("nb-NO", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  timeZone: "UTC",
-                })}
-              </time>
-              <span className="text-sm text-sea-ink-soft">
-                ·{" "}
-                <span data-tina-field={tinaField(post, "readingTime")}>
-                  {post.readingTime}
-                </span>{" "}
-                min lesetid
-              </span>
-            </div>
-            <DisplayHeading
-              as="h1"
-              size="xl"
-              className="text-balance leading-tight"
-              data-tina-field={tinaField(post, "title")}
+                {post.title}
+              </DisplayHeading>
+            </header>
+
+            {/* Cover Image */}
+            {post.coverImage && (
+              <div className="mb-8 -mx-6 sm:-mx-8">
+                <OptimizedImage
+                  src={post.coverImage}
+                  alt={post.title}
+                  className="w-full aspect-video object-cover"
+                  data-tina-field={tinaField(post, "coverImage")}
+                />
+              </div>
+            )}
+
+            {/* Body */}
+            <div
+              className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+              data-tina-field={tinaField(post, "body")}
             >
-              {post.title}
-            </DisplayHeading>
-          </header>
-
-          {/* Cover Image */}
-          {post.coverImage && (
-            <div className="mb-8 -mx-6 sm:-mx-8">
-              <img
-                src={post.coverImage}
-                alt={post.title}
-                className="w-full aspect-video object-cover"
-                data-tina-field={tinaField(post, "coverImage")}
-              />
+              <TinaMarkdown content={post.body} />
             </div>
-          )}
 
-          {/* Body */}
-          <div
-            className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
-            data-tina-field={tinaField(post, "body")}
-          >
-            <TinaMarkdown content={post.body} />
-          </div>
-
-          <div className="mt-10 flex items-center gap-4 border-t pt-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 20a8 8 0 0116 0" strokeLinecap="round" />
-              </svg>
+            <div className="mt-10 flex items-center gap-4 border-t pt-6">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20a8 8 0 0116 0" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">Tina Maria Lie</p>
+                <p className="text-sm text-sea-ink-soft">
+                  Sykepleier og filosof · Fevik, Agder
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-foreground">Tina Maria Lie</p>
-              <p className="text-sm text-sea-ink-soft">
-                Sykepleier og filosof · Fevik, Agder
-              </p>
-            </div>
-          </div>
-        </article>
+          </article>
         </IslandShell>
 
         {/* Sidebar */}

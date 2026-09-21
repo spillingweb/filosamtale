@@ -10,6 +10,7 @@ import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import IslandShell from "#/components/ui/IslandShell";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const OmMeg = ({
   pageData,
@@ -21,7 +22,7 @@ const OmMeg = ({
   const page = pageData.pages;
 
   // Type guard: ensure we have standard template
-  if (page.__typename !== "PagesStandard") {
+  if (page.__typename !== "PagesAbout") {
     throw new Error("Expected standard template for om-meg.md");
   }
 
@@ -55,8 +56,9 @@ const OmMeg = ({
 
         {/* Portrait */}
         <div className="h-full place-content-center">
-          <img
-            src={page.profileImage || "/uploads/profile.jpg"}
+          <OptimizedImage
+            src={page.profileImage}
+            fallbackSrc="/uploads/profile.jpg"
             alt={`${page.title} - Sykepleier og filosof`}
             className="aspect-square w-full object-cover rounded-2xl"
             data-tina-field={tinaField(page, "profileImage")}

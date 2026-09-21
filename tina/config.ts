@@ -75,6 +75,7 @@ export default defineConfig({
                 type: "image",
                 name: "heroImage",
                 label: "Hovedbilde (hero)",
+                required: true,
               },
               {
                 type: "string",
@@ -152,6 +153,7 @@ export default defineConfig({
                 type: "image",
                 name: "profileImage",
                 label: "Profilbilde (Om meg-seksjon)",
+                required: true,
               },
 
               {
@@ -204,8 +206,8 @@ export default defineConfig({
             ],
           },
           {
-            name: "standard",
-            label: "Standard side",
+            name: "about",
+            label: "Om meg-side",
             fields: [
               {
                 type: "string",
@@ -230,6 +232,7 @@ export default defineConfig({
                 type: "image",
                 name: "profileImage",
                 label: "Profilbilde",
+                required: true,
               },
               {
                 type: "rich-text",

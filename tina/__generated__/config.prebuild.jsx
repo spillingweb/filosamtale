@@ -54,7 +54,8 @@ var config_default = defineConfig({
               {
                 type: "image",
                 name: "heroImage",
-                label: "Hovedbilde (hero)"
+                label: "Hovedbilde (hero)",
+                required: true
               },
               {
                 type: "string",
@@ -129,7 +130,8 @@ var config_default = defineConfig({
               {
                 type: "image",
                 name: "profileImage",
-                label: "Profilbilde (Om meg-seksjon)"
+                label: "Profilbilde (Om meg-seksjon)",
+                required: true
               },
               {
                 type: "object",
@@ -181,8 +183,8 @@ var config_default = defineConfig({
             ]
           },
           {
-            name: "standard",
-            label: "Standard side",
+            name: "about",
+            label: "Om meg-side",
             fields: [
               {
                 type: "string",
@@ -206,7 +208,8 @@ var config_default = defineConfig({
               {
                 type: "image",
                 name: "profileImage",
-                label: "Profilbilde"
+                label: "Profilbilde",
+                required: true
               },
               {
                 type: "rich-text",
