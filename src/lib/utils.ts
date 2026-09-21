@@ -22,22 +22,30 @@ export function getOptimizedImageUrl(src: string | undefined | null, width: numb
   
   let cleanSrc = src.trim();
 
-  // Ensure absolute paths formatting
-  if (!cleanSrc.startsWith('/') && !cleanSrc.startsWith('http')) {
-    cleanSrc = '/' + cleanSrc;
-  }
-  
-  if (cleanSrc.startsWith('http')) return cleanSrc; 
-
-  // ✨ BULLETPROOF PRODUCTION CHECK: Only use Vercel optimization in production
+  // 1. Check if we are running in local development
   const isVercelProduction = typeof window !== 'undefined' 
     ? !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')
     : process.env.NODE_ENV === 'production';
 
+  // Local development bypass
   if (!isVercelProduction) {
-    return cleanSrc; // Bypass optimization during local development
+    return cleanSrc;
+  }
+
+  // 2. Handle absolute paths vs external assets
+  if (cleanSrc.startsWith('http')) {
+    // Only optimize external images coming from your Tina CMS asset library
+    if (cleanSrc.includes('assets.tina.io')) {
+      return `/_vercel/image?url=${encodeURIComponent(cleanSrc)}&w=${width}&q=${quality}`;
+    }
+    // Let other external image links pass through unoptimized
+    return cleanSrc; 
+  }
+
+  // 3. Handle standard absolute local paths (e.g., /uploads/...)
+  if (!cleanSrc.startsWith('/')) {
+    cleanSrc = '/' + cleanSrc;
   }
   
-  // Routes local assets explicitly through Vercel's Optimization Proxy
   return `/_vercel/image?url=${encodeURIComponent(cleanSrc)}&w=${width}&q=${quality}`;
 }

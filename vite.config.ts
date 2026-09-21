@@ -17,7 +17,7 @@ const config = defineConfig({
         config: {
           version: 3,
           images: {
-            domains: ["filosamtale.no", "filosamtale.vercel.app"],
+            domains: ["filosamtale.no", "filosamtale.vercel.app", "assets.tina.io"],
             // ✨ Provide standard device widths to satisfy the Vercel typing contract
             sizes: [256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             minimumCacheTTL: 60,
