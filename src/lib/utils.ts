@@ -20,15 +20,24 @@ export function formatDate(dateStr: string) {
 export function getOptimizedImageUrl(src: string | undefined | null, width: number, quality = 75): string {
   if (!src) return "";
   
-  // If it's already an external absolute URL (e.g. from an external CMS asset hosting link), let it pass straight through
-  if (!src.startsWith('/')) return src; 
-  
-  // NATIVE LOCAL BYPASS: During local Vite development, Vercel's edge proxy will return a 404.
-  // We check the environment status dynamically to ensure your local dev experience stays fast and unbroken.
-  if (import.meta.env.DEV) {
-    return src;
+  let cleanSrc = src.trim();
+
+  // Ensure absolute paths formatting
+  if (!cleanSrc.startsWith('/') && !cleanSrc.startsWith('http')) {
+    cleanSrc = '/' + cleanSrc;
   }
   
-  // Routes local paths through Vercel's Edge CDN Optimization pipeline
-  return `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`;
+  if (cleanSrc.startsWith('http')) return cleanSrc; 
+
+  // ✨ BULLETPROOF PRODUCTION CHECK: Only use Vercel optimization in production
+  const isVercelProduction = typeof window !== 'undefined' 
+    ? !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')
+    : process.env.NODE_ENV === 'production';
+
+  if (!isVercelProduction) {
+    return cleanSrc; // Bypass optimization during local development
+  }
+  
+  // Routes local assets explicitly through Vercel's Optimization Proxy
+  return `/_vercel/image?url=${encodeURIComponent(cleanSrc)}&w=${width}&q=${quality}`;
 }
