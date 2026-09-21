@@ -17,6 +17,7 @@ import type {
   TjenesterConnectionQuery,
 } from "../../../tina/__generated__/types";
 import PageWrap from "#/components/ui/PageWrap";
+import { getOptimizedImageUrl } from "#/lib/utils";
 
 const Home = ({
   pageData,
@@ -61,7 +62,7 @@ const Home = ({
       <section className="relative pb-4">
         <div className="relative overflow-hidden">
           <img
-            src={page.heroImage || "/uploads/hero-chairs.jpg"}
+            src={getOptimizedImageUrl(page.heroImage || "/uploads/hero-chairs.jpg", 1920)}
             alt="Hero image"
             className="aspect-16/7 w-full object-cover object-bottom lg:opacity-30"
             data-tina-field={tinaField(page, "heroImage")}
@@ -193,7 +194,7 @@ const Home = ({
                   {tjeneste.image && (
                     <div className="overflow-hidden">
                       <img
-                        src={tjeneste.image}
+                        src={getOptimizedImageUrl(tjeneste.image, 640)}
                         alt={tjeneste.tittel}
                         className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
                         data-tina-field={tinaField(tjeneste, "image")}
@@ -238,7 +239,7 @@ const Home = ({
                 data-tina-field={tinaField(page, "profileImage")}
               >
                 <img
-                  src={page.profileImage || "/uploads/profile.jpg"}
+                  src={getOptimizedImageUrl(page.profileImage || "/uploads/profile.jpg", 750)}
                   alt={`${page.aboutName} - Sykepleier og filosof`}
                   className="aspect-4/3 w-full object-cover"
                 />
@@ -360,7 +361,7 @@ const Home = ({
                   {post.coverImage && (
                     <div className="overflow-hidden">
                       <img
-                        src={post.coverImage}
+                        src={getOptimizedImageUrl(post.coverImage, 640)}
                         alt={post.title}
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                         data-tina-field={tinaField(post, "coverImage")}
