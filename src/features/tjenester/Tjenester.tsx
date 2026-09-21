@@ -11,6 +11,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import IslandKicker from "#/components/ui/IslandKicker";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
+import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const Tjenester = ({
   tjenesterData,
@@ -127,7 +128,7 @@ const Tjenester = ({
                     {/* Image - top on mobile, left on desktop */}
                     {tjeneste.image && (
                       <div className="lg:row-span-2 order-first lg:order-0">
-                        <img
+                        <OptimizedImage
                           src={tjeneste.image}
                           alt={tjeneste.tittel}
                           className="w-full h-48 lg:h-full object-cover rounded-lg"
