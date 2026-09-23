@@ -371,8 +371,9 @@ const Home = ({
                     <div className="overflow-hidden">
                       <OptimizedImage
                         src={post.coverImage}
+                        defaultWidth={640}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        loading="lazy" // Lazy load below-the-fold content
+                        loading="lazy"
                         alt={post.title}
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                         data-tina-field={tinaField(post, "coverImage")}

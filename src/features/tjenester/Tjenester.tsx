@@ -131,6 +131,8 @@ const Tjenester = ({
                         <OptimizedImage
                           src={tjeneste.image}
                           alt={tjeneste.tittel}
+                          defaultWidth={640}
+                          sizes="100vw"
                           className="w-full h-48 lg:h-full object-cover rounded-lg"
                           data-tina-field={tinaField(tjeneste, "image")}
                         />

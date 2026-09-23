@@ -1,4 +1,3 @@
-// components/ui/OptimizedImage.tsx
 import React from "react";
 
 // Standard mobile, tablet, and desktop layout width parameters for Vercel

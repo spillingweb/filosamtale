@@ -35,12 +35,12 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Tina Maria Lie hjelper deg å utforske livets store spørsmål.",
+          "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.",
       },
       {
         name: "keywords",
         content:
-          "filosofisk veiledning, terapi, samtalegruppe, seminar, Fevik, Agder, filosofi, sykepleier, eksistensiell samtale, psykolog",
+          "filosofisk veiledning, terapi, samtalegruppe, seminar, Fevik, fevik, Agder, filosofi, sykepleier, eksistensiell samtale, psykolog",
       },
       {
         property: "og:title",
@@ -49,7 +49,7 @@ export const Route = createRootRoute({
       {
         property: "og:description",
         content:
-          "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier og filosof.",
+          "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier med videreutdanning i filosofi.",
       },
       { property: "og:url", content: "https://filosamtale.no" },
       { property: "og:locale", content: "nb_NO" },
@@ -73,8 +73,6 @@ export const Route = createRootRoute({
       { rel: "canonical", href: "https://filosamtale.no" },
       { rel: "manifest", href: "/manifest.json" },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {

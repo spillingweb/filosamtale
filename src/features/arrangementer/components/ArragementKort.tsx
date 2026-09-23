@@ -34,6 +34,9 @@ function ArrangementKort({
               <OptimizedImage
                 src={arr.image}
                 alt={arr.title}
+                defaultWidth={640}
+                loading="lazy"
+                sizes="100vw"
                 className="w-full h-48 lg:h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 data-tina-field={tinaField(arr, "image")}
               />
