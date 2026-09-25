@@ -1,8 +1,10 @@
 # Filosamtale - Official Repository
 
-This repository houses the source code for [Filosamtale](https://www.filosamtale.com/), a web platform dedicated to philosophical dialogue, guidance, and practice. The site is built as a high-performance web application leveraging server-side capabilities, modern UI components, visual content management, and strict data privacy compliance.
+This repository houses the source code for [Filosamtale](https://www.filosamtale.no/), a web platform dedicated to philosophical dialogue, guidance, and practice. The site is built as a high-performance web application leveraging server-side capabilities, modern UI components, visual content management, and strict data privacy compliance.
 
 ## 🛠️ Technology Stack
+
+This project is built using modern web development tools to ensure performance, type safety, and an excellent developer and content-editor experience.
 
 - **Framework:** [TanStack Start](https://tanstack.com/start/latest) — Full-stack framework built on TanStack Router
 - **Core Library:** [React 19](https://react.dev/)
@@ -20,14 +22,13 @@ This repository houses the source code for [Filosamtale](https://www.filosamtale
 - **Visual Live Editing:** Content managers can edit text, layout, and images directly on the live page via TinaCMS's contextual editor.
 - **GDPR & Privacy First:** User interaction, form submissions, and email distribution lists are routed through Brevo to ensure full EU privacy compliance.
 
-## 🛠️ Getting Started
+## 📦 Getting Started
 
 ### Prerequisites
 
 Ensure you have the following installed/configured prior to development:
-* **Node.js** (v18 or higher)
-* Package manager of choice (`npm`, `pnpm`, `yarn`, or `bun`)
-* An active **[TinaCloud](https://tina.io/)** account and project linked to this repository
+1. **Node.js** (v18 or higher) and your preferred package manager (`npm`, `yarn`, `pnpm`, or `bun`).
+2. An active **[TinaCloud](https://tina.io/)** account and project linked to this repository.
 
 ### Installation & Local Setup
 
@@ -45,15 +46,13 @@ Ensure you have the following installed/configured prior to development:
 3. **Configure Environment Variables**
    Create a `.env` file in the root directory and supply your TinaCloud and Brevo credentials:
    ```env
-   # TinaCloud Settings
+      # TinaCloud Settings
    TINA_PUBLIC_CLIENT_ID=your_tinacloud_client_id
    TINA_TOKEN=your_tinacloud_read_write_token
    GITHUB_BRANCH=main
 
    # Brevo Integration
    BREVO_API_KEY=your_brevo_api_key
-
-   # Contact e-mail recieving the contact form messages
    CONTACT_TO_EMAIL=your_contact_email
    ```
 
