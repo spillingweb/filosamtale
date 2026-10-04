@@ -7,7 +7,8 @@ subtitle: |-
    Brott & Blega Helse på Feviktoppen.     
 
   Jeg er sykepleier med videreutdanning i filosofi. 
-  Sammen kan vi utforske de tanker, spørsmål og dilemmaer du strever med. 
+  Jeg tilbyr et rom der vi kan utforske de tanker, spørsmål og dilemmaer du strever med. 
+
   Gjennom samtale og refleksjon vil du oppleve klarhet og retning.
 stat1Value: ''
 stat1Label: ''
