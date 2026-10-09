@@ -83,7 +83,7 @@ const Home = ({
           />
         </div>
         <PageWrap>
-          <div className="mt-6 sm:-mt-16 lg:-mt-100 2xl:-mt-150 relative z-10">
+          <div className="mt-6 sm:-mt-16 lg:-mt-100 relative z-10">
             <div className="rise-in mx-auto lg:mx-0 max-w-4xl text-center lg:text-left">
               <IslandKicker
                 className="mb-3"
@@ -169,7 +169,7 @@ const Home = ({
       </section>
       <PageWrap>
         {/* ── TJENESTER OVERVIEW ────────────────────────────────── */}
-        <section className="pb-12 pt-15">
+        <section className="pb-12 pt-15 xl:pt-40">
           <div className="mb-8 text-center">
             <IslandKicker className="mb-2">Hva jeg tilbyr</IslandKicker>
             <DisplayHeading

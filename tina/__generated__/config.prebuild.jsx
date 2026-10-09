@@ -1,10 +1,85 @@
 // tina/config.ts
 import React from "react";
 import { defineConfig } from "tinacms";
+
+// tina/media/uploadCompression.ts
+var MAX_IMAGE_DIMENSION = 1920;
+var TARGET_IMAGE_MAX_MB = 1.2;
+var COMPRESSION_WRAP_FLAG = "__imageCompressionWrapped__";
+function canCompressInBrowser() {
+  return typeof window !== "undefined" && typeof File !== "undefined";
+}
+function shouldCompressFile(file) {
+  if (!file.type.startsWith("image/")) return false;
+  if (file.type === "image/svg+xml" || file.type === "image/gif") return false;
+  return true;
+}
+async function compressImageForUpload(file) {
+  const { default: imageCompression } = await import("browser-image-compression");
+  const compressed = await imageCompression(file, {
+    maxSizeMB: TARGET_IMAGE_MAX_MB,
+    maxWidthOrHeight: MAX_IMAGE_DIMENSION,
+    useWebWorker: true,
+    initialQuality: 0.78
+  });
+  if (compressed.size >= file.size) {
+    return file;
+  }
+  return new File([compressed], file.name, {
+    type: file.type || compressed.type,
+    lastModified: Date.now()
+  });
+}
+function attachUploadCompression(cms) {
+  const tryWrapPersist = () => {
+    const store = cms?.media?.store;
+    if (!store || typeof store.persist !== "function") return false;
+    if (store[COMPRESSION_WRAP_FLAG]) return true;
+    const originalPersist = store.persist.bind(store);
+    store.persist = async (media) => {
+      if (!canCompressInBrowser()) {
+        return originalPersist(media);
+      }
+      const compressedUploads = await Promise.all(
+        media.map(async (item) => {
+          const file = item?.file;
+          if (!file || !shouldCompressFile(file)) return item;
+          try {
+            const compressedFile = await compressImageForUpload(file);
+            return { ...item, file: compressedFile };
+          } catch (error) {
+            console.warn("Image compression failed, uploading original file instead.", error);
+            return item;
+          }
+        })
+      );
+      return originalPersist(compressedUploads);
+    };
+    store[COMPRESSION_WRAP_FLAG] = true;
+    return true;
+  };
+  if (tryWrapPersist()) return;
+  let attempts = 0;
+  const maxAttempts = 20;
+  const interval = window.setInterval(() => {
+    attempts += 1;
+    if (tryWrapPersist() || attempts >= maxAttempts) {
+      window.clearInterval(interval);
+    }
+  }, 200);
+}
+
+// tina/config.ts
 var config_default = defineConfig({
   branch: process.env["GITHUB_BRANCH"] ?? process.env["VERCEL_GIT_COMMIT_REF"] ?? "main",
   clientId: process.env["TINA_PUBLIC_CLIENT_ID"] ?? null,
   token: process.env["TINA_TOKEN"] ?? null,
+  cmsCallback: (cms) => {
+    if (canCompressInBrowser()) {
+      attachUploadCompression(cms);
+    }
+    return cms;
+  },
   build: {
     outputFolder: "admin",
     publicFolder: "public"

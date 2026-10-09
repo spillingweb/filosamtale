@@ -1,5 +1,6 @@
 import React from "react";
 import { defineConfig } from "tinacms";
+import { attachUploadCompression, canCompressInBrowser } from "./media/uploadCompression";
 
 /**
  * Filosamtale — TinaCMS configuration
@@ -21,7 +22,12 @@ export default defineConfig({
     "main",
   clientId: process.env["TINA_PUBLIC_CLIENT_ID"] ?? null,
   token: process.env["TINA_TOKEN"] ?? null,
-
+  cmsCallback: (cms) => {
+    if (canCompressInBrowser()) {
+      attachUploadCompression(cms);
+    }
+    return cms;
+  },
   build: {
     outputFolder: "admin",
     publicFolder: "public",
