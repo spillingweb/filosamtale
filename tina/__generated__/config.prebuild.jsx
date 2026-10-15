@@ -152,36 +152,6 @@ var config_default = defineConfig({
               },
               {
                 type: "string",
-                name: "stat1Value",
-                label: "Statistikk 1: Verdi"
-              },
-              {
-                type: "string",
-                name: "stat1Label",
-                label: "Statistikk 1: Etikett"
-              },
-              {
-                type: "string",
-                name: "stat2Value",
-                label: "Statistikk 2: Verdi"
-              },
-              {
-                type: "string",
-                name: "stat2Label",
-                label: "Statistikk 2: Etikett"
-              },
-              {
-                type: "string",
-                name: "stat3Value",
-                label: "Statistikk 3: Verdi"
-              },
-              {
-                type: "string",
-                name: "stat3Label",
-                label: "Statistikk 3: Etikett"
-              },
-              {
-                type: "string",
                 name: "servicesHeading",
                 label: "Tjenester-seksjon: Overskrift"
               },

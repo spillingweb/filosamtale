@@ -1,9 +1,9 @@
+import { NavLink } from "#/components/ui/nav-link";
+import PageWrap from "#/components/ui/PageWrap";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
-import { Button } from "./ui/button";
-import { NavLink } from "./ui/nav-link";
-import PageWrap from "./ui/PageWrap";
+import { Button } from "#/components/ui/button";
 
 const navLinks = [
   { to: "/" as const, label: "Hjem", exact: true },
@@ -24,7 +24,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b bg-card backdrop-blur-lg">
       <PageWrap>
-        <nav className="flex items-baseline-last gap-x-7 py-3 sm:py-4">
+        <nav
+          aria-label="desktop"
+          className="flex items-baseline-last gap-x-7 py-3 sm:py-4"
+        >
           {/* Logo / brand */}
           <h1 className="m-0 shrink-0 text-base tracking-tight">
             <Link
@@ -118,7 +121,10 @@ export default function Header() {
         {/* Mobile menu panel */}
         {mobileMenuOpen && (
           <div className="fixed left-0 right-0 top-15 z-40 h-[calc(100dvh-60px)] w-full bg-card md:hidden flex flex-col animate-in fade-in-0 duration-200">
-            <nav className="flex-1 flex flex-col items-center justify-center gap-2 p-4">
+            <nav
+              aria-label="mobile"
+              className="flex-1 flex flex-col items-center justify-center gap-2 p-4"
+            >
               {navLinks.map(({ to, label }, i) => (
                 <Link
                   key={to}

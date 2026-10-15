@@ -267,12 +267,6 @@ export type PagesHomepage = Node & Document & {
   kicker?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   subtitle?: Maybe<Scalars['String']['output']>;
-  stat1Value?: Maybe<Scalars['String']['output']>;
-  stat1Label?: Maybe<Scalars['String']['output']>;
-  stat2Value?: Maybe<Scalars['String']['output']>;
-  stat2Label?: Maybe<Scalars['String']['output']>;
-  stat3Value?: Maybe<Scalars['String']['output']>;
-  stat3Label?: Maybe<Scalars['String']['output']>;
   servicesHeading?: Maybe<Scalars['String']['output']>;
   aboutName?: Maybe<Scalars['String']['output']>;
   aboutText1?: Maybe<Scalars['String']['output']>;
@@ -379,12 +373,6 @@ export type PagesHomepageFilter = {
   kicker?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
-  stat1Value?: InputMaybe<StringFilter>;
-  stat1Label?: InputMaybe<StringFilter>;
-  stat2Value?: InputMaybe<StringFilter>;
-  stat2Label?: InputMaybe<StringFilter>;
-  stat3Value?: InputMaybe<StringFilter>;
-  stat3Label?: InputMaybe<StringFilter>;
   servicesHeading?: InputMaybe<StringFilter>;
   aboutName?: InputMaybe<StringFilter>;
   aboutText1?: InputMaybe<StringFilter>;
@@ -845,12 +833,6 @@ export type PagesHomepageMutation = {
   kicker?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
-  stat1Value?: InputMaybe<Scalars['String']['input']>;
-  stat1Label?: InputMaybe<Scalars['String']['input']>;
-  stat2Value?: InputMaybe<Scalars['String']['input']>;
-  stat2Label?: InputMaybe<Scalars['String']['input']>;
-  stat3Value?: InputMaybe<Scalars['String']['input']>;
-  stat3Label?: InputMaybe<Scalars['String']['input']>;
   servicesHeading?: InputMaybe<Scalars['String']['input']>;
   aboutName?: InputMaybe<Scalars['String']['input']>;
   aboutText1?: InputMaybe<Scalars['String']['input']>;
@@ -994,12 +976,6 @@ export type PagesHomepageFilter = {
   kicker?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   subtitle?: StringFilter | null | undefined;
-  stat1Value?: StringFilter | null | undefined;
-  stat1Label?: StringFilter | null | undefined;
-  stat2Value?: StringFilter | null | undefined;
-  stat2Label?: StringFilter | null | undefined;
-  stat3Value?: StringFilter | null | undefined;
-  stat3Label?: StringFilter | null | undefined;
   servicesHeading?: StringFilter | null | undefined;
   aboutName?: StringFilter | null | undefined;
   aboutText1?: StringFilter | null | undefined;
@@ -1151,7 +1127,7 @@ export type KategorierFilter = {
   label?: StringFilter | null | undefined;
 };
 
-type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', heroImage: string, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null };
+type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null };
 
 type PagesParts_PagesAbout_Fragment = { __typename: 'PagesAbout', title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null };
 
@@ -1185,7 +1161,7 @@ export type PagesQueryVariables = Exact<{
 
 
 export type PagesQuery = { pages:
-    | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+    | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
     | { __typename: 'PagesAbout', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
     | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
     | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
@@ -1203,7 +1179,7 @@ export type PagesConnectionQueryVariables = Exact<{
 
 
 export type PagesConnectionQuery = { pagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node:
-        | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, stat1Value: string | null, stat1Label: string | null, stat2Value: string | null, stat2Label: string | null, stat3Value: string | null, stat3Label: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+        | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText1: string | null, aboutText2: string | null, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
         | { __typename: 'PagesAbout', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
         | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
         | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
@@ -1313,12 +1289,6 @@ export const PagesPartsFragmentDoc = gql`
     kicker
     title
     subtitle
-    stat1Value
-    stat1Label
-    stat2Value
-    stat2Label
-    stat3Value
-    stat3Label
     servicesHeading
     aboutName
     aboutText1

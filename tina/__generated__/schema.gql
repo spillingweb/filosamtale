@@ -113,12 +113,6 @@ type PagesHomepage implements Node & Document {
   kicker: String
   title: String!
   subtitle: String
-  stat1Value: String
-  stat1Label: String
-  stat2Value: String
-  stat2Label: String
-  stat3Value: String
-  stat3Label: String
   servicesHeading: String
   aboutName: String
   aboutText1: String
@@ -219,12 +213,6 @@ input PagesHomepageFilter {
   kicker: StringFilter
   title: StringFilter
   subtitle: StringFilter
-  stat1Value: StringFilter
-  stat1Label: StringFilter
-  stat2Value: StringFilter
-  stat2Label: StringFilter
-  stat3Value: StringFilter
-  stat3Label: StringFilter
   servicesHeading: StringFilter
   aboutName: StringFilter
   aboutText1: StringFilter
@@ -561,12 +549,6 @@ input PagesHomepageMutation {
   kicker: String
   title: String
   subtitle: String
-  stat1Value: String
-  stat1Label: String
-  stat2Value: String
-  stat2Label: String
-  stat3Value: String
-  stat3Label: String
   servicesHeading: String
   aboutName: String
   aboutText1: String

@@ -62,7 +62,7 @@
   --surface: oklch(98% 0.02 80 / 0.78);
   --line: oklch(58% 0.08 150 / 0.12);
   --inset-glint: oklch(100% 0 0 / 0.88);
-  --kicker: oklch(60% 0.08 150);
+  --kicker: oklch(51.1% 0.096 186.391);
   --chip-bg: oklch(99% 0.01 80 / 0.85);
   --chip-line: oklch(58% 0.08 150 / 0.16);
   --hero-a: oklch(78% 0.08 165 / 0.22);
@@ -75,7 +75,7 @@
   --card-foreground: oklch(26% 0.02 180);
   --popover: oklch(98% 0.02 80);
   --popover-foreground: oklch(26% 0.02 180);
-  --primary: oklch(58% 0.08 150);
+  --primary: oklch(38.6% 0.063 188.416);
   --primary-foreground: oklch(99% 0 180);
   --secondary: oklch(90% 0.03 80);
   --secondary-foreground: oklch(26% 0.02 180);

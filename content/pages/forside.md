@@ -10,12 +10,6 @@ subtitle: |-
   Jeg tilbyr et rom der vi kan utforske de tanker, spørsmål og dilemmaer du strever med. 
 
   Gjennom samtale og refleksjon vil du oppleve klarhet og retning.
-stat1Value: ''
-stat1Label: ''
-stat2Value: ''
-stat2Label: ''
-stat3Value: ''
-stat3Label: ''
 servicesHeading: Tjenester tilpasset ditt behov
 aboutName: Tina Maria Lie
 aboutText1: 'Jeg er sykepleier med videreutdanning i filosofi. Hos meg vil du bli møtt med en åpen og utforskende tilnærming, og vi sammen skaper vi et trygt rom hvor det er tid til å utforske de tanker og følelser du baler med. '

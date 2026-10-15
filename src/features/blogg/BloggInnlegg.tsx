@@ -11,6 +11,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
 import { OptimizedImage } from "#/components/ui/OptimizedImage";
+import { Card } from "#/components/ui/card";
 
 const BloggInnlegg = ({
   postData,
@@ -50,7 +51,7 @@ const BloggInnlegg = ({
 
       <div className="grid gap-8 lg:grid-cols-4">
         {/* Article */}
-        <IslandShell className="rise-in p-6 sm:p-8 lg:col-span-3">
+        <Card className="rise-in p-6 sm:p-8 lg:col-span-3">
           <article>
             <header className="mb-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -104,7 +105,7 @@ const BloggInnlegg = ({
 
             {/* Body */}
             <div
-              className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+              className=" max-w-none prose-headings:text-foreground prose-h2:font-serif prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h3:mb-2 prose-h3:font-semibold prose-p:mb-4 prose-p:text-sea-ink-soft prose-p:leading-relaxed prose-ul:list-disc prose-ul:pl-5 prose-ul:space-y-2 prose-li:text-sea-ink-soft prose-strong:font-semibold prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
               data-tina-field={tinaField(post, "body")}
             >
               <TinaMarkdown content={post.body} />
@@ -132,7 +133,7 @@ const BloggInnlegg = ({
               </div>
             </div>
           </article>
-        </IslandShell>
+        </Card>
 
         {/* Sidebar */}
         <aside className="space-y-4 lg:col-span-1">

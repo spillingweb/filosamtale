@@ -7,7 +7,6 @@ import { Link } from "@tanstack/react-router";
 import { Badge } from "#/components/ui/badge";
 import IslandKicker from "#/components/ui/IslandKicker";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "#/components/ui/card";
-import IslandShell from "#/components/ui/IslandShell";
 import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
 const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: BloggConnectionQuery }) => {
@@ -52,7 +51,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
           params={{ slug: featured._sys.filename.replace('.md', '') }}
           className="block no-underline"
         >
-          <IslandShell className="rise-in group overflow-hidden transition hover:-translate-y-0.5">
+          <Card className="rise-in group overflow-hidden transition hover:-translate-y-0.5">
             {/* Decorative header bar */}
             <div className="h-2 bg-linear-to-r from-accent to-primary" />
             
@@ -107,7 +106,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
                 </span>
               </div>
             </div>
-          </IslandShell>
+          </Card>
         </Link>
       </article>
 
@@ -121,7 +120,7 @@ const Blogg = ({ pageData, bloggData }: { pageData: PagesQuery; bloggData: Blogg
             className="no-underline"
           >
             <Card
-              className="h-full transition hover:-translate-y-1 overflow-hidden"
+              className="rise-in h-full transition hover:-translate-y-1 overflow-hidden"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               {post.coverImage && (

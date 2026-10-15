@@ -13,12 +13,6 @@ export const PagesPartsFragmentDoc = gql`
     kicker
     title
     subtitle
-    stat1Value
-    stat1Label
-    stat2Value
-    stat2Label
-    stat3Value
-    stat3Label
     servicesHeading
     aboutName
     aboutText1

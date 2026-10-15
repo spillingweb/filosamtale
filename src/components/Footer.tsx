@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa"; // From Font Awesome
 import PageWrap from "./ui/PageWrap";
 import { tinaField } from "tinacms/tina-field";
 import { useTina } from "tinacms/react";
+import { Button } from "./ui/button";
 // import NewsletterDialog from "./NewsletterDialog";
 // import IslandKicker from "./ui/IslandKicker";
 // import IslandShell from "./ui/IslandShell";
@@ -70,22 +71,31 @@ export default function Footer() {
               <span className="text-sm text-sea-ink-soft">Fevik, Agder</span>
             </div>
 
-            <nav className="flex flex-wrap justify-center items-center gap-x-5 gap-y-1 text-sm text-sea-ink-soft md:justify-self-end">
-              <Link to="/om-meg" className="hover:text-foreground">
-                Om meg
-              </Link>
-              <Link to="/tjenester" className="hover:text-foreground">
-                Tjenester
-              </Link>
-              <Link to="/blogg" className="hover:text-foreground">
-                Blogg
-              </Link>
-              <Link to="/arrangementer" className="hover:text-foreground">
-                Arrangementer
-              </Link>
+            <nav className="flex flex-wrap justify-center items-center gap-y-1 text-sm text-sea-ink-soft md:justify-self-end">
+              <Button asChild variant="link" size="sm">
+                <Link to="/om-meg" className="hover:text-foreground">
+                  Om meg
+                </Link>
+              </Button>
+              <Button asChild variant="link" size="sm">
+                <Link to="/tjenester" className="hover:text-foreground">
+                  Tjenester
+                </Link>
+              </Button>
+              <Button asChild variant="link" size="sm">
+                <Link to="/blogg" className="hover:text-foreground">
+                  Blogg
+                </Link>
+              </Button>
+              <Button asChild variant="link" size="sm">
+                <Link to="/arrangementer" className="hover:text-foreground">
+                  Arrangementer
+                </Link>
+              </Button>
             </nav>
-            <div className="flex items-center gap-4 text-sm text-sea-ink-soft md:justify-self-end">
+            <div className="flex items-center text-sm text-sea-ink-soft md:justify-self-end">
               {page.facebook && (
+                <Button asChild variant="link" size="icon">
                 <a
                   href={`https://facebook.com/${page.facebook}`}
                   target="_blank"
@@ -96,27 +106,32 @@ export default function Footer() {
                 >
                   <FaFacebook size={20} />
                 </a>
+              </Button>
               )}
               {page.instagram && (
-                <a
-                  href={`https://instagram.com/${page.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
-                  aria-label="Instagram"
-                  data-tina-field={tinaField(page, "instagram")}
-                >
-                  <FaInstagram size={20} />
-                </a>
+                <Button asChild variant="link" size="icon">
+                  <a
+                    href={`https://instagram.com/${page.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground transition-all"
+                    aria-label="Instagram"
+                    data-tina-field={tinaField(page, "instagram")}
+                  >
+                    <FaInstagram size={20} />
+                  </a>
+                </Button>
               )}
               {page.whatsapp && (
-                <a
-                  aria-label="Chat on WhatsApp"
-                  href={`https://wa.me/47${page.whatsapp}`}
-                  data-tina-field={tinaField(page, "whatsapp")}
-                >
-                  <FaWhatsapp size={20} />
-                </a>
+                <Button asChild variant="link" size="icon">
+                  <a
+                    aria-label="Chat on WhatsApp"
+                    href={`https://wa.me/47${page.whatsapp}`}
+                    data-tina-field={tinaField(page, "whatsapp")}
+                  >
+                    <FaWhatsapp size={20} />
+                  </a>
+                </Button>
               )}
             </div>
             <p className="text-xs text-sea-ink-soft md:row-start-2">

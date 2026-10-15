@@ -1,6 +1,9 @@
 import React from "react";
 import { defineConfig } from "tinacms";
-import { attachUploadCompression, canCompressInBrowser } from "./media/uploadCompression";
+import {
+  attachUploadCompression,
+  canCompressInBrowser,
+} from "./media/uploadCompression";
 
 /**
  * Filosamtale — TinaCMS configuration
@@ -100,37 +103,6 @@ export default defineConfig({
                 name: "subtitle",
                 label: "Undertittel",
                 ui: { component: "textarea" },
-              },
-
-              {
-                type: "string",
-                name: "stat1Value",
-                label: "Statistikk 1: Verdi",
-              },
-              {
-                type: "string",
-                name: "stat1Label",
-                label: "Statistikk 1: Etikett",
-              },
-              {
-                type: "string",
-                name: "stat2Value",
-                label: "Statistikk 2: Verdi",
-              },
-              {
-                type: "string",
-                name: "stat2Label",
-                label: "Statistikk 2: Etikett",
-              },
-              {
-                type: "string",
-                name: "stat3Value",
-                label: "Statistikk 3: Verdi",
-              },
-              {
-                type: "string",
-                name: "stat3Label",
-                label: "Statistikk 3: Etikett",
               },
               {
                 type: "string",

@@ -25,7 +25,7 @@ function ArrangementKort({
   const eventDate = new Date(arr.date);
 
   return (
-    <IslandShell className={isPast ? "opacity-60" : ""}>
+    <IslandShell>
       <article className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr] group">
         {/* Image with date overlay - left on desktop, top on mobile */}
         <div className="relative overflow-hidden rounded-lg order-first">
@@ -76,13 +76,13 @@ function ArrangementKort({
         <div className="flex flex-col">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <Badge
-              variant={isPast ? "secondary" : "accent"}
+              variant="accent"
               data-tina-field={tinaField(arr, "category")}
             >
               {categoryLabels && categoryLabels[category]}
             </Badge>
             {arr.isOnline && <Badge variant="outline">Online</Badge>}
-            {isPast && <Badge variant="secondary">Avholdt</Badge>}
+            {isPast && <Badge variant="destructive">Avholdt</Badge>}
           </div>
 
           <DisplayHeading

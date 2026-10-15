@@ -13,9 +13,9 @@ import IslandKicker from "./ui/IslandKicker";
 import IslandShell from "./ui/IslandShell";
 import type { PagesKontakt } from "../../tina/__generated__/types";
 
-const ContactForm = ({page}: {page: PagesKontakt}) => {
+const ContactForm = ({ page }: { page: PagesKontakt }) => {
   const send = useServerFn(sendKontaktskjema);
-  
+
   // Get pre-filled message from URL search params
   const searchParams = useSearch({ strict: false }) as { message?: string };
 
@@ -35,18 +35,21 @@ const ContactForm = ({page}: {page: PagesKontakt}) => {
   // Pre-fill message when URL param changes
   useEffect(() => {
     if (searchParams.message) {
-      setForm(prev => ({ ...prev, melding: decodeURIComponent(searchParams.message as string) }));
+      setForm((prev) => ({
+        ...prev,
+        melding: decodeURIComponent(searchParams.message as string),
+      }));
       // Clear the message param from URL after pre-filling (keep hash)
       const url = new URL(window.location.href);
-      url.searchParams.delete('message');
-      window.history.replaceState({}, '', url.toString());
+      url.searchParams.delete("message");
+      window.history.replaceState({}, "", url.toString());
     }
   }, [searchParams.message]);
 
   // Focus first input when navigating to #kontakt
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#kontakt') {
+      if (window.location.hash === "#kontakt") {
         // Small delay to ensure scroll has completed
         setTimeout(() => {
           nameInputRef.current?.focus();
@@ -58,10 +61,10 @@ const ContactForm = ({page}: {page: PagesKontakt}) => {
     handleHashChange();
 
     // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    
+    window.addEventListener("hashchange", handleHashChange);
+
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
 
@@ -186,10 +189,13 @@ const ContactForm = ({page}: {page: PagesKontakt}) => {
             <p className="text-sea-ink-soft">
               Takk for din henvendelse. Jeg svarer deg innen to virkedager.
             </p>
-            <Button variant="outline" onClick={() => {
-              setStatus("idle");
-              setTimeout(() => nameInputRef.current?.focus(), 100);
-            }}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setStatus("idle");
+                setTimeout(() => nameInputRef.current?.focus(), 100);
+              }}
+            >
               Send ny melding
             </Button>
           </div>
