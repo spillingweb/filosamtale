@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { client } from '../../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
-import Blogg from "#/features/blogg/Blogg";
+import BloggPage from "#/features/blogg/BloggPage";
 
 export const Route = createFileRoute("/blogg/")({
   loader: async () => {
@@ -49,5 +49,5 @@ function RouteComponent() {
     data: initialData.page.data,
   })
   
-  return <Blogg bloggData={bloggData} pageData={pageData} />
+  return <BloggPage bloggData={bloggData} pageData={pageData} />
 }

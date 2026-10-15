@@ -10,7 +10,6 @@ import type {
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
-import { OptimizedImage } from "#/components/ui/OptimizedImage";
 import { Card } from "#/components/ui/card";
 
 const BloggInnlegg = ({
@@ -94,7 +93,7 @@ const BloggInnlegg = ({
             {/* Cover Image */}
             {post.coverImage && (
               <div className="mb-8 -mx-6 sm:-mx-8">
-                <OptimizedImage
+                <img
                   src={post.coverImage}
                   alt={post.title}
                   className="w-full aspect-video object-cover"

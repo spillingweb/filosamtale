@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../../tina/__generated__/client";
 import { useTina } from "tinacms/dist/react";
-import Home from "#/features/home/Home";
+import HomePage from "#/features/home/HomePage";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -43,5 +43,5 @@ function RouteComponent() {
     data: initialData.blogg.data,
   });
 
-  return <Home pageData={pageData} tjenesterData={tjenesterData} bloggData={bloggData} />;
+  return <HomePage pageData={pageData} tjenesterData={tjenesterData} bloggData={bloggData} />;
 }

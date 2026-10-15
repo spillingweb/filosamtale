@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../../tina/__generated__/client";
 import { generateEventSchema } from "#/lib/structured-data";
-import Arrangementer from "#/features/arrangementer/components/Arrangementer";
+import ArrangementerPage from "#/features/arrangementer/components/ArrangementerPage";
 import { useTina } from "tinacms/react";
 
 export const Route = createFileRoute("/arrangementer")({
@@ -91,5 +91,5 @@ function RouteComponent() {
     data: initialData.kategorier.data,
   });
 
-  return <Arrangementer arrangementerData={arrangementerData} pageData={pageData} kategorierData={kategorierData} />;
+  return <ArrangementerPage arrangementerData={arrangementerData} pageData={pageData} kategorierData={kategorierData} />;
 }

@@ -5,7 +5,7 @@ import {
   Outlet,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import Footer from "../components/Footer";
+import Footer from "../features/footer/Footer";
 import { client } from "../../tina/__generated__/client";
 import {
   generateWebsiteSchema,
@@ -17,6 +17,9 @@ import NotFound from "#/components/NotFound";
 import Header from "#/features/header/Header";
 
 const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`;
+
+const FONTS_URL =
+  "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap";
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -112,6 +115,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           }}
         />
         <HeadContent />
+        {/* Non-render-blocking font load: dynamically created <link> elements are async, unlike static ones */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${FONTS_URL}';document.head.appendChild(l)})()` }} />
+        <noscript>
+          <link rel="stylesheet" href={FONTS_URL} />
+        </noscript>
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-primary/30 selection:text-foreground">
         {children}

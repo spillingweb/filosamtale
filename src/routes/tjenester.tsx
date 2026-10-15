@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../../tina/__generated__/client";
 import { useTina } from "tinacms/dist/react";
 import { generateServiceSchema } from "#/lib/structured-data";
-import Tjenester from "#/features/tjenester/Tjenester";
+import TjenesterPage from "#/features/tjenester/TjenesterPage";
 
 export const Route = createFileRoute("/tjenester")({
   loader: async () => {
@@ -77,5 +77,5 @@ function RouteComponent() {
     data: initialData.page.data,
   });
 
-  return <Tjenester tjenesterData={tjenesterData} pageData={pageData} />;
+  return <TjenesterPage tjenesterData={tjenesterData} pageData={pageData} />;
 }

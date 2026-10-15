@@ -12,7 +12,7 @@ import BloggTeaser from "../blogg/BloggTeaser";
 import CallToAction from "./CallToAction";
 import Hero from "./Hero";
 
-const Home = ({
+const HomePage = ({
   pageData,
   tjenesterData,
   bloggData,
@@ -55,4 +55,4 @@ const Home = ({
   );
 };
 
-export default Home;
+export default HomePage;

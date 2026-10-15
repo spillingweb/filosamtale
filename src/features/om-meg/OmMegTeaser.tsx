@@ -2,7 +2,6 @@ import { Button } from "#/components/ui/button";
 import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import IslandKicker from "#/components/ui/IslandKicker";
 import IslandShell from "#/components/ui/IslandShell";
-import { OptimizedImage } from "#/components/ui/OptimizedImage";
 import { Link } from "@tanstack/react-router";
 import { tinaField } from "tinacms/tina-field";
 import type { PagesHomepage } from "../../../tina/__generated__/types";
@@ -17,11 +16,10 @@ const OmMegTeaser = ({ page }: { page: PagesHomepage }) => {
             className="overflow-hidden"
             data-tina-field={tinaField(page, "profileImage")}
           >
-            <OptimizedImage
+            <img
               src={page.profileImage || "/uploads/profile.jpg"}
-              defaultWidth={750}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              loading="lazy" // Lazy load below-the-fold content
+              loading="lazy"
               alt={`${page.aboutName} - Sykepleier og filosof`}
               className="aspect-4/3 w-full object-cover"
               data-tina-field={tinaField(page, "profileImage")}

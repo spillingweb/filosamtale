@@ -10,9 +10,8 @@ import { Badge } from "#/components/ui/badge";
 import { Button } from "#/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import IslandShell from "#/components/ui/IslandShell";
-import { OptimizedImage } from "#/components/ui/OptimizedImage";
 
-const OmMeg = ({
+const OmMegPage = ({
   pageData,
   utdanningData,
 }: {
@@ -56,9 +55,8 @@ const OmMeg = ({
 
         {/* Portrait */}
         <div className="h-full place-content-center">
-          <OptimizedImage
-            src={page.profileImage}
-            fallbackSrc="/uploads/profile.jpg"
+          <img
+            src={page.profileImage || "/uploads/profile.jpg"}
             alt={`${page.title} - Sykepleier og filosof`}
             className="aspect-square w-full object-cover rounded-2xl"
             data-tina-field={tinaField(page, "profileImage")}
@@ -162,4 +160,4 @@ const OmMeg = ({
   );
 };
 
-export default OmMeg;
+export default OmMegPage;

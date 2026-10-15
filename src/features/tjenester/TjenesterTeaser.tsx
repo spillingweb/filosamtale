@@ -2,7 +2,6 @@ import { Button } from "#/components/ui/button";
 import { DisplayHeading } from "#/components/ui/DisplayHeading";
 import IslandKicker from "#/components/ui/IslandKicker";
 import IslandShell from "#/components/ui/IslandShell";
-import { OptimizedImage } from "#/components/ui/OptimizedImage";
 import { Link } from "@tanstack/react-router";
 import { tinaField } from "tinacms/tina-field";
 import type { PagesHomepage, TjenesterConnectionQuery } from "../../../tina/__generated__/types";
@@ -47,7 +46,7 @@ const TjenesterTeaser = ({ page, data }: { page: PagesHomepage; data: TjenesterC
             >
               {tjeneste.image && (
                 <div className="overflow-hidden">
-                  <OptimizedImage
+                  <img
                     src={tjeneste.image}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"

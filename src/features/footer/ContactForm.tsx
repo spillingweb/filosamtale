@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useSearch } from "@tanstack/react-router";
-import { Button } from "./ui/button";
-import { DisplayHeading } from "./ui/DisplayHeading";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
+import { Button } from "../../components/ui/button";
+import { DisplayHeading } from "../../components/ui/DisplayHeading";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import { Label } from "../../components/ui/label";
 import { sendKontaktskjema } from "#/server/kontakt";
 import { tinaField } from "tinacms/dist/react";
 import { Mail, MapPin, Phone } from "lucide-react";
-import IslandKicker from "./ui/IslandKicker";
-import IslandShell from "./ui/IslandShell";
-import type { PagesKontakt } from "../../tina/__generated__/types";
+import IslandKicker from "../../components/ui/IslandKicker";
+import IslandShell from "../../components/ui/IslandShell";
+import type { PagesKontakt } from "../../../tina/__generated__/types";
 
 const ContactForm = ({ page }: { page: PagesKontakt }) => {
   const send = useServerFn(sendKontaktskjema);

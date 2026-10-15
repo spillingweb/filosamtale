@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTina } from "tinacms/dist/react";
 import client from "../../tina/__generated__/client";
-import OmMeg from "#/features/om-meg/OmMeg";
+import OmMeg from "#/features/om-meg/OmMegPage";
 
 export const Route = createFileRoute("/om-meg")({
   loader: async () => {

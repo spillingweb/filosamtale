@@ -19,7 +19,7 @@ import {
 } from "../utils";
 import ArrangementKort from "./ArragementKort";
 
-function Arrangementer({
+function ArrangementerPage({
   arrangementerData,
   pageData,
   kategorierData,
@@ -186,4 +186,4 @@ function Arrangementer({
   );
 }
 
-export default Arrangementer;
+export default ArrangementerPage;

@@ -1,13 +1,13 @@
 ﻿import { getRouteApi, Link } from "@tanstack/react-router";
-import type { PagesKontakt } from "../../tina/__generated__/types";
+import type { PagesKontakt } from "../../../tina/__generated__/types";
 import ContactForm from "./ContactForm";
 import { FaFacebook } from "react-icons/fa"; // From Font Awesome
 import { FaInstagram } from "react-icons/fa"; // From Font Awesome
 import { FaWhatsapp } from "react-icons/fa"; // From Font Awesome
-import PageWrap from "./ui/PageWrap";
+import PageWrap from "../../components/ui/PageWrap";
 import { tinaField } from "tinacms/tina-field";
 import { useTina } from "tinacms/react";
-import { Button } from "./ui/button";
+import { Button } from "../../components/ui/button";
 // import NewsletterDialog from "./NewsletterDialog";
 // import IslandKicker from "./ui/IslandKicker";
 // import IslandShell from "./ui/IslandShell";
@@ -95,7 +95,7 @@ export default function Footer() {
             </nav>
             <div className="flex items-center text-sm text-sea-ink-soft md:justify-self-end">
               {page.facebook && (
-                <Button asChild variant="link" size="icon">
+                <Button asChild variant="link" size="icon" className="text-foreground hover:text-primary">
                 <a
                   href={`https://facebook.com/${page.facebook}`}
                   target="_blank"
@@ -109,7 +109,7 @@ export default function Footer() {
               </Button>
               )}
               {page.instagram && (
-                <Button asChild variant="link" size="icon">
+                <Button asChild variant="link" size="icon" className="text-foreground hover:text-primary">
                   <a
                     href={`https://instagram.com/${page.instagram}`}
                     target="_blank"
@@ -123,7 +123,7 @@ export default function Footer() {
                 </Button>
               )}
               {page.whatsapp && (
-                <Button asChild variant="link" size="icon">
+                <Button asChild variant="link" size="icon" className="text-foreground hover:text-primary">
                   <a
                     aria-label="Chat on WhatsApp"
                     href={`https://wa.me/47${page.whatsapp}`}
@@ -135,7 +135,7 @@ export default function Footer() {
               )}
             </div>
             <p className="text-xs text-sea-ink-soft md:row-start-2">
-              &copy; {YEAR}{" "}
+              Design og utvikling av {" "}
               <a
                 href="https://spillingweb.com"
                 target="_blank"
@@ -144,7 +144,7 @@ export default function Footer() {
               >
                 Spilling Web
               </a>
-              . Alle rettigheter forbeholdt.
+              {" "} {YEAR} &copy;.
             </p>
           </div>
         </div>
