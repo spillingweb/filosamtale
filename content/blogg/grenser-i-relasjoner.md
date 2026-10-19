@@ -7,13 +7,9 @@ readingTime: 5
 coverImage: /uploads/nadine-e-DRzYMtae-vA-unsplash.jpg
 ---
 
-Å si nei er ikke egoisme. Det er integritet. Men hva er egentlig en grense, og hvorfor er det så vanskelig å håndheve dem?
-
-Vi vokser opp med forestillingen om at å hjelpe andre er en dyd — og det er det. Men det er en dyd som forutsetter at du har noe å gi. En tom kanne kan ikke helle.
+Under bearbeidelse
 
 **Grenser som selvrespekt**
-
-Filosofen Kant argumenterte for at vi har en plikt til å behandle oss selv som mål i oss selv, ikke bare som midler. Det betyr at du ikke bare har rett til å ta vare på deg selv — du har en slags plikt til det.
 
 Å sette grenser er ikke å si «jeg er viktigere enn deg». Det er å si «vi er begge viktige, og for at jeg skal kunne bidra i dette forholdet, trenger jeg å passe på meg selv».
 
