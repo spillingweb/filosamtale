@@ -4,7 +4,7 @@ excerpt: Under bearbeidelse
 date: 2025-03-22T00:00:00.000Z
 category: Refleksjon
 readingTime: 7
-coverImage: /uploads/matheus-ferrero-yfmjALh1S6s-unsplash.jpg
+coverImage: /uploads/natalie-agatha-XAI8K6zF6Lc-unsplash.jpg
 ---
 
 **Under bearbeidelse.**
