@@ -4,7 +4,7 @@ excerpt: 'Filosofisk dialog er ikke terapi, og det er ikke undervisning. Det er 
 date: 2025-04-15T00:00:00.000Z
 category: Filosofi
 readingTime: 5
-coverImage: /uploads/janos-venczak-o3XLseWSDDY-unsplash.jpg
+coverImage: /uploads/wolfgang-hasselmann-RCv4rfVnuec-unsplash.jpg
 ---
 
 En filosofisk samtale er en undersøkende samtale der vi sammen tar for oss de tanker, følelser og dilemmaer du strever med. Filosofisk dialog er ikke terapi, og det er ikke undervisning. Du vil ikke få et foredrag om kloke tanker fra gamle filosofer. Det du heller får er en aktivt lyttende, og empatisk samtalepartner. Jeg er ikke her for å gi deg råd om hvordan du bør leve livet ditt, eller hvilke valg du skal ta. Jeg er her med deg i denne samtalen for at vi sammen skal undre oss over hva det som er det viktigste for deg, akkurat nå. Hva er det egentlig det handler om, dette som du syns er vanskelig? 
