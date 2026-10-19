@@ -3,8 +3,7 @@ heroImage: /uploads/hero-chairs.jpg
 kicker: 'Filosofisk veiledning · Fevik, Agder'
 title: 'Filosofiske samtaler på Fevik. '
 subtitle: |-
-  Velkommen til samtaler i lokalet til
-   Brott & Blega Helse på Feviktoppen.     
+  Velkommen til samtaler.    
 
   Jeg er sykepleier med videreutdanning i filosofi. 
   Jeg tilbyr et rom der vi kan utforske de tanker, spørsmål og dilemmaer du strever med. 
