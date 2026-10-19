@@ -1,17 +1,34 @@
+/* ── Font imports must precede all other at-rules (CSS spec) ─────────── */
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/manrope";
+
+/* ── Tailwind v4 ─────────────────────────────────────────────────────── */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* ── Dark mode variant configuration ───────────────────────────────── */
-/* Tell Tailwind v4 when to apply dark: classes - matches the .dark class added by ThemeToggle */
+/* ── Dark mode variant: fires when a .dark class is on an ancestor ───── */
 @custom-variant dark (.dark &);
 
+/* ── Design tokens & Tailwind theme extensions ───────────────────────── */
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, serif;
+
+  --animate-rise-in: rise-in 1700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-bounce-in: bounce-in 1000ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce-in {
+    from { opacity: 0; transform: scale(0.3) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
 }
 
-/* ── ShadCN/ui CSS variable layer ───────────────────────────────────── */
-/* Maps shadcn utility names to the site's warm Scandinavian palette.   */
+/* ── ShadCN/ui: bridge CSS variables → Tailwind color utilities ───────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,7 +50,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand colors - used for custom design elements */
   --color-sea-ink-soft: var(--sea-ink-soft);
   --color-lagoon-deep: var(--lagoon-deep);
   --color-sand: var(--sand);
@@ -49,8 +65,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ── CSS variable values: light mode (OKLCH warm Scandinavian) ────────── */
 :root {
-  /* ── Brand design tokens (OKLCH color space) ─────────────────────── */
   --sea-ink: oklch(26% 0.02 180);
   --sea-ink-soft: oklch(40% 0.02 180);
   --lagoon: oklch(72% 0.08 185);
@@ -67,7 +83,6 @@
   --hero-a: oklch(78% 0.08 165 / 0.22);
   --hero-b: oklch(85% 0.06 80 / 0.28);
 
-  /* ── ShadCN variable values (OKLCH warm Scandinavian) ──────────────── */
   --background: oklch(97% 0.02 80);
   --foreground: oklch(26% 0.02 180);
   --card: oklch(99% 0.01 80);
@@ -90,11 +105,12 @@
   --radius: 0.75rem;
 }
 
+/* ── CSS variable values: dark mode ──────────────────────────────────── */
+/* Explicit dark theme, or system dark preference when not forced light.  */
 :root[data-theme="dark"],
 :root:not([data-theme="light"]) {
   @media (prefers-color-scheme: dark) {
     & {
-      /* ── Brand design tokens (OKLCH dark mode) ──────────────────── */
       --sea-ink: oklch(91% 0.02 80);
       --sea-ink-soft: oklch(78% 0.02 80);
       --lagoon: oklch(75% 0.06 145);
@@ -111,7 +127,6 @@
       --hero-a: oklch(55% 0.05 70 / 0.06);
       --hero-b: oklch(65% 0.05 75 / 0.05);
 
-      /* ── ShadCN variable values (OKLCH dark mode) ───────────────── */
       --background: oklch(12% 0.02 80);
       --foreground: oklch(91% 0.02 80);
       --card: oklch(14% 0.02 80);
@@ -135,107 +150,59 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  min-height: 100%;
-}
-
-body {
-  margin: 0;
-  color: var(--sea-ink);
-  font-family: var(--font-sans);
-  background-color: var(--bg-background);
-  background:
-    radial-gradient(1400px 800px at -10% -8%, var(--hero-a), transparent 65%),
-    radial-gradient(900px 600px at 95% -5%, var(--hero-b), transparent 58%),
-    radial-gradient(
-      1000px 600px at 40% 120%,
-      oklch(85% 0.06 80 / 0.12),
-      transparent 70%
-    ),
-    linear-gradient(
-      180deg,
-      var(--foam) 45%,
-      var(--background) 100%
-    );
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.28;
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      oklch(78% 0.08 165 / 0.18),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 85% 75%,
-      oklch(85% 0.06 80 / 0.14),
-      transparent 45%
-    );
-}
-
-a {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  /* color: inherit; */
-}
-
-/* Prose link styling (for rich-text content like event descriptions) */
-.prose a {
-  color: var(--primary);
-  text-decoration: underline;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.prose a:hover {
-  color: var(--accent);
-}
-
-.rise-in {
-  animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+/* ── Base layer ───────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    @apply border-border;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    @apply m-0 font-sans bg-background overflow-x-hidden;
+    color: var(--sea-ink);
+    background:
+      radial-gradient(1400px 800px at -10% -8%, var(--hero-a), transparent 65%),
+      radial-gradient(900px 600px at 95% -5%, var(--hero-b), transparent 58%),
+      radial-gradient(1000px 600px at 40% 120%, oklch(85% 0.06 80 / 0.12), transparent 70%),
+      linear-gradient(180deg, var(--foam) 45%, var(--background) 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.28;
+    background:
+      radial-gradient(circle at 15% 20%, oklch(78% 0.08 165 / 0.18), transparent 50%),
+      radial-gradient(circle at 85% 75%, oklch(85% 0.06 80 / 0.14), transparent 45%);
+  }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
   }
 }
 
-.bounce-in {
-  animation: bounce-in 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
+/* ── Component layer ──────────────────────────────────────────────────── */
+@layer components {
+  .prose a {
+    color: var(--primary);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
 
-@keyframes bounce-in {
-  from {
-    opacity: 0;
-    transform: scale(0.3) translateY(20px);
+    &:hover {
+      color: var(--accent);
+    }
   }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-* {
-  @apply border-border;
 }

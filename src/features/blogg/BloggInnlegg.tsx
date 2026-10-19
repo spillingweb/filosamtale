@@ -50,7 +50,7 @@ const BloggInnlegg = ({
 
       <div className="grid gap-8 lg:grid-cols-4">
         {/* Article */}
-        <Card className="rise-in p-6 sm:p-8 lg:col-span-3">
+        <Card className="animate-rise-in p-6 sm:p-8 lg:col-span-3">
           <article>
             <header className="mb-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">

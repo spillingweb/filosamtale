@@ -75,7 +75,7 @@ const TjenesterPage = ({
 
         <nav
           aria-label="Hopp til tjenestekategori"
-          className="rise-in -mx-4 px-4 lg:mx-0 lg:px-0 lg:pt-10"
+          className="animate-rise-in -mx-4 px-4 lg:mx-0 lg:px-0 lg:pt-10"
         >
           <div className="rounded-xl border border-chip-line bg-card p-4 lg:sticky lg:top-24">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-sea-ink-soft">

@@ -20,7 +20,7 @@ const PageHeader = ({
   };
 }) => {
   return (
-    <section className="rise-in py-5">
+    <section className="animate-rise-in py-5">
       <IslandKicker className="mb-3">{pageName}</IslandKicker>
       <DisplayHeading 
         as="h1"

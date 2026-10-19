@@ -30,7 +30,7 @@ const Hero = ({ page }: { page: any }) => {
       </div>
       <PageWrap>
         <div className="mt-6 sm:-mt-16 xl:-mt-100 relative z-10">
-          <div className="rise-in mx-auto xl:mx-0 max-w-4xl text-center xl:text-left">
+          <div className="animate-rise-in mx-auto xl:mx-0 max-w-4xl text-center xl:text-left">
             <IslandKicker
               className="mb-3"
               data-tina-field={tinaField(page, "kicker")}

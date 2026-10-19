@@ -13,7 +13,7 @@ import type { Blogg } from "../../../tina/__generated__/types";
 const BloggCard = ({ post, index }: { post: Blogg; index: number }) => {
   return (
     <IslandShell
-      className="rise-in group cursor-pointer flex flex-col overflow-hidden"
+      className="animate-rise-in group cursor-pointer flex flex-col overflow-hidden"
       style={{ animationDelay: `${index * 100}ms` }}
       isFeature
     >

@@ -36,7 +36,7 @@ const TjenesterTeaser = ({ page, data }: { page: PagesHomepage; data: TjenesterC
           <IslandShell
             key={tjeneste.id}
             isFeature
-            className="rise-in overflow-hidden p-0"
+            className="animate-rise-in overflow-hidden p-0"
             style={{ animationDelay: `${i * 80 + 60}ms` }}
           >
             <Link

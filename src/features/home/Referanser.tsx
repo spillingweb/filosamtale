@@ -23,7 +23,7 @@ const Referanser = ({ page }: { page: PagesHomepage }) => {
           .map((testimonial, i) => (
             <IslandShell
               key={i}
-              className="rise-in px-6 py-8 flex flex-col"
+              className="animate-rise-in px-6 py-8 flex flex-col"
               style={{ animationDelay: `${i * 100}ms` }}
               isFeature
             >

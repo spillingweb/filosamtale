@@ -16,7 +16,7 @@ const { coverImage, title, excerpt, date, readingTime, category, _sys } = conten
           params={{ slug: _sys.filename.replace('.md', '') }}
           className="block no-underline"
         >
-          <IslandShell className="rise-in group overflow-hidden transition hover:-translate-y-0.5">
+          <IslandShell className="animate-rise-in group overflow-hidden transition hover:-translate-y-0.5">
             {/* Decorative header bar */}
             <div className="h-2 bg-linear-to-r from-accent to-primary" />
             

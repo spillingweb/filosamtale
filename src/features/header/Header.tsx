@@ -130,11 +130,11 @@ export default function Header() {
                   key={to}
                   to={to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="rise-in px-4 py-3 text-2xl font-medium  transition hover:text-foreground"
+                  className="animate-rise-in px-4 py-3 text-2xl font-medium  transition hover:text-foreground"
                   style={{ animationDelay: `${i * 80}ms` }}
                   activeProps={{
                     className:
-                      "rise-in px-4 py-3 text-2xl font-semibold text-primary",
+                      "animate-rise-in px-4 py-3 text-2xl font-semibold text-primary",
                   }}
                   activeOptions={to === "/" ? { exact: true } : undefined}
                 >
@@ -147,7 +147,7 @@ export default function Header() {
             <div className="p-4">
               <Button
                 asChild
-                className="rise-in w-full"
+                className="animate-rise-in w-full"
                 style={{ animationDelay: `${navLinks.length * 80}ms` }}
               >
                 <a
