@@ -5,7 +5,7 @@ title: 'Filosofiske samtaler på Fevik. '
 subtitle: |-
   Velkommen til samtaler.    
 
-  Jeg er sykepleier med videreutdanning i filosofi. 
+  Jeg er sykepleier med videreutdanning i filosofi, og jeg har en samtalepraksis.
   Sammen kan vi utforske de tanker, spørsmål og dilemmaer du strever med.
 servicesHeading: Tjenester tilpasset ditt behov
 aboutName: Tina Maria Lie
