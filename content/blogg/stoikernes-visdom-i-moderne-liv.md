@@ -1,13 +1,11 @@
 ---
 title: Stoikernes visdom i et moderne liv
-excerpt: Marcus Aurelius styrte et rike og kjempet i krig — likevel fant han tid til å skrive dagboknotater om sinnsro. Hva kan han lære oss om å leve i en travel hverdag?
+excerpt: Under bearbeidelse
 date: 2025-02-10T00:00:00.000Z
 category: Filosofihistorie
 readingTime: 6
 coverImage: /uploads/bao-menglong-RsL2ncSkYB0-unsplash.jpg
 ---
-
-Marcus Aurelius styrte et rike og kjempet i krig — likevel fant han tid til å skrive dagboknotater om sinnsro. Hva kan han lære oss om å leve i en travel hverdag?
 
 Stoikerne mente at lykke ikke avhenger av ytre omstendigheter, men av hvordan vi forholder oss til dem. «Du har makt over sinnet ditt, ikke over ytre hendelser,» skriver Aurelius. «Erkjenn dette, og du finner styrke.»
 
