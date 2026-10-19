@@ -1,14 +1,14 @@
 ---
-title: 'Dagsseminar: Filosofi og helse'
-description: |
-  Et halvdagsseminar for helsepersonell og interesserte om eksistensielle dimensjoner i omsorgsfaget. Vi ser på hvordan filosofisk tenkning kan berike møtet med pasienter og pårørende. Seminarrekke på tre deler.
+title: Dødskafe
+description: ''
 image: /uploads/emma-simpson-mNGaaLeWEp0-unsplash.jpg
-date: 2026-09-13T00:00:00.000Z
-time: '09:00–13:00'
-location: 'Aust-Agder Kulturhus, Grimstad'
-price: 1200
-capacity: 25
-kategorier: content/kategorier/seminar.json
+date: 2026-10-31T01:00:00.000Z
+endDate: 2026-10-31T09:07:16.415Z
+time: '12:00–13:00'
+location: 'Eple & Kos, Feviktoppen 19.'
+price: 0
+capacity: 50
+kategorier: content/kategorier/dialog.json
 isOnline: false
 ---
 
