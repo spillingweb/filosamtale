@@ -13,7 +13,7 @@ I min praksis bruker jeg filosofisk dialog som en metode for å hjelpe mennesker
 
 **Hva skjer i en filosofisk dialog?**
 
-Som min gjest er det du som bestemmer hva vi skal prate om. 
+Som min gjest er det du som bestemmer hva vi skal prate om. Hvordan samtalen forløper kan være avhengig av hva som er tema, og hvor vi ønsker å ende opp. 
 
 Vi begynner gjerne med et spørsmål du bringer med deg. Det kan være eksistensielt («Hva er meningen med livet mitt?»), etisk («Hvilket valg bør jeg ta? Hvordan vet jeg hva som er riktig?»), eller praktisk («Hvordan vil jeg leve?»). Gjennom samtalen undersøker vi spørsmålet fra ulike vinkler, utfordrer premissene, og lar tanken arbeide fritt.
 
