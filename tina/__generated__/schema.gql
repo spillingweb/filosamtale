@@ -115,8 +115,7 @@ type PagesHomepage implements Node & Document {
   subtitle: String
   servicesHeading: String
   aboutName: String
-  aboutText1: String
-  aboutText2: String
+  aboutText: JSON
   profileImage: String!
   testimonials: [PagesHomepageTestimonials]
   blogHeading: String
@@ -202,6 +201,12 @@ input StringFilter {
   in: [String]
 }
 
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
 input PagesHomepageTestimonialsFilter {
   quote: StringFilter
   name: StringFilter
@@ -215,19 +220,12 @@ input PagesHomepageFilter {
   subtitle: StringFilter
   servicesHeading: StringFilter
   aboutName: StringFilter
-  aboutText1: StringFilter
-  aboutText2: StringFilter
+  aboutText: RichTextFilter
   profileImage: ImageFilter
   testimonials: PagesHomepageTestimonialsFilter
   blogHeading: StringFilter
   ctaTitle: StringFilter
   ctaDescription: StringFilter
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
 }
 
 input PagesAboutVerdierFilter {
@@ -551,8 +549,7 @@ input PagesHomepageMutation {
   subtitle: String
   servicesHeading: String
   aboutName: String
-  aboutText1: String
-  aboutText2: String
+  aboutText: JSON
   profileImage: String
   testimonials: [PagesHomepageTestimonialsMutation]
   blogHeading: String

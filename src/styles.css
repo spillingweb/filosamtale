@@ -164,7 +164,7 @@
   }
 
   body {
-    @apply m-0 font-sans bg-background overflow-x-hidden;
+    @apply m-0 font-sans bg-background overflow-x-hidden antialiased wrap-anywhere selection:bg-primary/30 selection:text-foreground;
     color: var(--sea-ink);
     background:
       radial-gradient(1400px 800px at -10% -8%, var(--hero-a), transparent 65%),

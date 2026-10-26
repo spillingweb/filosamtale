@@ -15,8 +15,7 @@ export const PagesPartsFragmentDoc = gql`
     subtitle
     servicesHeading
     aboutName
-    aboutText1
-    aboutText2
+    aboutText
     profileImage
     testimonials {
       __typename

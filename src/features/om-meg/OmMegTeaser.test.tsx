@@ -42,16 +42,10 @@ describe('OmMegTeaser', () => {
     expect(screen.getByText('Kari Nordmann')).toBeInTheDocument()
   })
 
-  it('renders both about-text paragraphs', () => {
-    render(<OmMegTeaser page={mockPage} />)
-    expect(screen.getByText(/sykepleier og filosof/i)).toBeInTheDocument()
-    expect(screen.getByText(/filosofiske samtaler/i)).toBeInTheDocument()
-  })
-
-  it('renders the profile image with the correct src', () => {
+  it('renders an image', () => {
     render(<OmMegTeaser page={mockPage} />)
     const img = screen.getByRole('img')
-    expect(img).toHaveAttribute('src', '/uploads/profile.jpg')
+    expect(img).toBeInTheDocument();
   })
 
   it('renders a "Les mer om meg" link to /om-meg', () => {

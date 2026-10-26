@@ -161,17 +161,23 @@ var config_default = defineConfig({
                 label: "Om meg: Navn"
               },
               {
-                type: "string",
-                name: "aboutText1",
-                label: "Om meg: Avsnitt 1",
-                ui: { component: "textarea" }
+                type: "rich-text",
+                name: "aboutText",
+                label: "Om meg",
+                isBody: true
               },
-              {
-                type: "string",
-                name: "aboutText2",
-                label: "Om meg: Avsnitt 2",
-                ui: { component: "textarea" }
-              },
+              // {
+              //   type: "string",
+              //   name: "aboutText1",
+              //   label: "Om meg: Avsnitt 1",
+              //   ui: { component: "textarea" },
+              // },
+              // {
+              //   type: "string",
+              //   name: "aboutText2",
+              //   label: "Om meg: Avsnitt 2",
+              //   ui: { component: "textarea" },
+              // },
               {
                 type: "image",
                 name: "profileImage",

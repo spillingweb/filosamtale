@@ -107,7 +107,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         />
         <HeadContent />
       </head>
-      <body className="antialiased wrap-anywhere selection:bg-primary/30 selection:text-foreground">
+      <body>
         {children}
         <Scripts />
       </body>

@@ -5,15 +5,16 @@ import IslandShell from "#/components/ui/IslandShell";
 import { Link } from "@tanstack/react-router";
 import { tinaField } from "tinacms/tina-field";
 import type { PagesHomepage } from "../../../tina/__generated__/types";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 const OmMegTeaser = ({ page }: { page: PagesHomepage }) => {
   return (
     <section className="px-2 sm:px-4 py-12">
-      <div className="grid items-center gap-10 lg:grid-cols-2">
+      <div className="grid gap-10 md:grid-cols-2">
         {/* Profile portrait */}
-        <div className="order-2 lg:order-1">
+        <div className="order-2 md:order-1">
           <IslandShell
-            className="overflow-hidden"
+            className="overflow-hidden h-full"
             data-tina-field={tinaField(page, "profileImage")}
           >
             <img
@@ -21,13 +22,13 @@ const OmMegTeaser = ({ page }: { page: PagesHomepage }) => {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               loading="lazy"
               alt={`${page.aboutName} - Sykepleier og filosof`}
-              className="aspect-4/3 w-full object-cover"
+              className="w-full object-cover h-full"
               data-tina-field={tinaField(page, "profileImage")}
             />
           </IslandShell>
         </div>
 
-        <div className="order-1 lg:order-2">
+        <div className="order-1 md:order-2">
           <IslandKicker className="mb-3">Om meg</IslandKicker>
           <DisplayHeading
             as="h2"
@@ -37,18 +38,13 @@ const OmMegTeaser = ({ page }: { page: PagesHomepage }) => {
           >
             {page.aboutName}
           </DisplayHeading>
-          <p
-            className="mb-3 text-sea-ink-soft leading-relaxed"
-            data-tina-field={tinaField(page, "aboutText1")}
+
+          <div
+            className="text-sea-ink-soft leading-relaxed flex flex-col gap-2 mb-4"
+            data-tina-field={tinaField(page, "aboutText")}
           >
-            {page.aboutText1}
-          </p>
-          <p
-            className="mb-6 text-sea-ink-soft leading-relaxed"
-            data-tina-field={tinaField(page, "aboutText2")}
-          >
-            {page.aboutText2}
-          </p>
+            <TinaMarkdown content={page.aboutText} />
+          </div>
           <Button asChild>
             <Link to="/om-meg">Les mer om meg</Link>
           </Button>

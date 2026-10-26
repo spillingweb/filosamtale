@@ -9,11 +9,6 @@ subtitle: |-
   Sammen kan vi utforske de tanker, spørsmål og dilemmaer du strever med.
 servicesHeading: Tjenester tilpasset ditt behov
 aboutName: Tina Maria Lie
-aboutText1: 'Jeg er sykepleier med videreutdanning i filosofi. Hos meg vil du bli møtt med en åpen og utforskende tilnærming, og sammen skaper vi et trygt rom hvor det er tid til å utforske de tanker og følelser du baler med. '
-aboutText2: |2-
-   Sykdom og fysiske vondter, traumatiske opplevelser, omveltende livsforandringer eller hverdagens evige stress, alt dette berører oss på forskjellige vis. Det hjelper å kunne ha en utforskende, ærlig dialog om de tanker og følelser som oppstår.
-
-   Det å ha et filosofisk utgangspunkt betyr å våge å stille spørsmål rundt det som blir tatt for gitt, det betyr å tørre å være kritisk, undrende, og åpen for nye tanker og ideer. 
 profileImage: /uploads/profile.jpg
 testimonials:
   - quote: Samtalene med Tina har hjulpet meg å se livet mitt i et nytt perspektiv. Hun har en unik evne til å stille spørsmål som får meg til å tenke dypere.
@@ -31,3 +26,8 @@ ctaDescription: 'Om du er nysgjerrig på filosofisk dialog, ønsker å delta på
 _template: homepage
 ---
 
+Jeg er sykepleier med videreutdanning i filosofi. Hos meg vil du bli møtt med en åpen og utforskende tilnærming, og sammen skaper vi et trygt rom hvor det er tid til å utforske de tanker og følelser du baler med.
+
+Sykdom og fysiske vondter, traumatiske opplevelser, omveltende livsforandringer eller hverdagens evige stress, alt dette berører oss på forskjellige vis. Det hjelper å kunne ha en utforskende, ærlig dialog om de tanker og følelser som oppstår.
+
+Det å ha et filosofisk utgangspunkt betyr å våge å stille spørsmål rundt det som blir tatt for gitt, det betyr å tørre å være kritisk, undrende, og åpen for nye tanker og ideer
