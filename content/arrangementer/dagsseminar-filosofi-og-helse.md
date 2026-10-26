@@ -1,7 +1,7 @@
 ---
 title: Dødskafe
 description: ''
-image: /uploads/jens-aber-cFk0NqfbU7Q-unsplash.jpg
+image: /uploads/B-B-sos.medi.png
 date: 2026-10-31T01:00:00.000Z
 endDate: 2026-10-31T09:07:16.415Z
 time: '12:00–13:00'
