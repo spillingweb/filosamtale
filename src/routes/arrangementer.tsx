@@ -6,11 +6,12 @@ import { useTina } from "tinacms/react";
 
 export const Route = createFileRoute("/arrangementer")({
   loader: async () => {
-    const [arrangementerResult, pageResult, kategorierResult] = await Promise.all([
-      client.queries.arrangementerConnection({ sort: "date" }),
-      client.queries.pages({ relativePath: "arrangementer.md" }),
-      client.queries.kategorierConnection(),
-    ]);
+    const [arrangementerResult, pageResult, kategorierResult] =
+      await Promise.all([
+        client.queries.arrangementerConnection({ sort: "date" }),
+        client.queries.pages({ relativePath: "arrangementer.md" }),
+        client.queries.kategorierConnection(),
+      ]);
     return {
       arrangementer: arrangementerResult,
       page: pageResult,
@@ -28,8 +29,8 @@ export const Route = createFileRoute("/arrangementer")({
       .filter((node: any) => node !== null);
 
     return {
-      title: "Arrangementer — Seminarer, kurs og samtalegrupper — Filosamtale",
       meta: [
+        { title: "Arrangementer — Filosamtale" },
         {
           name: "description",
           content:
@@ -70,7 +71,7 @@ export const Route = createFileRoute("/arrangementer")({
 function RouteComponent() {
   const initialData = Route.useLoaderData();
 
-    // Enable live preview for arrangementer
+  // Enable live preview for arrangementer
   const { data: arrangementerData } = useTina({
     query: initialData.arrangementer.query,
     variables: initialData.arrangementer.variables,
@@ -91,5 +92,11 @@ function RouteComponent() {
     data: initialData.kategorier.data,
   });
 
-  return <ArrangementerPage arrangementerData={arrangementerData} pageData={pageData} kategorierData={kategorierData} />;
+  return (
+    <ArrangementerPage
+      arrangementerData={arrangementerData}
+      pageData={pageData}
+      kategorierData={kategorierData}
+    />
+  );
 }

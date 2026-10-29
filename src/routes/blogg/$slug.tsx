@@ -42,8 +42,8 @@ export const Route = createFileRoute("/blogg/$slug")({
       : `${baseUrl}/uploads/hero-chairs.jpg`; // fallback image
 
     return {
-      title: `${post.title} — Filosamtale`,
       meta: [
+        { title: `${post.title} — Filosamtale` },
         { name: "description", content: description },
         { name: "author", content: "Tina Maria Lie" },
         { property: "og:title", content: post.title || "" },

@@ -24,9 +24,8 @@ export const Route = createFileRoute("/tjenester")({
       .filter((node: any) => node !== null);
 
     return {
-      title:
-        "Tjenester — Filosofisk veiledning og samtalegrupper — Filosamtale",
       meta: [
+        { title: "Tjenester — Filosamtale" },
         {
           name: "description",
           content:

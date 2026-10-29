@@ -18,8 +18,8 @@ export const Route = createFileRoute("/blogg/")({
     }
   },
   head: () => ({
-    title: 'Blogg — Tanker om filosofi og livets spørsmål — Filosamtale',
     meta: [
+      { title: 'Blogg — Filosamtale' },
       { name: 'description', content: 'Les filosofiske refleksjoner og tanker om livets store spørsmål. Artikler om eksistensialisme, stoisk filosofi, omsorg og mening.' },
       { property: 'og:title', content: 'Blogg — Filosamtale' },
       { property: 'og:type', content: 'website' },

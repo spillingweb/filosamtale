@@ -28,7 +28,6 @@ function ArrangementerPage({
   pageData: PagesQuery;
   kategorierData: KategorierConnectionQuery;
 }) {
-  // const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [visiblePastCount, setVisiblePastCount] = useState(3);
 
@@ -66,9 +65,14 @@ function ArrangementerPage({
   const sortedUpcomingMonths = Object.entries(upcomingByMonth).sort(
     ([a], [b]) => a.localeCompare(b),
   );
+  
+  // Make last events of the month appear first for past events
+  Object.values(pastByMonth).forEach(({ events }) => events.reverse());
+
+  // Reverse order for past
   const sortedPastMonths = Object.entries(pastByMonth).sort(([a], [b]) =>
     b.localeCompare(a),
-  ); // Reverse order for past
+  );
 
   return (
     <ContentLayout>
@@ -131,57 +135,57 @@ function ArrangementerPage({
       )}
 
       {/* Past Events Section */}
-      {sortedPastMonths.length > 0 && (() => {
-        let remaining = visiblePastCount;
-        const visibleMonths = sortedPastMonths
-          .map(([monthKey, { label, events }]) => {
-            if (remaining <= 0) return null;
-            const visible = events.slice(0, remaining);
-            remaining -= visible.length;
-            return [monthKey, { label, events: visible }] as const;
-          })
-          .filter((x): x is NonNullable<typeof x> => x !== null);
-        const totalPastEvents = sortedPastMonths.reduce(
-          (sum, [, { events }]) => sum + events.length,
-          0,
-        );
-        return (
-          <div className="mt-16 space-y-10">
-            <DisplayHeading as="h2" size="xl">
-              Tidligere arrangementer
-            </DisplayHeading>
-            {visibleMonths.map(([monthKey, { label, events }]) => (
-              <section key={monthKey}>
-                <DisplayHeading as="h3" size="sm" className="mb-5">
-                  {label}
-                </DisplayHeading>
-                <div className="space-y-5">
-                  {events.map((arr) => (
-                    <ArrangementKort
-                      key={arr.id}
-                      arr={arr}
-                      // onImageClick={setSelectedImage}
-                      categoryLabels={categoryLabels}
-                      isPast={true}
-                    />
-                  ))}
+      {sortedPastMonths.length > 0 &&
+        (() => {
+          let remaining = visiblePastCount;
+          const visibleMonths = sortedPastMonths
+            .map(([monthKey, { label, events }]) => {
+              if (remaining <= 0) return null;
+              const visible = events.slice(0, remaining);
+              remaining -= visible.length;
+              return [monthKey, { label, events: visible }] as const;
+            })
+            .filter((x): x is NonNullable<typeof x> => x !== null);
+          const totalPastEvents = sortedPastMonths.reduce(
+            (sum, [, { events }]) => sum + events.length,
+            0,
+          );
+          return (
+            <div className="mt-16 space-y-10">
+              <DisplayHeading as="h2" size="xl">
+                Tidligere arrangementer
+              </DisplayHeading>
+              {visibleMonths.map(([monthKey, { label, events }]) => (
+                <section key={monthKey}>
+                  <DisplayHeading as="h3" size="sm" className="mb-5">
+                    {label}
+                  </DisplayHeading>
+                  <div className="space-y-5">
+                    {events.map((arr) => (
+                      <ArrangementKort
+                        key={arr.id}
+                        arr={arr}
+                        // onImageClick={setSelectedImage}
+                        categoryLabels={categoryLabels}
+                        isPast={true}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
+              {visiblePastCount < totalPastEvents && (
+                <div className="text-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => setVisiblePastCount((n) => n + 3)}
+                  >
+                    Last flere tidligere arrangementer
+                  </Button>
                 </div>
-              </section>
-            ))}
-            {visiblePastCount < totalPastEvents && (
-              <div className="text-center">
-                <Button
-                  variant="outline"
-                  onClick={() => setVisiblePastCount((n) => n + 3)}
-                >
-                  Last flere tidligere arrangementer
-                </Button>
-              </div>
-            )}
-          </div>
-        );
-      })()}
-
+              )}
+            </div>
+          );
+        })()}
     </ContentLayout>
   );
 }

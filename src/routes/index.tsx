@@ -16,6 +16,47 @@ export const Route = createFileRoute("/")({
       blogg: bloggResult,
     };
   },
+  head: () => ({
+    meta: [
+      { title: "Filosamtale — Filosofisk veiledning og dialog i Fevik" },
+      {
+        name: "description",
+        content:
+          "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.",
+      },
+      {
+        name: "keywords",
+        content:
+        "filosofisk veiledning, terapi, samtalegruppe, seminar, Fevik, fevik, Agder, filosofi, sykepleier, eksistensiell samtale, psykolog, samtalepraksis, samtale",
+      },
+      {
+        property: "og:title",
+        content: "Filosamtale — Filosofisk veiledning og dialog",
+      },
+      {
+        property: "og:description",
+        content:
+        "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier med videreutdanning i filosofi.",
+      },
+      { property: "og:url", content: "https://filosamtale.no" },
+      { property: "og:locale", content: "nb_NO" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Filosamtale" },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Filosamtale — Filosofisk veiledning og dialog",
+      },
+      {
+        name: "twitter:description",
+        content:
+        "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett.",
+      },
+    ],
+    links: [
+      { rel: "canonical", href: "https://filosamtale.no" },
+    ],
+  }),
   component: RouteComponent,
 });
 
@@ -43,5 +84,11 @@ function RouteComponent() {
     data: initialData.blogg.data,
   });
 
-  return <HomePage pageData={pageData} tjenesterData={tjenesterData} bloggData={bloggData} />;
+  return (
+    <HomePage
+      pageData={pageData}
+      tjenesterData={tjenesterData}
+      bloggData={bloggData}
+    />
+  );
 }
