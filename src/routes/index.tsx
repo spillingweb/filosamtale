@@ -28,8 +28,7 @@ export const Route = createFileRoute("/")({
         {
           name: "description",
           content:
-            page.metaDescription ||
-            "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.",
+            page.metaDescription,
         },
         {
           property: "og:title",

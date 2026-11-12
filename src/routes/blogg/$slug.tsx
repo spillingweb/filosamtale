@@ -38,8 +38,8 @@ export const Route = createFileRoute("/blogg/$slug")({
 
     // Prepare Open Graph image
     const ogImage = post.coverImage
-      ? `${baseUrl}${post.coverImage}`
-      : `${baseUrl}/uploads/hero-chairs.jpg`; // fallback image
+      ? post.coverImage
+      : "/uploads/hero-chairs.jpg";
 
     return {
       meta: [
