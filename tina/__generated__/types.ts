@@ -263,6 +263,8 @@ export type PagesHomepageTestimonials = {
 
 export type PagesHomepage = Node & Document & {
   __typename?: 'PagesHomepage';
+  metaTitle: Scalars['String']['output'];
+  metaDescription: Scalars['String']['output'];
   heroImage: Scalars['String']['output'];
   kicker?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
@@ -288,6 +290,8 @@ export type PagesAboutVerdier = {
 
 export type PagesAbout = Node & Document & {
   __typename?: 'PagesAbout';
+  metaTitle: Scalars['String']['output'];
+  metaDescription: Scalars['String']['output'];
   title: Scalars['String']['output'];
   subtitle?: Maybe<Scalars['String']['output']>;
   intro?: Maybe<Scalars['String']['output']>;
@@ -301,6 +305,8 @@ export type PagesAbout = Node & Document & {
 
 export type PagesHeader = Node & Document & {
   __typename?: 'PagesHeader';
+  metaTitle: Scalars['String']['output'];
+  metaDescription: Scalars['String']['output'];
   title: Scalars['String']['output'];
   intro?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
@@ -316,6 +322,8 @@ export type PagesServicesFaq = {
 
 export type PagesServices = Node & Document & {
   __typename?: 'PagesServices';
+  metaTitle: Scalars['String']['output'];
+  metaDescription: Scalars['String']['output'];
   title: Scalars['String']['output'];
   subtitle?: Maybe<Scalars['String']['output']>;
   intro?: Maybe<Scalars['String']['output']>;
@@ -347,14 +355,14 @@ export type PagesKontakt = Node & Document & {
 
 export type Pages = PagesHomepage | PagesAbout | PagesHeader | PagesServices | PagesKontakt;
 
-export type ImageFilter = {
+export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
   eq?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type StringFilter = {
+export type ImageFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
   eq?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -374,6 +382,8 @@ export type PagesHomepageTestimonialsFilter = {
 };
 
 export type PagesHomepageFilter = {
+  metaTitle?: InputMaybe<StringFilter>;
+  metaDescription?: InputMaybe<StringFilter>;
   heroImage?: InputMaybe<ImageFilter>;
   kicker?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -394,6 +404,8 @@ export type PagesAboutVerdierFilter = {
 };
 
 export type PagesAboutFilter = {
+  metaTitle?: InputMaybe<StringFilter>;
+  metaDescription?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
@@ -403,6 +415,8 @@ export type PagesAboutFilter = {
 };
 
 export type PagesHeaderFilter = {
+  metaTitle?: InputMaybe<StringFilter>;
+  metaDescription?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
 };
@@ -413,6 +427,8 @@ export type PagesServicesFaqFilter = {
 };
 
 export type PagesServicesFilter = {
+  metaTitle?: InputMaybe<StringFilter>;
+  metaDescription?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
@@ -827,6 +843,8 @@ export type PagesHomepageTestimonialsMutation = {
 };
 
 export type PagesHomepageMutation = {
+  metaTitle?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
   heroImage?: InputMaybe<Scalars['String']['input']>;
   kicker?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -847,6 +865,8 @@ export type PagesAboutVerdierMutation = {
 };
 
 export type PagesAboutMutation = {
+  metaTitle?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
@@ -856,6 +876,8 @@ export type PagesAboutMutation = {
 };
 
 export type PagesHeaderMutation = {
+  metaTitle?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
 };
@@ -866,6 +888,8 @@ export type PagesServicesFaqMutation = {
 };
 
 export type PagesServicesMutation = {
+  metaTitle?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
@@ -948,14 +972,14 @@ export type KategorierMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ImageFilter = {
+export type StringFilter = {
   startsWith?: string | null | undefined;
   eq?: string | null | undefined;
   exists?: boolean | null | undefined;
   in?: Array<string | null | undefined> | null | undefined;
 };
 
-export type StringFilter = {
+export type ImageFilter = {
   startsWith?: string | null | undefined;
   eq?: string | null | undefined;
   exists?: boolean | null | undefined;
@@ -975,6 +999,8 @@ export type PagesHomepageTestimonialsFilter = {
 };
 
 export type PagesHomepageFilter = {
+  metaTitle?: StringFilter | null | undefined;
+  metaDescription?: StringFilter | null | undefined;
   heroImage?: ImageFilter | null | undefined;
   kicker?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
@@ -995,6 +1021,8 @@ export type PagesAboutVerdierFilter = {
 };
 
 export type PagesAboutFilter = {
+  metaTitle?: StringFilter | null | undefined;
+  metaDescription?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   subtitle?: StringFilter | null | undefined;
   intro?: StringFilter | null | undefined;
@@ -1004,6 +1032,8 @@ export type PagesAboutFilter = {
 };
 
 export type PagesHeaderFilter = {
+  metaTitle?: StringFilter | null | undefined;
+  metaDescription?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   intro?: StringFilter | null | undefined;
 };
@@ -1014,6 +1044,8 @@ export type PagesServicesFaqFilter = {
 };
 
 export type PagesServicesFilter = {
+  metaTitle?: StringFilter | null | undefined;
+  metaDescription?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   subtitle?: StringFilter | null | undefined;
   intro?: StringFilter | null | undefined;
@@ -1123,13 +1155,13 @@ export type KategorierFilter = {
   label?: StringFilter | null | undefined;
 };
 
-type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null };
+type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', metaTitle: string, metaDescription: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null };
 
-type PagesParts_PagesAbout_Fragment = { __typename: 'PagesAbout', title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null };
+type PagesParts_PagesAbout_Fragment = { __typename: 'PagesAbout', metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null };
 
-type PagesParts_PagesHeader_Fragment = { __typename: 'PagesHeader', title: string, intro: string | null };
+type PagesParts_PagesHeader_Fragment = { __typename: 'PagesHeader', metaTitle: string, metaDescription: string, title: string, intro: string | null };
 
-type PagesParts_PagesServices_Fragment = { __typename: 'PagesServices', title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null };
+type PagesParts_PagesServices_Fragment = { __typename: 'PagesServices', metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null };
 
 type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null };
 
@@ -1157,10 +1189,10 @@ export type PagesQueryVariables = Exact<{
 
 
 export type PagesQuery = { pages:
-    | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
-    | { __typename: 'PagesAbout', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
-    | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
-    | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
+    | { __typename: 'PagesHomepage', id: string, metaTitle: string, metaDescription: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+    | { __typename: 'PagesAbout', id: string, metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
+    | { __typename: 'PagesHeader', id: string, metaTitle: string, metaDescription: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+    | { __typename: 'PagesServices', id: string, metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
     | { __typename: 'PagesKontakt', id: string, title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
    };
 
@@ -1175,10 +1207,10 @@ export type PagesConnectionQueryVariables = Exact<{
 
 
 export type PagesConnectionQuery = { pagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node:
-        | { __typename: 'PagesHomepage', id: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
-        | { __typename: 'PagesAbout', id: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
-        | { __typename: 'PagesHeader', id: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
-        | { __typename: 'PagesServices', id: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
+        | { __typename: 'PagesHomepage', id: string, metaTitle: string, metaDescription: string, heroImage: string, kicker: string | null, title: string, subtitle: string | null, servicesHeading: string | null, aboutName: string | null, aboutText: any, profileImage: string, blogHeading: string | null, ctaTitle: string | null, ctaDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, testimonials: Array<{ __typename: 'PagesHomepageTestimonials', quote: string, name: string, role: string | null } | null> | null }
+        | { __typename: 'PagesAbout', id: string, metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, profileImage: string, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier: Array<{ __typename: 'PagesAboutVerdier', tittel: string, tekst: string } | null> | null }
+        | { __typename: 'PagesHeader', id: string, metaTitle: string, metaDescription: string, title: string, intro: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
+        | { __typename: 'PagesServices', id: string, metaTitle: string, metaDescription: string, title: string, subtitle: string | null, intro: string | null, infoBadge: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null }
         | { __typename: 'PagesKontakt', id: string, title: string, kicker: string | null, heading: string, description: string, addressLine1: string | null, addressLine2: string | null, addressLine3: string | null, email: string, phone: string, facebook: string | null, instagram: string | null, whatsapp: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } }
        | null } | null> | null } };
 
@@ -1281,6 +1313,8 @@ export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
   ... on PagesHomepage {
+    metaTitle
+    metaDescription
     heroImage
     kicker
     title
@@ -1300,6 +1334,8 @@ export const PagesPartsFragmentDoc = gql`
     ctaDescription
   }
   ... on PagesAbout {
+    metaTitle
+    metaDescription
     title
     subtitle
     intro
@@ -1312,10 +1348,14 @@ export const PagesPartsFragmentDoc = gql`
     }
   }
   ... on PagesHeader {
+    metaTitle
+    metaDescription
     title
     intro
   }
   ... on PagesServices {
+    metaTitle
+    metaDescription
     title
     subtitle
     intro

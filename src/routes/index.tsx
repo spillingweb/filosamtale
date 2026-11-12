@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../../tina/__generated__/client";
 import { useTina } from "tinacms/dist/react";
 import HomePage from "#/features/home/HomePage";
+import type { PagesHomepage } from "../../tina/__generated__/types";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -16,47 +17,45 @@ export const Route = createFileRoute("/")({
       blogg: bloggResult,
     };
   },
-  head: () => ({
-    meta: [
-      { title: "Filosamtale — Filosofisk veiledning og dialog i Fevik" },
-      {
-        name: "description",
-        content:
-          "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.",
-      },
-      {
-        name: "keywords",
-        content:
-        "filosofisk veiledning, terapi, samtalegruppe, seminar, Fevik, fevik, Agder, filosofi, sykepleier, eksistensiell samtale, psykolog, samtalepraksis, samtale",
-      },
-      {
-        property: "og:title",
-        content: "Filosamtale — Filosofisk veiledning og dialog",
-      },
-      {
-        property: "og:description",
-        content:
-        "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier med videreutdanning i filosofi.",
-      },
-      { property: "og:url", content: "https://filosamtale.no" },
-      { property: "og:locale", content: "nb_NO" },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Filosamtale" },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Filosamtale — Filosofisk veiledning og dialog",
-      },
-      {
-        name: "twitter:description",
-        content:
-        "Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett.",
-      },
-    ],
-    links: [
-      { rel: "canonical", href: "https://filosamtale.no" },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+
+    const page = loaderData.page.data.pages as PagesHomepage;
+
+    return {
+      meta: [
+        { title: page.metaTitle },
+        {
+          name: "description",
+          content:
+            page.metaDescription ||
+            "Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.",
+        },
+        {
+          property: "og:title",
+          content: page.metaTitle,
+        },
+        {
+          property: "og:description",
+          content: page.metaDescription,
+        },
+        { property: "og:url", content: "https://filosamtale.no" },
+        { property: "og:locale", content: "nb_NO" },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "Filosamtale" },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: page.metaTitle,
+        },
+        {
+          name: "twitter:description",
+          content: page.metaDescription,
+        },
+      ],
+      links: [{ rel: "canonical", href: "https://filosamtale.no" }],
+    };
+  },
   component: RouteComponent,
 });
 

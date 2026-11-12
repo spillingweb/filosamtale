@@ -1,6 +1,8 @@
 fragment PagesParts on Pages {
   __typename
   ... on PagesHomepage {
+    metaTitle
+    metaDescription
     heroImage
     kicker
     title
@@ -20,6 +22,8 @@ fragment PagesParts on Pages {
     ctaDescription
   }
   ... on PagesAbout {
+    metaTitle
+    metaDescription
     title
     subtitle
     intro
@@ -32,10 +36,14 @@ fragment PagesParts on Pages {
     }
   }
   ... on PagesHeader {
+    metaTitle
+    metaDescription
     title
     intro
   }
   ... on PagesServices {
+    metaTitle
+    metaDescription
     title
     subtitle
     intro

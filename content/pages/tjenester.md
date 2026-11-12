@@ -1,4 +1,6 @@
 ---
+metaTitle: 'Tjenester - Filosamtale'
+metaDescription: 'Filosamtale tilbyr filosofisk veiledning, samtalegrupper, seminarer og nettkurs. Utforsk eksistensielle spørsmål med en erfaren sykepleier og filosof.'
 title: Tjenester og priser
 subtitle: Finn den formen som passer deg
 intro: Jeg tilbyr filosofisk dialog i flere formater — fra individuelle samtaler til seminarer og nettkurs. Her er en oversikt over hva jeg kan hjelpe deg med.

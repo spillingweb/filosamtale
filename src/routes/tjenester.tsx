@@ -3,6 +3,7 @@ import { client } from "../../tina/__generated__/client";
 import { useTina } from "tinacms/dist/react";
 import { generateServiceSchema } from "#/lib/structured-data";
 import TjenesterPage from "#/features/tjenester/TjenesterPage";
+import type { PagesServices } from "../../tina/__generated__/types";
 
 export const Route = createFileRoute("/tjenester")({
   loader: async () => {
@@ -23,15 +24,23 @@ export const Route = createFileRoute("/tjenester")({
       .map((edge: any) => edge?.node)
       .filter((node: any) => node !== null);
 
+    const page = loaderData.page.data.pages as PagesServices;
+
     return {
       meta: [
-        { title: "Tjenester — Filosamtale" },
+        { title: page.title },
         {
           name: "description",
-          content:
-            "Filosamtale tilbyr filosofisk veiledning, samtalegrupper, seminarer og nettkurs. Utforsk eksistensielle spørsmål med en erfaren sykepleier og filosof.",
+          content: page.metaDescription,
         },
-        { property: "og:title", content: "Tjenester — Filosamtale" },
+        {
+          property: "og:title",
+          content: page.title,
+        },
+        {
+          property: "og:description",
+          content: page.metaDescription,
+        },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${baseUrl}/tjenester` },
       ],

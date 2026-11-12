@@ -1,4 +1,6 @@
 ---
+metaTitle: 'Om meg - Filosamtale'
+metaDescription: 'Tina Maria Lie er sykepleier og filosof. Les om bakgrunnen min og hvorfor jeg tilbyr filosofisk veiledning og dialog.'
 title: Tina Maria Lie
 subtitle: Sykepleier · Videreutdanning i filosofi og psykologi · Grunnlegger av Filosamtale · Medgrunnlegger av Brott & Blega Helse
 intro: Jeg er bosatt på Fevik i Agder og har jobbet med filosofisk praksis siden 2022. Min bakgrunn kombinerer klinisk sykepleiepraksis med praktisk filosofi — og det er nettopp denne kombinasjonen som preger min tilnærming til samtale og veiledning.

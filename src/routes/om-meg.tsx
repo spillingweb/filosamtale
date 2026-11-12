@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTina } from "tinacms/dist/react";
 import client from "../../tina/__generated__/client";
 import OmMeg from "#/features/om-meg/OmMegPage";
+import type { PagesAbout } from "../../tina/__generated__/types";
 
 export const Route = createFileRoute("/om-meg")({
   loader: async () => {
@@ -14,18 +15,25 @@ export const Route = createFileRoute("/om-meg")({
       utdanning: utdanningResult,
     };
   },
-  head: () => ({
-    meta: [
-      { title: 'Om meg — Filosamtale' },
-      { name: 'description', content: 'Tina Maria Lie er sykepleier og filosof. Les om bakgrunnen min og hvorfor jeg tilbyr filosofisk veiledning og dialog.' },
-      { property: 'og:title', content: 'Om meg — Filosamtale' },
-      { property: 'og:type', content: 'profile' },
-      { property: 'og:url', content: 'https://filosamtale.no/om-meg' },
-    ],
-    links: [
-      { rel: 'canonical', href: 'https://filosamtale.no/om-meg' }
-    ],
-  }),
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+    const page = loaderData.page.data.pages as PagesAbout;
+
+    return {
+      meta: [
+        { title: page.metaTitle },
+        {
+          name: "description",
+          content: page.metaDescription,
+        },
+        { property: "og:title", content: page.metaTitle },
+        { property: "og:type", content: "profile" },
+        { property: "og:description", content: page.metaDescription },
+        { property: "og:url", content: "https://filosamtale.no/om-meg" },
+      ],
+      links: [{ rel: "canonical", href: "https://filosamtale.no/om-meg" }],
+    };
+  },
   component: RouteComponent,
 });
 

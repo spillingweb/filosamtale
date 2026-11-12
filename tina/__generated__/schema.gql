@@ -109,6 +109,8 @@ type PagesHomepageTestimonials {
 }
 
 type PagesHomepage implements Node & Document {
+  metaTitle: String!
+  metaDescription: String!
   heroImage: String!
   kicker: String
   title: String!
@@ -132,6 +134,8 @@ type PagesAboutVerdier {
 }
 
 type PagesAbout implements Node & Document {
+  metaTitle: String!
+  metaDescription: String!
   title: String!
   subtitle: String
   intro: String
@@ -144,6 +148,8 @@ type PagesAbout implements Node & Document {
 }
 
 type PagesHeader implements Node & Document {
+  metaTitle: String!
+  metaDescription: String!
   title: String!
   intro: String
   id: ID!
@@ -157,6 +163,8 @@ type PagesServicesFaq {
 }
 
 type PagesServices implements Node & Document {
+  metaTitle: String!
+  metaDescription: String!
   title: String!
   subtitle: String
   intro: String
@@ -187,14 +195,14 @@ type PagesKontakt implements Node & Document {
 
 union Pages = PagesHomepage | PagesAbout | PagesHeader | PagesServices | PagesKontakt
 
-input ImageFilter {
+input StringFilter {
   startsWith: String
   eq: String
   exists: Boolean
   in: [String]
 }
 
-input StringFilter {
+input ImageFilter {
   startsWith: String
   eq: String
   exists: Boolean
@@ -214,6 +222,8 @@ input PagesHomepageTestimonialsFilter {
 }
 
 input PagesHomepageFilter {
+  metaTitle: StringFilter
+  metaDescription: StringFilter
   heroImage: ImageFilter
   kicker: StringFilter
   title: StringFilter
@@ -234,6 +244,8 @@ input PagesAboutVerdierFilter {
 }
 
 input PagesAboutFilter {
+  metaTitle: StringFilter
+  metaDescription: StringFilter
   title: StringFilter
   subtitle: StringFilter
   intro: StringFilter
@@ -243,6 +255,8 @@ input PagesAboutFilter {
 }
 
 input PagesHeaderFilter {
+  metaTitle: StringFilter
+  metaDescription: StringFilter
   title: StringFilter
   intro: StringFilter
 }
@@ -253,6 +267,8 @@ input PagesServicesFaqFilter {
 }
 
 input PagesServicesFilter {
+  metaTitle: StringFilter
+  metaDescription: StringFilter
   title: StringFilter
   subtitle: StringFilter
   intro: StringFilter
@@ -543,6 +559,8 @@ input PagesHomepageTestimonialsMutation {
 }
 
 input PagesHomepageMutation {
+  metaTitle: String
+  metaDescription: String
   heroImage: String
   kicker: String
   title: String
@@ -563,6 +581,8 @@ input PagesAboutVerdierMutation {
 }
 
 input PagesAboutMutation {
+  metaTitle: String
+  metaDescription: String
   title: String
   subtitle: String
   intro: String
@@ -572,6 +592,8 @@ input PagesAboutMutation {
 }
 
 input PagesHeaderMutation {
+  metaTitle: String
+  metaDescription: String
   title: String
   intro: String
 }
@@ -582,6 +604,8 @@ input PagesServicesFaqMutation {
 }
 
 input PagesServicesMutation {
+  metaTitle: String
+  metaDescription: String
   title: String
   subtitle: String
   intro: String

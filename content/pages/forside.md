@@ -1,4 +1,6 @@
 ---
+metaTitle: 'Filosamtale - Filosofiske samtaler på Fevik'
+metaDescription: 'Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier Tina Maria Lie har videreutdanning i filosofi og hjelper deg å utforske livets store spørsmål.'
 heroImage: /uploads/hero-chairs.jpg
 kicker: 'Filosofisk veiledning · Fevik, Agder'
 title: 'Filosofiske samtaler på Fevik. '

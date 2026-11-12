@@ -81,6 +81,20 @@ export default defineConfig({
             label: "Forside",
             fields: [
               {
+                type: "string",
+                name: "metaTitle",
+                label: "Tab tittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "metaDescription",
+                label: "Sidebeskrivelse (for Google søk)",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
                 type: "image",
                 name: "heroImage",
                 label: "Hovedbilde (hero)",
@@ -94,8 +108,7 @@ export default defineConfig({
               {
                 type: "string",
                 name: "title",
-                label: "Sidetittel",
-                isTitle: true,
+                label: "Overskrift",
                 required: true,
               },
               {
@@ -120,18 +133,6 @@ export default defineConfig({
                 label: "Om meg",
                 isBody: true,
               },
-              // {
-              //   type: "string",
-              //   name: "aboutText1",
-              //   label: "Om meg: Avsnitt 1",
-              //   ui: { component: "textarea" },
-              // },
-              // {
-              //   type: "string",
-              //   name: "aboutText2",
-              //   label: "Om meg: Avsnitt 2",
-              //   ui: { component: "textarea" },
-              // },
               {
                 type: "image",
                 name: "profileImage",
@@ -194,9 +195,22 @@ export default defineConfig({
             fields: [
               {
                 type: "string",
-                name: "title",
-                label: "Sidetittel",
+                name: "metaTitle",
+                label: "Tab tittel",
                 isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "metaDescription",
+                label: "Sidebeskrivelse (for Google søk)",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
+                name: "title",
+                label: "Overskrift",
                 required: true,
               },
               {
@@ -257,9 +271,22 @@ export default defineConfig({
             fields: [
               {
                 type: "string",
+                name: "metaTitle",
+                label: "Tab tittel",
+                required: true,
+                isTitle: true,
+              },
+              {
+                type: "string",
+                name: "metaDescription",
+                label: "Sidebeskrivelse (for Google søk)",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
                 name: "title",
                 label: "Sidetittel",
-                isTitle: true,
                 required: true,
               },
               {
@@ -276,9 +303,22 @@ export default defineConfig({
             fields: [
               {
                 type: "string",
-                name: "title",
-                label: "Sidetittel",
+                name: "metaTitle",
+                label: "Tab tittel",
+                required: true,
                 isTitle: true,
+              },
+              {
+                type: "string",
+                name: "metaDescription",
+                label: "Sidebeskrivelse (for Google søk)",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
+                name: "title",
+                label: "Overskrift",
                 required: true,
               },
               {

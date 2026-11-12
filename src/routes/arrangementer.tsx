@@ -3,6 +3,7 @@ import { client } from "../../tina/__generated__/client";
 import { generateEventSchema } from "#/lib/structured-data";
 import ArrangementerPage from "#/features/arrangementer/components/ArrangementerPage";
 import { useTina } from "tinacms/react";
+import type { PagesHeader } from "../../tina/__generated__/types";
 
 export const Route = createFileRoute("/arrangementer")({
   loader: async () => {
@@ -28,15 +29,16 @@ export const Route = createFileRoute("/arrangementer")({
       .map((edge: any) => edge?.node)
       .filter((node: any) => node !== null);
 
+    const page = loaderData.page.data.pages as PagesHeader;
+
     return {
       meta: [
-        { title: "Arrangementer — Filosamtale" },
+        { title: page.metaTitle },
         {
           name: "description",
-          content:
-            "Kommende arrangementer hos Filosamtale. Bli med på filosofiske samtaler, seminarer og workshops i Fevik og på nett.",
+          content: page.metaDescription,
         },
-        { property: "og:title", content: "Arrangementer — Filosamtale" },
+        { property: "og:title", content: page.metaTitle },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${baseUrl}/arrangementer` },
       ],
