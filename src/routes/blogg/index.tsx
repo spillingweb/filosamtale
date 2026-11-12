@@ -31,6 +31,7 @@ export const Route = createFileRoute("/blogg/")({
         { property: "og:type", content: "website" },
         { property: "og:description", content: page.metaDescription },
         { property: "og:url", content: "https://filosamtale.no/blogg" },
+        { property: "og:site_name", content: "Filosamtale" },
       ],
       links: [{ rel: "canonical", href: "https://filosamtale.no/blogg" }],
     };

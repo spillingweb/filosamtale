@@ -22,12 +22,12 @@ export const Route = createFileRoute("/arrangementer")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
 
-    const baseUrl = "https://filosamtale.no";
+    const baseUrl = import.meta.env.BASE_URL || "https://filosamtale.no";
     const events = (
       loaderData.arrangementer.data.arrangementerConnection.edges || []
     )
-      .map((edge: any) => edge?.node)
-      .filter((node: any) => node !== null);
+      .map((edge) => edge?.node)
+      .filter((node) => node !== null);
 
     const page = loaderData.page.data.pages as PagesHeader;
 
@@ -39,8 +39,11 @@ export const Route = createFileRoute("/arrangementer")({
           content: page.metaDescription,
         },
         { property: "og:title", content: page.metaTitle },
+        { property: "og:description", content: page.metaDescription },
+        { property: "og:image", content: events[0]?.image || "" },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${baseUrl}/arrangementer` },
+        { property: "og:site_name", content: "Filosamtale" },
       ],
       links: [{ rel: "canonical", href: `${baseUrl}/arrangementer` }],
       scripts: [
@@ -48,14 +51,14 @@ export const Route = createFileRoute("/arrangementer")({
           type: "application/ld+json",
           children: JSON.stringify(
             events
-              .map((event: any) => {
+              .map((event) => {
                 if (!event) return null;
                 return generateEventSchema({
-                  name: event.title || "",
-                  description: event.description || "",
-                  startDate: event.date || "",
-                  location: event.location || "Fevik",
-                  eventType: event.category || "Event",
+                  name: event.title,
+                  description: event.description,
+                  startDate: event.date,
+                  location: event.location,
+                  eventType: event.kategorier.label,
                   price: event.price,
                   maxParticipants: event.capacity,
                   url: `${baseUrl}/arrangementer#${event._sys.filename.replace(".md", "")}`,

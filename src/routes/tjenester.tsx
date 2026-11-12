@@ -21,8 +21,8 @@ export const Route = createFileRoute("/tjenester")({
 
     const baseUrl = "https://filosamtale.no";
     const services = (loaderData.tjenester.data.tjenesterConnection.edges || [])
-      .map((edge: any) => edge?.node)
-      .filter((node: any) => node !== null);
+      .map((edge) => edge?.node)
+      .filter((node) => node !== null);
 
     const page = loaderData.page.data.pages as PagesServices;
 
@@ -41,6 +41,8 @@ export const Route = createFileRoute("/tjenester")({
           property: "og:description",
           content: page.metaDescription,
         },
+        { property: "og:image", content: services[0]?.image || "" },
+        { property: "og:site_name", content: "Filosamtale" },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${baseUrl}/tjenester` },
       ],

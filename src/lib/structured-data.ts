@@ -109,7 +109,7 @@ export function generateEventSchema(params: {
   location: string;
   eventType: string;
   price?: number;
-  maxParticipants?: number;
+  maxParticipants: number | null;
   url: string;
 }): StructuredData {
   const event: StructuredData = {

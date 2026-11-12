@@ -29,7 +29,9 @@ export const Route = createFileRoute("/om-meg")({
         { property: "og:title", content: page.metaTitle },
         { property: "og:type", content: "profile" },
         { property: "og:description", content: page.metaDescription },
+        { property: "og:image", content: page.profileImage },
         { property: "og:url", content: "https://filosamtale.no/om-meg" },
+        { property: "og:site_name", content: "Filosamtale" },
       ],
       links: [{ rel: "canonical", href: "https://filosamtale.no/om-meg" }],
     };

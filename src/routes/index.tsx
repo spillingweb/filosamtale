@@ -41,6 +41,7 @@ export const Route = createFileRoute("/")({
         { property: "og:url", content: "https://filosamtale.no" },
         { property: "og:locale", content: "nb_NO" },
         { property: "og:type", content: "website" },
+        { property: "og:image", content: page.heroImage || "" },
         { property: "og:site_name", content: "Filosamtale" },
         { name: "twitter:card", content: "summary_large_image" },
         {
