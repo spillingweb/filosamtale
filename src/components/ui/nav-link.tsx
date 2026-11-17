@@ -38,6 +38,7 @@ export function NavLink({ children, className, ...props }: NavLinkProps) {
           className
         ),
       }}
+      onClick={(e) => e.currentTarget.blur()}
       {...props}
     >
       {children}

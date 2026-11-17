@@ -51,10 +51,24 @@ export function generateLocalBusinessSchema(baseUrl: string): StructuredData {
       "@type": "GeoCoordinates",
       addressCountry: "NO",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Norge",
-    },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "Norge",
+      },
+      {
+        "@type": "City",
+        name: "Fevik",
+      },
+      {
+        "@type": "City",
+        name: "Grimstad",
+      },
+      {
+        "@type": "City",
+        name: "Arendal",
+      },
+    ],
     url: baseUrl,
     priceRange: "$$",
     availableLanguage: ["nb", "no", "en"],

@@ -11,6 +11,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
 import { Card } from "#/components/ui/card";
+import { User2 } from "lucide-react";
 
 const BloggInnlegg = ({
   postData,
@@ -112,17 +113,7 @@ const BloggInnlegg = ({
 
             <div className="mt-10 flex items-center gap-4 border-t pt-6">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <svg
-                  viewBox="0 0 24 24"
-                  width="22"
-                  height="22"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M4 20a8 8 0 0116 0" strokeLinecap="round" />
-                </svg>
+                <User2 className="size-5" />
               </div>
               <div>
                 <p className="font-semibold text-foreground">Tina Maria Lie</p>

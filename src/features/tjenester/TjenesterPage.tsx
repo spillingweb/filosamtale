@@ -11,6 +11,7 @@ import ContentLayout from "#/components/ContentLayout";
 import IslandKicker from "#/components/ui/IslandKicker";
 import { tinaField } from "tinacms/tina-field";
 import IslandShell from "#/components/ui/IslandShell";
+import { Info } from "lucide-react";
 
 const TjenesterPage = ({
   tjenesterData,
@@ -104,9 +105,7 @@ const TjenesterPage = ({
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-chip-line bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
           data-tina-field={tinaField(page, "infoBadge")}
         >
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
-            <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75v1.5h-1.5v-1.5h1.5zm0 3v4.5h-1.5v-4.5h1.5z" />
-          </svg>
+          <Info className="text-primary" size={16} />
           {page.infoBadge}
         </div>
       )}
@@ -132,7 +131,7 @@ const TjenesterPage = ({
       {/* FAQ strip */}
       {page.faq && page.faq.length > 0 && (
         <section>
-          <IslandShell className="mt-10 p-6 sm:p-8">
+          <IslandShell className="mt-10 p-6 sm:p-8 motion-safe:anim-fade-in">
             <IslandKicker className="mb-3">Spørsmål og svar</IslandKicker>
             <DisplayHeading as="h2" size="base" className="mb-6">
               Vanlige spørsmål

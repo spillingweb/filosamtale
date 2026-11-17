@@ -27,7 +27,7 @@ const BloggTeaser = ({
 
   return (
     <section className="py-12">
-      <div className="mb-8 flex items-end justify-between">
+      <div className="mb-8 flex items-end justify-between motion-safe:anim-scroll">
         <div>
           <IslandKicker className="mb-2">Fra bloggen</IslandKicker>
           <DisplayHeading

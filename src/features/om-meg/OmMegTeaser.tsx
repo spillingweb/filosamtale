@@ -9,7 +9,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 const OmMegTeaser = ({ page }: { page: PagesHomepage }) => {
   return (
-    <section className="px-2 sm:px-4 py-12">
+    <section className="px-2 sm:px-4 py-12 motion-safe:anim-scroll">
       <div className="grid gap-10 md:grid-cols-2">
         {/* Profile portrait */}
         <div className="order-2 md:order-1">

@@ -47,7 +47,7 @@ export default function Header() {
               if (to === "/tjenester") {
                 return (
                   <div key={to} className="group relative">
-                    <NavLink to={to}>Tjenester</NavLink>
+                    <NavLink to={to} >Tjenester</NavLink>
                     <div className="pointer-events-none absolute left-0 top-full pt-3 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
                       <div className="min-w-56 rounded-xl border border-chip-line bg-card/95 p-2 shadow-lg backdrop-blur">
                         {tjenesterDropdownLinks.map((item) => (

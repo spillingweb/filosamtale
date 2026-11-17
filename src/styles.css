@@ -7,7 +7,7 @@
 @plugin "@tailwindcss/typography";
 
 /* ── Dark mode variant: fires when a .dark class is on an ancestor ───── */
-@custom-variant dark (.dark &);
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 /* ── Design tokens & Tailwind theme extensions ───────────────────────── */
 @theme {
@@ -16,15 +16,37 @@
 
   --animate-rise-in: rise-in 1700ms cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-bounce-in: bounce-in 1000ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-fade-in: fade-in 2000ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 
   @keyframes rise-in {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes bounce-in {
-    from { opacity: 0; transform: scale(0.3) translateY(20px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
+    from {
+      opacity: 0;
+      transform: scale(0.3) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
 
@@ -106,61 +128,118 @@
 }
 
 /* ── CSS variable values: dark mode ──────────────────────────────────── */
-/* Explicit dark theme, or system dark preference when not forced light.  */
 :root[data-theme="dark"],
-:root:not([data-theme="light"]) {
-  @media (prefers-color-scheme: dark) {
-    & {
-      --sea-ink: oklch(91% 0.02 80);
-      --sea-ink-soft: oklch(78% 0.02 80);
-      --lagoon: oklch(75% 0.06 145);
-      --lagoon-deep: oklch(70% 0.06 145);
-      --palm: oklch(72% 0.06 145);
-      --sand: oklch(10% 0.02 80);
-      --foam: oklch(12% 0.02 80);
-      --surface: oklch(13% 0.02 80 / 0.82);
-      --line: oklch(75% 0.06 145 / 0.14);
-      --inset-glint: oklch(90% 0.02 80 / 0.12);
-      --kicker: oklch(80% 0.05 135);
-      --chip-bg: oklch(14% 0.02 80 / 0.9);
-      --chip-line: oklch(75% 0.06 145 / 0.18);
-      --hero-a: oklch(55% 0.05 70 / 0.06);
-      --hero-b: oklch(65% 0.05 75 / 0.05);
+.dark {
+  & {
+    --sea-ink: oklch(91% 0.02 80);
+    --sea-ink-soft: oklch(78% 0.02 80);
+    --lagoon: oklch(75% 0.06 145);
+    --lagoon-deep: oklch(70% 0.06 145);
+    --palm: oklch(72% 0.06 145);
+    --sand: oklch(10% 0.02 80);
+    --foam: oklch(12% 0.02 80);
+    --surface: oklch(13% 0.02 80 / 0.82);
+    --line: oklch(75% 0.06 145 / 0.14);
+    --inset-glint: oklch(90% 0.02 80 / 0.12);
+    --kicker: oklch(80% 0.05 135);
+    --chip-bg: oklch(14% 0.02 80 / 0.9);
+    --chip-line: oklch(75% 0.06 145 / 0.18);
+    --hero-a: oklch(55% 0.05 70 / 0.06);
+    --hero-b: oklch(65% 0.05 75 / 0.05);
 
-      --background: oklch(12% 0.02 80);
-      --foreground: oklch(91% 0.02 80);
-      --card: oklch(14% 0.02 80);
-      --card-foreground: oklch(91% 0.02 80);
-      --popover: oklch(15% 0.02 80);
-      --popover-foreground: oklch(91% 0.02 80);
-      --primary: oklch(72% 0.06 145);
-      --primary-foreground: oklch(12% 0.02 145);
-      --secondary: oklch(18% 0.02 80);
-      --secondary-foreground: oklch(91% 0.02 80);
-      --muted: oklch(17% 0.02 80);
-      --muted-foreground: oklch(68% 0.02 135);
-      --accent: oklch(88.117% 0.06006 145.121);
-      --accent-foreground: oklch(13% 0.02 145);
-      --destructive: oklch(68.282% 0.18911 23.531);
-      --destructive-foreground: oklch(13.582% 0.00194 16.959);
-      --border: oklch(75% 0.06 145 / 0.14);
-      --input: oklch(75% 0.06 145 / 0.11);
-      --ring: oklch(75% 0.06 145);
-    }
+    --background: oklch(12% 0.02 80);
+    --foreground: oklch(91% 0.02 80);
+    --card: oklch(14% 0.02 80);
+    --card-foreground: oklch(91% 0.02 80);
+    --popover: oklch(15% 0.02 80);
+    --popover-foreground: oklch(91% 0.02 80);
+    --primary: oklch(72% 0.06 145);
+    --primary-foreground: oklch(12% 0.02 145);
+    --secondary: oklch(18% 0.02 80);
+    --secondary-foreground: oklch(91% 0.02 80);
+    --muted: oklch(17% 0.02 80);
+    --muted-foreground: oklch(68% 0.02 135);
+    --accent: oklch(88.117% 0.06006 145.121);
+    --accent-foreground: oklch(13% 0.02 145);
+    --destructive: oklch(68.282% 0.18911 23.531);
+    --destructive-foreground: oklch(13.582% 0.00194 16.959);
+    --border: oklch(75% 0.06 145 / 0.14);
+    --input: oklch(75% 0.06 145 / 0.11);
+    --ring: oklch(75% 0.06 145);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sea-ink: oklch(91% 0.02 80);
+    --sea-ink-soft: oklch(78% 0.02 80);
+    --lagoon: oklch(75% 0.06 145);
+    --lagoon-deep: oklch(70% 0.06 145);
+    --palm: oklch(72% 0.06 145);
+    --sand: oklch(10% 0.02 80);
+    --foam: oklch(12% 0.02 80);
+    --surface: oklch(13% 0.02 80 / 0.82);
+    --line: oklch(75% 0.06 145 / 0.14);
+    --inset-glint: oklch(90% 0.02 80 / 0.12);
+    --kicker: oklch(80% 0.05 135);
+    --chip-bg: oklch(14% 0.02 80 / 0.9);
+    --chip-line: oklch(75% 0.06 145 / 0.18);
+    --hero-a: oklch(55% 0.05 70 / 0.06);
+    --hero-b: oklch(65% 0.05 75 / 0.05);
+
+    --background: oklch(12% 0.02 80);
+    --foreground: oklch(91% 0.02 80);
+    --card: oklch(14% 0.02 80);
+    --card-foreground: oklch(91% 0.02 80);
+    --popover: oklch(15% 0.02 80);
+    --popover-foreground: oklch(91% 0.02 80);
+    --primary: oklch(72% 0.06 145);
+    --primary-foreground: oklch(12% 0.02 145);
+    --secondary: oklch(18% 0.02 80);
+    --secondary-foreground: oklch(91% 0.02 80);
+    --muted: oklch(17% 0.02 80);
+    --muted-foreground: oklch(68% 0.02 135);
+    --accent: oklch(88.117% 0.06006 145.121);
+    --accent-foreground: oklch(13% 0.02 145);
+    --destructive: oklch(68.282% 0.18911 23.531);
+    --destructive-foreground: oklch(13.582% 0.00194 16.959);
+    --border: oklch(75% 0.06 145 / 0.14);
+    --input: oklch(75% 0.06 145 / 0.11);
+    --ring: oklch(75% 0.06 145);
+  }
+}
+
+/* ── Scroll-Driven Animations (Compositor-Only, Progressive Enhancement) ── */
+@utility anim-scroll {
+  @supports (animation-timeline: view()) {
+    animation: rise-in ease-out both;
+    animation-timeline: view();
+    animation-range: calc(var(--index, 0) * 10%)
+      calc(25% + var(--index, 0) * 20%);
+  }
+}
+
+@utility anim-bounce-scroll {
+  @supports (animation-timeline: view()) {
+    animation: bounce-in linear both;
+    animation-timeline: view();
+    animation-range: cover calc(var(--index, 0) * 10%) cover
+      calc(30% + var(--index, 0) * 10%);
+  }
+}
+
+@utility anim-fade-in {
+  @supports (animation-timeline: view()) {
+    animation: fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
   }
 }
 
 /* ── Base layer ───────────────────────────────────────────────────────── */
 @layer base {
   * {
-    box-sizing: border-box;
-    @apply border-border;
-  }
-
-  html,
-  body,
-  #app {
-    min-height: 100%;
+    @apply border-border outline-ring/50;
   }
 
   body {
@@ -169,10 +248,12 @@
     background:
       radial-gradient(1400px 800px at -10% -8%, var(--hero-a), transparent 65%),
       radial-gradient(900px 600px at 95% -5%, var(--hero-b), transparent 58%),
-      radial-gradient(1000px 600px at 40% 120%, oklch(85% 0.06 80 / 0.12), transparent 70%),
+      radial-gradient(
+        1000px 600px at 40% 120%,
+        oklch(85% 0.06 80 / 0.12),
+        transparent 70%
+      ),
       linear-gradient(180deg, var(--foam) 45%, var(--background) 100%);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   body::before {
@@ -183,8 +264,16 @@
     z-index: -1;
     opacity: 0.28;
     background:
-      radial-gradient(circle at 15% 20%, oklch(78% 0.08 165 / 0.18), transparent 50%),
-      radial-gradient(circle at 85% 75%, oklch(85% 0.06 80 / 0.14), transparent 45%);
+      radial-gradient(
+        circle at 15% 20%,
+        oklch(78% 0.08 165 / 0.18),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 85% 75%,
+        oklch(85% 0.06 80 / 0.14),
+        transparent 45%
+      );
   }
 
   a {

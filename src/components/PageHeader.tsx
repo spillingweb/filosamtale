@@ -20,9 +20,9 @@ const PageHeader = ({
   };
 }) => {
   return (
-    <section className="animate-rise-in py-5">
+    <section className="motion-safe:animate-rise-in py-5">
       <IslandKicker className="mb-3">{pageName}</IslandKicker>
-      <DisplayHeading 
+      <DisplayHeading
         as="h1"
         size="2xl"
         className="text-balance mb-4 max-w-2xl"
@@ -31,14 +31,14 @@ const PageHeader = ({
         {title}
       </DisplayHeading>
       {subtitle && (
-        <p 
+        <p
           className="mb-4 text-lg text-sea-ink-soft text-balance"
           data-tina-field={tinaFields?.subtitle}
         >
           {subtitle}
         </p>
       )}
-      <p 
+      <p
         className="max-w-xl text-sea-ink-soft leading-relaxed"
         data-tina-field={tinaFields?.description}
       >

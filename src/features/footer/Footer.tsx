@@ -72,22 +72,22 @@ export default function Footer() {
             </div>
 
             <nav className="flex flex-wrap justify-center items-center gap-y-1 text-sm text-sea-ink-soft md:justify-self-end">
-              <Button asChild variant="link" size="sm">
+              <Button asChild variant="link" size="sm" className="p-2">
                 <Link to="/om-meg" className="hover:text-foreground">
                   Om meg
                 </Link>
               </Button>
-              <Button asChild variant="link" size="sm">
+              <Button asChild variant="link" size="sm" className="p-2">
                 <Link to="/tjenester" className="hover:text-foreground">
                   Tjenester
                 </Link>
               </Button>
-              <Button asChild variant="link" size="sm">
+              <Button asChild variant="link" size="sm" className="p-2">
                 <Link to="/blogg" className="hover:text-foreground">
                   Blogg
                 </Link>
               </Button>
-              <Button asChild variant="link" size="sm">
+              <Button asChild variant="link" size="sm" className="p-2">
                 <Link to="/arrangementer" className="hover:text-foreground">
                   Arrangementer
                 </Link>

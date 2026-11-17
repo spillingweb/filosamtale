@@ -42,11 +42,11 @@ export default function ContentLayout({
           onClick={scrollToTop}
           size="icon"
           variant="default"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 shadow-lg animate-bounce-in"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 shadow-lg motion-safe:animate-bounce-in"
           aria-label="Scroll til toppen"
           title="Scroll til toppen"
         >
-         <ChevronUp />
+          <ChevronUp />
         </Button>
       )}
     </>

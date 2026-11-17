@@ -8,7 +8,7 @@ import { Textarea } from "../../components/ui/textarea";
 import { Label } from "../../components/ui/label";
 import { sendKontaktskjema } from "#/server/kontakt";
 import { tinaField } from "tinacms/dist/react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Check, Mail, MapPin, Phone } from "lucide-react";
 import IslandKicker from "../../components/ui/IslandKicker";
 import IslandShell from "../../components/ui/IslandShell";
 import type { PagesKontakt } from "../../../tina/__generated__/types";
@@ -99,7 +99,7 @@ const ContactForm = ({ page }: { page: PagesKontakt }) => {
   return (
     <div className="grid gap-12 lg:grid-cols-2">
       {/* Left: info */}
-      <div>
+      <div className="motion-safe:anim-scroll">
         <IslandKicker
           className="mb-3"
           data-tina-field={tinaField(page, "kicker")}
@@ -173,15 +173,7 @@ const ContactForm = ({ page }: { page: PagesKontakt }) => {
         {status === "ok" ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 py-8 text-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-              <svg viewBox="0 0 20 20" width="28" height="28" fill="none">
-                <path
-                  d="M4 10l5 5 7-8"
-                  stroke="var(--palm)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+             <Check className="text-palm" size={25} />
             </div>
             <h3 className="text-xl font-semibold text-foreground">
               Meldingen er sendt!

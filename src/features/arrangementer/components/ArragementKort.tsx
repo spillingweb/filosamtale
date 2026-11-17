@@ -24,7 +24,7 @@ function ArrangementKort({
   const eventDate = new Date(arr.date);
 
   return (
-    <IslandShell>
+    <IslandShell className="motion-safe:anim-scroll">
       <article className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[280px_1fr] group">
         {/* Image with date overlay - left on desktop, top on mobile */}
         <div className="relative overflow-hidden rounded-lg order-first">

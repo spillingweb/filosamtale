@@ -22,10 +22,7 @@ export const Route = createFileRoute("/om-meg")({
     return {
       meta: [
         { title: page.metaTitle },
-        {
-          name: "description",
-          content: page.metaDescription,
-        },
+        { name: "description", content: page.metaDescription },
         { property: "og:title", content: page.metaTitle },
         { property: "og:type", content: "profile" },
         { property: "og:description", content: page.metaDescription },

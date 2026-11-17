@@ -6,10 +6,11 @@ import { Badge } from "#/components/ui/badge";
 import IslandKicker from "#/components/ui/IslandKicker";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "#/components/ui/button";
+import { Check } from "lucide-react";
 
 const TjenesteCard = ({ tjeneste }: { tjeneste: Tjenester }) => {
   return (
-    <IslandShell>
+    <IslandShell className="motion-safe:anim-scroll">
       <article
         id={tjeneste._sys.filename.replace(".json", "")}
         className="grid scroll-mt-24 gap-6 lg:gap-y-0 p-6 sm:p-8 lg:grid-cols-[280px_1fr]"
@@ -66,23 +67,9 @@ const TjenesteCard = ({ tjeneste }: { tjeneste: Tjenester }) => {
               {(tjeneste.detaljer || []).map((detalj, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-2 text-sm text-sea-ink-soft"
+                  className="flex items-center gap-2 text-sm text-sea-ink-soft"
                 >
-                  <svg
-                    viewBox="0 0 16 16"
-                    width="14"
-                    height="14"
-                    fill="none"
-                    className="mt-0.5 shrink-0 text-primary"
-                  >
-                    <path
-                      d="M3 8l4 4 6-6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                 <Check className="size-4 text-primary" />
                   {detalj}
                 </li>
               ))}

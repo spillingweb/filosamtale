@@ -11,9 +11,13 @@ import { tinaField } from "tinacms/tina-field";
 import type { Blogg } from "../../../tina/__generated__/types";
 
 const BloggCard = ({ post, index }: { post: Blogg; index: number }) => {
+  const smStagger = index % 2 === 1 ? "sm:[--index:1]" : "sm:[--index:0]";
+  const lgStagger = ["lg:[--index:0]", "lg:[--index:1]", "lg:[--index:2]"][
+    index % 3
+  ];
   return (
     <IslandShell
-      className="animate-rise-in group cursor-pointer flex flex-col overflow-hidden"
+      className={`motion-safe:anim-scroll group cursor-pointer flex flex-col overflow-hidden ${smStagger} ${lgStagger}`}
       style={{ animationDelay: `${index * 100}ms` }}
       isFeature
     >

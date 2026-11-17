@@ -29,17 +29,12 @@ export const Route = createFileRoute("/blogg/$slug")({
     if (!loaderData) return {};
 
     const post = loaderData.post.data.blogg;
-    const baseUrl = "https://filosamtale.no"; // TODO: Update with your actual domain
+    const baseUrl = "https://filosamtale.no";
     const postUrl = `${baseUrl}/blogg/${params.slug}`;
 
     // Extract plain text from body for description (first 160 chars)
     const bodyText = post.body?.children?.[0]?.children?.[0]?.text || "";
     const description = post.excerpt || bodyText.substring(0, 160) + "...";
-
-    // Prepare Open Graph image
-    const ogImage = post.coverImage
-      ? post.coverImage
-      : "/uploads/hero-chairs.jpg";
 
     return {
       meta: [
@@ -50,7 +45,7 @@ export const Route = createFileRoute("/blogg/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: postUrl },
-        { property: "og:image", content: ogImage },
+        { property: "og:image", content: post.coverImage || "" },
         { property: "og:site_name", content: "Filosamtale" },
         { property: "article:published_time", content: post.date || "" },
         { property: "article:author", content: "Tina Maria Lie" },
@@ -58,7 +53,7 @@ export const Route = createFileRoute("/blogg/$slug")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title || "" },
         { name: "twitter:description", content: description },
-        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image", content: post.coverImage || "" },
       ],
       links: [{ rel: "canonical", href: postUrl }],
       scripts: [
