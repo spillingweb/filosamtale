@@ -30,7 +30,7 @@ export function generateLocalBusinessSchema(baseUrl: string): StructuredData {
     founder: {
       "@type": "Person",
       name: "Tina Maria Lie",
-      jobTitle: "Filosof og Sykepleier",
+      jobTitle: "Sykepleier med filosofisk praksis",
       knowsAbout: [
         "Eksistensiell veiledning",
         "Filosofisk praksis",

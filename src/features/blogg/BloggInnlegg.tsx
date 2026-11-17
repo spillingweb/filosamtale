@@ -118,7 +118,7 @@ const BloggInnlegg = ({
               <div>
                 <p className="font-semibold text-foreground">Tina Maria Lie</p>
                 <p className="text-sm text-sea-ink-soft">
-                  Sykepleier og filosof · Fevik, Agder
+                  Filosamtale · Fevik, Agder
                 </p>
               </div>
             </div>
